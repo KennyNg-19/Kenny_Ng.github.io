@@ -102,6 +102,7 @@ deploy:
   repository: https://github.com/KennyNg-19/Kenny_Ng.github.io
   branch: master
 
+# 备份插件的额外config
 backup:
     type: git
     message: update backup branch

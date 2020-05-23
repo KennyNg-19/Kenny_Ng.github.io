@@ -1,6 +1,6 @@
 ---
-title: CV训练营-笔记1-赛题研究
-date: 2020-05-23 00:53:16
+title: datawhale-cv训练营-01赛题研究
+date: 2020-05-19 00:53:16
 tags: [ML, CV]
 ---
 
