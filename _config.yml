@@ -8,7 +8,7 @@ subtitle: 'By Kenny_Ng'
 description: ''
 keywords:
 author: Kenny Ng
-language: zh
+language: zh-CNs
 timezone: ''
 
 # URL
@@ -102,6 +102,20 @@ deploy:
   repository: https://github.com/KennyNg-19/Kenny_Ng.github.io
   branch: master
 
+############ 额外插件 ############
+
+# 搜索插件： hexo-generator-search
+search:
+  path: search.xml
+  field: post
+
+# 文章字数统计插件
+wordCount:
+  enable: true # 将这个值设置为 true 即可.
+  postWordCount: true
+  min2read: true
+  totalCount: true
+  
 # 备份插件的额外config
 backup:
     type: git
