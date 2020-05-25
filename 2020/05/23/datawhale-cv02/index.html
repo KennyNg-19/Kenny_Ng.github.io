@@ -510,16 +510,16 @@
 </ul>
 <p>在常见的数据扩增方法中，一般会从<strong>图像颜色、尺寸、形态、空间和像素等角度</strong>进行变换。当然不同的数据扩增方法可以自由进行组合，得到更加丰富的数据扩增方法。</p>
 <p>以<strong><a href="https://pytorch.org/docs/stable/torchvision/index.html" target="_blank" rel="noopener">torchvision</a></strong>(pytorch官方提供的数据扩增库，提供了基本的数据数据扩增方法，可以<u>无缝与torch进行集成</u>；但<u>数据扩增方法种类较少，且速度中等</u>)为例，常见的数据扩增方法（API）包括：</p>
-<pre><code class="python">- transforms.CenterCrop 对图片中心进行裁剪
-- transforms.ColorJitter 对图像颜色的对比度、饱和度和零度进行变换
-- transforms.FiveCrop 对图像四个角和中心进行裁剪得到五分图像
-- transforms.Grayscale 对图像进行灰度变换
-- transforms.Pad 使用固定值进行像素填充
-- transforms.RandomAffine 随机仿射变换
-- transforms.RandomCrop 随机区域裁剪
-- transforms.RandomHorizontalFlip 随机水平翻转
-- transforms.RandomRotation 随机旋转
-- transforms.RandomVerticalFlip 随机垂直翻转</code></pre>
+<pre class=" language-python"><code class="language-python"><span class="token operator">-</span> transforms<span class="token punctuation">.</span>CenterCrop 对图片中心进行裁剪
+<span class="token operator">-</span> transforms<span class="token punctuation">.</span>ColorJitter 对图像颜色的对比度、饱和度和零度进行变换
+<span class="token operator">-</span> transforms<span class="token punctuation">.</span>FiveCrop 对图像四个角和中心进行裁剪得到五分图像
+<span class="token operator">-</span> transforms<span class="token punctuation">.</span>Grayscale 对图像进行灰度变换
+<span class="token operator">-</span> transforms<span class="token punctuation">.</span>Pad 使用固定值进行像素填充
+<span class="token operator">-</span> transforms<span class="token punctuation">.</span>RandomAffine 随机仿射变换
+<span class="token operator">-</span> transforms<span class="token punctuation">.</span>RandomCrop 随机区域裁剪
+<span class="token operator">-</span> transforms<span class="token punctuation">.</span>RandomHorizontalFlip 随机水平翻转
+<span class="token operator">-</span> transforms<span class="token punctuation">.</span>RandomRotation 随机旋转
+<span class="token operator">-</span> transforms<span class="token punctuation">.</span>RandomVerticalFlip 随机垂直翻转</code></pre>
 <p>除了torchvision，还有速度<strong>更快的第三方扩增库</strong>供选择：</p>
 <ol>
 <li><p><a href="https://github.com/aleju/imgaug" target="_blank" rel="noopener">imgaug</a> 提供了多样的数据扩增方法，且组合起来非常方便，速度较快；</p>
@@ -535,68 +535,68 @@
 <li>DataLoder：对<font color="#dd0000"><strong>Dataset进行封装</strong></font>，提供批量读取的迭代读取</li>
 </ul>
 <p>而<font color="#dd0000"><strong>在Pytorch中的数据读取逻辑</strong></font>， 数据①先<strong>通过Dataset进行封装</strong>，②再<u><strong>通过DataLoder进行并行读取</strong></u>。</p>
-<h4 id="2-4-2-代码"><a href="#2-4-2-代码" class="headerlink" title="2.4.2 代码"></a>2.4.2 代码</h4><h5 id="Step①定义对数据集封装的Dataset-详情，见注释"><a href="#Step①定义对数据集封装的Dataset-详情，见注释" class="headerlink" title="Step①定义对数据集封装的Dataset(详情，见注释)"></a>Step①定义对数据集封装的Dataset(详情，见注释)</h5><pre><code class="python"># 省略各种import 
-class SVHNDataset(Dataset):
-      # constructor
-    def __init__(self, img_path, img_label, transform=None):
-        self.img_path = img_path
-        self.img_label = img_label 
-        if transform is not None:
-            self.transform = transform
-        else:
-            self.transform = None
+<h4 id="2-4-2-代码"><a href="#2-4-2-代码" class="headerlink" title="2.4.2 代码"></a>2.4.2 代码</h4><h5 id="Step①定义对数据集封装的Dataset-详情，见注释"><a href="#Step①定义对数据集封装的Dataset-详情，见注释" class="headerlink" title="Step①定义对数据集封装的Dataset(详情，见注释)"></a>Step①定义对数据集封装的Dataset(详情，见注释)</h5><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 省略各种import </span>
+<span class="token keyword">class</span> <span class="token class-name">SVHNDataset</span><span class="token punctuation">(</span>Dataset<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token comment" spellcheck="true"># constructor</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> img_path<span class="token punctuation">,</span> img_label<span class="token punctuation">,</span> transform<span class="token operator">=</span>None<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>img_path <span class="token operator">=</span> img_path
+        self<span class="token punctuation">.</span>img_label <span class="token operator">=</span> img_label 
+        <span class="token keyword">if</span> transform <span class="token keyword">is</span> <span class="token operator">not</span> None<span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>transform <span class="token operator">=</span> transform
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            self<span class="token punctuation">.</span>transform <span class="token operator">=</span> None
 
-    # getter: 因为Dataset是提供【索引方式】的对数据样本进行读取
-    def __getitem__(self, index):
-        img = Image.open(self.img_path[index]).convert(&#39;RGB&#39;)
+    <span class="token comment" spellcheck="true"># getter: 因为Dataset是提供【索引方式】的对数据样本进行读取</span>
+    <span class="token keyword">def</span> <span class="token function">__getitem__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> index<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        img <span class="token operator">=</span> Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span>self<span class="token punctuation">.</span>img_path<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>convert<span class="token punctuation">(</span><span class="token string">'RGB'</span><span class="token punctuation">)</span>
 
-        if self.transform is not None:
-            img = self.transform(img)
+        <span class="token keyword">if</span> self<span class="token punctuation">.</span>transform <span class="token keyword">is</span> <span class="token operator">not</span> None<span class="token punctuation">:</span>
+            img <span class="token operator">=</span> self<span class="token punctuation">.</span>transform<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
 
-        # 原始SVHN中类别10为数字0
-        lbl = np.array(self.img_label[index], dtype=np.int)
-        lbl = list(lbl)  + (5 - len(lbl)) * [10]
+        <span class="token comment" spellcheck="true"># 原始SVHN中类别10为数字0</span>
+        lbl <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>self<span class="token punctuation">.</span>img_label<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span>np<span class="token punctuation">.</span>int<span class="token punctuation">)</span>
+        lbl <span class="token operator">=</span> list<span class="token punctuation">(</span>lbl<span class="token punctuation">)</span>  <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">5</span> <span class="token operator">-</span> len<span class="token punctuation">(</span>lbl<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span>
 
-        return img, torch.from_numpy(np.array(lbl[:5]))
+        <span class="token keyword">return</span> img<span class="token punctuation">,</span> torch<span class="token punctuation">.</span>from_numpy<span class="token punctuation">(</span>np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>lbl<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-    def __len__(self):
-        return len(self.img_path)
+    <span class="token keyword">def</span> <span class="token function">__len__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> len<span class="token punctuation">(</span>self<span class="token punctuation">.</span>img_path<span class="token punctuation">)</span>
 
-# 获取: 图片数据和label的路径
-train_path = glob.glob(&#39;../input/train/*.png&#39;)
-train_path.sort()
+<span class="token comment" spellcheck="true"># 获取: 图片数据和label的路径</span>
+train_path <span class="token operator">=</span> glob<span class="token punctuation">.</span>glob<span class="token punctuation">(</span><span class="token string">'../input/train/*.png'</span><span class="token punctuation">)</span>
+train_path<span class="token punctuation">.</span>sort<span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-train_json = json.load(open(&#39;../input/train.json&#39;))
-train_label = [train_json[x][&#39;label&#39;] for x in train_json]
+train_json <span class="token operator">=</span> json<span class="token punctuation">.</span>load<span class="token punctuation">(</span>open<span class="token punctuation">(</span><span class="token string">'../input/train.json'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+train_label <span class="token operator">=</span> <span class="token punctuation">[</span>train_json<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'label'</span><span class="token punctuation">]</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> train_json<span class="token punctuation">]</span>
 
-# 定义数据集实例
-data = SVHNDataset(train_path, train_label,
-          transforms.Compose([
-              # 缩放到固定尺寸
-              transforms.Resize((64, 128)),
+<span class="token comment" spellcheck="true"># 定义数据集实例</span>
+data <span class="token operator">=</span> SVHNDataset<span class="token punctuation">(</span>train_path<span class="token punctuation">,</span> train_label<span class="token punctuation">,</span>
+          transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span>
+              <span class="token comment" spellcheck="true"># 缩放到固定尺寸</span>
+              transforms<span class="token punctuation">.</span>Resize<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 
-                ########################## 数据扩增 ##########################
-              # 随机颜色变换
-              transforms.ColorJitter(0.2, 0.2, 0.2),
-              # 加入随机旋转
-              transforms.RandomRotation(5),
+                <span class="token comment" spellcheck="true">########################## 数据扩增 ##########################</span>
+              <span class="token comment" spellcheck="true"># 随机颜色变换</span>
+              transforms<span class="token punctuation">.</span>ColorJitter<span class="token punctuation">(</span><span class="token number">0.2</span><span class="token punctuation">,</span> <span class="token number">0.2</span><span class="token punctuation">,</span> <span class="token number">0.2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+              <span class="token comment" spellcheck="true"># 加入随机旋转</span>
+              transforms<span class="token punctuation">.</span>RandomRotation<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 
-              # 将图片转换为pytorch 的tesntor
-              transforms.ToTensor(),
-              # 对图像像素进行归一化
-                            transforms.Normalize([0.485,0.456,0.406],[0.229,0.224,0.225])
-            ]))</code></pre>
+              <span class="token comment" spellcheck="true"># 将图片转换为pytorch 的tesntor</span>
+              transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+              <span class="token comment" spellcheck="true"># 对图像像素进行归一化</span>
+                            transforms<span class="token punctuation">.</span>Normalize<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0.485</span><span class="token punctuation">,</span><span class="token number">0.456</span><span class="token punctuation">,</span><span class="token number">0.406</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">0.229</span><span class="token punctuation">,</span><span class="token number">0.224</span><span class="token punctuation">,</span><span class="token number">0.225</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
 <h5 id="Step②定义对Dataset封装的DataLoader"><a href="#Step②定义对Dataset封装的DataLoader" class="headerlink" title="Step②定义对Dataset封装的DataLoader"></a>Step②定义对Dataset封装的DataLoader</h5><p>加入DataLoder：数据按照<strong>批次(batch_size=10)</strong>获取，每批次调用Dataset读取单个样本进行拼接。</p>
 <p>此时data的格式为：<code>torch.Size([10, 3, 64, 128]), torch.Size([10, 6])</code>。</p>
 <p>前者为图像文件，为batchsize * chanel * height * width次序；后者为字符标签。</p>
-<pre><code class="python">train_loader = torch.utils.data.DataLoader(data, # 封装上面的dataset即可
-    batch_size=10, # 每批样本个数
-    shuffle=False, # 是否打乱顺序
-    num_workers=10, # 读取的线程个数
-)
+<pre class=" language-python"><code class="language-python">train_loader <span class="token operator">=</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data<span class="token punctuation">.</span>DataLoader<span class="token punctuation">(</span>data<span class="token punctuation">,</span> <span class="token comment" spellcheck="true"># 封装上面的dataset即可</span>
+    batch_size<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true"># 每批样本个数</span>
+    shuffle<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true"># 是否打乱顺序</span>
+    num_workers<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true"># 读取的线程个数</span>
+<span class="token punctuation">)</span>
 
-for data in train_loader:
-        # 后续操作...</code></pre>
+<span class="token keyword">for</span> data <span class="token keyword">in</span> train_loader<span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># 后续操作...</span></code></pre>
 
             </div>
             <hr/>
