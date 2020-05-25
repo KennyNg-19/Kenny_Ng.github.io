@@ -3,7 +3,7 @@
 
 
 <head>
-    <meta charset="utf-8">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <meta name="keywords" content="datawhale-cv训练营-02数据读取与数据扩增, 池中之物">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,11 +29,12 @@
 
     <script src="/Kenny_Ng.github.io/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/Kenny_Ng.github.io/atom.xml" title="池中之物" type="application/atom+xml">
+<link rel="stylesheet" href="/Kenny_Ng.github.io/css/prism-tomorrow.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
 <body>
-    <header class="navbar-fixed">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="navbar-fixed">
     <nav id="headNav" class="bg-color nav-transparent">
         <div id="navContainer" class="nav-wrapper container">
             <div class="brand-logo">
@@ -504,10 +505,16 @@
 </ul>
 <p>在常见的数据扩增方法中，一般会从<strong>图像颜色、尺寸、形态、空间和像素等角度</strong>进行变换。当然不同的数据扩增方法可以自由进行组合，得到更加丰富的数据扩增方法。</p>
 <p>以<strong><a href="https://pytorch.org/docs/stable/torchvision/index.html" target="_blank" rel="noopener">torchvision</a></strong>(pytorch官方提供的数据扩增库，提供了基本的数据数据扩增方法，可以<u>无缝与torch进行集成</u>；但<u>数据扩增方法种类较少，且速度中等</u>)为例，常见的数据扩增方法（API）包括：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- transforms.CenterCrop 对图片中心进行裁剪</span><br><span class="line">- transforms.ColorJitter 对图像颜色的对比度、饱和度和零度进行变换</span><br><span class="line">- transforms.FiveCrop 对图像四个角和中心进行裁剪得到五分图像</span><br><span class="line">- transforms.Grayscale 对图像进行灰度变换</span><br><span class="line">- transforms.Pad 使用固定值进行像素填充</span><br><span class="line">- transforms.RandomAffine 随机仿射变换</span><br><span class="line">- transforms.RandomCrop 随机区域裁剪</span><br><span class="line">- transforms.RandomHorizontalFlip 随机水平翻转</span><br><span class="line">- transforms.RandomRotation 随机旋转</span><br><span class="line">- transforms.RandomVerticalFlip 随机垂直翻转</span><br></pre></td></tr></table></figure>
-
-
-
+<pre><code class="python">- transforms.CenterCrop 对图片中心进行裁剪
+- transforms.ColorJitter 对图像颜色的对比度、饱和度和零度进行变换
+- transforms.FiveCrop 对图像四个角和中心进行裁剪得到五分图像
+- transforms.Grayscale 对图像进行灰度变换
+- transforms.Pad 使用固定值进行像素填充
+- transforms.RandomAffine 随机仿射变换
+- transforms.RandomCrop 随机区域裁剪
+- transforms.RandomHorizontalFlip 随机水平翻转
+- transforms.RandomRotation 随机旋转
+- transforms.RandomVerticalFlip 随机垂直翻转</code></pre>
 <p>除了torchvision，还有速度<strong>更快的第三方扩增库</strong>供选择：</p>
 <ol>
 <li><p><a href="https://github.com/aleju/imgaug" target="_blank" rel="noopener">imgaug</a> 提供了多样的数据扩增方法，且组合起来非常方便，速度较快；</p>
@@ -523,15 +530,68 @@
 <li>DataLoder：对<font color="#dd0000"><strong>Dataset进行封装</strong></font>，提供批量读取的迭代读取</li>
 </ul>
 <p>而<font color="#dd0000"><strong>在Pytorch中的数据读取逻辑</strong></font>， 数据①先<strong>通过Dataset进行封装</strong>，②再<u><strong>通过DataLoder进行并行读取</strong></u>。</p>
-<h4 id="2-4-2-代码"><a href="#2-4-2-代码" class="headerlink" title="2.4.2 代码"></a>2.4.2 代码</h4><h5 id="Step①定义对数据集封装的Dataset-详情，见注释"><a href="#Step①定义对数据集封装的Dataset-详情，见注释" class="headerlink" title="Step①定义对数据集封装的Dataset(详情，见注释)"></a>Step①定义对数据集封装的Dataset(详情，见注释)</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 省略各种import </span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SVHNDataset</span><span class="params">(Dataset)</span>:</span></span><br><span class="line">  	<span class="comment"># constructor</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, img_path, img_label, transform=None)</span>:</span></span><br><span class="line">        self.img_path = img_path</span><br><span class="line">        self.img_label = img_label </span><br><span class="line">        <span class="keyword">if</span> transform <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            self.transform = transform</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.transform = <span class="literal">None</span></span><br><span class="line">		</span><br><span class="line">    <span class="comment"># getter: 因为Dataset是提供【索引方式】的对数据样本进行读取</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self, index)</span>:</span></span><br><span class="line">        img = Image.open(self.img_path[index]).convert(<span class="string">'RGB'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> self.transform <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            img = self.transform(img)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 原始SVHN中类别10为数字0</span></span><br><span class="line">        lbl = np.array(self.img_label[index], dtype=np.int)</span><br><span class="line">        lbl = list(lbl)  + (<span class="number">5</span> - len(lbl)) * [<span class="number">10</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> img, torch.from_numpy(np.array(lbl[:<span class="number">5</span>]))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> len(self.img_path)</span><br><span class="line">      </span><br><span class="line"><span class="comment"># 获取: 图片数据和label的路径</span></span><br><span class="line">train_path = glob.glob(<span class="string">'../input/train/*.png'</span>)</span><br><span class="line">train_path.sort()</span><br><span class="line"></span><br><span class="line">train_json = json.load(open(<span class="string">'../input/train.json'</span>))</span><br><span class="line">train_label = [train_json[x][<span class="string">'label'</span>] <span class="keyword">for</span> x <span class="keyword">in</span> train_json]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义数据集实例</span></span><br><span class="line">data = SVHNDataset(train_path, train_label,</span><br><span class="line">          transforms.Compose([</span><br><span class="line">              <span class="comment"># 缩放到固定尺寸</span></span><br><span class="line">              transforms.Resize((<span class="number">64</span>, <span class="number">128</span>)),</span><br><span class="line">							</span><br><span class="line">            	<span class="comment">########################## 数据扩增 ##########################</span></span><br><span class="line">              <span class="comment"># 随机颜色变换</span></span><br><span class="line">              transforms.ColorJitter(<span class="number">0.2</span>, <span class="number">0.2</span>, <span class="number">0.2</span>),</span><br><span class="line">              <span class="comment"># 加入随机旋转</span></span><br><span class="line">              transforms.RandomRotation(<span class="number">5</span>),</span><br><span class="line"></span><br><span class="line">              <span class="comment"># 将图片转换为pytorch 的tesntor</span></span><br><span class="line">              transforms.ToTensor(),</span><br><span class="line">              <span class="comment"># 对图像像素进行归一化</span></span><br><span class="line">							transforms.Normalize([<span class="number">0.485</span>,<span class="number">0.456</span>,<span class="number">0.406</span>],[<span class="number">0.229</span>,<span class="number">0.224</span>,<span class="number">0.225</span>])</span><br><span class="line">            ]))</span><br></pre></td></tr></table></figure>
+<h4 id="2-4-2-代码"><a href="#2-4-2-代码" class="headerlink" title="2.4.2 代码"></a>2.4.2 代码</h4><h5 id="Step①定义对数据集封装的Dataset-详情，见注释"><a href="#Step①定义对数据集封装的Dataset-详情，见注释" class="headerlink" title="Step①定义对数据集封装的Dataset(详情，见注释)"></a>Step①定义对数据集封装的Dataset(详情，见注释)</h5><pre><code class="python"># 省略各种import 
+class SVHNDataset(Dataset):
+      # constructor
+    def __init__(self, img_path, img_label, transform=None):
+        self.img_path = img_path
+        self.img_label = img_label 
+        if transform is not None:
+            self.transform = transform
+        else:
+            self.transform = None
 
+    # getter: 因为Dataset是提供【索引方式】的对数据样本进行读取
+    def __getitem__(self, index):
+        img = Image.open(self.img_path[index]).convert(&#39;RGB&#39;)
 
+        if self.transform is not None:
+            img = self.transform(img)
 
+        # 原始SVHN中类别10为数字0
+        lbl = np.array(self.img_label[index], dtype=np.int)
+        lbl = list(lbl)  + (5 - len(lbl)) * [10]
+
+        return img, torch.from_numpy(np.array(lbl[:5]))
+
+    def __len__(self):
+        return len(self.img_path)
+
+# 获取: 图片数据和label的路径
+train_path = glob.glob(&#39;../input/train/*.png&#39;)
+train_path.sort()
+
+train_json = json.load(open(&#39;../input/train.json&#39;))
+train_label = [train_json[x][&#39;label&#39;] for x in train_json]
+
+# 定义数据集实例
+data = SVHNDataset(train_path, train_label,
+          transforms.Compose([
+              # 缩放到固定尺寸
+              transforms.Resize((64, 128)),
+
+                ########################## 数据扩增 ##########################
+              # 随机颜色变换
+              transforms.ColorJitter(0.2, 0.2, 0.2),
+              # 加入随机旋转
+              transforms.RandomRotation(5),
+
+              # 将图片转换为pytorch 的tesntor
+              transforms.ToTensor(),
+              # 对图像像素进行归一化
+                            transforms.Normalize([0.485,0.456,0.406],[0.229,0.224,0.225])
+            ]))</code></pre>
 <h5 id="Step②定义对Dataset封装的DataLoader"><a href="#Step②定义对Dataset封装的DataLoader" class="headerlink" title="Step②定义对Dataset封装的DataLoader"></a>Step②定义对Dataset封装的DataLoader</h5><p>加入DataLoder：数据按照<strong>批次(batch_size=10)</strong>获取，每批次调用Dataset读取单个样本进行拼接。</p>
 <p>此时data的格式为：<code>torch.Size([10, 3, 64, 128]), torch.Size([10, 6])</code>。</p>
 <p>前者为图像文件，为batchsize * chanel * height * width次序；后者为字符标签。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">train_loader = torch.utils.data.DataLoader(data, <span class="comment"># 封装上面的dataset即可</span></span><br><span class="line">    batch_size=<span class="number">10</span>, <span class="comment"># 每批样本个数</span></span><br><span class="line">    shuffle=<span class="literal">False</span>, <span class="comment"># 是否打乱顺序</span></span><br><span class="line">    num_workers=<span class="number">10</span>, <span class="comment"># 读取的线程个数</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> data <span class="keyword">in</span> train_loader:</span><br><span class="line">		<span class="comment"># 后续操作...</span></span><br></pre></td></tr></table></figure>
+<pre><code class="python">train_loader = torch.utils.data.DataLoader(data, # 封装上面的dataset即可
+    batch_size=10, # 每批样本个数
+    shuffle=False, # 是否打乱顺序
+    num_workers=10, # 读取的线程个数
+)
 
+for data in train_loader:
+        # 后续操作...</code></pre>
 
             </div>
             <hr/>
@@ -1200,7 +1260,7 @@ $(function () {
     
 
     
-    <script src="/Kenny_Ng.github.io/libs/instantpage/instantpage.js" type="module"></script>
+    <script src="/Kenny_Ng.github.io/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
 
 </body>
