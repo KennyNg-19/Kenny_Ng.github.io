@@ -45,8 +45,8 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: true
-  line_number: true
+  enable: false
+  line_number: false
   auto_detect: false
   tab_replace: ''
   wrap: true
@@ -104,17 +104,18 @@ deploy:
 
 ############ 额外插件 ############
 
+# 代码高亮
+prism_plugin:
+  mode: 'preprocess'    # realtime/preprocess
+  theme: 'tomorrow'
+  line_number: false    # default false
+  custom_css:
+
 # 搜索插件： hexo-generator-search
 search:
   path: search.xml
   field: post
 
-# 文章字数统计插件
-wordCount:
-  enable: true # 将这个值设置为 true 即可.
-  postWordCount: true
-  min2read: true
-  totalCount: true
   
 # 备份插件的额外config
 backup:

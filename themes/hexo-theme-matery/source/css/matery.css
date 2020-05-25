@@ -577,8 +577,8 @@ header .go-back i {
 }
 
 .bg-cover:after {
-    -webkit-animation: rainbow 60s infinite;
-    animation: rainbow 60s infinite;
+    -webkit-animation: rainbow 30s infinite;
+    animation: rainbow 30s infinite;
 }
 
 .bg-cover:before,
@@ -712,7 +712,8 @@ header .go-back i {
 }
 
 .index-card {
-    margin-top: -10px;
+    /*margin-top: -10px;*/
+    margin-top: -130px;
     padding-top: 20px;
 }
 
