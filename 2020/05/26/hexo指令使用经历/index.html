@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="datawhale-cv训练营-02数据读取与数据扩增, 池中之物">
+    <meta name="keywords" content="Hexo指令的使用和经历的坑, 池中之物">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>datawhale-cv训练营-02数据读取与数据扩增 | 池中之物</title>
+    <title>Hexo指令的使用和经历的坑 | 池中之物</title>
     <link rel="icon" type="image/png" href="/Kenny_Ng.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/Kenny_Ng.github.io/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/Kenny_Ng.github.io/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/Kenny_Ng.github.io/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">datawhale-cv训练营-02数据读取与数据扩增</h1>
+                    <h1 class="description center-align post-title">Hexo指令的使用和经历的坑</h1>
                 </div>
             </div>
         </div>
@@ -431,12 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Kenny_Ng.github.io/tags/ML/">
-                                <span class="chip bg-color">ML</span>
-                            </a>
-                        
-                            <a href="/Kenny_Ng.github.io/tags/CV/">
-                                <span class="chip bg-color">CV</span>
+                            <a href="/Kenny_Ng.github.io/tags/%E8%B5%B0%E8%BF%87%E7%9A%84%E5%9D%91/">
+                                <span class="chip bg-color">走过的坑</span>
                             </a>
                         
                     </div>
@@ -451,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-05-23
+                    2020-05-26
                 </div>
                 
 
@@ -460,7 +456,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.7k
+                    182
                 </div>
                 
 
@@ -472,131 +468,11 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>在上一章节，官方提供了三种不同的解决方案。从本章开始 将逐渐的学习使用<strong>【定长字符识别】思路</strong>来构建模型，讲解赛题的解决方案和相应知识点。</p>
-<h2 id="2-数据读取与数据扩增"><a href="#2-数据读取与数据扩增" class="headerlink" title="2 数据读取与数据扩增"></a>2 数据读取与数据扩增</h2><h3 id="2-1-学习目标"><a href="#2-1-学习目标" class="headerlink" title="2.1 学习目标"></a>2.1 学习目标</h3><p>本章主要内容为<strong>图像数据读取、数据扩增方法</strong>和<strong>实战Pytorch读取赛题数据</strong>三个部分组成。</p>
-<ul>
-<li>学习Python和Pytorch中图像读取</li>
-<li>学会扩增方法和实战Pytorch读取赛题数据</li>
-</ul>
-<h3 id="2-2-图像读取"><a href="#2-2-图像读取" class="headerlink" title="2.2 图像读取"></a>2.2 图像读取</h3><p>在识别之前，首先需要完成<strong>对数据的读取操作</strong>。在Python中有很多库可以完成数据读取的操作，比较常见的有<strong>Pillow和OpenCV</strong>。</p>
-<h4 id="2-2-1-Pillow"><a href="#2-2-1-Pillow" class="headerlink" title="2.2.1 Pillow"></a>2.2.1 Pillow</h4><p>Pillow是Python图像<strong>处理函式库(PIL）</strong>的一个分支。Pillow提供了常见的图像读取和处理的操作。</p>
-<h4 id="2-2-2-OpenCV"><a href="#2-2-2-OpenCV" class="headerlink" title="2.2.2 OpenCV"></a>2.2.2 OpenCV</h4><p>OpenCV是一个跨平台的<strong>计算机视觉库</strong>。OpenCV发展的非常早，拥有<strong>众多的计算机视觉、数字图像处理和机器视觉等功能</strong>。OpenCV在功能上<font color="#dd0000"><strong>比Pillow更加强大很多，但学习成本也高很多</strong></font>。</p>
-<h3 id="2-3-数据扩增"><a href="#2-3-数据扩增" class="headerlink" title="2.3 数据扩增"></a>2.3 数据扩增</h3><p>现在回到赛题街道字符识别任务中。在赛题中我们需要对的图像进行字符识别，因此需要我们完成的数据的读取操作，同时也需要完成<strong>数据扩增（Data Augmentation）操作</strong>。</p>
-<h4 id="2-3-1-基本介绍"><a href="#2-3-1-基本介绍" class="headerlink" title="2.3.1 基本介绍"></a>2.3.1 基本介绍</h4><p>在深度学习中数据扩增方法非常重要，数据扩增可以增加训练集的样本，同时也可以有效缓解模型过拟合的情况，也可以给模型带来的更强的泛化能力。</p>
-<p>已知，在深度学习模型的训练过程中，数据扩增是<font color="#dd0000">必不可少的环节</font>。</p>
-<ul>
-<li><h4 id="数据扩增为什么有用？"><a href="#数据扩增为什么有用？" class="headerlink" title="数据扩增为什么有用？"></a><font color="#dd0000">数据扩增为什么有用？</font></h4></li>
-</ul>
-<ol>
-<li><p>现有深度学习的参数非常多，一般的模型可训练的<font color="#dd0000"><strong>参数量基本上都是万到百万级别，而训练集样本的数量很难有这么多</strong></font>。</p>
-</li>
-<li><p>其次数据扩增可以<font color="#dd0000"> <strong>扩展样本空间</strong></font>：假设现在的分类模型需要对汽车进行分类</p>
-<p>如果<strong>不使用任何数据扩增方法</strong>，深度学习模型会<strong>从汽车车头的角度❌</strong>来进行判别，<strong>而不是汽车具体的区别✅</strong>。</p>
-</li>
-</ol>
-<p><img src="https://github.com/datawhalechina/team-learning/raw/master/03%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%AE%9E%E8%B7%B5%EF%BC%88%E8%A1%97%E6%99%AF%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E8%AF%86%E5%88%AB%EF%BC%89/IMG/Task02/%E6%95%B0%E6%8D%AE%E6%89%A9%E5%A2%9Ecar.png" alt="汽车分类"></p>
-<h4 id="2-3-2-常见的数据扩增方法"><a href="#2-3-2-常见的数据扩增方法" class="headerlink" title="2.3.2 常见的数据扩增方法"></a>2.3.2 常见的数据扩增方法</h4><ul>
-<li><h4 id="有哪些数据扩增方法？"><a href="#有哪些数据扩增方法？" class="headerlink" title="有哪些数据扩增方法？"></a>有哪些数据扩增方法？</h4></li>
-</ul>
-<p>数据扩增方法有很多：<font color="#dd0000">从<strong>颜色空间、尺度空间到样本空间</strong>，同时根据不同任务数据扩增都有相应的区别</font>。</p>
-<blockquote>
-<p>对于图像分类，数据扩增一般<font color="#dd0000"><strong>不会改变标签</strong></font>;(即本比赛的<strong>需求</strong>场景)</p>
-<p>对于物体检测，数据扩增会改变物体坐标位置；</p>
-<p>对于图像分割，数据扩增会改变像素标签。</p>
-</blockquote>
-<p><strong>Note</strong>: 在本次赛题中，赛题任务是需要对图像中的字符进行识别，因此对于<strong><font color="#dd0000">字符图片并不能进行翻转操作</font>。比如字符6经过水平翻转就变成了字符9</strong>，<font color="#dd0000"><strong>会改变字符原本的含义</strong></font></p>
-<ul>
-<li><h4 id="具体常用的方法和数据扩增库"><a href="#具体常用的方法和数据扩增库" class="headerlink" title="具体常用的方法和数据扩增库"></a><strong>具体</strong>常用的方法和数据扩增<u>库</u></h4></li>
-</ul>
-<p>在常见的数据扩增方法中，一般会从<strong>图像颜色、尺寸、形态、空间和像素等角度</strong>进行变换。当然不同的数据扩增方法可以自由进行组合，得到更加丰富的数据扩增方法。</p>
-<p>以<strong><a href="https://pytorch.org/docs/stable/torchvision/index.html" target="_blank" rel="noopener">torchvision</a></strong>(pytorch官方提供的数据扩增库，提供了基本的数据数据扩增方法，可以<u>无缝与torch进行集成</u>；但<u>数据扩增方法种类较少，且速度中等</u>)为例，常见的数据扩增方法（API）包括：</p>
-<pre class=" language-python"><code class="language-python"><span class="token operator">-</span> transforms<span class="token punctuation">.</span>CenterCrop 对图片中心进行裁剪
-<span class="token operator">-</span> transforms<span class="token punctuation">.</span>ColorJitter 对图像颜色的对比度、饱和度和零度进行变换
-<span class="token operator">-</span> transforms<span class="token punctuation">.</span>FiveCrop 对图像四个角和中心进行裁剪得到五分图像
-<span class="token operator">-</span> transforms<span class="token punctuation">.</span>Grayscale 对图像进行灰度变换
-<span class="token operator">-</span> transforms<span class="token punctuation">.</span>Pad 使用固定值进行像素填充
-<span class="token operator">-</span> transforms<span class="token punctuation">.</span>RandomAffine 随机仿射变换
-<span class="token operator">-</span> transforms<span class="token punctuation">.</span>RandomCrop 随机区域裁剪
-<span class="token operator">-</span> transforms<span class="token punctuation">.</span>RandomHorizontalFlip 随机水平翻转
-<span class="token operator">-</span> transforms<span class="token punctuation">.</span>RandomRotation 随机旋转
-<span class="token operator">-</span> transforms<span class="token punctuation">.</span>RandomVerticalFlip 随机垂直翻转</code></pre>
-<p>除了torchvision，还有速度<strong>更快的第三方扩增库</strong>供选择：</p>
-<ol>
-<li><p><a href="https://github.com/aleju/imgaug" target="_blank" rel="noopener">imgaug</a> 提供了多样的数据扩增方法，且组合起来非常方便，速度较快；</p>
-</li>
-<li><p><a href="https://albumentations.readthedocs.io" target="_blank" rel="noopener">albumentations</a> 提供了多样的数据扩增方法，对图像分类、语义分割、物体检测和关键点检测都支持，速度较快。</p>
-</li>
-</ol>
-<h2 id="2-4-Pytorch读取数据"><a href="#2-4-Pytorch读取数据" class="headerlink" title="2.4 Pytorch读取数据"></a>2.4 Pytorch读取数据</h2><p>由于本次赛题我们使用Pytorch框架讲解具体的解决方案，接下来将是解决赛题的<strong>第一步</strong>使用<strong>Pytorch读取赛题数据</strong>。</p>
-<h4 id="2-4-1-一些定义-写代码前想好大致逻辑"><a href="#2-4-1-一些定义-写代码前想好大致逻辑" class="headerlink" title="2.4.1 一些定义(写代码前想好大致逻辑)"></a>2.4.1 一些定义(写代码前想好大致逻辑)</h4><p>首先，<strong>区分</strong>Dataset和DataLoder这两个<u>数据处理的常用术语</u> 和 <strong>解释</strong>有了Dataset为什么还要有DataLoder？</p>
-<p>其实这两个是两个不同的概念，是为了<strong>实现不同的功能</strong>。</p>
-<ul>
-<li>Dataset：对<font color="#dd0000"><strong>数据集的封装</strong></font>，提供索引方式的对数据样本进行读取</li>
-<li>DataLoder：对<font color="#dd0000"><strong>Dataset进行封装</strong></font>，提供批量读取的迭代读取</li>
-</ul>
-<p>而<font color="#dd0000"><strong>在Pytorch中的数据读取逻辑</strong></font>， 数据①先<strong>通过Dataset进行封装</strong>，②再<u><strong>通过DataLoder进行并行读取</strong></u>。</p>
-<h4 id="2-4-2-代码"><a href="#2-4-2-代码" class="headerlink" title="2.4.2 代码"></a>2.4.2 代码</h4><h5 id="Step①定义对数据集封装的Dataset-详情，见注释"><a href="#Step①定义对数据集封装的Dataset-详情，见注释" class="headerlink" title="Step①定义对数据集封装的Dataset(详情，见注释)"></a>Step①定义对数据集封装的Dataset(详情，见注释)</h5><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 省略各种import </span>
-<span class="token keyword">class</span> <span class="token class-name">SVHNDataset</span><span class="token punctuation">(</span>Dataset<span class="token punctuation">)</span><span class="token punctuation">:</span>
-      <span class="token comment" spellcheck="true"># constructor</span>
-    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> img_path<span class="token punctuation">,</span> img_label<span class="token punctuation">,</span> transform<span class="token operator">=</span>None<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        self<span class="token punctuation">.</span>img_path <span class="token operator">=</span> img_path
-        self<span class="token punctuation">.</span>img_label <span class="token operator">=</span> img_label 
-        <span class="token keyword">if</span> transform <span class="token keyword">is</span> <span class="token operator">not</span> None<span class="token punctuation">:</span>
-            self<span class="token punctuation">.</span>transform <span class="token operator">=</span> transform
-        <span class="token keyword">else</span><span class="token punctuation">:</span>
-            self<span class="token punctuation">.</span>transform <span class="token operator">=</span> None
-
-    <span class="token comment" spellcheck="true"># getter: 因为Dataset是提供【索引方式】的对数据样本进行读取</span>
-    <span class="token keyword">def</span> <span class="token function">__getitem__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> index<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        img <span class="token operator">=</span> Image<span class="token punctuation">.</span>open<span class="token punctuation">(</span>self<span class="token punctuation">.</span>img_path<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span>convert<span class="token punctuation">(</span><span class="token string">'RGB'</span><span class="token punctuation">)</span>
-
-        <span class="token keyword">if</span> self<span class="token punctuation">.</span>transform <span class="token keyword">is</span> <span class="token operator">not</span> None<span class="token punctuation">:</span>
-            img <span class="token operator">=</span> self<span class="token punctuation">.</span>transform<span class="token punctuation">(</span>img<span class="token punctuation">)</span>
-
-        <span class="token comment" spellcheck="true"># 原始SVHN中类别10为数字0</span>
-        lbl <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>self<span class="token punctuation">.</span>img_label<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span>np<span class="token punctuation">.</span>int<span class="token punctuation">)</span>
-        lbl <span class="token operator">=</span> list<span class="token punctuation">(</span>lbl<span class="token punctuation">)</span>  <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">5</span> <span class="token operator">-</span> len<span class="token punctuation">(</span>lbl<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span>
-
-        <span class="token keyword">return</span> img<span class="token punctuation">,</span> torch<span class="token punctuation">.</span>from_numpy<span class="token punctuation">(</span>np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>lbl<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-    <span class="token keyword">def</span> <span class="token function">__len__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">return</span> len<span class="token punctuation">(</span>self<span class="token punctuation">.</span>img_path<span class="token punctuation">)</span>
-
-<span class="token comment" spellcheck="true"># 获取: 图片数据和label的路径</span>
-train_path <span class="token operator">=</span> glob<span class="token punctuation">.</span>glob<span class="token punctuation">(</span><span class="token string">'../input/train/*.png'</span><span class="token punctuation">)</span>
-train_path<span class="token punctuation">.</span>sort<span class="token punctuation">(</span><span class="token punctuation">)</span>
-
-train_json <span class="token operator">=</span> json<span class="token punctuation">.</span>load<span class="token punctuation">(</span>open<span class="token punctuation">(</span><span class="token string">'../input/train.json'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-train_label <span class="token operator">=</span> <span class="token punctuation">[</span>train_json<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'label'</span><span class="token punctuation">]</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> train_json<span class="token punctuation">]</span>
-
-<span class="token comment" spellcheck="true"># 定义数据集实例</span>
-data <span class="token operator">=</span> SVHNDataset<span class="token punctuation">(</span>train_path<span class="token punctuation">,</span> train_label<span class="token punctuation">,</span>
-          transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span>
-              <span class="token comment" spellcheck="true"># 缩放到固定尺寸</span>
-              transforms<span class="token punctuation">.</span>Resize<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-
-                <span class="token comment" spellcheck="true">########################## 数据扩增 ##########################</span>
-              <span class="token comment" spellcheck="true"># 随机颜色变换</span>
-              transforms<span class="token punctuation">.</span>ColorJitter<span class="token punctuation">(</span><span class="token number">0.2</span><span class="token punctuation">,</span> <span class="token number">0.2</span><span class="token punctuation">,</span> <span class="token number">0.2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-              <span class="token comment" spellcheck="true"># 加入随机旋转</span>
-              transforms<span class="token punctuation">.</span>RandomRotation<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-
-              <span class="token comment" spellcheck="true"># 将图片转换为pytorch 的tesntor</span>
-              transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-              <span class="token comment" spellcheck="true"># 对图像像素进行归一化</span>
-                            transforms<span class="token punctuation">.</span>Normalize<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0.485</span><span class="token punctuation">,</span><span class="token number">0.456</span><span class="token punctuation">,</span><span class="token number">0.406</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">0.229</span><span class="token punctuation">,</span><span class="token number">0.224</span><span class="token punctuation">,</span><span class="token number">0.225</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-            <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
-<h5 id="Step②定义对Dataset封装的DataLoader"><a href="#Step②定义对Dataset封装的DataLoader" class="headerlink" title="Step②定义对Dataset封装的DataLoader"></a>Step②定义对Dataset封装的DataLoader</h5><p>加入DataLoder：数据按照<strong>批次(batch_size=10)</strong>获取，每批次调用Dataset读取单个样本进行拼接。</p>
-<p>此时data的格式为：<code>torch.Size([10, 3, 64, 128]), torch.Size([10, 6])</code>。</p>
-<p>前者为图像文件，为batchsize * chanel * height * width次序；后者为字符标签。</p>
-<pre class=" language-python"><code class="language-python">train_loader <span class="token operator">=</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>data<span class="token punctuation">.</span>DataLoader<span class="token punctuation">(</span>data<span class="token punctuation">,</span> <span class="token comment" spellcheck="true"># 封装上面的dataset即可</span>
-    batch_size<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true"># 每批样本个数</span>
-    shuffle<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true"># 是否打乱顺序</span>
-    num_workers<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true"># 读取的线程个数</span>
-<span class="token punctuation">)</span>
-
-<span class="token keyword">for</span> data <span class="token keyword">in</span> train_loader<span class="token punctuation">:</span>
-        <span class="token comment" spellcheck="true"># 后续操作...</span></code></pre>
+                <p>（为了防止自己忘记，而万一有下一次，所以当日记记下）</p>
+<p><a href="https://hexo.io/zh-cn/docs/commands.html" target="_blank" rel="noopener">官网中文解说</a></p>
+<h2 id="亲历-用Hexo命令解决搭建博客的坑"><a href="#亲历-用Hexo命令解决搭建博客的坑" class="headerlink" title="亲历: 用Hexo命令解决搭建博客的坑"></a>亲历: 用Hexo命令解决搭建博客的<font color="#dd0000">坑</font></h2><h3 id="1-hexo-clean"><a href="#1-hexo-clean" class="headerlink" title="1. hexo clean"></a>1. hexo clean</h3><p>清除缓存文件 (<code>db.json</code>) 和<strong>已生成的静态文件 (<code>public</code>)</strong>——就是hexo d<strong>推送到GitHub并显示到前端的<font color="#dd0000">网页静态源码</font></strong>。</p>
+<p><strong>Case</strong>: 在某些情况（尤其是<strong>编辑过主题后</strong>）， 如果发现您<strong>对站点的<font color="#dd0000">更改无论如何也不生效</font>——因为<code>hexo g</code>并<u>不会</u>将全本地的<font color="#dd0000">生成的静态文件</font>和<font color="#dd0000">现有的<code>public</code></font>路径的文件<font color="#dd0000">一一对比，而是部分对比</font>，来更新后者</strong>——此时，可能需要运行该命令<strong>重新生成网页源码</strong>。</p>
+<h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3><p>to be coninue…</p>
 
             </div>
             <hr/>
@@ -622,7 +498,7 @@ data <span class="token operator">=</span> SVHNDataset<span class="token punctua
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/Kenny_Ng.github.io/2020/05/23/datawhale-cv02/">http://yoursite.com/Kenny_Ng.github.io/2020/05/23/datawhale-cv02/</a>
+                    <a href="http://yoursite.com/Kenny_Ng.github.io/2020/05/26/hexo%E6%8C%87%E4%BB%A4%E4%BD%BF%E7%94%A8%E7%BB%8F%E5%8E%86/">http://yoursite.com/Kenny_Ng.github.io/2020/05/26/hexo%E6%8C%87%E4%BB%A4%E4%BD%BF%E7%94%A8%E7%BB%8F%E5%8E%86/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -660,12 +536,8 @@ data <span class="token operator">=</span> SVHNDataset<span class="token punctua
                     
                         <div class="article-tag">
                             
-                                <a href="/Kenny_Ng.github.io/tags/ML/">
-                                    <span class="chip bg-color">ML</span>
-                                </a>
-                            
-                                <a href="/Kenny_Ng.github.io/tags/CV/">
-                                    <span class="chip bg-color">CV</span>
+                                <a href="/Kenny_Ng.github.io/tags/%E8%B5%B0%E8%BF%87%E7%9A%84%E5%9D%91/">
+                                    <span class="chip bg-color">走过的坑</span>
                                 </a>
                             
                         </div>
@@ -833,9 +705,58 @@ data <span class="token operator">=</span> SVHNDataset<span class="token punctua
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/Kenny_Ng.github.io/2020/05/26/hexo%E6%8C%87%E4%BB%A4%E4%BD%BF%E7%94%A8%E7%BB%8F%E5%8E%86/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/Kenny_Ng.github.io/medias/featureimages/20.jpg" class="responsive-img" alt="Hexo指令的使用和经历的坑">
+                        
+                        <span class="card-title">Hexo指令的使用和经历的坑</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            （为了防止自己忘记，而万一有下一次，所以当日记记下）
+官网中文解说
+亲历: 用Hexo命令解决搭建博客的坑1. hexo clean清除缓存文件 (db.json) 和已生成的静态文件 (public)——就是hexo d推送到GitHub
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Kenny Ng
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/Kenny_Ng.github.io/tags/%E8%B5%B0%E8%BF%87%E7%9A%84%E5%9D%91/">
+                        <span class="chip bg-color">走过的坑</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/Kenny_Ng.github.io/2020/05/26/datawhale-cv03%E5%AD%97%E7%AC%A6%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9E%8B/">
                     <div class="card-image">
@@ -853,63 +774,8 @@ data <span class="token operator">=</span> SVHNDataset<span class="token punctua
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-26
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            Kenny Ng
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/Kenny_Ng.github.io/tags/ML/">
-                        <span class="chip bg-color">ML</span>
-                    </a>
-                    
-                    <a href="/Kenny_Ng.github.io/tags/CV/">
-                        <span class="chip bg-color">CV</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/Kenny_Ng.github.io/2020/05/19/datawhale-cv01/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/Kenny_Ng.github.io/medias/featureimages/1.jpg" class="responsive-img" alt="datawhale-cv训练营-01赛题研究">
-                        
-                        <span class="card-title">datawhale-cv训练营-01赛题研究</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            这次基础赛事, 是Datawhale与天池联合发起的零基础入门系列赛事 赛事地址
-本文目的
-总结基本了解比赛规则
-总结解题思路
-数据下载和理解
-
-1.规则本赛题需要选手识别图片中所有的字符。评测指标：准确率，Score=编码识别正确的数量/
-                        
-                    </div>
-                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-26
                             </span>
                         <span class="publish-author">
                             

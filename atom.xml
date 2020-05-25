@@ -6,7 +6,7 @@
   <link href="/Kenny_Ng.github.io/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-23T13:52:38.634Z</updated>
+  <updated>2020-05-25T17:04:51.031Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,51 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo指令的使用和经历的坑</title>
+    <link href="http://yoursite.com/2020/05/26/hexo%E6%8C%87%E4%BB%A4%E4%BD%BF%E7%94%A8%E7%BB%8F%E5%8E%86/"/>
+    <id>http://yoursite.com/2020/05/26/hexo%E6%8C%87%E4%BB%A4%E4%BD%BF%E7%94%A8%E7%BB%8F%E5%8E%86/</id>
+    <published>2020-05-26T04:52:21.000Z</published>
+    <updated>2020-05-25T17:04:51.031Z</updated>
+    
+    <content type="html"><![CDATA[<p>（为了防止自己忘记，而万一有下一次，所以当日记记下）</p><p><a href="https://hexo.io/zh-cn/docs/commands.html" target="_blank" rel="noopener">官网中文解说</a></p><h2 id="亲历-用Hexo命令解决搭建博客的坑"><a href="#亲历-用Hexo命令解决搭建博客的坑" class="headerlink" title="亲历: 用Hexo命令解决搭建博客的坑"></a>亲历: 用Hexo命令解决搭建博客的<font color="#dd0000">坑</font></h2><h3 id="1-hexo-clean"><a href="#1-hexo-clean" class="headerlink" title="1. hexo clean"></a>1. hexo clean</h3><p>清除缓存文件 (<code>db.json</code>) 和<strong>已生成的静态文件 (<code>public</code>)</strong>——就是hexo d<strong>推送到GitHub并显示到前端的<font color="#dd0000">网页静态源码</font></strong>。</p><p><strong>Case</strong>: 在某些情况（尤其是<strong>编辑过主题后</strong>）， 如果发现您<strong>对站点的<font color="#dd0000">更改无论如何也不生效</font>——因为<code>hexo g</code>并<u>不会</u>将全本地的<font color="#dd0000">生成的静态文件</font>和<font color="#dd0000">现有的<code>public</code></font>路径的文件<font color="#dd0000">一一对比，而是部分对比</font>，来更新后者</strong>——此时，可能需要运行该命令<strong>重新生成网页源码</strong>。</p><h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3><p>to be coninue…</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;（为了防止自己忘记，而万一有下一次，所以当日记记下）&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://hexo.io/zh-cn/docs/commands.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;官网中文解说&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id
+      
+    
+    </summary>
+    
+    
+    
+      <category term="走过的坑" scheme="http://yoursite.com/tags/%E8%B5%B0%E8%BF%87%E7%9A%84%E5%9D%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>datawhale-cv训练营-03字符识别模型</title>
+    <link href="http://yoursite.com/2020/05/26/datawhale-cv03%E5%AD%97%E7%AC%A6%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9E%8B/"/>
+    <id>http://yoursite.com/2020/05/26/datawhale-cv03%E5%AD%97%E7%AC%A6%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9E%8B/</id>
+    <published>2020-05-25T17:24:13.000Z</published>
+    <updated>2020-05-25T17:24:47.419Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+      <category term="ML" scheme="http://yoursite.com/tags/ML/"/>
+    
+      <category term="CV" scheme="http://yoursite.com/tags/CV/"/>
+    
+  </entry>
   
   <entry>
     <title>datawhale-cv训练营-02数据读取与数据扩增</title>
