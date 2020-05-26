@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="datawhale-cv训练营-01赛题研究, 池中之物">
+    <meta name="keywords" content="Pytorch一些小细节补充, 池中之物">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>datawhale-cv训练营-01赛题研究 | 池中之物</title>
+    <title>Pytorch一些小细节补充 | 池中之物</title>
     <link rel="icon" type="image/png" href="/Kenny_Ng.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/Kenny_Ng.github.io/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/Kenny_Ng.github.io/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/Kenny_Ng.github.io/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">datawhale-cv训练营-01赛题研究</h1>
+                    <h1 class="description center-align post-title">Pytorch一些小细节补充</h1>
                 </div>
             </div>
         </div>
@@ -435,10 +435,6 @@
                                 <span class="chip bg-color">ML</span>
                             </a>
                         
-                            <a href="/Kenny_Ng.github.io/tags/CV/">
-                                <span class="chip bg-color">CV</span>
-                            </a>
-                        
                     </div>
                     
                 </div>
@@ -451,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-05-19
+                    2019-08-26
                 </div>
                 
 
@@ -460,7 +456,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.2k
+                    469
                 </div>
                 
 
@@ -472,76 +468,27 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>这次<strong>基础</strong>赛事, 是Datawhale与天池联合发起的零基础<strong>入门系列</strong>赛事 <a href="https://tianchi.aliyun.com/competition/entrance/531795/introduction" target="_blank" rel="noopener">赛事地址</a></p>
-<h1 id="本文目的"><a href="#本文目的" class="headerlink" title="本文目的"></a>本文目的</h1><ol>
-<li><strong>总结</strong>基本了解比赛规则</li>
-<li><strong>总结</strong>解题思路</li>
-<li>数据下载和<strong>理解</strong></li>
-</ol>
-<h1 id="1-规则"><a href="#1-规则" class="headerlink" title="1.规则"></a>1.规则</h1><p>本赛题需要选手识别图片中所有的字符。<strong>评测指标</strong>：准确率，Score=编码识别正确的数量/测试集图片数量</p>
-<p>为了降低比赛难度，我们提供了训练集、验证集中所有字符的<strong>位置框</strong>（在<strong>阿里天池</strong>上下载）。</p>
-<p><strong>注意</strong>: 按照比赛规则，所有的参赛选手，<strong>只能使用比赛给定的数据集完成训练(不要使用SVHN原始数据集进行训练</strong>）</p>
-<h4 id="使用的Python模块"><a href="#使用的Python模块" class="headerlink" title="使用的Python模块"></a>使用的Python模块</h4><p>大概介绍一下，这里可能需要用到的主要模块。</p>
+                <h1 id="补充Pytorch中的易被忽视但得注意的细节"><a href="#补充Pytorch中的易被忽视但得注意的细节" class="headerlink" title="补充Pytorch中的易被忽视但得注意的细节"></a>补充Pytorch中的易被忽视但得注意的细节</h1><h4 id="1-定义Dataloader的num-workers参数"><a href="#1-定义Dataloader的num-workers参数" class="headerlink" title="1. 定义Dataloader的num_workers参数"></a>1. 定义Dataloader的num_workers参数</h4><p><strong>Q</strong>: </p>
+<p>在给Dataloader设置worker数量（<code>num_worker</code>）时，到底<strong>设置多少合适</strong>？这个worker到底怎么工作的？<br><strong>如果将<code>num_worker</code>设为0（也是默认值），就没有worker了吗？</strong></p>
+<p><strong>A</strong>: <code>num_workers</code>的经验设置值<strong>是<font color="#dd0000">自己电脑/服务器的CPU核心数</font></strong>，(比如我的Macbook Pro16寸是 6核)如果CPU很强+配的<strong>RAM是充足的</strong>，就可以设置为<strong>略微≥核心数</strong>。</p>
+<ol>
+<li><p>参数的<strong>作用</strong>： 官方注释为：</p>
 <blockquote>
-<p>numpy ：提供了python对多维数组对象的支持：ndarray，具有矢量运算能力，快速、节省空间。numpy支持高级大量的维度数组与矩阵运算，此外也针对数组运算提供大量的数学函数库。</p>
-<p>torch：神经网络界的 Numpy, 因为他能将 torch 产生的 tensor 放在 GPU 中加速运算 (前提是你有合适的 GPU), 就像 Numpy 会把 array 放在 CPU 中加速运算. 所以神经网络的话, 当然是用 Torch 的 tensor 形式数据最好</p>
-<p>torchvision：torchvision包是服务于pytorch深度学习框架的,用来生成图片,视频数据集,和一些流行的模型类和预训练模型。我认为这个是最关键的模块</p>
-<p>OpenCV（import时候是cv2）：一款强大的跨平台的计算机视觉库，使用它能完成我们对于图像和视频处理的很多功能。它以电信号的方式加以捕捉、记录、处理、储存、传送与重现的各种技术。这里主要是用来对图片的处理</p>
-<p>json：这个就是json的读写库，处理json文件的</p>
+<p> how many <strong>subprocesses</strong> to use for data loading.</p>
+<p> <code>0</code> means that the data will be loaded <strong>in the main process.</strong> (default: <code>0</code>)</p>
 </blockquote>
-<h1 id="2-数据理解"><a href="#2-数据理解" class="headerlink" title="2. 数据理解"></a>2. 数据理解</h1><h4 id="数据集初步观察"><a href="#数据集初步观察" class="headerlink" title="数据集初步观察"></a>数据集初步观察</h4><p>分.json的label位置信息，和原图集合</p>
-<p><strong>数据读取</strong>： json文件包含的位置信息，除了便于正式的训练，还可以用于数据观察——直接作用在原图集，<strong>查看已给的位置信息的分割效果</strong></p>
-<p>样例代码: 数据读取，在此我们给出JSON中标签的读取方式</p>
-<pre><code>import json
-train_json = json.load(open(&#39;../input/train.json&#39;))
-
-# 数据标注处理
-def parse_json(d):
-   arr = np.array([
-       d[&#39;top&#39;], d[&#39;height&#39;], d[&#39;left&#39;],  d[&#39;width&#39;], d[&#39;label&#39;]
-   ])
-   arr = arr.astype(int)
-   return arr
-
-img = cv2.imread(&#39;../input/train/000000.png&#39;)
-arr = parse_json(train_json[&#39;000000.png&#39;])
-
-plt.figure(figsize=(10, 10))
-plt.subplot(1, arr.shape[1]+1, 1)
-plt.imshow(img)
-plt.xticks([]); plt.yticks([])
-
-for idx in range(arr.shape[1]):
-   plt.subplot(1, arr.shape[1]+1, idx+2)
-   plt.imshow(img[arr[0, idx]:arr[0, idx]+arr[1, idx],arr[2, idx]:arr[2, idx]+arr[3, idx]])
-   plt.title(arr[4, idx])
-   plt.xticks([]); plt.yticks([])</code></pre><p>输出</p>
-<p><a href="https://tva1.sinaimg.cn/large/007S8ZIlgy1gez59nbvuij30z30u0gtm.jpg" target="_blank" rel="noopener"><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gez59nbvuij30z30u0gtm.jpg" alt="img"></a></p>
-<p><a href="https://tva1.sinaimg.cn/large/007S8ZIlgy1gez5ab60sij30yw0oaqc0.jpg" target="_blank" rel="noopener"><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gez5ab60sij30yw0oaqc0.jpg" alt="img"></a></p>
-<h1 id="3-潜在的疑难杂症"><a href="#3-潜在的疑难杂症" class="headerlink" title="3. 潜在的疑难杂症"></a>3. 潜在的疑难杂症</h1><h4 id="预处理细节"><a href="#预处理细节" class="headerlink" title="预处理细节"></a>预处理细节</h4><p>数据集存在原图片<strong>大小不统一</strong>，这个只需要用pytorch的transforms处理即可</p>
-<h4 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h4><h5 id="a-确定待识别数字在图中的位置"><a href="#a-确定待识别数字在图中的位置" class="headerlink" title="a.确定待识别数字在图中的位置"></a>a.确定待识别数字在图中的位置</h5><p>(使用比赛简化后的数据，则该问题并不存在了)</p>
-<p>在简化数据集之前的难点是：模型要能找到待识别数字的<strong>位置</strong>。但是既然处理后的数据集，<strong>位置信息全都提供了</strong>，那么这个问题就容易很多——<strong>单纯的识别数字信息</strong>。数字的位数问题可以通过简单的算法来解决，就像MNIST数据集一样。</p>
-<p><a href="https://crazy-winds.github.io/images/cv1/0-1.png" target="_blank" rel="noopener"><img src="https://crazy-winds.github.io/images/cv1/0-1.png" alt="图1"></a>图1</p>
-<p>（json格式存储label和位置信息）</p>
-<p><a href="https://crazy-winds.github.io/images/cv1/0-2.png" target="_blank" rel="noopener"><img src="https://crazy-winds.github.io/images/cv1/0-2.png" alt="图2"></a>图2</p>
-<h5 id="b-确定待识别数字的个数"><a href="#b-确定待识别数字的个数" class="headerlink" title="b.确定待识别数字的个数"></a>b.确定待识别数字的个数</h5><p>即每幅图的数字个数可能均不相同，如何统一的解决(找到一种general的方法)</p>
-<p>将在解题思路部分详细展开</p>
-<h1 id="4-大致解题思路"><a href="#4-大致解题思路" class="headerlink" title="4. 大致解题思路"></a>4. 大致解题思路</h1><ol>
-<li>简单入门思路：定长字符识别。将不定长字符转化为定长处理，不足部分用<strong>填充占位符</strong>为代替</li>
+<p>作用：denotes the <strong><font color="#dd0000">number of processes that generate batches in parallel</font></strong> to generate your data <font color="#dd0000"><strong>on multiple cores</strong> in real time</font></p>
+<p>详细解释：每每轮到dataloader加载数据时：</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">for</span> epoch <span class="token keyword">in</span> range<span class="token punctuation">(</span>start_epoch<span class="token punctuation">,</span> end_epoch<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> i<span class="token punctuation">,</span> data <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>trainloader<span class="token punctuation">)</span><span class="token punctuation">:</span></code></pre>
+<p>dataloader<strong>一次性创建<code>num_worker</code>个worker</strong>，（也可以说dataloader一次性创建<code>num_worker</code>个工作进程，worker也是普通的工作进程），并用<code>batch_sampler</code>将指定batch分配给指定worker，worker将它负责的batch加载进RAM。</p>
+<p>然后，dataloader从RAM中找本轮迭代要用的batch，如果找到了，就使用。如果没找到，就要<code>num_worker</code>个worker继续加载batch到内存，直到dataloader在RAM中找到目标batch。一般情况下都是能找到的，因为<code>batch_sampler</code>指定batch时当然优先指定本轮要用的batch。</p>
+</li>
+<li><p><strong>不同赋值时各自的意义</strong>：<code>num_worker</code>设置得大，好处是<strong>寻batch速度快</strong>，因为下一轮迭代的batch很可能在上一轮/上上一轮…迭代时已经加载好了。坏处是<strong>内存开销大</strong>，也加重了CPU负担（worker加载数据到RAM的进程是CPU复制的嘛）。</p>
+<p>如果设为0，意味着每一轮迭代时，dataloader<strong>不再有自主加载数据到RAM</strong>这一步骤（因为没有worker了），而是在RAM中找batch，找不到时再加载相应的batch。缺点当然是<strong>速度更慢</strong>。</p>
+</li>
 </ol>
-<p>（<strong>适合新手</strong>也<strong>适合此题给的处理后的数据集</strong>：赛题数据集中大部分图像中字符个数为2-4个，最多的字符 个数为<strong>6个</strong>）</p>
-<p><a href="https://crazy-winds.github.io/images/cv1/0-3.png" target="_blank" rel="noopener"><img src="https://crazy-winds.github.io/images/cv1/0-3.png" alt="图3"></a>图3</p>
-<ol>
-<li>专业字符识别思路：按照<strong>不定长字符</strong>处理</li>
-</ol>
-<p>在字符识别研究中，有<strong>特定的方法</strong>来解决此种不定长的字符识别问题：如<strong>典型的有CRNN字符识别模型</strong>。</p>
-<p>因为本次赛题中给定的图像数据都<strong>比较规整，可以视为一个单词或者一个句子</strong> 喂进CRNN模型。</p>
-<ol>
-<li>专业分类思路：检测位置再识别数字</li>
-</ol>
-<p>在赛题数据中已经给出了训练集、验证集中所有图片中字符的位置，因此可以首先将字符的位置进行识别，利用<strong>物体检测</strong>的思路完成。</p>
-<p>可参考物体检测模型：<strong>SSD或者YOLO</strong></p>
-
+<h4 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h4>
             </div>
             <hr/>
 
@@ -566,7 +513,7 @@ for idx in range(arr.shape[1]):
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/Kenny_Ng.github.io/2020/05/19/datawhale-cv01/">http://yoursite.com/Kenny_Ng.github.io/2020/05/19/datawhale-cv01/</a>
+                    <a href="http://yoursite.com/Kenny_Ng.github.io/2019/08/26/sum_pytorch_details/">http://yoursite.com/Kenny_Ng.github.io/2019/08/26/sum_pytorch_details/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -606,10 +553,6 @@ for idx in range(arr.shape[1]):
                             
                                 <a href="/Kenny_Ng.github.io/tags/ML/">
                                     <span class="chip bg-color">ML</span>
-                                </a>
-                            
-                                <a href="/Kenny_Ng.github.io/tags/CV/">
-                                    <span class="chip bg-color">CV</span>
                                 </a>
                             
                         </div>
@@ -781,25 +724,30 @@ for idx in range(arr.shape[1]):
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/Kenny_Ng.github.io/2020/05/23/datawhale-cv02/">
+                <a href="/Kenny_Ng.github.io/2020/05/19/datawhale-cv01/">
                     <div class="card-image">
                         
                         
-                        <img src="/Kenny_Ng.github.io/medias/featureimages/15.jpg" class="responsive-img" alt="datawhale-cv训练营-02数据读取与数据扩增">
+                        <img src="/Kenny_Ng.github.io/medias/featureimages/1.jpg" class="responsive-img" alt="datawhale-cv训练营-01赛题研究">
                         
-                        <span class="card-title">datawhale-cv训练营-02数据读取与数据扩增</span>
+                        <span class="card-title">datawhale-cv训练营-01赛题研究</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            在上一章节，官方提供了三种不同的解决方案。从本章开始 将逐渐的学习使用【定长字符识别】思路来构建模型，讲解赛题的解决方案和相应知识点。
-2 数据读取与数据扩增2.1 学习目标本章主要内容为图像数据读取、数据扩增方法和实战Pytorch读取赛
+                            这次基础赛事, 是Datawhale与天池联合发起的零基础入门系列赛事 赛事地址
+本文目的
+总结基本了解比赛规则
+总结解题思路
+数据下载和理解
+
+1.规则本赛题需要选手识别图片中所有的字符。评测指标：准确率，Score=编码识别正确的数量/
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-23
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-19
                         </span>
                         <span class="publish-author">
                             
@@ -828,7 +776,7 @@ for idx in range(arr.shape[1]):
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
+                Current&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
                 <a href="/Kenny_Ng.github.io/2019/08/26/sum_pytorch_details/">
@@ -859,6 +807,7 @@ for idx in range(arr.shape[1]):
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
