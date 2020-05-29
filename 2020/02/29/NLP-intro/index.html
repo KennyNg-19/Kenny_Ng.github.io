@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="datawhale-cv训练营-01赛题研究, 池中之物">
+    <meta name="keywords" content="NLP-intro, 池中之物">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>datawhale-cv训练营-01赛题研究 | 池中之物</title>
+    <title>NLP-intro | 池中之物</title>
     <link rel="icon" type="image/png" href="/Kenny_Ng.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/Kenny_Ng.github.io/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/Kenny_Ng.github.io/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/Kenny_Ng.github.io/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">datawhale-cv训练营-01赛题研究</h1>
+                    <h1 class="description center-align post-title">NLP-intro</h1>
                 </div>
             </div>
         </div>
@@ -435,8 +435,8 @@
                                 <span class="chip bg-color">ML</span>
                             </a>
                         
-                            <a href="/Kenny_Ng.github.io/tags/CV/">
-                                <span class="chip bg-color">CV</span>
+                            <a href="/Kenny_Ng.github.io/tags/NLP/">
+                                <span class="chip bg-color">NLP</span>
                             </a>
                         
                     </div>
@@ -451,7 +451,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-05-19
+                    2020-02-29
                 </div>
                 
 
@@ -460,7 +460,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.2k
+                    324
                 </div>
                 
 
@@ -472,76 +472,24 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>这次<strong>基础</strong>赛事, 是Datawhale与天池联合发起的零基础<strong>入门系列</strong>赛事 <a href="https://tianchi.aliyun.com/competition/entrance/531795/introduction" target="_blank" rel="noopener">赛事地址</a></p>
-<h1 id="本文目的"><a href="#本文目的" class="headerlink" title="本文目的"></a>本文目的</h1><ol>
-<li><strong>总结</strong>基本了解比赛规则</li>
-<li><strong>总结</strong>解题思路</li>
-<li>数据下载和<strong>理解</strong></li>
-</ol>
-<h1 id="1-规则"><a href="#1-规则" class="headerlink" title="1.规则"></a>1.规则</h1><p>本赛题需要选手识别图片中所有的字符。<strong>评测指标</strong>：准确率，Score=编码识别正确的数量/测试集图片数量</p>
-<p>为了降低比赛难度，我们提供了训练集、验证集中所有字符的<strong>位置框</strong>（在<strong>阿里天池</strong>上下载）。</p>
-<p><strong>注意</strong>: 按照比赛规则，所有的参赛选手，<strong>只能使用比赛给定的数据集完成训练(不要使用SVHN原始数据集进行训练</strong>）</p>
-<h4 id="使用的Python模块"><a href="#使用的Python模块" class="headerlink" title="使用的Python模块"></a>使用的Python模块</h4><p>大概介绍一下，这里可能需要用到的主要模块。</p>
-<blockquote>
-<p>numpy ：提供了python对多维数组对象的支持：ndarray，具有矢量运算能力，快速、节省空间。numpy支持高级大量的维度数组与矩阵运算，此外也针对数组运算提供大量的数学函数库。</p>
-<p>torch：神经网络界的 Numpy, 因为他能将 torch 产生的 tensor 放在 GPU 中加速运算 (前提是你有合适的 GPU), 就像 Numpy 会把 array 放在 CPU 中加速运算. 所以神经网络的话, 当然是用 Torch 的 tensor 形式数据最好</p>
-<p>torchvision：torchvision包是服务于pytorch深度学习框架的,用来生成图片,视频数据集,和一些流行的模型类和预训练模型。我认为这个是最关键的模块</p>
-<p>OpenCV（import时候是cv2）：一款强大的跨平台的计算机视觉库，使用它能完成我们对于图像和视频处理的很多功能。它以电信号的方式加以捕捉、记录、处理、储存、传送与重现的各种技术。这里主要是用来对图片的处理</p>
-<p>json：这个就是json的读写库，处理json文件的</p>
-</blockquote>
-<h1 id="2-数据理解"><a href="#2-数据理解" class="headerlink" title="2. 数据理解"></a>2. 数据理解</h1><h4 id="数据集初步观察"><a href="#数据集初步观察" class="headerlink" title="数据集初步观察"></a>数据集初步观察</h4><p>分.json的label位置信息，和原图集合</p>
-<p><strong>数据读取</strong>： json文件包含的位置信息，除了便于正式的训练，还可以用于数据观察——直接作用在原图集，<strong>查看已给的位置信息的分割效果</strong></p>
-<p>样例代码: 数据读取，在此我们给出JSON中标签的读取方式</p>
-<pre><code>import json
-train_json = json.load(open(&#39;../input/train.json&#39;))
-
-# 数据标注处理
-def parse_json(d):
-   arr = np.array([
-       d[&#39;top&#39;], d[&#39;height&#39;], d[&#39;left&#39;],  d[&#39;width&#39;], d[&#39;label&#39;]
-   ])
-   arr = arr.astype(int)
-   return arr
-
-img = cv2.imread(&#39;../input/train/000000.png&#39;)
-arr = parse_json(train_json[&#39;000000.png&#39;])
-
-plt.figure(figsize=(10, 10))
-plt.subplot(1, arr.shape[1]+1, 1)
-plt.imshow(img)
-plt.xticks([]); plt.yticks([])
-
-for idx in range(arr.shape[1]):
-   plt.subplot(1, arr.shape[1]+1, idx+2)
-   plt.imshow(img[arr[0, idx]:arr[0, idx]+arr[1, idx],arr[2, idx]:arr[2, idx]+arr[3, idx]])
-   plt.title(arr[4, idx])
-   plt.xticks([]); plt.yticks([])</code></pre><p>输出</p>
-<p><a href="https://tva1.sinaimg.cn/large/007S8ZIlgy1gez59nbvuij30z30u0gtm.jpg" target="_blank" rel="noopener"><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gez59nbvuij30z30u0gtm.jpg" alt="img"></a></p>
-<p><a href="https://tva1.sinaimg.cn/large/007S8ZIlgy1gez5ab60sij30yw0oaqc0.jpg" target="_blank" rel="noopener"><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gez5ab60sij30yw0oaqc0.jpg" alt="img"></a></p>
-<h1 id="3-潜在的疑难杂症"><a href="#3-潜在的疑难杂症" class="headerlink" title="3. 潜在的疑难杂症"></a>3. 潜在的疑难杂症</h1><h4 id="预处理细节"><a href="#预处理细节" class="headerlink" title="预处理细节"></a>预处理细节</h4><p>数据集存在原图片<strong>大小不统一</strong>，这个只需要用pytorch的transforms处理即可</p>
-<h4 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h4><h5 id="a-确定待识别数字在图中的位置"><a href="#a-确定待识别数字在图中的位置" class="headerlink" title="a.确定待识别数字在图中的位置"></a>a.确定待识别数字在图中的位置</h5><p>(使用比赛简化后的数据，则该问题并不存在了)</p>
-<p>在简化数据集之前的难点是：模型要能找到待识别数字的<strong>位置</strong>。但是既然处理后的数据集，<strong>位置信息全都提供了</strong>，那么这个问题就容易很多——<strong>单纯的识别数字信息</strong>。数字的位数问题可以通过简单的算法来解决，就像MNIST数据集一样。</p>
-<p><a href="https://crazy-winds.github.io/images/cv1/0-1.png" target="_blank" rel="noopener"><img src="https://crazy-winds.github.io/images/cv1/0-1.png" alt="图1"></a>图1</p>
-<p>（json格式存储label和位置信息）</p>
-<p><a href="https://crazy-winds.github.io/images/cv1/0-2.png" target="_blank" rel="noopener"><img src="https://crazy-winds.github.io/images/cv1/0-2.png" alt="图2"></a>图2</p>
-<h5 id="b-确定待识别数字的个数"><a href="#b-确定待识别数字的个数" class="headerlink" title="b.确定待识别数字的个数"></a>b.确定待识别数字的个数</h5><p>即每幅图的数字个数可能均不相同，如何统一的解决(找到一种general的方法)</p>
-<p>将在解题思路部分详细展开</p>
-<h1 id="4-大致解题思路"><a href="#4-大致解题思路" class="headerlink" title="4. 大致解题思路"></a>4. 大致解题思路</h1><ol>
-<li>简单入门思路：定长字符识别。将不定长字符转化为定长处理，不足部分用<strong>填充占位符</strong>为代替</li>
-</ol>
-<p>（<strong>适合新手</strong>也<strong>适合此题给的处理后的数据集</strong>：赛题数据集中大部分图像中字符个数为2-4个，最多的字符 个数为<strong>6个</strong>）</p>
-<p><a href="https://crazy-winds.github.io/images/cv1/0-3.png" target="_blank" rel="noopener"><img src="https://crazy-winds.github.io/images/cv1/0-3.png" alt="图3"></a>图3</p>
-<ol>
-<li>专业字符识别思路：按照<strong>不定长字符</strong>处理</li>
-</ol>
-<p>在字符识别研究中，有<strong>特定的方法</strong>来解决此种不定长的字符识别问题：如<strong>典型的有CRNN字符识别模型</strong>。</p>
-<p>因为本次赛题中给定的图像数据都<strong>比较规整，可以视为一个单词或者一个句子</strong> 喂进CRNN模型。</p>
-<ol>
-<li>专业分类思路：检测位置再识别数字</li>
-</ol>
-<p>在赛题数据中已经给出了训练集、验证集中所有图片中字符的位置，因此可以首先将字符的位置进行识别，利用<strong>物体检测</strong>的思路完成。</p>
-<p>可参考物体检测模型：<strong>SSD或者YOLO</strong></p>
-
+                <h2 id="0-NLP的研究方向"><a href="#0-NLP的研究方向" class="headerlink" title="0. NLP的研究方向"></a>0. NLP的研究方向</h2><p>2个大方向对应了，语言的<strong>“一进一出”</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf99ljg3ooj30v80hswh7.jpg" alt=""></p>
+<h2 id="1-NLU之机器翻译"><a href="#1-NLU之机器翻译" class="headerlink" title="1. NLU之机器翻译"></a>1. NLU之机器翻译</h2><h2 id="思路a-暴力法"><a href="#思路a-暴力法" class="headerlink" title="思路a: 暴力法"></a>思路a: 暴力法</h2><h3 id="原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的"><a href="#原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的" class="headerlink" title="原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的"></a>原理：<strong>全排列组合</strong>分词后的句子，用语言模型从中筛选出语义最合适的</h3><p>第一步通过<strong>翻译模型TM</strong>进行<strong>分词</strong></p>
+<p>第二步映射词语，因为语法的存在而进行<u>映射后词语的排列组合</u></p>
+<p>第三步通过<strong>语言模型LM</strong>选出排列组合中最合适的语句</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf99soj3vmj317w0kuq8d.jpg" alt="">缺点: 排列组合的复杂度太高</p>
+<p>解决: <strong>维特比Viterbi</strong>算法——<strong>同时考虑TM</strong>分词+<strong>LM筛选</strong>这分开2个步骤</p>
+<h2 id="思路b-维特比Viterbi算法"><a href="#思路b-维特比Viterbi算法" class="headerlink" title="思路b: 维特比Viterbi算法"></a>思路b: <strong>维特比Viterbi</strong>算法</h2><h3 id="原理：贝叶斯TM和LM"><a href="#原理：贝叶斯TM和LM" class="headerlink" title="原理：贝叶斯TM和LM"></a>原理：贝叶斯TM和LM</h3><p><strong>串联TM</strong>分词+<strong>LM筛选</strong>这分开的2个步骤</p>
+<h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf9i9qd3wlj31680f20vt.jpg" alt="流程图"></p>
+<p>各个部分的作用</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf9iup3gr2j30x20icwjg.jpg" alt="">好处：降低了复杂度，<strong>避免了原来随机排列组合生成句子</strong>的<strong>NP-hard的指数级</strong>复杂度</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf9iao2h3fj309802e749.jpg" alt=""></p>
+<h4 id="1-语言模型LM"><a href="#1-语言模型LM" class="headerlink" title="1. 语言模型LM"></a>1. 语言模型LM</h4><h5 id="作用：生成句子-即输出"><a href="#作用：生成句子-即输出" class="headerlink" title="作用：生成句子(即输出)"></a>作用：生成句子(即输出)</h5><h5 id="分类：按照当前生成的语言，对之前词语的”记忆“程度"><a href="#分类：按照当前生成的语言，对之前词语的”记忆“程度" class="headerlink" title="分类：按照当前生成的语言，对之前词语的”记忆“程度"></a>分类：按照当前生成的语言，对之前词语的”记忆“程度</h5><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf9i640a7bj316e0aojut.jpg" alt=""></p>
+<p>Unigram model, Bingram model …. n-gram model</p>
+<p>至于每个Prop, 则¨源于提前的计算(概率统计)</p>
+<h5 id="性能标准"><a href="#性能标准" class="headerlink" title="性能标准"></a>性能标准</h5><p>生成之后同时看Prop，句子<strong>错误少</strong>的<strong>概率应该越大</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf9iknu2qsj30yw06idh3.jpg" alt=""></p>
+<h4 id="2-翻译模型TM"><a href="#2-翻译模型TM" class="headerlink" title="2. 翻译模型TM"></a>2. 翻译模型TM</h4><h6 id=""><a href="#" class="headerlink" title=""></a></h6>
             </div>
             <hr/>
 
@@ -566,7 +514,7 @@ for idx in range(arr.shape[1]):
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/Kenny_Ng.github.io/2020/05/19/datawhale-cv01/">http://yoursite.com/Kenny_Ng.github.io/2020/05/19/datawhale-cv01/</a>
+                    <a href="http://yoursite.com/Kenny_Ng.github.io/2020/02/29/NLP-intro/">http://yoursite.com/Kenny_Ng.github.io/2020/02/29/NLP-intro/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -608,8 +556,8 @@ for idx in range(arr.shape[1]):
                                     <span class="chip bg-color">ML</span>
                                 </a>
                             
-                                <a href="/Kenny_Ng.github.io/tags/CV/">
-                                    <span class="chip bg-color">CV</span>
+                                <a href="/Kenny_Ng.github.io/tags/NLP/">
+                                    <span class="chip bg-color">NLP</span>
                                 </a>
                             
                         </div>
@@ -781,25 +729,30 @@ for idx in range(arr.shape[1]):
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/Kenny_Ng.github.io/2020/05/23/datawhale-cv02/">
+                <a href="/Kenny_Ng.github.io/2020/05/19/datawhale-cv01/">
                     <div class="card-image">
                         
                         
-                        <img src="/Kenny_Ng.github.io/medias/featureimages/15.jpg" class="responsive-img" alt="datawhale-cv训练营-02数据读取与数据扩增">
+                        <img src="/Kenny_Ng.github.io/medias/featureimages/1.jpg" class="responsive-img" alt="datawhale-cv训练营-01赛题研究">
                         
-                        <span class="card-title">datawhale-cv训练营-02数据读取与数据扩增</span>
+                        <span class="card-title">datawhale-cv训练营-01赛题研究</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            在上一章节，官方提供了三种不同的解决方案。从本章开始 将逐渐的学习使用【定长字符识别】思路来构建模型，讲解赛题的解决方案和相应知识点。
-2 数据读取与数据扩增2.1 学习目标本章主要内容为图像数据读取、数据扩增方法和实战Pytorch读取赛
+                            这次基础赛事, 是Datawhale与天池联合发起的零基础入门系列赛事 赛事地址
+本文目的
+总结基本了解比赛规则
+总结解题思路
+数据下载和理解
+
+1.规则本赛题需要选手识别图片中所有的字符。评测指标：准确率，Score=编码识别正确的数量/
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-23
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-19
                         </span>
                         <span class="publish-author">
                             
@@ -831,27 +784,25 @@ for idx in range(arr.shape[1]):
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/Kenny_Ng.github.io/2020/02/29/NLP-intro/">
+                <a href="/Kenny_Ng.github.io/2019/08/26/sum_pytorch_details/">
                     <div class="card-image">
                         
                         
-                        <img src="/Kenny_Ng.github.io/medias/featureimages/23.jpg" class="responsive-img" alt="NLP-intro">
+                        <img src="/Kenny_Ng.github.io/medias/featureimages/21.jpg" class="responsive-img" alt="Pytorch一些小细节补充">
                         
-                        <span class="card-title">NLP-intro</span>
+                        <span class="card-title">Pytorch一些小细节补充</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            0. NLP的研究方向2个大方向对应了，语言的“一进一出”
-
-1. NLU之机器翻译思路a: 暴力法原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的第一步通过翻译模型TM进行分词
-第二步映射词语，因为语法的存在而进行映射后词语
+                            补充Pytorch中的易被忽视但得注意的细节1. 定义Dataloader的num_workers参数Q: 
+在给Dataloader设置worker数量（num_worker）时，到底设置多少合适？这个worker到底怎么工作的？如果将n
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-08-26
                             </span>
                         <span class="publish-author">
                             
@@ -866,10 +817,6 @@ for idx in range(arr.shape[1]):
                     
                     <a href="/Kenny_Ng.github.io/tags/ML/">
                         <span class="chip bg-color">ML</span>
-                    </a>
-                    
-                    <a href="/Kenny_Ng.github.io/tags/NLP/">
-                        <span class="chip bg-color">NLP</span>
                     </a>
                     
                 </div>
