@@ -58,6 +58,8 @@ tags: [ML, NLP]
 
 ##### 分类：按照当前生成的语言，对之前词语的”记忆“程度
 
+这种**连续的条件概率**——又称，**联合分布**
+
 ![](https://tva1.sinaimg.cn/large/007S8ZIlgy1gf9i640a7bj316e0aojut.jpg)
 
 Unigram model, Bingram model .... n-gram model
