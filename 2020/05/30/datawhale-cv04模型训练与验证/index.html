@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="Hexo指令的使用和经历的坑, 池中之物">
+    <meta name="keywords" content="datawhale-cv训练营-04模型训练与验证, 池中之物">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hexo指令的使用和经历的坑 | 池中之物</title>
+    <title>datawhale-cv训练营-04模型训练与验证 | 池中之物</title>
     <link rel="icon" type="image/png" href="/Kenny_Ng.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/Kenny_Ng.github.io/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/Kenny_Ng.github.io/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/Kenny_Ng.github.io/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hexo指令的使用和经历的坑</h1>
+                    <h1 class="description center-align post-title">datawhale-cv训练营-04模型训练与验证</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Kenny_Ng.github.io/tags/%E8%B5%B0%E8%BF%87%E7%9A%84%E5%9D%91/">
-                                <span class="chip bg-color">走过的坑</span>
+                            <a href="/Kenny_Ng.github.io/tags/ML/">
+                                <span class="chip bg-color">ML</span>
+                            </a>
+                        
+                            <a href="/Kenny_Ng.github.io/tags/CV/">
+                                <span class="chip bg-color">CV</span>
                             </a>
                         
                     </div>
@@ -447,7 +451,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-05-26
+                    2020-05-30
                 </div>
                 
 
@@ -456,7 +460,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    182
+                    1.8k
                 </div>
                 
 
@@ -468,11 +472,72 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>（为了防止自己忘记，而万一有下一次，所以当日记记下）</p>
-<p><a href="https://hexo.io/zh-cn/docs/commands.html" target="_blank" rel="noopener">官网中文解说</a></p>
-<h2 id="亲历-用Hexo命令解决搭建博客的坑"><a href="#亲历-用Hexo命令解决搭建博客的坑" class="headerlink" title="亲历: 用Hexo命令解决搭建博客的坑"></a>亲历: 用Hexo命令解决搭建博客的<font color="#dd0000">坑</font></h2><h3 id="1-hexo-clean"><a href="#1-hexo-clean" class="headerlink" title="1. hexo clean"></a>1. hexo clean</h3><p>清除缓存文件 (<code>db.json</code>) 和<strong>已生成的静态文件 (<code>public</code>)</strong>——就是hexo d<strong>推送到GitHub并显示到前端的<font color="#dd0000">网页静态源码</font></strong>。</p>
-<p><strong>Case</strong>: 在某些情况（尤其是<strong>编辑过主题后</strong>）， 如果发现您<strong>对站点的<font color="#dd0000">更改无论如何也不生效</font>——因为<code>hexo g</code>并<u>不会</u>将全本地的<font color="#dd0000">生成的静态文件</font>和<font color="#dd0000">现有的<code>public</code></font>路径的文件<font color="#dd0000">一一对比，而是部分对比</font>，来更新后者</strong>——此时，可能需要运行该命令<strong>重新生成网页源码</strong>。</p>
-<h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3><p>to be coninue…</p>
+                <h1 id="模型训练验证与调优"><a href="#模型训练验证与调优" class="headerlink" title="模型训练验证与调优"></a>模型训练验证与调优</h1><p>在上一章节我们构建了一个简单的CNN进行训练，但这些还远远不够。一个成熟合格的深度学习训练流程至少具备以下功能：</p>
+<ul>
+<li>在训练集上进行训练，并<strong>在验证集上进行验证；</strong></li>
+<li>(模型可以保存最优的权重，并读取权重)</li>
+<li>记录下训练集和验证集的精度，便于调参。</li>
+</ul>
+<h2 id="4-模型训练与验证"><a href="#4-模型训练与验证" class="headerlink" title="4 模型训练与验证"></a>4 模型训练与验证</h2><p>为此本章将从构建验证集、模型训练和验证、模型保存与加载和模型调参几个部分讲解，在部分小节中将会结合Pytorch代码进行讲解。</p>
+<h2 id="4-1-学习目标"><a href="#4-1-学习目标" class="headerlink" title="4.1 学习目标"></a>4.1 学习目标</h2><ul>
+<li>理解验证集的作用，并使用训练集和验证集完成训练</li>
+<li>学会使用Pytorch环境下的模型读取和加载，并了解调参流程</li>
+</ul>
+<h2 id="4-2-why构造验证集"><a href="#4-2-why构造验证集" class="headerlink" title="4.2 why构造验证集"></a>4.2 why构造验证集</h2><p>在机器学习模型（特别是深度学习模型）的训练过程中，模型是<strong>非常容易过拟合的</strong>——模型在不断的训练过程中训练<strong>误差会逐渐降低</strong>，但<font color="#dd0000"><strong>测试误差的走势</strong></font>则<strong>不一定</strong>。</p>
+<p>在训练过程中，模型只能利用训练数据来进行训练，<strong>并不能接触到测试集上的样本</strong>。因此模型如果将训练集学的<font color="#dd0000">过好，模型就会<strong>记住</strong><u>训练样本</u>的<strong>细节</strong>，导致模型<strong>在测试集的泛化效果较差</strong></font>，这种现象称为过拟合（Overfitting）。</p>
+<p>过拟合的大致特征，如图所示：随着模型复杂度和模型训练轮数的增加，CNN模型在训练集上的误差会降低，但在测试集上的误差会逐渐降低，然后逐渐升高。</p>
+<p>[<img src="https://github.com/datawhalechina/team-learning/raw/master/03%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%AE%9E%E8%B7%B5%EF%BC%88%E8%A1%97%E6%99%AF%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E8%AF%86%E5%88%AB%EF%BC%89/IMG/Task04/loss.png" alt="IMG">](<a href="https://github.com/datawhalechina/team-learning/blob/master/03" target="_blank" rel="noopener">https://github.com/datawhalechina/team-learning/blob/master/03</a> 计算机视觉/计算机视觉实践（街景字符编码识别）/IMG/Task04/loss.png)</p>
+<h3 id="导致过拟合的最常见原因"><a href="#导致过拟合的最常见原因" class="headerlink" title="导致过拟合的最常见原因"></a>导致过拟合的最常见原因</h3><ul>
+<li>最为常见的情况是<strong>模型复杂度（Model Complexity ）太高</strong>，导致模型学习了数据的方方面面——包括<strong>过于细枝末节</strong>的规律。</li>
+</ul>
+<p>解决上述问题最好的解决方法：构建一个与测试集<font color="#dd0000"><strong>尽可能分布一致</strong></font>的验证集，在训练过程中不断验证模型在验证集上的精度，并以此控制模型的训练。</p>
+<h3 id="何为数据的分布？"><a href="#何为数据的分布？" class="headerlink" title="何为数据的分布？"></a>何为数据的分布？</h3><p>这里讨论的<strong>数据的分布</strong>一般指的是<font color="#dd0000"><strong>与标签相关的统计分布</strong></font>：比如在分类任务中“分布”指的是标签的<strong>类别分布</strong>，训练集-验证集-测试集的<strong>类别分布情况应该大体一致</strong>；如果标签是带有时序信息，则验证集和测试集的时间间隔应该保持一致。</p>
+<h3 id="验证集主要的2个作用：验证精度和调整超参数；"><a href="#验证集主要的2个作用：验证精度和调整超参数；" class="headerlink" title="验证集主要的2个作用：验证精度和调整超参数；"></a>验证集主要的2个作用：<font color="#dd0000">验证</font>精度和调整<font color="#dd0000">超参数</font>；</h3><p>在给定赛题后，赛题方会<u>给定训练集和测试集<strong>两部分</strong></u>数据。参赛者需要在训练集上面构建模型，并在测试集上面验证模型的泛化能力。</p>
+<p>在不提供验证集时，参赛选手可以自己<strong>在本地划分出一个验证集出来</strong>，进行本地验证。训练集、验证集和测试集分别有不同的作用：</p>
+<ul>
+<li><h4 id="训练集（Train-Set）：模型用于训练和调整模型参数；"><a href="#训练集（Train-Set）：模型用于训练和调整模型参数；" class="headerlink" title="训练集（Train Set）：模型用于训练和调整模型参数；"></a>训练集（Train Set）：模型用于训练和调整模型参数；</h4></li>
+<li><h4 id="验证集（Validation-Set）：用来①验证模型训练后的精度和②调整模型超参数；"><a href="#验证集（Validation-Set）：用来①验证模型训练后的精度和②调整模型超参数；" class="headerlink" title="验证集（Validation Set）：用来①验证模型训练后的精度和②调整模型超参数；"></a>验证集（Validation Set）：用来①<font color="#dd0000">验证</font>模型<u>训练后</u>的精度和②调整模型<font color="#dd0000">超参数</font>；</h4></li>
+<li><h4 id="测试集（Test-Set）：验证模型的泛化能力。"><a href="#测试集（Test-Set）：验证模型的泛化能力。" class="headerlink" title="测试集（Test Set）：验证模型的泛化能力。"></a>测试集（Test Set）：验证模型的泛化能力。</h4></li>
+</ul>
+<p>因为训练集和验证集是分开的，所以模型在验证集上面的精度<strong>在一定程度上可以反映模型的泛化能力</strong>（前提就是，和测试集分布的一致性）——所以划分时，需要<strong>注意验证集的分布应该与测试集尽量保持一致</strong>。</p>
+<h2 id="4-3-如何划分-生成验证集"><a href="#4-3-如何划分-生成验证集" class="headerlink" title="4.3 如何划分 生成验证集"></a>4.3 如何划分 生成验证集</h2><p>既然验证集这么重要，那么如何划分本地验证集呢：<font color="#dd0000"><strong>从训练集中拆分</strong></font>一部分得到验证集。</p>
+<p>具体的有如下几种方式：</p>
+<h4 id="1-留出法（Hold-Out）——最简单直接的"><a href="#1-留出法（Hold-Out）——最简单直接的" class="headerlink" title="1. 留出法（Hold-Out）——最简单直接的"></a>1. 留出法（Hold-Out）——最简单直接的</h4><p>直接将训练集划分成两部分，新的训练集和验证集。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfapeqhp0gj30r00ee0t0.jpg" alt=""></p>
+<ul>
+<li><p>这种划分方式的优点是最为直接简单</p>
+</li>
+<li><p>缺点是只得到了一份验证集，有可能导致模型在验证集上过拟合。</p>
+</li>
+<li><p>场景: <strong>数据量比较大</strong>的情况—随机划分，划分得均匀程度的概率更大</p>
+</li>
+</ul>
+<h4 id="2-交叉验证法（Cross-Validation，CV）"><a href="#2-交叉验证法（Cross-Validation，CV）" class="headerlink" title="2. 交叉验证法（Cross Validation，CV）"></a>2. 交叉验证法（Cross Validation，CV）</h4><p>将训练集划分成K份，将其中的K-1份作为训练集，剩余的1份作为验证集，循环K训练。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfapfbvkqkj30qg0huaaj.jpg" alt=""></p>
+<p>这种划分方式是<strong>所有的训练集<font color="#dd0000">都做过一次验证集</font></strong>，最终模型验证精度是K份平均得到。</p>
+<ul>
+<li>优点: 验证集<font color="#dd0000"><strong>精度比较可靠（所有训练数据都做过验证集）</strong></font>，训练K次可以得到K个有多样性差异的模型；</li>
+<li>缺点: 需要训练K次，加大了训练的量（epoch）</li>
+<li>场景：不适合<strong>数据量很大</strong>的情况——那样划分的频率过高</li>
+</ul>
+<h4 id="3-自助采样法（BootStrap）-略"><a href="#3-自助采样法（BootStrap）-略" class="headerlink" title="3. 自助采样法（BootStrap）(略)"></a>3. 自助采样法（BootStrap）(略)</h4><p>通过<strong>有放回</strong>的<strong>采样方式</strong>得到新的训练集和验证集，每次的训练集和验证集都是有区别的。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfapje5ph0j30q40ew74p.jpg" alt=""></p>
+<ul>
+<li>场景：数据量较小</li>
+</ul>
+<h4 id="实际使用时的选择"><a href="#实际使用时的选择" class="headerlink" title="实际使用时的选择"></a>实际使用时的选择</h4><p>这些划分方法是<strong>从数据划分方式的角度</strong>来讲的，在现有的数据比赛中<strong>一般采用</strong>的划分方法是<strong><font color="#dd0000">留出法和交叉验证法</font></strong></p>
+<h2 id="5-模型调优流程"><a href="#5-模型调优流程" class="headerlink" title="5. 模型调优流程"></a>5. 模型调优流程</h2><p>深度学习原理少但实践性非常强，基本上很多的模型的验证只能通过训练来完成。同时深度学习有<strong>众多的网络结构和超参数</strong>，因此需要反复尝试需要较多的训练时间。而如何有效的训练深度学习模型逐渐成为了一门学问。</p>
+<h3 id="5-1-训练技巧"><a href="#5-1-训练技巧" class="headerlink" title="5.1 训练技巧"></a>5.1 训练技巧</h3><p>深度学习有众多的训练技巧，本节挑选了常见的一些技巧来讲解，并针对本次赛题进行具体分析。</p>
+<p>与传统的机器学习模型不同，深度学习模型的精度与模型的<strong>复杂度、数据量、正则化、数据扩增等因素</strong>直接相关。</p>
+<p>所以当深度学习模型处于不同的阶段（欠拟合、过拟合和完美拟合）的情况下，大家可以知道可以什么角度来继续优化模型。</p>
+<p>在参加本次比赛的过程中，我建议大家以如下逻辑完成：</p>
+<ul>
+<li>1.初步构建简单的CNN模型，不用特别复杂，跑通训练、验证和预测的流程；</li>
+<li>2.此时简单CNN模型的损失会比较大，尝试<strong>增加模型复杂度</strong>，并观察验证集精度；</li>
+<li>3.在增加模型复杂度的<strong>同时增加数据扩增方法</strong>，<font color="#dd0000">直至<strong>验证集精度不变</strong></font>。</li>
+</ul>
+<p>对应如下图</p>
+<p><img src="https://github.com/datawhalechina/team-learning/raw/master/03%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E5%AE%9E%E8%B7%B5%EF%BC%88%E8%A1%97%E6%99%AF%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E8%AF%86%E5%88%AB%EF%BC%89/IMG/Task04/%E8%B0%83%E5%8F%82%E6%B5%81%E7%A8%8B.png" alt="IMG"></p>
 
             </div>
             <hr/>
@@ -498,7 +563,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/Kenny_Ng.github.io/2020/05/26/hexo%E6%8C%87%E4%BB%A4%E4%BD%BF%E7%94%A8%E7%BB%8F%E5%8E%86/">http://yoursite.com/Kenny_Ng.github.io/2020/05/26/hexo%E6%8C%87%E4%BB%A4%E4%BD%BF%E7%94%A8%E7%BB%8F%E5%8E%86/</a>
+                    <a href="http://yoursite.com/Kenny_Ng.github.io/2020/05/30/datawhale-cv04%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E4%B8%8E%E9%AA%8C%E8%AF%81/">http://yoursite.com/Kenny_Ng.github.io/2020/05/30/datawhale-cv04%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E4%B8%8E%E9%AA%8C%E8%AF%81/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -536,8 +601,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/Kenny_Ng.github.io/tags/%E8%B5%B0%E8%BF%87%E7%9A%84%E5%9D%91/">
-                                    <span class="chip bg-color">走过的坑</span>
+                                <a href="/Kenny_Ng.github.io/tags/ML/">
+                                    <span class="chip bg-color">ML</span>
+                                </a>
+                            
+                                <a href="/Kenny_Ng.github.io/tags/CV/">
+                                    <span class="chip bg-color">CV</span>
                                 </a>
                             
                         </div>
@@ -705,9 +774,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/Kenny_Ng.github.io/2020/05/30/datawhale-cv04%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E4%B8%8E%E9%AA%8C%E8%AF%81/">
                     <div class="card-image">
@@ -729,9 +799,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -740,6 +810,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -762,20 +833,21 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/Kenny_Ng.github.io/2020/05/26/datawhale-cv03%E5%AD%97%E7%AC%A6%E8%AF%86%E5%88%AB%E6%A8%A1%E5%9E%8B/">
+                <a href="/Kenny_Ng.github.io/2020/05/26/hexo%E6%8C%87%E4%BB%A4%E4%BD%BF%E7%94%A8%E7%BB%8F%E5%8E%86/">
                     <div class="card-image">
                         
                         
-                        <img src="/Kenny_Ng.github.io/medias/featureimages/8.jpg" class="responsive-img" alt="datawhale-cv训练营-03字符识别模型">
+                        <img src="/Kenny_Ng.github.io/medias/featureimages/20.jpg" class="responsive-img" alt="Hexo指令的使用和经历的坑">
                         
-                        <span class="card-title">datawhale-cv训练营-03字符识别模型</span>
+                        <span class="card-title">Hexo指令的使用和经历的坑</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前面的章节，我们讲解了赛题的背景知识和赛题数据的读取。 本文的任务是: 基于对赛题理解本章将构建一个定长多字符分类模型, 构建一个CNN类的定长字符识别模型。
-3 字符识别模型本章将会讲解卷积神经网络（Convolutional Neura
+                            （为了防止自己忘记，而万一有下一次，所以当日记记下）
+官网中文解说
+亲历: 用Hexo命令解决搭建博客的坑1. hexo clean清除缓存文件 (db.json) 和已生成的静态文件 (public)——就是hexo d推送到GitHub
                         
                     </div>
                     <div class="publish-info">
@@ -793,12 +865,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Kenny_Ng.github.io/tags/ML/">
-                        <span class="chip bg-color">ML</span>
-                    </a>
-                    
-                    <a href="/Kenny_Ng.github.io/tags/CV/">
-                        <span class="chip bg-color">CV</span>
+                    <a href="/Kenny_Ng.github.io/tags/%E8%B5%B0%E8%BF%87%E7%9A%84%E5%9D%91/">
+                        <span class="chip bg-color">走过的坑</span>
                     </a>
                     
                 </div>
