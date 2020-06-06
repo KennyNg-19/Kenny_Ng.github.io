@@ -1,5 +1,5 @@
 ---
-title: [转]算法复杂度-intro(推导分治算法的master theorem)
+title: (转)算法复杂度-intro(推导分治算法的master theorem)
 date: 2018-02-06 16:10:13
 tags: [算法]
 ---
