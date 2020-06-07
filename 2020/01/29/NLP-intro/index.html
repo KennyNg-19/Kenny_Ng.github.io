@@ -460,7 +460,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    562
+                    572
                 </div>
                 
 
@@ -474,7 +474,7 @@
             <div id="articleContent">
                 <h1 id="0-NLP-Overview"><a href="#0-NLP-Overview" class="headerlink" title="0. NLP Overview"></a>0. NLP Overview</h1><h2 id="a-NLP研究方向"><a href="#a-NLP研究方向" class="headerlink" title="a. NLP研究方向"></a>a. NLP研究方向</h2><p>2个大方向对应了，语言的<strong>“一进一出”</strong></p>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf99ljg3ooj30v80hswh7.jpg" alt=""></p>
-<h2 id="b-技术的4个维度"><a href="#b-技术的4个维度" class="headerlink" title="b. 技术的4个维度"></a>b. 技术的4个维度</h2><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gff3scbnfmj31980pynao.jpg" alt="IMG_6B342F1B480B"></p>
+<h2 id="b-技术的4个-实现难度递增的-维度"><a href="#b-技术的4个-实现难度递增的-维度" class="headerlink" title="b. 技术的4个(实现难度递增的)维度"></a>b. 技术的4个(实现难度递增的)维度</h2><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gff3scbnfmj31980pynao.jpg" alt="难度递增的四个维度"></p>
 <h3 id="简称-全称-英文"><a href="#简称-全称-英文" class="headerlink" title="简称-全称/英文"></a>简称-全称/英文</h3><ul>
 <li><p><strong>Relation Extraction</strong>(重要): <strong>关系抽取</strong></p>
 </li>
@@ -489,7 +489,7 @@
 <li><p>NER：Named Entity Recognition <strong>命名实体</strong>识别——<strong><u>抽取</u></strong>语句中，我<strong>重点关注</strong>的<strong>名词</strong></p>
 </li>
 </ul>
-<h1 id="1-app-机器翻译"><a href="#1-app-机器翻译" class="headerlink" title="1. app-机器翻译"></a>1. app-机器翻译</h1><h2 id="思路a-暴力法"><a href="#思路a-暴力法" class="headerlink" title="思路a: 暴力法"></a>思路a: 暴力法</h2><h3 id="原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的"><a href="#原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的" class="headerlink" title="原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的"></a>原理：<strong>全排列组合</strong>分词后的句子，用语言模型从中筛选出语义最合适的</h3><p>第一步通过<strong>翻译模型TM</strong>进行<strong>分词</strong></p>
+<h1 id="1-case-机器翻译"><a href="#1-case-机器翻译" class="headerlink" title="1. case-机器翻译"></a>1. case-机器翻译</h1><h2 id="思路a-暴力法"><a href="#思路a-暴力法" class="headerlink" title="思路a: 暴力法"></a>思路a: 暴力法</h2><h3 id="原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的"><a href="#原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的" class="headerlink" title="原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的"></a>原理：<strong>全排列组合</strong>分词后的句子，用语言模型从中筛选出语义最合适的</h3><p>第一步通过<strong>翻译模型TM</strong>进行<strong>分词</strong></p>
 <p>第二步映射词语，因为语法的存在而进行<u>映射后词语的排列组合</u></p>
 <p>第三步通过<strong>语言模型LM</strong>选出排列组合中最合适的语句</p>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf99soj3vmj317w0kuq8d.jpg" alt="">缺点: 排列组合的复杂度太高</p>
@@ -501,12 +501,12 @@
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf9iao2h3fj309802e749.jpg" alt=""></p>
 <h4 id="1-语言模型LM"><a href="#1-语言模型LM" class="headerlink" title="1. 语言模型LM"></a>1. 语言模型LM</h4><h5 id="作用：生成句子-即输出"><a href="#作用：生成句子-即输出" class="headerlink" title="作用：生成句子(即输出)"></a>作用：生成句子(即输出)</h5><h5 id="分类：按照当前生成的语言，对之前词语的”记忆“程度"><a href="#分类：按照当前生成的语言，对之前词语的”记忆“程度" class="headerlink" title="分类：按照当前生成的语言，对之前词语的”记忆“程度"></a>分类：按照当前生成的语言，对之前词语的”记忆“程度</h5><p>这种<strong>连续的条件概率</strong>——又称，<strong>联合分布</strong></p>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf9i640a7bj316e0aojut.jpg" alt=""></p>
-<p>Unigram model, Bingram model …. n-gram model</p>
-<p>至于每个Prop, 则¨源于提前的计算(概率统计)</p>
+<p><strong>Unigram</strong> model, <strong>Bingram</strong> model …. n-gram model</p>
+<p>至于每个Prop, 则源于<strong>已有的<u>统计频率</u>结果</strong></p>
 <h5 id="性能标准"><a href="#性能标准" class="headerlink" title="性能标准"></a>性能标准</h5><p>生成之后同时看<strong>句子质量</strong>和<strong>对应概率(score)</strong>，句子<strong>错误少</strong>的<strong>概率应该越大</strong></p>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf9iknu2qsj30yw06idh3.jpg" alt=""></p>
 <h4 id="2-翻译模型TM"><a href="#2-翻译模型TM" class="headerlink" title="2. 翻译模型TM"></a>2. 翻译模型TM</h4><p>…</p>
-<h1 id="2-app-基于检索的智能问答系统"><a href="#2-app-基于检索的智能问答系统" class="headerlink" title="2. app-基于检索的智能问答系统"></a>2. app-基于检索的智能问答系统</h1><h3 id="数据-输入-语料库"><a href="#数据-输入-语料库" class="headerlink" title="数据/输入: 语料库"></a>数据/输入: 语料库</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfinf6trm9j311w0kuke0.jpg" alt="写好的问与答结对"></p>
+<h1 id="2-case-基于检索的智能问答系统"><a href="#2-case-基于检索的智能问答系统" class="headerlink" title="2. case-基于检索的智能问答系统"></a>2. case-基于检索的智能问答系统</h1><h3 id="数据-输入-语料库"><a href="#数据-输入-语料库" class="headerlink" title="数据/输入: 语料库"></a>数据/输入: 语料库</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfinf6trm9j311w0kuke0.jpg" alt="写好的问与答结对"></p>
 <h3 id="NLP-general-pipeline"><a href="#NLP-general-pipeline" class="headerlink" title="NLP general pipeline"></a>NLP general pipeline</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfjqjhtaemj31kj0u0qte.jpg" alt="image-20200607150135228"></p>
 <h3 id="QAsys的流程"><a href="#QAsys的流程" class="headerlink" title="QAsys的流程"></a>QAsys的流程</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfir8926c2j31ip0u0e81.jpg" alt="image-20200606183943480"></p>
 <h3 id="解决：如何搜索出最相似问题"><a href="#解决：如何搜索出最相似问题" class="headerlink" title="解决：如何搜索出最相似问题"></a>解决：如何搜索出最相似问题</h3><h4 id="相似度的衡量？"><a href="#相似度的衡量？" class="headerlink" title="相似度的衡量？"></a>相似度的衡量？</h4><ul>
@@ -516,7 +516,8 @@
 </li>
 <li>✅<strong>概率</strong>比较：字符串的<strong>“相似性”计算</strong></li>
 </ul>
-<h3 id="先看：文本处理阶段"><a href="#先看：文本处理阶段" class="headerlink" title="先看：文本处理阶段"></a>先看：文本处理阶段</h3>
+<h3 id="阶段一-文本处理"><a href="#阶段一-文本处理" class="headerlink" title="阶段一 文本处理"></a>阶段一 <a href="https://kennyng-19.github.io/Kenny_Ng.github.io/2019/08/07/NLP-text-process/" target="_blank" rel="noopener">文本处理</a></h3><p>常用技术</p>
+<img src="/Users/kenny/Library/Application Support/typora-user-images/image-20200607151346944.png" alt="image-20200607151346944" style="zoom:50%;" />
             </div>
             <hr/>
 
@@ -756,30 +757,35 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/Kenny_Ng.github.io/2020/05/19/datawhale-cv01/">
+                <a href="/Kenny_Ng.github.io/2020/02/07/NLP-text-process/">
                     <div class="card-image">
                         
                         
-                        <img src="/Kenny_Ng.github.io/medias/featureimages/1.jpg" class="responsive-img" alt="datawhale-cv训练营-01赛题研究">
+                        <img src="/Kenny_Ng.github.io/medias/featureimages/2.jpg" class="responsive-img" alt="NLP-text-process">
                         
-                        <span class="card-title">datawhale-cv训练营-01赛题研究</span>
+                        <span class="card-title">NLP-text-process</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            这次基础赛事, 是Datawhale与天池联合发起的零基础入门系列赛事 赛事地址
-本文目的
-总结基本了解比赛规则
-总结解题思路
-数据下载和理解
+                            NLP文本处理NLP general pipeline
 
-1.规则本赛题需要选手识别图片中所有的字符。评测指标：准确率，Score=编码识别正确的数量/
+文本处理阶段
+
+
+
+常见处理技术
+
+
+
+分词工具的底层算法所有分词的工具，都要依赖于词库
+1. 最大匹配算法 Max Matching——贪心算法何为最大？(人为设的)每次截取的最大
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-19
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-07
                         </span>
                         <span class="publish-author">
                             
@@ -792,12 +798,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Kenny_Ng.github.io/tags/ML/">
-                        <span class="chip bg-color">ML</span>
-                    </a>
-                    
-                    <a href="/Kenny_Ng.github.io/tags/CV/">
-                        <span class="chip bg-color">CV</span>
+                    <a href="/Kenny_Ng.github.io/tags/NLP/">
+                        <span class="chip bg-color">NLP</span>
                     </a>
                     
                 </div>
