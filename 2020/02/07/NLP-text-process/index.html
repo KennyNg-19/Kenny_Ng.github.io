@@ -29,8 +29,8 @@
 
     <script src="/Kenny_Ng.github.io/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/Kenny_Ng.github.io/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/Kenny_Ng.github.io/atom.xml" title="池中之物" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/Kenny_Ng.github.io/atom.xml" title="池中之物" type="application/atom+xml">
+<link rel="stylesheet" href="/Kenny_Ng.github.io/css/prism-tomorrow.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
 <body>
@@ -456,7 +456,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    673
+                    823
                 </div>
                 
 
@@ -474,7 +474,7 @@
 
 
 
-<h3 id="常见处理环节"><a href="#常见处理环节" class="headerlink" title="常见处理环节"></a>常见处理环节</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm2bbdbwoj30zg0eaaj2.jpg" alt="image-20200609152001651" style="zoom:50%;" />
+<h3 id="常见处理环节"><a href="#常见处理环节" class="headerlink" title="常见处理环节"></a>常见处理环节</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm2bbdbwoj30zg0eaaj2.jpg" style="zoom:50%;" />
 
 <hr>
 
@@ -482,7 +482,7 @@
 <h2 id="1-基于匹配规则的方法"><a href="#1-基于匹配规则的方法" class="headerlink" title="1. 基于匹配规则的方法"></a>1. 基于<u>匹配</u>规则的方法</h2><h3 id="最大匹配算法-Max-Matching——贪心算法"><a href="#最大匹配算法-Max-Matching——贪心算法" class="headerlink" title="最大匹配算法 Max Matching——贪心算法"></a><u>最大</u>匹配算法 Max Matching——<font color="#dd0000"><u>贪心</u></font>算法</h3><h5 id="何为最大？-人为设的-每次截取的最大长度——经验决定，看词典和这种语言中词语常见的最大长度"><a href="#何为最大？-人为设的-每次截取的最大长度——经验决定，看词典和这种语言中词语常见的最大长度" class="headerlink" title="何为最大？(人为设的)每次截取的最大长度——经验决定，看词典和这种语言中词语常见的最大长度"></a>何为<u>最大</u>？(人为设的)每次截取的最大长度——<u>经验</u>决定，看词典和这种语言中<u>词语常见的最大长度</u></h5><ul>
 <li><u>前向</u>最大匹配(forward-max matching)</li>
 </ul>
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfjs4728c6j31gi0t07wh.jpg" alt="前向最大匹配" style="zoom:50%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfjs4728c6j31gi0t07wh.jpg" style="zoom:50%;" />
 
 <ul>
 <li><u>后向</u>最大匹配(backward-max matching): 句子的<strong>遍历方向，从右到左</strong>和前向<strong>相反</strong>而已<ul>
@@ -491,7 +491,7 @@
 </ul>
 </li>
 </ul>
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfjs9uae0oj31cg0nudwn.jpg" alt="image-20200607160130052" style="zoom:50%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfjs9uae0oj31cg0nudwn.jpg" style="zoom:50%;" />
 
 <ul>
 <li>双向：结合了前向和后向，双向遍历</li>
@@ -504,7 +504,7 @@
 <li><p><font color="#dd0000">容易歧义，因为算法不支持考虑<strong><u>语义</u></strong></font>，<strong>不智能</strong>。算法习得的：<strong>纯粹是单词</strong>，没有任何<strong>句法</strong>甚至<strong>语义</strong></p>
 <ul>
 <li><p>比如一个case：在词典中，一个词是另一个词的子集，而最大匹配会<strong>保留那个更长的词</strong>(<strong>匹配到</strong>该更长的词，则提前结束遍历)</p>
-<img src="/Users/kenny/Library/Application Support/typora-user-images/image-20200607161233659.png" alt="image-20200607161233659" style="zoom:35%;" />
+<img src="/Users/kenny/Library/Application Support/typora-user-images/image-20200607161233659.png" style="zoom:35%;" />
 
 
 
@@ -523,7 +523,7 @@
 
 
 
-<h2 id="2-基于概率统计的方法——考虑语义"><a href="#2-基于概率统计的方法——考虑语义" class="headerlink" title="2. 基于概率统计的方法——考虑语义"></a>2. 基于概率统计的方法——考虑语义</h2><h3 id="by语言模型-机器翻译也用到了"><a href="#by语言模型-机器翻译也用到了" class="headerlink" title="by语言模型(机器翻译也用到了)"></a>by<u>语言模型</u>(<u>机器翻译</u>也用到了)</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfjux5rp84j31760u07wh.jpg" alt="加入语言模型" style="zoom:80%;" />
+<h2 id="2-基于概率统计的方法——考虑语义"><a href="#2-基于概率统计的方法——考虑语义" class="headerlink" title="2. 基于概率统计的方法——考虑语义"></a>2. 基于概率统计的方法——考虑语义</h2><h3 id="by语言模型-机器翻译也用到了"><a href="#by语言模型-机器翻译也用到了" class="headerlink" title="by语言模型(机器翻译也用到了)"></a>by<u>语言模型</u>(<u>机器翻译</u>也用到了)</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfjux5rp84j31760u07wh.jpg" style="zoom:80%;" />
 
 
 
@@ -535,19 +535,40 @@
 
 <h4 id="缺点和解决"><a href="#缺点和解决" class="headerlink" title="缺点和解决"></a>缺点和解决</h4><h5 id="缺点：如果要考虑所有可能，复杂度太高"><a href="#缺点：如果要考虑所有可能，复杂度太高" class="headerlink" title="缺点：如果要考虑所有可能，复杂度太高"></a>缺点：如果要考虑所有可能，复杂度太高</h5><h5 id="解决：维特比算法"><a href="#解决：维特比算法" class="headerlink" title="解决：维特比算法"></a>解决：维特比算法</h5><p>(问题和解决方法，都和我<a href="https://kennyng-19.github.io/Kenny_Ng.github.io/2020/01/29/NLP-intro/" target="_blank" rel="noopener">NLP-intro</a>文中的机器翻译case的<strong>穷举法下</strong>的情况，<strong>是一样的</strong>)</p>
 <h3 id="用维特比算法来优化"><a href="#用维特比算法来优化" class="headerlink" title="用维特比算法来优化"></a>用维特比算法来优化</h3><h4 id="维特比基于DP动态规划"><a href="#维特比基于DP动态规划" class="headerlink" title="维特比基于DP动态规划"></a>维特比基于DP动态规划</h4><h1 id="B-拼写纠错"><a href="#B-拼写纠错" class="headerlink" title="B. 拼写纠错"></a>B. 拼写纠错</h1><h3 id="编辑距离-edit-dis"><a href="#编辑距离-edit-dis" class="headerlink" title="编辑距离(edit dis.)"></a>编辑距离(edit dis.)</h3><h4 id="3种编辑操作"><a href="#3种编辑操作" class="headerlink" title="3种编辑操作"></a>3种编辑操作</h4><p>replace, add和delete。</p>
-<h4 id="需要操作的数量-edit-dis"><a href="#需要操作的数量-edit-dis" class="headerlink" title="需要操作的数量=edit dis"></a>需要操作的数量=edit dis</h4><h3 id="算法目标：找到编辑距离较小的候选words"><a href="#算法目标：找到编辑距离较小的候选words" class="headerlink" title="算法目标：找到编辑距离较小的候选words"></a>算法目标：找到<u>编辑距离较小</u>的候选words</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm4rhshbsj31fo0ra7f0.jpg" alt="image-20200609164449636" style="zoom:50%;" />
+<h4 id="需要操作的数量-edit-dis"><a href="#需要操作的数量-edit-dis" class="headerlink" title="需要操作的数量=edit dis"></a>需要操作的数量=edit dis</h4><h3 id="算法目标：找到编辑距离较小的候选words"><a href="#算法目标：找到编辑距离较小的候选words" class="headerlink" title="算法目标：找到编辑距离较小的候选words"></a>算法目标：找到<u>编辑距离较小</u>的候选words</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm4rhshbsj31fo0ra7f0.jpg" style="zoom:50%;" />
 
 <h4 id="❌低效率的暴力搜索法"><a href="#❌低效率的暴力搜索法" class="headerlink" title="❌低效率的暴力搜索法"></a>❌低效率的暴力<u>搜索</u>法</h4><p>遍历词典的<strong>所有词</strong>，逐一比较</p>
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm4ot9eayj31ma0qodvp.jpg" alt="image-20200609164210949" style="zoom:33%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm4ot9eayj31ma0qodvp.jpg" style="zoom:33%;" />
 
 
 
-<h4 id="✅升级版-生成-距离较小的字符串"><a href="#✅升级版-生成-距离较小的字符串" class="headerlink" title="✅升级版: 生成 距离较小的字符串"></a>✅升级版: <u>生成</u> 距离较小的字符串</h4><p><strong>当然，生成</strong>也要用到3种常规<strong>编辑操作</strong></p>
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm4vjv2trj30bq0lotet.jpg" alt="image-20200609164843803" style="zoom:33%;" />
+<h4 id="✅升级版-生成-距离较小的字符串"><a href="#✅升级版-生成-距离较小的字符串" class="headerlink" title="✅升级版: 生成 距离较小的字符串"></a>✅升级版: <u>生成</u> 距离较小的字符串</h4><h5 id="step1-生成大量words"><a href="#step1-生成大量words" class="headerlink" title="step1: 生成大量words"></a>step1: 生成大量words</h5><p><strong>当然，生成</strong>也要用到3种常规<strong>编辑操作</strong></p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm4vjv2trj30bq0lotet.jpg" style="zoom:33%;" />
 
-<h4 id="问题-为什么只生成dis为1，2的？"><a href="#问题-为什么只生成dis为1，2的？" class="headerlink" title="问题: 为什么只生成dis为1，2的？"></a>问题: 为什么只生成dis为1，2的？</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm4widswij309s05idh7.jpg" alt="image-20200609164939220" style="zoom:25%;" />
+<h6 id="问题-为什么只生成dis为1，2的？"><a href="#问题-为什么只生成dis为1，2的？" class="headerlink" title="问题: 为什么只生成dis为1，2的？"></a>问题: 为什么只生成dis为1，2的？</h6><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm4widswij309s05idh7.jpg" style="zoom:25%;" />
 
 <p>因为经验主义，<strong>大多数情况</strong>，<strong>人为的</strong>单词拼写错误，只是1、2个字母的错误</p>
+<h5 id="Step2-过滤筛选"><a href="#Step2-过滤筛选" class="headerlink" title="Step2: 过滤筛选"></a>Step2: 过滤筛选</h5><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm544piarj30ry0a8q6z.jpg" style="zoom:50%;" />
+
+<h6 id="问题定义，转为条件概率问题"><a href="#问题定义，转为条件概率问题" class="headerlink" title="问题定义，转为条件概率问题"></a>问题定义，转为条件概率问题</h6><p>c，为<strong>现有词典里的<font color="#dd0000">正确的</font>单词</strong></p>
+<p>现在要，求出每一个<strong>生成的word，s</strong> 其<font color="#dd0000"><strong>对应<u>所有</u>可能的c中</strong></font>概率最大的那个c ——即为<strong>“最正确”</strong>的</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm55fyha3j3152090wmp.jpg" style="zoom:53%;" />
+
+
+
+<p>基于贝叶斯定理，</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfmgp0y1e1j319e0daan3.jpg" style="zoom:67%;" />
+
+
+
+<p>再细看，理解<strong>P(s|c)和P(c)</strong></p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfmgqyuhkdj30wk0660yy.jpg" style="zoom:50%;" />
+
+<p>理解P(s|c)，<strong>基于统计</strong>：人写错单词c为s的概率</p>
+<p>举例: 人把apple写成其他形式s，如app, appl的概率</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfmjmfoqeqj30bg0g479w.jpg" style="zoom:50%;" />
+
+<p>理解P(c)：即<strong>基于统计的词频</strong>，单词c(在语料库)出现的概率</p>
 
             </div>
             <hr/>
