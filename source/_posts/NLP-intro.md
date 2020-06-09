@@ -14,9 +14,9 @@ tags: [ML, NLP]
 
 ![](https://tva1.sinaimg.cn/large/007S8ZIlgy1gf99ljg3ooj30v80hswh7.jpg)
 
-## b. 技术的4个维度
+## b. 技术的4个(实现难度递增的)维度
 
-![IMG_6B342F1B480B](https://tva1.sinaimg.cn/large/007S8ZIlgy1gff3scbnfmj31980pynao.jpg)
+![难度递增的四个维度](https://tva1.sinaimg.cn/large/007S8ZIlgy1gff3scbnfmj31980pynao.jpg)
 
 ### 简称-全称/英文
 
@@ -34,7 +34,7 @@ tags: [ML, NLP]
 
 
 
-# 1. app-机器翻译
+# 1. case-机器翻译
 
 ## 思路a: 暴力法
 
@@ -84,9 +84,9 @@ tags: [ML, NLP]
 
 ![](https://tva1.sinaimg.cn/large/007S8ZIlgy1gf9i640a7bj316e0aojut.jpg)
 
-Unigram model, Bingram model .... n-gram model
+**Unigram** model, **Bingram** model .... n-gram model
 
-至于每个Prop, 则¨源于提前的计算(概率统计)
+至于每个Prop, 则源于**已有的<u>统计频率</u>结果**
 
 
 
@@ -102,17 +102,21 @@ Unigram model, Bingram model .... n-gram model
 
 
 
-# 2. app-基于检索的智能问答系统
+# 2. case-基于检索的智能问答系统
 
 ### 数据/输入: 语料库
 
 ![写好的问与答结对](https://tva1.sinaimg.cn/large/007S8ZIlgy1gfinf6trm9j311w0kuke0.jpg)
 
-### 流程
+### NLP general pipeline
+
+![image-20200607150135228](https://tva1.sinaimg.cn/large/007S8ZIlgy1gfjqjhtaemj31kj0u0qte.jpg)
+
+
+
+###  QAsys的流程
 
 ![image-20200606183943480](https://tva1.sinaimg.cn/large/007S8ZIlgy1gfir8926c2j31ip0u0e81.jpg)
-
-
 
 ### 解决：如何搜索出最相似问题
 
@@ -124,3 +128,12 @@ Unigram model, Bingram model .... n-gram model
 
 
 
+
+
+### 阶段一 [文本处理](https://kennyng-19.github.io/Kenny_Ng.github.io/2019/08/07/NLP-text-process/)
+
+
+
+常用技术
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm2bbdbwoj30zg0eaaj2.jpg" alt="image-20200609152001651" style="zoom:50%;" />
