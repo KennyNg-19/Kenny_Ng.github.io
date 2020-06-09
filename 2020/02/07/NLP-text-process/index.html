@@ -29,8 +29,8 @@
 
     <script src="/Kenny_Ng.github.io/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/Kenny_Ng.github.io/atom.xml" title="池中之物" type="application/atom+xml">
-<link rel="stylesheet" href="/Kenny_Ng.github.io/css/prism-tomorrow.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/Kenny_Ng.github.io/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/Kenny_Ng.github.io/atom.xml" title="池中之物" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
 
 
 <body>
@@ -456,7 +456,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    502
+                    673
                 </div>
                 
 
@@ -474,12 +474,12 @@
 
 
 
-<h3 id="常见处理技术"><a href="#常见处理技术" class="headerlink" title="常见处理技术"></a>常见处理技术</h3><img src="/Users/kenny/Library/Application Support/typora-user-images/image-20200607151346944.png" alt="image-20200607151346944" style="zoom:50%;" />
+<h3 id="常见处理环节"><a href="#常见处理环节" class="headerlink" title="常见处理环节"></a>常见处理环节</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm2bbdbwoj30zg0eaaj2.jpg" alt="image-20200609152001651" style="zoom:50%;" />
 
 <hr>
 
-<h2 id="分词工具的底层算法"><a href="#分词工具的底层算法" class="headerlink" title="分词工具的底层算法"></a>分词工具的底层算法</h2><p>所有分词的工具，都要<strong><u>依赖于词库</u></strong></p>
-<h3 id="1-最大匹配算法-Max-Matching——贪心算法"><a href="#1-最大匹配算法-Max-Matching——贪心算法" class="headerlink" title="1. 最大匹配算法 Max Matching——贪心算法"></a>1. <u>最大</u>匹配算法 Max Matching——<font color="#dd0000"><u>贪心</u></font>算法</h3><h5 id="何为最大？-人为设的-每次截取的最大长度——经验决定，看词典和这种语言中词语常见的最大长度"><a href="#何为最大？-人为设的-每次截取的最大长度——经验决定，看词典和这种语言中词语常见的最大长度" class="headerlink" title="何为最大？(人为设的)每次截取的最大长度——经验决定，看词典和这种语言中词语常见的最大长度"></a>何为<u>最大</u>？(人为设的)每次截取的最大长度——<u>经验</u>决定，看词典和这种语言中<u>词语常见的最大长度</u></h5><ul>
+<h1 id="A-分词的常用底层算法"><a href="#A-分词的常用底层算法" class="headerlink" title="A. 分词的常用底层算法"></a>A. 分词的常用底层算法</h1><p>所有分词的工具，都要<strong><u>依赖于词库</u></strong></p>
+<h2 id="1-基于匹配规则的方法"><a href="#1-基于匹配规则的方法" class="headerlink" title="1. 基于匹配规则的方法"></a>1. 基于<u>匹配</u>规则的方法</h2><h3 id="最大匹配算法-Max-Matching——贪心算法"><a href="#最大匹配算法-Max-Matching——贪心算法" class="headerlink" title="最大匹配算法 Max Matching——贪心算法"></a><u>最大</u>匹配算法 Max Matching——<font color="#dd0000"><u>贪心</u></font>算法</h3><h5 id="何为最大？-人为设的-每次截取的最大长度——经验决定，看词典和这种语言中词语常见的最大长度"><a href="#何为最大？-人为设的-每次截取的最大长度——经验决定，看词典和这种语言中词语常见的最大长度" class="headerlink" title="何为最大？(人为设的)每次截取的最大长度——经验决定，看词典和这种语言中词语常见的最大长度"></a>何为<u>最大</u>？(人为设的)每次截取的最大长度——<u>经验</u>决定，看词典和这种语言中<u>词语常见的最大长度</u></h5><ul>
 <li><u>前向</u>最大匹配(forward-max matching)</li>
 </ul>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfjs4728c6j31gi0t07wh.jpg" alt="前向最大匹配" style="zoom:50%;" />
@@ -496,7 +496,7 @@
 <ul>
 <li>双向：结合了前向和后向，双向遍历</li>
 </ul>
-<h4 id="该算法的缺点"><a href="#该算法的缺点" class="headerlink" title="该算法的缺点"></a>该算法的缺点</h4><ul>
+<h3 id="该算法的缺点"><a href="#该算法的缺点" class="headerlink" title="该算法的缺点"></a>该算法的缺点</h3><ul>
 <li><p>贪心只能找局部最优，未必最优 </p>
 </li>
 <li><p>效率，依赖于max_length</p>
@@ -523,17 +523,31 @@
 
 
 
-<h3 id="2-考虑语义—by语言模型-机器翻译也用到了"><a href="#2-考虑语义—by语言模型-机器翻译也用到了" class="headerlink" title="2. 考虑语义—by语言模型(机器翻译也用到了)"></a>2. 考虑语义—by<u>语言模型</u>(<u>机器翻译</u>也用到了)</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfjux5rp84j31760u07wh.jpg" alt="加入语言模型" style="zoom:80%;" />
+<h2 id="2-基于概率统计的方法——考虑语义"><a href="#2-基于概率统计的方法——考虑语义" class="headerlink" title="2. 基于概率统计的方法——考虑语义"></a>2. 基于概率统计的方法——考虑语义</h2><h3 id="by语言模型-机器翻译也用到了"><a href="#by语言模型-机器翻译也用到了" class="headerlink" title="by语言模型(机器翻译也用到了)"></a>by<u>语言模型</u>(<u>机器翻译</u>也用到了)</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfjux5rp84j31760u07wh.jpg" alt="加入语言模型" style="zoom:80%;" />
 
 
 
-<h4 id="可能出现的问题和解决-underflow"><a href="#可能出现的问题和解决-underflow" class="headerlink" title="可能出现的问题和解决: underflow"></a>可能出现的问题和解决: underflow</h4><p>问题：词频统计的概率太小，小数一旦再乘积，导致underflow的溢出</p>
+<h4 id="可能的问题和解决-underflow"><a href="#可能的问题和解决-underflow" class="headerlink" title="可能的问题和解决: underflow"></a>可能的问题和解决: underflow</h4><p>问题：词频统计的概率太小，小数一旦再乘积，导致underflow的溢出</p>
 <p>解决：<strong>数学处理技巧</strong>，给概率加上log<strong>转化为<u>累加</u></strong>，利用log的<strong><u>递增型</u></strong></p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfjtgdx5m3j316y0f6ws9.jpg" alt="log转化" style="zoom:33%;" />
 
 
 
 <h4 id="缺点和解决"><a href="#缺点和解决" class="headerlink" title="缺点和解决"></a>缺点和解决</h4><h5 id="缺点：如果要考虑所有可能，复杂度太高"><a href="#缺点：如果要考虑所有可能，复杂度太高" class="headerlink" title="缺点：如果要考虑所有可能，复杂度太高"></a>缺点：如果要考虑所有可能，复杂度太高</h5><h5 id="解决：维特比算法"><a href="#解决：维特比算法" class="headerlink" title="解决：维特比算法"></a>解决：维特比算法</h5><p>(问题和解决方法，都和我<a href="https://kennyng-19.github.io/Kenny_Ng.github.io/2020/01/29/NLP-intro/" target="_blank" rel="noopener">NLP-intro</a>文中的机器翻译case的<strong>穷举法下</strong>的情况，<strong>是一样的</strong>)</p>
+<h3 id="用维特比算法来优化"><a href="#用维特比算法来优化" class="headerlink" title="用维特比算法来优化"></a>用维特比算法来优化</h3><h4 id="维特比基于DP动态规划"><a href="#维特比基于DP动态规划" class="headerlink" title="维特比基于DP动态规划"></a>维特比基于DP动态规划</h4><h1 id="B-拼写纠错"><a href="#B-拼写纠错" class="headerlink" title="B. 拼写纠错"></a>B. 拼写纠错</h1><h3 id="编辑距离-edit-dis"><a href="#编辑距离-edit-dis" class="headerlink" title="编辑距离(edit dis.)"></a>编辑距离(edit dis.)</h3><h4 id="3种编辑操作"><a href="#3种编辑操作" class="headerlink" title="3种编辑操作"></a>3种编辑操作</h4><p>replace, add和delete。</p>
+<h4 id="需要操作的数量-edit-dis"><a href="#需要操作的数量-edit-dis" class="headerlink" title="需要操作的数量=edit dis"></a>需要操作的数量=edit dis</h4><h3 id="算法目标：找到编辑距离较小的候选words"><a href="#算法目标：找到编辑距离较小的候选words" class="headerlink" title="算法目标：找到编辑距离较小的候选words"></a>算法目标：找到<u>编辑距离较小</u>的候选words</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm4rhshbsj31fo0ra7f0.jpg" alt="image-20200609164449636" style="zoom:50%;" />
+
+<h4 id="❌低效率的暴力搜索法"><a href="#❌低效率的暴力搜索法" class="headerlink" title="❌低效率的暴力搜索法"></a>❌低效率的暴力<u>搜索</u>法</h4><p>遍历词典的<strong>所有词</strong>，逐一比较</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm4ot9eayj31ma0qodvp.jpg" alt="image-20200609164210949" style="zoom:33%;" />
+
+
+
+<h4 id="✅升级版-生成-距离较小的字符串"><a href="#✅升级版-生成-距离较小的字符串" class="headerlink" title="✅升级版: 生成 距离较小的字符串"></a>✅升级版: <u>生成</u> 距离较小的字符串</h4><p><strong>当然，生成</strong>也要用到3种常规<strong>编辑操作</strong></p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm4vjv2trj30bq0lotet.jpg" alt="image-20200609164843803" style="zoom:33%;" />
+
+<h4 id="问题-为什么只生成dis为1，2的？"><a href="#问题-为什么只生成dis为1，2的？" class="headerlink" title="问题: 为什么只生成dis为1，2的？"></a>问题: 为什么只生成dis为1，2的？</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm4widswij309s05idh7.jpg" alt="image-20200609164939220" style="zoom:25%;" />
+
+<p>因为经验主义，<strong>大多数情况</strong>，<strong>人为的</strong>单词拼写错误，只是1、2个字母的错误</p>
 
             </div>
             <hr/>
