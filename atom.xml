@@ -6,7 +6,7 @@
   <link href="/Kenny_Ng.github.io/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-06-28T07:40:54.805Z</updated>
+  <updated>2020-06-28T07:46:06.695Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://yoursite.com/2020/06/28/CS-English-terms/"/>
     <id>http://yoursite.com/2020/06/28/CS-English-terms/</id>
     <published>2020-06-28T07:23:26.000Z</published>
-    <updated>2020-06-28T07:40:54.805Z</updated>
+    <updated>2020-06-28T07:46:06.695Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="1-client-program-实现应用的程序-Java"><a href="#1-client-program-实现应用的程序-Java" class="headerlink" title="1. client program 实现应用的程序(Java)"></a>1. client program 实现应用的程序(Java)</h3><p>（此client并非C/S的客户端哦）</p><p>A <strong>client</strong> is a <strong>program</strong> that <strong><u>uses</u></strong> a data type API. （And an implementation is the code that implements the data type specified in an API）</p><p>数据结构类/<strong>已有的java类</strong>，本身不能直接用于应用；而client程序，基于已有的类，实现了<strong>XX应用</strong>的<strong>功能类</strong>——可以给<strong>有需要XX应用的client调用方</strong>直接使用</p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gg81a2k36yj309e08u3z4.jpg" alt="字典的应用程序、索引的应用程序" style="zoom:33%;" /><p>如上图，命名都是<strong>XX client</strong>，字典的应用程序、索引的应用程序</p><h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3>]]></content>
+    <content type="html"><![CDATA[<h3 id="1-client-program-实现应用的程序-Java"><a href="#1-client-program-实现应用的程序-Java" class="headerlink" title="1. client program 实现应用的程序(Java)"></a>1. client program 实现应用的程序(Java)</h3><p>（此client并非C/S的客户端哦）</p><p>A <strong>client</strong> is a <strong>program</strong> that <strong><u>uses</u></strong> a data type API. （And an implementation is the code that implements the data type specified in an API）</p><p>数据结构类/<strong>已有的java类</strong>，本身不能直接用于应用；而client程序，基于已有的类，实现了<strong>XX应用</strong>的<strong>功能类</strong>——可以给<strong>有需要XX应用的client调用方</strong>直接使用, 且一般会<u>支持java 命令行的<strong>args传参</strong></u></p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gg81a2k36yj309e08u3z4.jpg" alt="字典的应用程序、索引的应用程序" style="zoom:33%;" /><p>如上图，命名都是<strong>XX client</strong>，字典的应用程序、索引的应用程序</p><h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3>]]></content>
     
     <summary type="html">
     
