@@ -6,7 +6,7 @@
   <link href="/Kenny_Ng.github.io/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-06-28T07:46:06.695Z</updated>
+  <updated>2020-07-01T08:05:45.507Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>遇到过的data structure的实例use cases积累</title>
+    <link href="http://yoursite.com/2020/07/01/data-structures-use-cases/"/>
+    <id>http://yoursite.com/2020/07/01/data-structures-use-cases/</id>
+    <published>2020-07-01T07:53:01.000Z</published>
+    <updated>2020-07-01T08:05:45.507Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="0-（注意是巧用：提高效率-简化代码的use-case）"><a href="#0-（注意是巧用：提高效率-简化代码的use-case）" class="headerlink" title="0. （注意是巧用：提高效率/简化代码的use case）"></a>0. （注意是巧用：<font color="#dd0000">提高效率/简化代码</font>的use case）</h3><h3 id="1-能获取的数据是倒叙的，但希望把它们正序输出"><a href="#1-能获取的数据是倒叙的，但希望把它们正序输出" class="headerlink" title="1. 能获取的数据是倒叙的，但希望把它们正序输出"></a>1. 能获取的数据是倒叙的，但希望把它们正序输出</h3><h4 id="暴力解法思想，用：数组"><a href="#暴力解法思想，用：数组" class="headerlink" title="暴力解法思想，用：数组"></a>暴力解法思想，用：数组</h4><p>1by1存到数组里，然后想办法把数组reverse倒叙，再输出</p><h4 id="使用数据结构：栈"><a href="#使用数据结构：栈" class="headerlink" title="使用数据结构：栈"></a>使用数据结构：栈</h4><p>1by1 push到栈里，利用<strong>栈的遍历（用的Java@for each）</strong><font color="#dd0000">默认是从<strong>栈顶</strong>开始的</font>——所以遍历时，自动会从最后push的开始，达到<strong>自动正序</strong>的输出</p><p>实例应用：DFS深度优先算法搜索，或许源s到任何一个v的<strong>完整路径</strong></p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggbj8a6k3oj30qa0i8n16.jpg" style="zoom:33%;" />]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;0-（注意是巧用：提高效率-简化代码的use-case）&quot;&gt;&lt;a href=&quot;#0-（注意是巧用：提高效率-简化代码的use-case）&quot; class=&quot;headerlink&quot; title=&quot;0. （注意是巧用：提高效率/简化代码的use case）&quot;&gt;&lt;/a&gt;0
+      
+    
+    </summary>
+    
+    
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="CS" scheme="http://yoursite.com/tags/CS/"/>
+    
+      <category term="数据结构" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
   
   <entry>
     <title>CS学科中English terms的中文大意</title>
