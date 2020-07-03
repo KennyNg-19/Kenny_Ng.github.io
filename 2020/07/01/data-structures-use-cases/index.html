@@ -464,7 +464,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    150
+                    266
                 </div>
                 
 
@@ -476,10 +476,23 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="0-（注意是巧用：提高效率-简化代码的use-case）"><a href="#0-（注意是巧用：提高效率-简化代码的use-case）" class="headerlink" title="0. （注意是巧用：提高效率/简化代码的use case）"></a>0. （注意是巧用：<font color="#dd0000">提高效率/简化代码</font>的use case）</h3><h3 id="1-能获取的数据是倒叙的，但希望把它们正序输出"><a href="#1-能获取的数据是倒叙的，但希望把它们正序输出" class="headerlink" title="1. 能获取的数据是倒叙的，但希望把它们正序输出"></a>1. 能获取的数据是倒叙的，但希望把它们正序输出</h3><h4 id="暴力解法思想，用：数组"><a href="#暴力解法思想，用：数组" class="headerlink" title="暴力解法思想，用：数组"></a>暴力解法思想，用：数组</h4><p>1by1存到数组里，然后想办法把数组reverse倒叙，再输出</p>
-<h4 id="使用数据结构：栈"><a href="#使用数据结构：栈" class="headerlink" title="使用数据结构：栈"></a>使用数据结构：栈</h4><p>1by1 push到栈里，利用<strong>栈的遍历（用的Java@for each）</strong><font color="#dd0000">默认是从<strong>栈顶</strong>开始的</font>——所以遍历时，自动会从最后push的开始，达到<strong>自动正序</strong>的输出</p>
+                <h3 id="0-（注意是巧用：提高效率-简化代码的use-case）"><a href="#0-（注意是巧用：提高效率-简化代码的use-case）" class="headerlink" title="0. （注意是巧用：提高效率/简化代码的use case）"></a>0. （注意是巧用：<font color="#dd0000">提高效率/简化代码</font>的use case）</h3><h3 id="1-获取的数据是倒叙的，但要求他们正序输出"><a href="#1-获取的数据是倒叙的，但要求他们正序输出" class="headerlink" title="1. 获取的数据是倒叙的，但要求他们正序输出"></a>1. 获取的数据是倒叙的，但要求他们正序输出</h3><h4 id="暴力解法用：数组"><a href="#暴力解法用：数组" class="headerlink" title="暴力解法用：数组"></a>暴力解法用：数组</h4><p>1by1存到数组里，然后想办法把<strong>数组reverse倒序</strong>，再输出</p>
+<h4 id="简化代码，使用数据结构：栈"><a href="#简化代码，使用数据结构：栈" class="headerlink" title="简化代码，使用数据结构：栈"></a>简化代码，使用数据结构：栈</h4><p>1by1 push到栈里，利用<strong>栈的Java@for each遍历</strong><font color="#dd0000"><strong>默认</strong>是从<strong>栈顶</strong>开始的</font>——所以遍历时，自动会从最后push的开始，达到<strong>自动正序</strong>的输出</p>
 <p>实例应用：DFS深度优先算法搜索，或许源s到任何一个v的<strong>完整路径</strong></p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggbj8a6k3oj30qa0i8n16.jpg" style="zoom:33%;" />
+
+
+
+<h4 id="PS-如果是digraph的搜索，这种case又名reverse-postorder"><a href="#PS-如果是digraph的搜索，这种case又名reverse-postorder" class="headerlink" title="PS: 如果是digraph的搜索，这种case又名reverse postorder"></a>PS: 如果是digraph的搜索，这种case又名<u>reverse</u> postorder</h4><p>(postorder: 即先访问完<strong>所有子节点</strong>，再<strong>返回到父节点</strong>。 graph搜索中<strong>DFS</strong>生成的是postorder)</p>
+<p>以下摘自stackoverflow</p>
+<blockquote>
+<p>Reverse postordering as the name suggests produces the exact <strong>opposite of postorder traversal.</strong></p>
+<p><strong>Example</strong></p>
+<p>if postorder traversals are D B C A and D C B A</p>
+<p>the reverse postorder traversals are A C B D and A B C D</p>
+<h5 id="How-to-obtain-reverse-postorder-traversal"><a href="#How-to-obtain-reverse-postorder-traversal" class="headerlink" title="How to obtain reverse postorder traversal"></a><strong>How to obtain reverse postorder traversal</strong></h5><p>One way is to run postorder traversal and push the nodes <strong><u>in a stack</u></strong> in postorder. Then <strong>pop out</strong> the nodes to get the reverse postorder.</p>
+</blockquote>
+<h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3>
             </div>
             <hr/>
 
@@ -736,8 +749,8 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            0. （注意是巧用：提高效率/简化代码的use case）1. 能获取的数据是倒叙的，但希望把它们正序输出暴力解法思想，用：数组1by1存到数组里，然后想办法把数组reverse倒叙，再输出
-使用数据结构：栈1by1 push到栈里，利用栈
+                            0. （注意是巧用：提高效率/简化代码的use case）1. 获取的数据是倒叙的，但要求他们正序输出暴力解法用：数组1by1存到数组里，然后想办法把数组reverse倒序，再输出
+简化代码，使用数据结构：栈1by1 push到栈里，利用栈
                         
                     </div>
                     <div class="publish-info">
