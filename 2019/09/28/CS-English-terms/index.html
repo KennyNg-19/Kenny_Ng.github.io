@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="NLP-intro, 池中之物">
+    <meta name="keywords" content="CS学科中English terms的中文大意, 池中之物">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>NLP-intro | 池中之物</title>
+    <title>CS学科中English terms的中文大意 | 池中之物</title>
     <link rel="icon" type="image/png" href="/Kenny_Ng.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/Kenny_Ng.github.io/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/Kenny_Ng.github.io/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/Kenny_Ng.github.io/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">NLP-intro</h1>
+                    <h1 class="description center-align post-title">CS学科中English terms的中文大意</h1>
                 </div>
             </div>
         </div>
@@ -431,12 +431,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Kenny_Ng.github.io/tags/ML/">
-                                <span class="chip bg-color">ML</span>
+                            <a href="/Kenny_Ng.github.io/tags/CS/">
+                                <span class="chip bg-color">CS</span>
                             </a>
                         
-                            <a href="/Kenny_Ng.github.io/tags/NLP/">
-                                <span class="chip bg-color">NLP</span>
+                            <a href="/Kenny_Ng.github.io/tags/English/">
+                                <span class="chip bg-color">English</span>
                             </a>
                         
                     </div>
@@ -451,7 +451,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-01-29
+                    2019-09-28
                 </div>
                 
 
@@ -460,7 +460,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    572
+                    165
                 </div>
                 
 
@@ -472,52 +472,17 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="0-NLP-Overview"><a href="#0-NLP-Overview" class="headerlink" title="0. NLP Overview"></a>0. NLP Overview</h1><h2 id="a-NLP研究方向"><a href="#a-NLP研究方向" class="headerlink" title="a. NLP研究方向"></a>a. NLP研究方向</h2><p>2个大方向对应了，语言的<strong>“一进一出”</strong></p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf99ljg3ooj30v80hswh7.jpg" alt=""></p>
-<h2 id="b-技术的4个-实现难度递增的-维度"><a href="#b-技术的4个-实现难度递增的-维度" class="headerlink" title="b. 技术的4个(实现难度递增的)维度"></a>b. 技术的4个(实现难度递增的)维度</h2><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gff3scbnfmj31980pynao.jpg" alt="难度递增的四个维度"></p>
-<h3 id="简称-全称-英文"><a href="#简称-全称-英文" class="headerlink" title="简称-全称/英文"></a>简称-全称/英文</h3><ul>
-<li><p><strong>Relation Extraction</strong>(重要): <strong>关系抽取</strong></p>
-</li>
-<li><p>Parsing：句法分析——给定句子，根据<u>词性</u>生成<strong>树状结构</strong> by CYK算法</p>
-</li>
-<li><p>Dependency Parsing： (词的)依存分析 ——生成<strong>graph</strong></p>
-</li>
-</ul>
-<ul>
-<li><p>POS: Part of Speech <strong>词性</strong>分析(词性是很重要的特征)</p>
-</li>
-<li><p>NER：Named Entity Recognition <strong>命名实体</strong>识别——<strong><u>抽取</u></strong>语句中，我<strong>重点关注</strong>的<strong>名词</strong></p>
-</li>
-</ul>
-<h1 id="1-case-机器翻译"><a href="#1-case-机器翻译" class="headerlink" title="1. case-机器翻译"></a>1. case-机器翻译</h1><h2 id="思路a-暴力法"><a href="#思路a-暴力法" class="headerlink" title="思路a: 暴力法"></a>思路a: 暴力法</h2><h3 id="原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的"><a href="#原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的" class="headerlink" title="原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的"></a>原理：<strong>全排列组合</strong>分词后的句子，用语言模型从中筛选出语义最合适的</h3><p>第一步通过<strong>翻译模型TM</strong>进行<strong>分词</strong></p>
-<p>第二步映射词语，因为语法的存在而进行<u>映射后词语的排列组合</u></p>
-<p>第三步通过<strong>语言模型LM</strong>选出排列组合中最合适的语句</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf99soj3vmj317w0kuq8d.jpg" alt="">缺点: 排列组合的复杂度太高</p>
-<p>解决: <strong>维特比Viterbi</strong>算法——<strong>同时考虑TM</strong>分词+<strong>LM筛选</strong>这分开2个步骤</p>
-<h2 id="思路b-维特比Viterbi算法"><a href="#思路b-维特比Viterbi算法" class="headerlink" title="思路b: 维特比Viterbi算法"></a>思路b: <strong>维特比Viterbi</strong>算法</h2><h3 id="原理：贝叶斯TM和LM"><a href="#原理：贝叶斯TM和LM" class="headerlink" title="原理：贝叶斯TM和LM"></a>原理：贝叶斯TM和LM</h3><p><strong>串联TM</strong>分词+<strong>LM筛选</strong>这分开的2个步骤</p>
-<h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf9i9qd3wlj31680f20vt.jpg" alt="流程图"></p>
-<p>各个部分的作用</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf9iup3gr2j30x20icwjg.jpg" alt="">好处：降低了复杂度，<strong>避免了原来随机排列组合生成句子</strong>的<strong>NP-hard的指数级</strong>复杂度</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf9iao2h3fj309802e749.jpg" alt=""></p>
-<h4 id="1-语言模型LM"><a href="#1-语言模型LM" class="headerlink" title="1. 语言模型LM"></a>1. 语言模型LM</h4><h5 id="作用：生成句子-即输出"><a href="#作用：生成句子-即输出" class="headerlink" title="作用：生成句子(即输出)"></a>作用：生成句子(即输出)</h5><h5 id="分类：按照当前生成的语言，对之前词语的”记忆“程度"><a href="#分类：按照当前生成的语言，对之前词语的”记忆“程度" class="headerlink" title="分类：按照当前生成的语言，对之前词语的”记忆“程度"></a>分类：按照当前生成的语言，对之前词语的”记忆“程度</h5><p>这种<strong>连续的条件概率</strong>——又称，<strong>联合分布</strong></p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf9i640a7bj316e0aojut.jpg" alt=""></p>
-<p><strong>Unigram</strong> model, <strong>Bingram</strong> model …. n-gram model</p>
-<p>至于每个Prop, 则源于<strong>已有的<u>统计频率</u>结果</strong></p>
-<h5 id="性能标准"><a href="#性能标准" class="headerlink" title="性能标准"></a>性能标准</h5><p>生成之后同时看<strong>句子质量</strong>和<strong>对应概率(score)</strong>，句子<strong>错误少</strong>的<strong>概率应该越大</strong></p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf9iknu2qsj30yw06idh3.jpg" alt=""></p>
-<h4 id="2-翻译模型TM"><a href="#2-翻译模型TM" class="headerlink" title="2. 翻译模型TM"></a>2. 翻译模型TM</h4><p>…</p>
-<h1 id="2-case-基于检索的智能问答系统"><a href="#2-case-基于检索的智能问答系统" class="headerlink" title="2. case-基于检索的智能问答系统"></a>2. case-基于检索的智能问答系统</h1><h3 id="数据-输入-语料库"><a href="#数据-输入-语料库" class="headerlink" title="数据/输入: 语料库"></a>数据/输入: 语料库</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfinf6trm9j311w0kuke0.jpg" alt="写好的问与答结对"></p>
-<h3 id="NLP-general-pipeline"><a href="#NLP-general-pipeline" class="headerlink" title="NLP general pipeline"></a>NLP general pipeline</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfjqjhtaemj31kj0u0qte.jpg" alt="image-20200607150135228"></p>
-<h3 id="QAsys的流程"><a href="#QAsys的流程" class="headerlink" title="QAsys的流程"></a>QAsys的流程</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfir8926c2j31ip0u0e81.jpg" alt="image-20200606183943480"></p>
-<h3 id="解决：如何搜索出最相似问题"><a href="#解决：如何搜索出最相似问题" class="headerlink" title="解决：如何搜索出最相似问题"></a>解决：如何搜索出最相似问题</h3><h4 id="相似度的衡量？"><a href="#相似度的衡量？" class="headerlink" title="相似度的衡量？"></a>相似度的衡量？</h4><ul>
-<li>❌<strong>逐字</strong>比较：正则/<strong>规则</strong>AI——<strong>对匹配要求很高很高</strong>, 所以需要考虑<strong><u>尽可能多</u></strong>的输入，过于繁琐<ul>
-<li>唯一使用场景：<strong><u>没有数据时</u></strong>，语料库很空</li>
-</ul>
-</li>
-<li>✅<strong>概率</strong>比较：字符串的<strong>“相似性”计算</strong></li>
-</ul>
-<h3 id="阶段一-文本处理"><a href="#阶段一-文本处理" class="headerlink" title="阶段一 文本处理"></a>阶段一 <a href="https://kennyng-19.github.io/Kenny_Ng.github.io/2019/08/07/NLP-text-process/" target="_blank" rel="noopener">文本处理</a></h3><p>常用技术</p>
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm2bbdbwoj30zg0eaaj2.jpg" alt="image-20200609152001651" style="zoom:50%;" />
+                <h3 id="1-client-program-实现应用的程序-Java"><a href="#1-client-program-实现应用的程序-Java" class="headerlink" title="1. client program 实现应用的程序(Java)"></a>1. client program 实现应用的程序(Java)</h3><p>我见到的其出处：Coursera普林斯顿《算法》课程</p>
+<p>（此client并非C/S的客户端哦）</p>
+<p>A <strong>client</strong> is a <strong>program</strong> that <strong><u>uses</u></strong> a data type API. （And an implementation is the code that implements the data type specified in an API）</p>
+<p>数据结构类/<strong>已有的java类</strong>，本身不能直接用于应用；而client程序，基于已有的类，实现了<strong>XX应用</strong>的<strong>功能类</strong>——可以给<strong>有需要XX应用的client调用方</strong>直接使用, 且一般会<u>支持java 命令行的<strong>args传参</strong></u></p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gg81a2k36yj309e08u3z4.jpg" alt="字典的应用程序、索引的应用程序" style="zoom:33%;" />
+
+
+
+<p>如上图，命名都是<strong>XX client</strong>，字典的应用程序、索引的应用程序</p>
+<h3 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h3><p>我见到的其出处：</p>
+
             </div>
             <hr/>
 
@@ -542,7 +507,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/Kenny_Ng.github.io/2020/01/29/NLP-intro/">http://yoursite.com/Kenny_Ng.github.io/2020/01/29/NLP-intro/</a>
+                    <a href="http://yoursite.com/Kenny_Ng.github.io/2019/09/28/CS-English-terms/">http://yoursite.com/Kenny_Ng.github.io/2019/09/28/CS-English-terms/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -580,12 +545,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/Kenny_Ng.github.io/tags/ML/">
-                                    <span class="chip bg-color">ML</span>
+                                <a href="/Kenny_Ng.github.io/tags/CS/">
+                                    <span class="chip bg-color">CS</span>
                                 </a>
                             
-                                <a href="/Kenny_Ng.github.io/tags/NLP/">
-                                    <span class="chip bg-color">NLP</span>
+                                <a href="/Kenny_Ng.github.io/tags/English/">
+                                    <span class="chip bg-color">English</span>
                                 </a>
                             
                         </div>
@@ -757,30 +722,30 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/Kenny_Ng.github.io/2020/05/19/datawhale-cv01/">
+                <a href="/Kenny_Ng.github.io/2020/01/29/NLP-intro/">
                     <div class="card-image">
                         
                         
-                        <img src="/Kenny_Ng.github.io/medias/featureimages/1.jpg" class="responsive-img" alt="datawhale-cv训练营-01赛题研究">
+                        <img src="/Kenny_Ng.github.io/medias/featureimages/23.jpg" class="responsive-img" alt="NLP-intro">
                         
-                        <span class="card-title">datawhale-cv训练营-01赛题研究</span>
+                        <span class="card-title">NLP-intro</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            这次基础赛事, 是Datawhale与天池联合发起的零基础入门系列赛事 赛事地址
-本文目的
-总结基本了解比赛规则
-总结解题思路
-数据下载和理解
+                            0. NLP Overviewa. NLP研究方向2个大方向对应了，语言的“一进一出”
 
-1.规则本赛题需要选手识别图片中所有的字符。评测指标：准确率，Score=编码识别正确的数量/
+b. 技术的4个(实现难度递增的)维度
+简称-全称/英文
+Relation Extraction(重要): 关系抽取
+
+Parsing：句法分析——给
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-19
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-29
                         </span>
                         <span class="publish-author">
                             
@@ -797,8 +762,8 @@
                         <span class="chip bg-color">ML</span>
                     </a>
                     
-                    <a href="/Kenny_Ng.github.io/tags/CV/">
-                        <span class="chip bg-color">CV</span>
+                    <a href="/Kenny_Ng.github.io/tags/NLP/">
+                        <span class="chip bg-color">NLP</span>
                     </a>
                     
                 </div>
@@ -812,26 +777,25 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/Kenny_Ng.github.io/2019/09/28/CS-English-terms/">
+                <a href="/Kenny_Ng.github.io/2019/08/26/sum_pytorch_details/">
                     <div class="card-image">
                         
                         
-                        <img src="/Kenny_Ng.github.io/medias/featureimages/1.jpg" class="responsive-img" alt="CS学科中English terms的中文大意">
+                        <img src="/Kenny_Ng.github.io/medias/featureimages/21.jpg" class="responsive-img" alt="Pytorch一些小细节补充">
                         
-                        <span class="card-title">CS学科中English terms的中文大意</span>
+                        <span class="card-title">Pytorch一些小细节补充</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            1. client program 实现应用的程序(Java)我见到的其出处：Coursera普林斯顿《算法》课程
-（此client并非C/S的客户端哦）
-A client is a program that uses a data typ
+                            补充Pytorch中的易被忽视但得注意的细节1. 定义Dataloader的num_workers参数Q: 
+在给Dataloader设置worker数量（num_worker）时，到底设置多少合适？这个worker到底怎么工作的？如果将n
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-09-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-08-26
                             </span>
                         <span class="publish-author">
                             
@@ -844,12 +808,8 @@ A client is a program that uses a data typ
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Kenny_Ng.github.io/tags/CS/">
-                        <span class="chip bg-color">CS</span>
-                    </a>
-                    
-                    <a href="/Kenny_Ng.github.io/tags/English/">
-                        <span class="chip bg-color">English</span>
+                    <a href="/Kenny_Ng.github.io/tags/ML/">
+                        <span class="chip bg-color">ML</span>
                     </a>
                     
                 </div>
