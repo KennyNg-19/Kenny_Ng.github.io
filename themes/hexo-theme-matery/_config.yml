@@ -75,7 +75,7 @@ music:
   enable: true
   title: #非吸底模式有效
     enable: true
-    show: 听我推荐的音乐
+    show: 试试我喜欢的音乐？
   autoHide: true    # hide automaticaly
   server: netease   #require	music platform: netease, tencent, kugou, xiami, baidu
   type: playlist    #require song, playlist, album, search, artist
@@ -514,8 +514,8 @@ subtitle:
   startDelay: 300 # 开始延迟
   typeSpeed: 100 # 打字速度
   backSpeed: 50 # 删除速度
-  sub1: 从来没有真正的绝境, 只有心灵的迷途
-  sub2: Never really desperate, only the lost of the soul
+  sub1: 自责要短暂，但铭记要长久
+  sub2: 愤怒，让理所当然的事，都变得难以做到
 
 # 手机二级菜单.
 navMenu:
