@@ -456,67 +456,165 @@
                 
 
                 
-
-                
-                <div class="info-break-policy">
-                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    572
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
+                    2020-07-23
                 </div>
                 
 
                 
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    1.9k
+                </div>
+                
 
                 
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
+                    6 Min
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
             </div>
         </div>
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="0-NLP-Overview"><a href="#0-NLP-Overview" class="headerlink" title="0. NLP Overview"></a>0. NLP Overview</h1><h2 id="a-NLP研究方向"><a href="#a-NLP研究方向" class="headerlink" title="a. NLP研究方向"></a>a. NLP研究方向</h2><p>2个大方向对应了，语言的<strong>“一进一出”</strong></p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf99ljg3ooj30v80hswh7.jpg" alt=""></p>
-<h2 id="b-技术的4个-实现难度递增的-维度"><a href="#b-技术的4个-实现难度递增的-维度" class="headerlink" title="b. 技术的4个(实现难度递增的)维度"></a>b. 技术的4个(实现难度递增的)维度</h2><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gff3scbnfmj31980pynao.jpg" alt="难度递增的四个维度"></p>
-<h3 id="简称-全称-英文"><a href="#简称-全称-英文" class="headerlink" title="简称-全称/英文"></a>简称-全称/英文</h3><ul>
-<li><p><strong>Relation Extraction</strong>(重要): <strong>关系抽取</strong></p>
+                <h2 id="0-NLP-Overview"><a href="#0-NLP-Overview" class="headerlink" title="0. NLP Overview"></a>0. NLP Overview</h2><h3 id="a-按照研究方向-语言的I-O"><a href="#a-按照研究方向-语言的I-O" class="headerlink" title="a. 按照研究方向~语言的I/O"></a>a. 按照<u>研究</u>方向~语言的I/O</h3><p>2个大方向对应了，语言的<strong>“一进一出”</strong></p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf99ljg3ooj30v80hswh7.jpg" style="zoom:35%;" />
+
+<h3 id="b-按照现实中的业务大致分成2大类"><a href="#b-按照现实中的业务大致分成2大类" class="headerlink" title="b. 按照现实中的业务大致分成2大类"></a>b. 按照<u><font color="#dd0000">现实中的业务</font></u>大致分成2大类</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh0xhkrae0j31440jwna9.jpg" alt="2大类常见业务" style="zoom:35%;" />
+
+<h4 id="文本生成任务-文本序列→文本序列"><a href="#文本生成任务-文本序列→文本序列" class="headerlink" title="文本生成任务: 文本序列→文本序列"></a>文本生成任务: <strong>文本序列→文本序列</strong></h4><p>比如机器翻译，文本风格迁移等，</p>
+<h4 id="类别识别任务-文本序列→类别"><a href="#类别识别任务-文本序列→类别" class="headerlink" title="类别识别任务: 文本序列→类别"></a>类别识别任务: 文本序列→类别</h4><p>比如情感分类，实体命名识别，主题分类，槽位填充等。</p>
+<h5 id="输入：多个序列"><a href="#输入：多个序列" class="headerlink" title="输入：多个序列"></a>输入：多个序列</h5><p>多个序列要怎么办呢？大概两种可能的解法。</p>
+<p>一是把两个序列，分别用<strong>两个模型</strong>去做编码。再把它们编码后的嵌入，丢给另一个整合的模块，去得到最终的输出。有时，我们也会在两个模型之间加 Attention，确保二者的编码内容能互相意识。</p>
+<p>二是，近年来比较流行的做法是直接<strong>把两个句子连接起来，中间加一个特殊的字符</strong>，如 <u><strong>BERT</strong></u> 里面的 <SEP>，来提示模型去意识到这是两个句子的分隔符(接起来的序列丢给模型后可以预测下游任务)</p>
+<h4 id="其他-这2大类的变体"><a href="#其他-这2大类的变体" class="headerlink" title="其他: 这2大类的变体"></a>其他: 这2大类的变体</h4><ul>
+<li><p><strong>Word Segmentations 分词</strong></p>
+<p>英文词汇有<strong>空格符</strong>分割词的边界，但有的语言，如<strong>中文，却没有类似的方式来区分</strong>，所以需要<strong>额外的分词处理</strong>。在一个句子中找出词的边界有时并不是一个简单的问题，所以也需要模型来做。</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh0xppt5gbj311r0u0wpj.jpg" style="zoom:25%;" />
 </li>
-<li><p>Parsing：句法分析——给定句子，根据<u>词性</u>生成<strong>树状结构</strong> by CYK算法</p>
+<li><p><strong>POS Tagging 词性标注</strong>: Part of Speech <strong>词性</strong>分析(词性是很重要的特征)</p>
+<p> 需要标记出一个句子中的每个词的词性是什么。对应输入一个序列，输出序列每个位置的<strong>类别任务</strong>。</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh0xotv23zj31020jsthy.jpg" style="zoom:33%;" />
 </li>
-<li><p>Dependency Parsing： (词的)依存分析 ——生成<strong>graph</strong></p>
-</li>
-</ul>
+<li><p><strong>Pre-Processing work</strong> 自然语言理解的<strong>前处理</strong>的任务</p>
 <ul>
-<li><p>POS: Part of Speech <strong>词性</strong>分析(词性是很重要的特征)</p>
+<li><p><strong>Parsing 句法分析</strong></p>
+<p>给定句子，根据<u>词性</u>生成<strong>树状结构</strong> by CYK算法</p>
 </li>
-<li><p>NER：Named Entity Recognition <strong>命名实体</strong>识别——<strong><u>抽取</u></strong>语句中，我<strong>重点关注</strong>的<strong>名词</strong></p>
+<li><p><strong>Dependency Parsing</strong>(词的)依存分析 </p>
+<p>生成<strong>graph</strong></p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh0y22yxs4j31200ncwll.jpg" style="zoom:33%;" />
+</li>
+<li><p><strong>Coreference Resolution 指代消解</strong></p>
+<p>模型需要把输入文章中<strong>指代同样东西的部分，找出来</strong>。比如当He 和 Paul Allen 指的就是同一个人。</p>
 </li>
 </ul>
-<h1 id="1-case-机器翻译"><a href="#1-case-机器翻译" class="headerlink" title="1. case-机器翻译"></a>1. case-机器翻译</h1><h2 id="思路a-暴力法"><a href="#思路a-暴力法" class="headerlink" title="思路a: 暴力法"></a>思路a: 暴力法</h2><h3 id="原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的"><a href="#原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的" class="headerlink" title="原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的"></a>原理：<strong>全排列组合</strong>分词后的句子，用语言模型从中筛选出语义最合适的</h3><p>第一步通过<strong>翻译模型TM</strong>进行<strong>分词</strong></p>
+</li>
+<li><p><strong>Summarization 生成摘要</strong></p>
+<p>分成2种</p>
+<ul>
+<li><p>过去常用的是<strong>抽取式摘要 Extractive</strong></p>
+<p>把一篇文档看作是许多句子的组成的序列，模型需要从中找出最能熔炼文章大意的句子提取出来作为输出。它相当于是对每个句子做一个二分类，来决定它要不要放入摘要中。但仅仅把每个句子分开来考虑是不够的。我们需要模型输入整篇文章后，再决定哪个句子更重要。这个序列的基本单位是一个句子的表征</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh0xx1vlv0j314a0rkqcu.jpg" style="zoom:33%;" />
+</li>
+<li><p>近年流行的<strong>生成式摘要 Abstractive</strong></p>
+<p>模型的输入是一段长文本，输出是短文本。输出的短文本往往会与输出的长文本<strong>有很多共用的词汇</strong>。这就需要模型在生成的过程中有, 把文章中重要词汇拷贝出来再放到输出中的, 复制能力，比如 Pointer Network。</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh0xy8wzhhj313y0pgaio.jpg" style="zoom:33%;" />
+</li>
+</ul>
+</li>
+<li><p><strong>NER：Named Entity Recognition 命名实体识别</strong>——<strong><u>抽取</u></strong>语句中我<strong>重点关注</strong>的<strong>名词</strong></p>
+<p>并没有非常清楚的定义：它取决于我们<strong>对哪些事情关注</strong>，随着领域的不同，有所差异，取决于我们的<strong>具体应用场景</strong>。一般的实体包括人名、组织和地名等等。</p>
+<p>比如想让机器读大量医学相关的文献，希望它自动知道有什么药物可以治疗新冠状肺炎。<u>这些药物的名字，就是实体</u>。它输入的是一个序列，输出的是序列上每个位置的类别。它就和词性标注、槽位填充一样。</p>
+<p>NER常见的两个问题: <strong>名字一样但指的是不同的东西</strong>，有多个标签需要实体消歧；<strong>不一样的名字指的却是相同的东西</strong>，需要实体归一化。</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh0y4ykt6uj312m0regxp.jpg" style="zoom:33%;" />
+</li>
+<li><p><strong>Relation Extraction</strong>(重要): 关系抽取</p>
+<p>假如已知如何从文本中获得实体，接下来还需要知道<strong>它们之间的关系</strong>。</p>
+<p>关系抽取的输入：<strong>序列和抽取出的实体</strong>，输出是<strong>两两实体之间的关系</strong>。本质是一个<strong>分类任务</strong></p>
+<p>比如，输入：哈利波特和霍格沃茨，输出：关系，是后者的学生</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh0yb0p0i0j314g0t8nd9.jpg" style="zoom:33%;" />
+</li>
+<li><p><strong>Question Answering</strong> 问答系统/搜索引擎</p>
+</li>
+<li><p><strong>Chating</strong> 对话机器人</p>
+<p>分成两种，闲聊和任务导向型。</p>
+<ul>
+<li><p><strong>Chatbox</strong> 闲聊机器人：基本上都是在尬聊，有一堆问题待解决，比如角色一致性，多轮会话，对上下文保有记忆等。</p>
+</li>
+<li><p><strong>Task-oriented</strong> 任务导向的对话机器人：能<strong>协助人完成某件事</strong></p>
+<p>比如订机票，调闹钟，问天气等。我们需要一个模型，<strong>把过去已经有的历史对话，统统都输入到一个模型中</strong>，这个模型<strong>可以输出一个序列</strong>当作现在机器的<strong>回复</strong></p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh0ym6grvaj313a0peauo.jpg" style="zoom:33%;" />
+
+<ul>
+<li><p>我们会把这个模型<strong>再细分成很多模块</strong>，而不会是端对端的</p>
+<p>这些模块通常包括：<strong>自然语言理解NLU，行动策略管理，自然语言生成NLG</strong></p>
+<ul>
+<li><p>自然语言理解负责根据上下文去<strong>理解当前用户的意图</strong>，</p>
+<p>方便</p>
+</li>
+<li><p>行动策略(policy)管理<strong>选出下一步候选的行为</strong>。如执行系统操作，澄清还是补全信息，</p>
+<p>确定好行动之后，</p>
+</li>
+<li><p>自然语言生成模块会生成出对齐行动的回复</p>
+</li>
+<li><p>(除了之前三个模块，再加上语音助手的<u>语音识别 ASR 和 语音合成 TTS</u> 就成了完整的对话系统。)</p>
+</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh0yqezmcfj314w0rktk0.jpg" style="zoom:33%;" />
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="c-技术的4个-实现难度递增的-维度"><a href="#c-技术的4个-实现难度递增的-维度" class="headerlink" title="c. 技术的4个(实现难度递增的)维度"></a>c. 技术的4个(实现难度递增的)维度</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gff3scbnfmj31980pynao.jpg" alt="从下往上难度递增" style="zoom:33%;" />
+
+
+
+
+
+<h2 id="1-case-机器翻译"><a href="#1-case-机器翻译" class="headerlink" title="1. case-机器翻译"></a>1. case-机器翻译</h2><h3 id="思路a-暴力法"><a href="#思路a-暴力法" class="headerlink" title="思路a: 暴力法"></a>思路a: 暴力法</h3><h4 id="原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的"><a href="#原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的" class="headerlink" title="原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的"></a>原理：<strong>全排列组合</strong>分词后的句子，用语言模型从中筛选出语义最合适的</h4><p>第一步通过<strong>翻译模型TM</strong>进行<strong>分词</strong></p>
 <p>第二步映射词语，因为语法的存在而进行<u>映射后词语的排列组合</u></p>
 <p>第三步通过<strong>语言模型LM</strong>选出排列组合中最合适的语句</p>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf99soj3vmj317w0kuq8d.jpg" alt="">缺点: 排列组合的复杂度太高</p>
 <p>解决: <strong>维特比Viterbi</strong>算法——<strong>同时考虑TM</strong>分词+<strong>LM筛选</strong>这分开2个步骤</p>
-<h2 id="思路b-维特比Viterbi算法"><a href="#思路b-维特比Viterbi算法" class="headerlink" title="思路b: 维特比Viterbi算法"></a>思路b: <strong>维特比Viterbi</strong>算法</h2><h3 id="原理：贝叶斯TM和LM"><a href="#原理：贝叶斯TM和LM" class="headerlink" title="原理：贝叶斯TM和LM"></a>原理：贝叶斯TM和LM</h3><p><strong>串联TM</strong>分词+<strong>LM筛选</strong>这分开的2个步骤</p>
-<h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf9i9qd3wlj31680f20vt.jpg" alt="流程图"></p>
+<h3 id="思路b-维特比Viterbi算法"><a href="#思路b-维特比Viterbi算法" class="headerlink" title="思路b: 维特比Viterbi算法"></a>思路b: <strong>维特比Viterbi</strong>算法</h3><h4 id="原理：贝叶斯TM和LM"><a href="#原理：贝叶斯TM和LM" class="headerlink" title="原理：贝叶斯TM和LM"></a>原理：贝叶斯TM和LM</h4><p><strong>串联TM</strong>分词+<strong>LM筛选</strong>这分开的2个步骤</p>
+<h4 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf9i9qd3wlj31680f20vt.jpg" alt="流程图"></p>
 <p>各个部分的作用</p>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf9iup3gr2j30x20icwjg.jpg" alt="">好处：降低了复杂度，<strong>避免了原来随机排列组合生成句子</strong>的<strong>NP-hard的指数级</strong>复杂度</p>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf9iao2h3fj309802e749.jpg" alt=""></p>
-<h4 id="1-语言模型LM"><a href="#1-语言模型LM" class="headerlink" title="1. 语言模型LM"></a>1. 语言模型LM</h4><h5 id="作用：生成句子-即输出"><a href="#作用：生成句子-即输出" class="headerlink" title="作用：生成句子(即输出)"></a>作用：生成句子(即输出)</h5><h5 id="分类：按照当前生成的语言，对之前词语的”记忆“程度"><a href="#分类：按照当前生成的语言，对之前词语的”记忆“程度" class="headerlink" title="分类：按照当前生成的语言，对之前词语的”记忆“程度"></a>分类：按照当前生成的语言，对之前词语的”记忆“程度</h5><p>这种<strong>连续的条件概率</strong>——又称，<strong>联合分布</strong></p>
+<h5 id="1-语言模型LM"><a href="#1-语言模型LM" class="headerlink" title="1. 语言模型LM"></a>1. 语言模型LM</h5><h5 id="作用：生成句子-即输出"><a href="#作用：生成句子-即输出" class="headerlink" title="作用：生成句子(即输出)"></a>作用：生成句子(即输出)</h5><h5 id="分类：按照当前生成的语言，对之前词语的”记忆“程度"><a href="#分类：按照当前生成的语言，对之前词语的”记忆“程度" class="headerlink" title="分类：按照当前生成的语言，对之前词语的”记忆“程度"></a>分类：按照当前生成的语言，对之前词语的”记忆“程度</h5><p>这种<strong>连续的条件概率</strong>——又称，<strong>联合分布</strong></p>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf9i640a7bj316e0aojut.jpg" alt=""></p>
 <p><strong>Unigram</strong> model, <strong>Bingram</strong> model …. n-gram model</p>
 <p>至于每个Prop, 则源于<strong>已有的<u>统计频率</u>结果</strong></p>
-<h5 id="性能标准"><a href="#性能标准" class="headerlink" title="性能标准"></a>性能标准</h5><p>生成之后同时看<strong>句子质量</strong>和<strong>对应概率(score)</strong>，句子<strong>错误少</strong>的<strong>概率应该越大</strong></p>
+<h6 id="性能标准"><a href="#性能标准" class="headerlink" title="性能标准"></a>性能标准</h6><p>生成之后同时看<strong>句子质量</strong>和<strong>对应概率(score)</strong>，句子<strong>错误少</strong>的<strong>概率应该越大</strong></p>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf9iknu2qsj30yw06idh3.jpg" alt=""></p>
-<h4 id="2-翻译模型TM"><a href="#2-翻译模型TM" class="headerlink" title="2. 翻译模型TM"></a>2. 翻译模型TM</h4><p>…</p>
-<h1 id="2-case-基于检索的智能问答系统"><a href="#2-case-基于检索的智能问答系统" class="headerlink" title="2. case-基于检索的智能问答系统"></a>2. case-基于检索的智能问答系统</h1><h3 id="数据-输入-语料库"><a href="#数据-输入-语料库" class="headerlink" title="数据/输入: 语料库"></a>数据/输入: 语料库</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfinf6trm9j311w0kuke0.jpg" alt="写好的问与答结对"></p>
+<h5 id="2-翻译模型TM"><a href="#2-翻译模型TM" class="headerlink" title="2. 翻译模型TM"></a>2. 翻译模型TM</h5><p>…</p>
+<h2 id="2-case-基于检索的智能问答系统"><a href="#2-case-基于检索的智能问答系统" class="headerlink" title="2. case-基于检索的智能问答系统"></a>2. case-基于检索的智能问答系统</h2><h3 id="数据-输入-语料库"><a href="#数据-输入-语料库" class="headerlink" title="数据/输入: 语料库"></a>数据/输入: 语料库</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfinf6trm9j311w0kuke0.jpg" alt="写好的问与答结对"></p>
 <h3 id="NLP-general-pipeline"><a href="#NLP-general-pipeline" class="headerlink" title="NLP general pipeline"></a>NLP general pipeline</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfjqjhtaemj31kj0u0qte.jpg" alt="image-20200607150135228"></p>
-<h3 id="QAsys的流程"><a href="#QAsys的流程" class="headerlink" title="QAsys的流程"></a>QAsys的流程</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfir8926c2j31ip0u0e81.jpg" alt="image-20200606183943480"></p>
-<h3 id="解决：如何搜索出最相似问题"><a href="#解决：如何搜索出最相似问题" class="headerlink" title="解决：如何搜索出最相似问题"></a>解决：如何搜索出最相似问题</h3><h4 id="相似度的衡量？"><a href="#相似度的衡量？" class="headerlink" title="相似度的衡量？"></a>相似度的衡量？</h4><ul>
+<h4 id="QAsys的流程"><a href="#QAsys的流程" class="headerlink" title="QAsys的流程"></a>QAsys的流程</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfir8926c2j31ip0u0e81.jpg" alt="image-20200606183943480"></p>
+<h4 id="解决：如何搜索出最相似问题"><a href="#解决：如何搜索出最相似问题" class="headerlink" title="解决：如何搜索出最相似问题"></a>解决：如何搜索出最相似问题</h4><h5 id="相似度的衡量？"><a href="#相似度的衡量？" class="headerlink" title="相似度的衡量？"></a>相似度的衡量？</h5><ul>
 <li>❌<strong>逐字</strong>比较：正则/<strong>规则</strong>AI——<strong>对匹配要求很高很高</strong>, 所以需要考虑<strong><u>尽可能多</u></strong>的输入，过于繁琐<ul>
 <li>唯一使用场景：<strong><u>没有数据时</u></strong>，语料库很空</li>
 </ul>
 </li>
 <li>✅<strong>概率</strong>比较：字符串的<strong>“相似性”计算</strong></li>
 </ul>
-<h3 id="阶段一-文本处理"><a href="#阶段一-文本处理" class="headerlink" title="阶段一 文本处理"></a>阶段一 <a href="https://kennyng-19.github.io/Kenny_Ng.github.io/2019/08/07/NLP-text-process/" target="_blank" rel="noopener">文本处理</a></h3><p>常用技术</p>
+<h4 id="阶段一-文本处理"><a href="#阶段一-文本处理" class="headerlink" title="阶段一 文本处理"></a>阶段一 <a href="https://kennyng-19.github.io/Kenny_Ng.github.io/2019/08/07/NLP-text-process/" target="_blank" rel="noopener">文本处理</a></h4><p>常用技术</p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm2bbdbwoj30zg0eaaj2.jpg" alt="image-20200609152001651" style="zoom:50%;" />
             </div>
             <hr/>

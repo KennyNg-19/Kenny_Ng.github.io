@@ -460,17 +460,32 @@
                 
 
                 
-
-                
-                <div class="info-break-policy">
-                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    482
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
+                    2020-07-24
                 </div>
                 
 
                 
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
+                    578
+                </div>
+                
 
                 
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
+                    2 Min
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>Read Count:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
             </div>
         </div>
         <hr class="clearfix">
@@ -494,16 +509,26 @@
 <h5 id="How-to-obtain-reverse-postorder-traversal"><a href="#How-to-obtain-reverse-postorder-traversal" class="headerlink" title="How to obtain reverse postorder traversal"></a><strong>How to obtain reverse postorder traversal</strong></h5><p>One way is to run postorder traversal and push the nodes <strong><u>in a stack</u></strong> in postorder. Then <strong>pop out</strong> the nodes to get the reverse postorder.</p>
 </blockquote>
 <h3 id="2-图的搜索：”邻接表”的高效性"><a href="#2-图的搜索：”邻接表”的高效性" class="headerlink" title="2. 图的搜索：”邻接表”的高效性"></a>2. 图的搜索：”邻接表”的高效性</h3><p>出处：LeetCode207 图的<strong>拓扑排序</strong>(大前提：输入是 <strong>边缘列表(边的嵌套2Darray)</strong> 表示的图形，而不是 邻接矩阵 )</p>
-<h4 id="若遍历时要访问所有邻点，请在开始就构造图"><a href="#若遍历时要访问所有邻点，请在开始就构造图" class="headerlink" title="若遍历时要访问所有邻点，请在开始就构造图"></a>若遍历时要访问所有<u>邻点</u>，请在开始就<u>构造图</u></h4><h4 id="i-不构造邻接表，暴力解法用：数组"><a href="#i-不构造邻接表，暴力解法用：数组" class="headerlink" title="i. 不构造邻接表，暴力解法用：数组"></a>i. 不构造邻接表，暴力解法用：数组</h4><p>弊端：BFS/DFS<strong>去找邻点</strong>时，<strong>每次都</strong>需要<strong>O(N)</strong>去<strong>遍历所有的边</strong>在<strong><u>边缘列表</u></strong>中</p>
+<h4 id="若遍历时要访问所有邻点，请在一开始就构造图"><a href="#若遍历时要访问所有邻点，请在一开始就构造图" class="headerlink" title="若遍历时要访问所有邻点，请在一开始就构造图"></a>若遍历时要访问所有<u>邻点</u>，请在一开始就<u>构造图</u></h4><h4 id="i-不构造邻接表，暴力解法用：数组"><a href="#i-不构造邻接表，暴力解法用：数组" class="headerlink" title="i. 不构造邻接表，暴力解法用：数组"></a>i. 不构造邻接表，暴力解法用：数组</h4><p>弊端：BFS/DFS<strong>去找邻点</strong>时，<strong>每次都</strong>需要<strong>O(N)</strong>去<strong>遍历所有的边</strong>在<strong><u>边缘列表</u></strong>中</p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggtzpuep1lj30im056gm1.jpg" alt="image-20200717151505568" style="zoom:50%;" />
 
-<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h4 id="ii-使用数据结构构造邻接表：hashtable-lt-Int-List-lt-Integer-gt-gt-或-List-lt-List-lt-Integer-gt-gt"><a href="#ii-使用数据结构构造邻接表：hashtable-lt-Int-List-lt-Integer-gt-gt-或-List-lt-List-lt-Integer-gt-gt" class="headerlink" title="ii. 使用数据结构构造邻接表：hashtable&lt;Int, List&lt;Integer&gt;&gt; 或 List&lt;List&lt;Integer&gt;&gt;"></a>ii. 使用数据结构构造邻接表：hashtable&lt;Int, List&lt;Integer&gt;&gt; 或 List&lt;List&lt;Integer&gt;&gt;</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggtzhjqwddj30fj0gu0xi.jpg" alt="图的表示法：邻接表" style="zoom:50%;" />
+
+
+
+
+<h4 id="ii-用数据结构构造邻接表：hashtable-lt-Int-List-lt-Integer-gt-gt-或-List-lt-List-lt-Integer-gt-gt"><a href="#ii-用数据结构构造邻接表：hashtable-lt-Int-List-lt-Integer-gt-gt-或-List-lt-List-lt-Integer-gt-gt" class="headerlink" title="ii. 用数据结构构造邻接表：hashtable&lt;Int, List&lt;Integer&gt;&gt; 或 List&lt;List&lt;Integer&gt;&gt;"></a>ii. 用数据结构构造邻接表：hashtable&lt;Int, List&lt;Integer&gt;&gt; 或 List&lt;List&lt;Integer&gt;&gt;</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggtzhjqwddj30fj0gu0xi.jpg" alt="图的表示法：邻接表" style="zoom:50%;" />
 
 <h5 id="高效原因："><a href="#高效原因：" class="headerlink" title="高效原因："></a>高效原因：</h5><p>邻接表是最常用，<strong>最高效</strong>的表示法，<strong>性能上的好处</strong>是显而易见的</p>
-<p>因为用了<strong>indexing</strong>和list线性存储, 可以<strong><u>一次性</u>获取到(不是遍历哦)</strong>到<strong>所有邻接点in a list</strong></p>
+<p>因为用了<strong>indexing</strong>和list线性存储, 可以<strong><u>一次性</u>获取到(而不是遍历哦)</strong>到<strong>所有邻接点in a list</strong></p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggtzl329saj30r207b40n.jpg" alt="image-20200717151030836" style="zoom:50%;" />
 
-<h3 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h3>
+
+
+<h3 id="3-树的层序遍历-所有子node一起递归时-—用队列Queue存结果"><a href="#3-树的层序遍历-所有子node一起递归时-—用队列Queue存结果" class="headerlink" title="3. 树的层序遍历(所有子node一起递归时)—用队列Queue存结果"></a>3. 树的<u>层序</u>遍历(所有子node<font color="#dd0000"><u>一起</u>递归时</font>)—用队列Queue存结果</h3><blockquote>
+<p><strong>Level</strong> order traversal(一次性递归所有子node) uses a queue data structure to visit the nodes <strong>level by level</strong></p>
+</blockquote>
+<p><strong>不光是</strong>树的层序遍历，Queue适合存储:<strong>需要递归时，各自递归</strong>的<strong>“网状扩散”型</strong>结果：比如递归节点是1-&gt;3, 3再-&gt;6…这种模式</p>
+
             </div>
             <hr/>
 
