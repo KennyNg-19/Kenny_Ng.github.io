@@ -88,4 +88,4 @@ tags: [CS, 数据结构, 算法]
 
 > **Level** order traversal(一次性递归所有子node) uses a queue data structure to visit the nodes **level by level**
 
-**不光是**树的层序遍历，Queue适合存储:**需要递归时，各自递归**的**"网状扩散"型**结果：比如递归节点是1->3, 3再->6...这种模式
+**不光是**树的层序遍历，Queue适合存储:**需要递归时，各自递归**的**"网状扩散处理"型**的结果：比如递归节点是1->3，扩散完把3个新递归enqueue后，把1从队列首dequeue；3再->6同理...这种模式
