@@ -454,21 +454,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2020-07-25
+                    2020-07-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.2k
+                    1.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    4 Min
+                    5 Min
                 </div>
                 
 
@@ -529,7 +529,26 @@
 </ol>
 <h2 id="3-训练的目的是输出最佳参数"><a href="#3-训练的目的是输出最佳参数" class="headerlink" title="3. 训练的目的是输出最佳参数"></a>3. 训练的目的是输出最佳参数</h2><p>用训练数据的训练过程，根本目的是<strong>输出最佳的参数(即带着该参数的hypothesis)，而非<u>最低的错误率——错误率只是判定的指标</u></strong>。所以相应的<strong>简化训练过程/提高效率的技巧</strong>，如PCA降维，只能用在训练集(但因为用了PCA，同一个数据降维的mapping, Ureduce 也需要对验证/测试集，使用！)</p>
 <h2 id="4-无监督学习的所有输入数据都是unlabeled"><a href="#4-无监督学习的所有输入数据都是unlabeled" class="headerlink" title="4. 无监督学习的所有输入数据都是unlabeled?"></a>4. 无监督学习的所有输入数据都是unlabeled?</h2><p>无监督学习，只是说 模型<strong>上线后，用于实际业务</strong>时，输入数据是unlabeled——在模型<strong>训练/验证/测试</strong>过程中，<strong>也是要求</strong>最优参数的(如，异常检测的异常阈值)，当然<strong>可以使用labeled data</strong></p>
-<h2 id="5-ml理论中常见的超平面概念"><a href="#5-ml理论中常见的超平面概念" class="headerlink" title="5. ml理论中常见的超平面概念"></a>5. ml理论中常见的超平面概念</h2><p>超平面一般化的广义叫法：</p>
+<h2 id="5-数据增强器对于不同数据集"><a href="#5-数据增强器对于不同数据集" class="headerlink" title="5. 数据增强器对于不同数据集"></a>5. 数据增强<u>器</u>对于<u>不同数据集</u></h2><p>已知给training set构造了ImageDataGenerator,  我们应该构造a <u><strong>separate</strong></u> generator for <strong>valid and test sets</strong></p>
+<h3 id="Why用构造不同的generator"><a href="#Why用构造不同的generator" class="headerlink" title="Why用构造不同的generator?"></a>Why用构造不同的generator?</h3><p><strong>Why can’t we use the same generator as for the training data?</strong></p>
+<p>Look back at the generator we wrote for the training data.</p>
+<ul>
+<li>It normalizes each image <strong>per batch</strong>, meaning that it uses <strong>batch statistics</strong>.</li>
+<li>We should not do this with the test and validation data, since in a real life scenario we <strong>don’t process incoming images <u>a batch</u> at a time</strong> (we process <strong><u>one image</u> at a time</strong>).</li>
+<li>Knowing the average per batch of test data would effectively give our model an advantage.<ul>
+<li>The model should <strong><font color="#dd0000">not have any information about the test data</font></strong>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="但又该如何构造val-test-set的数据增强generator呢？"><a href="#但又该如何构造val-test-set的数据增强generator呢？" class="headerlink" title="但又该如何构造val/test set的数据增强generator呢？"></a>但又该如何构造val/test set的数据增强generator呢？</h3><p>What we need to do is <strong>normalize</strong> incoming test data using the <font color="#dd0000">statistics <strong>computed from the training set</strong></font>.</p>
+<p>There is one technical note. </p>
+<ul>
+<li><p>Ideally, we would want to compute our <strong>sample mean and standard deviation</strong> using the <strong>entire training set</strong>. However, since this is <strong>extremely large,</strong> that would be very time consuming.</p>
+</li>
+<li><p>In the interest of time, we’ll <strong><font color="#dd0000">take a random sample of the dataset</font></strong> and do the calcualtion.</p>
+</li>
+</ul>
+<h2 id="6-ml理论中常见的超平面概念"><a href="#6-ml理论中常见的超平面概念" class="headerlink" title="6. ml理论中常见的超平面概念"></a>6. ml理论中常见的超平面概念</h2><p>超平面一般化的广义叫法：</p>
 <p>超平面是【分解平面】的一般化：<br>    ▪    在一维的平面中，它是点 <br>    ▪    在二维的平面中，它是线 <br>    ▪    在三维的平面中，它是面 <br>    ▪    <strong>在更高的维度中，我们称之为超平面</strong> <br>所以，<strong>广义上</strong>，1D直线、2D平面，都可叫超平面</p>
 
             </div>
@@ -779,10 +798,9 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            1. Course1-AI for Medical Diagnosis(诊断)ML进阶，可能遇到的更实际的问题
+                            1. Course1-AI for Medical Diagnosis(诊断)I. ML进阶，可能遇到的更实际的进阶问题：3个
 
-
-a. 训练数据分布-Class imbalance问题如 实际在收集要拿來做DL的医学数据時，常识是 正常的非病患的数据比不
+a. 训练数据分布-Class imbalance问题如 实际在收集要拿來做DL的医学数据時，常识是 正常的非
                         
                     </div>
                     <div class="publish-info">
@@ -800,16 +818,20 @@ a. 训练数据分布-Class imbalance问题如 实际在收集要拿來做DL的�
                 
                 <div class="card-action article-tags">
                     
+                    <a href="/Kenny_Ng.github.io/tags/ML/">
+                        <span class="chip bg-color">ML</span>
+                    </a>
+                    
                     <a href="/Kenny_Ng.github.io/tags/CV/">
                         <span class="chip bg-color">CV</span>
                     </a>
                     
-                    <a href="/Kenny_Ng.github.io/tags/AI/">
-                        <span class="chip bg-color">AI</span>
-                    </a>
-                    
                     <a href="/Kenny_Ng.github.io/tags/math/">
                         <span class="chip bg-color">math</span>
+                    </a>
+                    
+                    <a href="/Kenny_Ng.github.io/tags/advancedML/">
+                        <span class="chip bg-color">advancedML</span>
                     </a>
                     
                 </div>
