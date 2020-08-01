@@ -77,7 +77,36 @@ tags: [ML]
 
 
 
-## 5. ml理论中常见的超平面概念
+## 5. 数据增强<u>器</u>对于<u>不同数据集</u>
+
+已知给training set构造了ImageDataGenerator,  我们应该构造a <u>**separate**</u> generator for **valid and test sets**
+
+### Why用构造不同的generator?
+
+**Why can't we use the same generator as for the training data?**
+
+Look back at the generator we wrote for the training data.
+
+- It normalizes each image **per batch**, meaning that it uses **batch statistics**.
+- We should not do this with the test and validation data, since in a real life scenario we **don't process incoming images <u>a batch</u> at a time** (we process **<u>one image</u> at a time**).
+- Knowing the average per batch of test data would effectively give our model an advantage.
+  - The model should **<font color="#dd0000">not have any information about the test data</font>**.
+
+
+
+### 但又该如何构造val/test set的数据增强generator呢？
+
+What we need to do is **normalize** incoming test data using the <font color="#dd0000">statistics **computed from the training set**</font>.
+
+There is one technical note. 
+
+- Ideally, we would want to compute our **sample mean and standard deviation** using the **entire training set**. However, since this is **extremely large,** that would be very time consuming.
+
+- In the interest of time, we'll **<font color="#dd0000">take a random sample of the dataset</font>** and do the calcualtion.
+
+  
+
+## 6. ml理论中常见的超平面概念
 
 超平面一般化的广义叫法：
 

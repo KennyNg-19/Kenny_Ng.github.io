@@ -30,7 +30,7 @@ model输出是：P(不正常影像), 对于**不正常影像(y=1)的预测**！(
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh3dbxlo62j30rs07k0wq.jpg" alt="loss占比越大的，就是优化的bias" style="zoom:33%;" />
 
-但这会和目的「让模型往更准确预测**不正常**图片的方向发展」相悖：the algorithm is optimizing  its updates to **get the normal examples,**  and not giving much relative weight to the mass examples
+但这会和目的「让模型往更准确预测**不正常**图片的方向发展」相悖：the algorithm is optimizing  its updates to **get the normal examples,**  and not giving much relative weight to the mass examples. If learning with a highly unbalanced dataset, as we are seeing here, then the algorithm will be **incentivized(刺激) to prioritize the <u>majority class</u>**, since it contributes more to the loss.
 
 #### 解决：
 
@@ -72,7 +72,7 @@ model输出是：P(不正常影像), 对于**不正常影像(y=1)的预测**！(
 
 data分布，也可能出class imbalance问题：像这样一次处理许多疾病，在收集资料的时候也有可能出现比重不均的情况——所以在多重任务的情况下也可以使用解决方法的加上权重。
 
-![Image for post](https://miro.medium.com/max/60/1*pOQ5doanwmA6jgpHMUaE2w.png?q=20)
+
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh4dt34bvlj30vo09wgnp.jpg" alt="权重w，按各自病的数据分开算哦！" style="zoom:50%;" />
 
@@ -92,7 +92,7 @@ CNN，尤其是**规模更大的**CNN，是需要大量的labeled data做训练�
 
 讲师在这边有提到因为企鹅整体的形状很像肺形状，所以在初期几层的神经网路当中可以去让模型分辨一些比较大的，例如边缘形状等等的问题，在第二次Fine -tuning的时候这个模型就会被修改并且能够分辨比较细节的部分。其实像这样的方式就是所谓的Transfer Learning。
 
-![Image for post](https://miro.medium.com/max/60/1*eHrveqPrTYSDYJnE8Ai5wg.png?q=20)
+
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh4ezmo6yvj30x80ey0y2.jpg" style="zoom:50%;" />
 
@@ -104,9 +104,13 @@ CNN，尤其是**规模更大的**CNN，是需要大量的labeled data做训练�
 
 如果喂给机器训练的影像数量太小的话，还有一种方法可以让影像变多！那就是以人工的方式将影像进行一些变化后再重新把变化过后的影像喂回机器做训练，这个就是Data Augmentation。
 
-但是这边要注意一点像是胸腔X光来说，我们可以旋转图片重新喂给模型或是改变对比度去产生一张新的影像，然而如果我们将胸腔X光做180度的翻转时，这样机器就无法分辨他是正常的胸腔或是dextrocardia（右位心）也就是说这种情况下，label的状态改变了，由正常的影像变成右位心的影像。所以结论就是，当我们想要利用这种方式去增加影像的数量时，我们必须考虑到这一张影像的label状态会不会改变。
+但是这边要注意一点像是胸腔X光来说，我们可以旋转图片重新喂给模型或是改变对比度去产生一张新的影像，然而如果我们将胸腔X光做**180度的翻转**时，这样机器就无法分辨他是正常的胸腔或是dextrocardia（右位心）——也就是说这种情况下，**label的状态改变**了，由正常的影像变成右位心的影像。
 
-<img src="https://miro.medium.com/max/1390/1*PstRJ3s2Nw3mQEG3c5joug.png" alt="数据增强是有要求的" style="zoom:43%;" />
+所以结论就是，当我们想要利用这种方式去增加影像的数量时，我们必须**考虑到这一张影像的label状态会不会改变**。
+
+<img src="https://miro.medium.com/max/1390/1*PstRJ3s2Nw3mQEG3c5joug.png" alt="数据增强不是任意的，是有规范的" style="zoom:43%;" />
+
+------
 
 
 
@@ -133,43 +137,184 @@ development set, tuning set 和 holdout set
 
 ### Q1: Data leakage 数据(因果关系)的泄露
 
+#### 定义
+
 Data Leakage 跟其他场合说的**数据安全数据泄漏**, **完全不一样**: 不是数据量因为泄露少了，**而是因果关系的提前泄漏**。是由于**前期**的**准备数据/数据采样**的时候出了问题，误将与**结果直接相关或存在颠倒因果关系的feature纳入了数据集**，使模型使用**颠倒的因果关系的数据**进行预测，得到**over-optimistic 过于乐观的**结果。
 
 
 
-具体例子：如果**重复的病人数据**被分别使用在训练组以及测试组的时候，机器可能会**”记忆“**该位病人的某项特殊特征，误将将这项特殊的特征当作是一个可以判断的依据，这种现象是Over-optimistic test set performance。就有点像是考试前你已经看过考题了一样，机器就会像这样子把答案记下来，并非像是你想让他做的-倚靠其他更有依据的线索找到答案。
+##### 具体实例: Patient <u>Overlap</u>
 
-![Image for post](https://miro.medium.com/max/66/1*DUFe5zj6lhaO1zBnEZ3ZMw.png?q=20)
+如果**重复的病人数据**被分别使用在训练组以及测试组的时候，机器可能会**”记忆“**该位病人的某项特殊特征，误将将这项特殊的特征当作是一个可以判断的依据，这种现象是Over-optimistic test set performance。就有点像是考试前你已经看过考题了一样，机器就会像这样子把答案记下来，并非像是你想让他做的-倚靠其他更有依据的线索找到答案。
 
-![Image for post](https://miro.medium.com/max/2847/1*DUFe5zj6lhaO1zBnEZ3ZMw.png)
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh6rdqztzuj310u0ng4e2.jpg" style="zoom:33%;" />
 
-
-
-例如这张图片所示，机器将这位病人的影像判定为正常，是依据病人穿戴的项链，而不是依据病人肺部的现象。
-
-> 职业病碎念：请大家照X光的时候一定要把项链拿掉！！
-
-这样子的解决方式其实很简单只要将同一位病人的数据放在同一个组别即可，例如同一个病人的多张影像同时放在训练组或是测试组，所以以往在分数据的时候可能会从影像上直接拆分，但是医学影像的话必须以病人作为拆分数据到不同组的根据。
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh6r9x0iyej315g0lw7ca.jpg" alt="不同时期normal的照片加入2个set..." style="zoom:50%;" />
 
 
 
-### Q2: Set sampling
-
-#### 解
-
-![image-20200726164601303](https://tva1.sinaimg.cn/large/007S8ZIlgy1gh4gx81troj31d20d87bu.jpg)
+例如这张图片所示，是**normal的**病人在不同时期的照片，同时2次都带着项链。机器在test set中将这位病人的影像判定为正常，**可能**是**依据病人穿戴的项链**，而不是依据病人肺部的现象——不要小看DL model的记忆力: it's possible that the model actually **memorized to output normal when it saw the patient with a necklace on**. This is **not hypothetical**, deep learning models can unintentionally memorize training data, and the model could memorize **rare or unique training data aspects** of the patient,
 
 
 
-##### 注意data sampling顺序: 是test-val-train
+#### 解决
 
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh4gygxttdj30ba06m0tz.jpg" alt="image-20200726164711350" style="zoom:50%;" />
+解决方式其实很简单：只要**将同一位病人的数据放在<u>同一个组别</u>**即可——这样也是保证学习的目的：通过学习一些病人的特征，可以**泛化到**<u>更多的病人</u>身上。
+
+以往在分数据的时候可能会从按照图像类别直接分——**保证分布的一致性**；但是医学影像的话反其道而行之，以病人作为拆分到不同组的根据。
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh6rkq9a50j30vh0u0wy5.jpg" alt="split by image VS patients" style="zoom:40%;" />
 
 
 
-### Q3: Ground Truth
 
 
+### Q2: Set sampling当数据本身分布不均匀时
+
+#### 问题
+
+就举医学影像为例，正常不患病的数量会远大于有病的医学影像数量，即分别问大类和小类。所以在分数据到不同的三个不同的数据集时，很有可能**测试组里面没有分到一张患病的影像**。
+
+
+
+#### 解(同时引出此情况下，<u>各个集的sampling顺序</u>)
+
+解决的方式是
+
+1. 在分数据的时候被**设定至少有百分之X的**小类X会**被设成50%**
+
+2. 在测试组的数据**确认之后**，接下来**要设定的就是验证组的数据**，验证集设定策略**和测试集合的基本上一样**
+
+3. 当这两组的数据设定完之后**剩下的所有数据**，会被用作是**训练集**。
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh4gx81troj31d20d87bu.jpg" style="zoom:33%;" />
+
+
+
+##### 即data sampling顺序: 是test→validation→train
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh4gygxttdj30ba06m0tz.jpg" style="zoom:50%;" />
+
+
+
+
+
+### Q3: Ground Truth(如何定义"正确" 定义truth)
+
+#### 问题
+
+在医学里面数据label，也就是学习结果的「正确答案」，在机器学习里面常**被称作Ground truth**， 而在医学上面同样的东西会被称作Reference Standard。
+
+医学里面会常常**会有没有正确解答的现象**，就举胸腔X光来说，也许某一位放射科医师认为某张影像是肺炎，但同样的影像另外一位放射科医生可能**会有不同的意见**，这个叫做Inter-observer disagreement。
+
+
+
+#### 定义"正确"的方法
+
+如此一来决定Ground truth的方法也变得很重要，常见的方法有：
+
+**1.Consensus Voting** ✅
+就以胸腔X光来说，这个方式就是由一组放射科医生可能是<u>投票决定又或者是经由讨论达到某个共识</u>而决定最后的答案。
+
+**2.Additional Medical Testing**
+
+例如就像刚刚举例的胸腔X光，如果当放射科医生无法从胸腔X光得到最后的Ground truth时，这时病人会被建议去做其他的测试，例如CT，得到更精确的解答，验证胸腔X光的Ground truth。除了X光影像之外，例如皮肤癌照片也通常会由组织切片的验证结果才得到该照片的Ground truth。不过这个方法比较费时费力，所以**目前研究大多都是用第一个方式**。
+
+
+
+------
+
+
+
+## III. 再聊<u>分类问题</u>的evaluation metrics
+
+### accuracy准确性的计算
+
+#### accuracy定义和概率计算，有数学上的一致性
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghbb8xauogj319s0jytgv.jpg" alt="概率计算得到acc" style="zoom:43%;" />
+
+
+
+所以只**要有sensitivity和specificity**，结合统计得到的prevalence，就可以**算出accuracy**
+
+
+
+### 混淆矩阵
+
+![Confusion Matrix](https://tva1.sinaimg.cn/large/007S8ZIlgy1gh6yd5wykaj31ho0kyn70.jpg)
+
+
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghb6apedduj30rw07wq4i.jpg" alt="注意这两个：实际是!" style="zoom:50%;" />
+
+
+
+记：查全率(Precision)和查全率(Sensitivity)**最重要**，<font color="#dd0000">都是关于postive类的指标——**找到positve类(比如患病)**一般才是**ML预测的主要对象, 而不是关注negative类**</font>
+
+
+
+### 先验(prevalence)做分母：sensitivity灵敏度(即查全率)和specificity特异度
+
+- **灵敏度/查全率(recall) P(+|disease)**：model预测为pos且实际为pos/所有实际为pos(TP+**FN**)，的比例
+
+  理解<u>**查全**</u>：**在实际pos的样本中，model预测为正且预测正确**的比例——**非漏诊性！越高，说明放过<u>更少的</u>患病者**
+
+  计算公式为：TPR=TP/ (TP+ FN)
+
+
+
+- **特异度P(—|non-disease)，P(—|neg)**：model预测为neg且实际为neg/所有实际为neg，的比例——**非误诊性！越高，说明越策neg的且正确的数量高，则冤枉没病的人<u>越少</u>**
+
+  计算公式为：TNR= TN / (FP + TN)
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghba7wvrgaj30xf0u04qp.jpg" alt="灵敏度和特异度的解释" style="zoom:43%;" />
+
+##### 结论：敏感度高=漏诊率低，查全率高；特异度高=误诊率低
+
+
+
+注：(P(+|disease)<u>分子的+</u>,是**model**预测的结果！！！)
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh6v7xrtswj314w0hswkh.jpg" alt="注意: 先验概率+是model判定为正的！！" style="zoom:33%;" />
+
+
+
+##### 练习题：坑
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghbd7v75vtj317y0tw7cp.jpg" style="zoom:40%;" />
+
+
+
+#### ROC曲线
+
+理想情况下我们**希望敏感度和特异度都很高**，然而实际上一般在敏感度和特异度中**寻找一个平衡点**，这个过程可以**用ROC(Receiver Operating Characteristic)曲线**来表示, 和 [AUC](https://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_the_curve)值(Area Under the Curve) 来精确表示：
+
+
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghbcutbqclj30z50u0awm.jpg" alt="完美划分时, 无论阈值是什么总恰有一个坐标=1" style="zoom:43%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghbczdv3vej30es0fawgl.jpg" alt="完美划分时的ROC" style="zoom:33%;" />
+
+
+
+通过ROC空间，我们明白了一条ROC曲线其实**代表了无数个分类器**：那么我们为什么常常用一条ROC曲线来**描述一个分类器**呢？
+
+仔细观察ROC曲线，发现其都是上升的曲线（斜率大于0），且都通过点（0,0）和点（1,1）。其实，这些点是一个个的分类器，而每个分类器实际**习得的<font color="#dd0000">也是一个最佳阈值</font>**。所以ROC,可以代表着**一个**分类器**在不同阈值下**的分类效果，即曲线从左往右可以**认为是阈值从0到1的**变化过程。
+
+
+
+### 后验(预测结果)做分母：PPV查准率(又Precision)、NPV
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh6vcxavpoj30v80awq6f.jpg" alt="PPV" style="zoom:33%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh6vdcaqw1j30vq0amdjl.jpg" alt="NPV" style="zoom:33%;" />
+
+------
 
 
 
