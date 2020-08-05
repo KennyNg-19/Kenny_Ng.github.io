@@ -454,14 +454,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2020-06-10
+                    2020-08-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1k
+                    1.1k
                 </div>
                 
 
@@ -491,9 +491,11 @@
 
 <h3 id="常见处理环节"><a href="#常见处理环节" class="headerlink" title="常见处理环节"></a>常见处理环节</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm2bbdbwoj30zg0eaaj2.jpg" style="zoom:33%;" />
 
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghg5ar7dblj30pi06kdgk.jpg" alt="预处理文本大致步骤" style="zoom:50%;" />
+
+
+
 <hr>
-
-
 <h2 id="A-分词的常用底层算法"><a href="#A-分词的常用底层算法" class="headerlink" title="A. 分词的常用底层算法"></a>A. 分词的常用底层算法</h2><p>所有分词的工具，都要<strong><u>依赖于词库</u></strong></p>
 <h3 id="1-基于匹配规则的方法"><a href="#1-基于匹配规则的方法" class="headerlink" title="1. 基于匹配规则的方法"></a>1. 基于<u>匹配</u>规则的方法</h3><h4 id="最大匹配算法-Max-Matching——贪心算法"><a href="#最大匹配算法-Max-Matching——贪心算法" class="headerlink" title="最大匹配算法 Max Matching——贪心算法"></a><u>最大</u>匹配算法 Max Matching——<font color="#dd0000"><u>贪心</u></font>算法</h4><h5 id="何为最大？-人为设的-每次截取的最大长度——经验决定，看词典和这种语言中词语常见的最大长度"><a href="#何为最大？-人为设的-每次截取的最大长度——经验决定，看词典和这种语言中词语常见的最大长度" class="headerlink" title="何为最大？(人为设的)每次截取的最大长度——经验决定，看词典和这种语言中词语常见的最大长度"></a>何为<u>最大</u>？(人为设的)每次截取的最大长度——<u>经验</u>决定，看词典和这种语言中<u>词语常见的最大长度</u></h5><ul>
 <li><u>前向</u>最大匹配(forward-max matching)</li>
@@ -591,11 +593,25 @@
 <p>注意：虽然有的停用词很常见，但也要<strong>考虑应用场景</strong>考虑<strong>是否移除</strong></p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfn8q0eqdxj30rg058tcj.jpg" alt="image-20200610154719443" style="zoom:33%;" />
 
-<p>比如：”好，很好“这种停用词，在<u>sentiment analysis</u>中就<u>不应该被移除</u>——此时，可能需要<strong>修改</strong><u>停用词库</u></p>
+<p>比如：”好，很好“这种停用词，在<u>sentiment analysis</u>中就<u>不应该被移除</u>——反而可能需要<strong>修改</strong><u>停用词库</u></p>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghg591mrcpj31ko0sutgr.jpg" style="zoom:33%;" />
+
+
+
+<h3 id="注意-在情感分析中，stem的词可只留着前缀！"><a href="#注意-在情感分析中，stem的词可只留着前缀！" class="headerlink" title="注意: 在情感分析中，stem的词可只留着前缀！"></a>注意: 在情感分析中，stem的词可只留着前缀！</h3><p>因为<strong>分类</strong>问题，只需要知道什么词占对应情感类别<strong>的比例/程度</strong>即可</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghg5d0rmhjj31ie0au40q.jpg" alt="stem后 词并不是正确拼写的" style="zoom:43%;" />
+
 <h2 id="D-词的标准化-英文文本"><a href="#D-词的标准化-英文文本" class="headerlink" title="D. 词的标准化(英文文本)"></a>D. 词的标准化(英文文本)</h2><h3 id="标准化的对象"><a href="#标准化的对象" class="headerlink" title="标准化的对象"></a>标准化的对象</h3><p>英文中常用的词语的多种形式(单复数 时态等)，在<strong>语义理解</strong>上该统一</p>
 <img src="/Users/kenny/Library/Application Support/typora-user-images/image-20200610160111641.png" style="zoom:35%;" />
 
-<h3 id="常用技术"><a href="#常用技术" class="headerlink" title="常用技术"></a>常用技术</h3><h4 id="Stemming"><a href="#Stemming" class="headerlink" title="Stemming"></a>Stemming</h4><h4 id="Lemmazation-更严格"><a href="#Lemmazation-更严格" class="headerlink" title="Lemmazation(更严格)"></a>Lemmazation(更严格)</h4><h3 id="stemmer底层原理实例"><a href="#stemmer底层原理实例" class="headerlink" title="stemmer底层原理实例"></a>stemmer底层原理实例</h3><p>需要<u>语言学家</u>(懂词根词缀的)来制定！</p>
+<h3 id="常用技术"><a href="#常用技术" class="headerlink" title="常用技术"></a>常用技术</h3><h4 id="Stemming-基本还原成原形"><a href="#Stemming-基本还原成原形" class="headerlink" title="Stemming: 基本还原成原形"></a>Stemming: 基本还原成原形</h4><blockquote>
+<p>Stemming is the process of converting a word <strong>to its most general form, or stem</strong>. This helps in reducing the size of our vocabulary.</p>
+</blockquote>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghg0nir63dj31340gm43m.jpg" style="zoom:33%;" />
+
+
+
+<h4 id="Lemmazation-更严格"><a href="#Lemmazation-更严格" class="headerlink" title="Lemmazation(更严格)"></a>Lemmazation(更严格)</h4><h3 id="stemmer底层原理实例"><a href="#stemmer底层原理实例" class="headerlink" title="stemmer底层原理实例"></a>stemmer底层原理实例</h3><p>需要<u>语言学家</u>(懂词根词缀的)来制定！</p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfn93dbta0j31pw0po7wh.jpg" style="zoom:33%;" />
             </div>
             <hr/>
@@ -844,14 +860,14 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            文本的表示和特征提取文本表示(向量)单词表示one-hot维度=|词典|
+                            文本的表示和特征提取文本表示(向量)单词one-hot维度=|词典|
 
 
 
 
-句子表示1. boolean representation(类似one-hot)维度=|词典|
+句子1. Sparse boolean representation(类似one-hot)维度=|词典|
 不管词频无论一个单词出现了几次，都设为1(true)
-2. C
+明
                         
                     </div>
                     <div class="publish-info">

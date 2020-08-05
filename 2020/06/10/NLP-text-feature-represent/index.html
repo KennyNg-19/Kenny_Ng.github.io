@@ -454,14 +454,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2020-06-10
+                    2020-08-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    77
+                    78
                 </div>
                 
 
@@ -483,13 +483,19 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="文本的表示和特征提取"><a href="#文本的表示和特征提取" class="headerlink" title="文本的表示和特征提取"></a>文本的表示和特征提取</h1><h2 id="文本表示-向量"><a href="#文本表示-向量" class="headerlink" title="文本表示(向量)"></a>文本表示(向量)</h2><h3 id="单词表示"><a href="#单词表示" class="headerlink" title="单词表示"></a>单词表示</h3><h4 id="one-hot"><a href="#one-hot" class="headerlink" title="one-hot"></a>one-hot</h4><p><strong>维度=|词典|</strong></p>
+                <h1 id="文本的表示和特征提取"><a href="#文本的表示和特征提取" class="headerlink" title="文本的表示和特征提取"></a>文本的表示和特征提取</h1><h2 id="文本表示-向量"><a href="#文本表示-向量" class="headerlink" title="文本表示(向量)"></a>文本表示(向量)</h2><h3 id="单词"><a href="#单词" class="headerlink" title="单词"></a>单词</h3><h4 id="one-hot"><a href="#one-hot" class="headerlink" title="one-hot"></a>one-hot</h4><p><strong>维度=|词典|</strong></p>
 <img src="/Users/kenny/Library/Application Support/typora-user-images/image-20200610163125511.png" style="zoom:33%;" />
 
 
 
-<h3 id="句子表示"><a href="#句子表示" class="headerlink" title="句子表示"></a>句子表示</h3><h4 id="1-boolean-representation-类似one-hot"><a href="#1-boolean-representation-类似one-hot" class="headerlink" title="1. boolean representation(类似one-hot)"></a>1. boolean representation(类似one-hot)</h4><p><strong>维度=|词典|</strong></p>
+<h3 id="句子"><a href="#句子" class="headerlink" title="句子"></a>句子</h3><h4 id="1-Sparse-boolean-representation-类似one-hot"><a href="#1-Sparse-boolean-representation-类似one-hot" class="headerlink" title="1. Sparse boolean representation(类似one-hot)"></a>1. <u>Sparse</u> boolean representation(类似one-hot)</h4><p><strong>维度=|词典|</strong></p>
 <h5 id="不管词频"><a href="#不管词频" class="headerlink" title="不管词频"></a>不管词频</h5><p><strong>无论</strong>一个单词出现了<strong>几次</strong>，<strong>都设为1</strong>(true)</p>
+<h5 id="明显缺点"><a href="#明显缺点" class="headerlink" title="明显缺点"></a>明显缺点</h5><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghg07t9frvj31ay0m2aiz.jpg" alt="参数量 ∝ 单词总量V" style="zoom:33%;" />
+
+
+
+
+
 <h4 id="2-Count-based-representation-记词频"><a href="#2-Count-based-representation-记词频" class="headerlink" title="2. Count-based representation(记词频)"></a>2. Count-based representation(记词频)</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfna64u3v3j31g80aiaqo.jpg" alt="image-20200610163726467" style="zoom:33%;" />
 
 
@@ -810,8 +816,10 @@ i. 暴力解法用：数组1by1存到数组里，然后想办法把数组reverse
 
 
 
+
+
 A. 分词的常用底层算法所有分词的工具，都要依赖于词库
-1. 基于匹配规则的方法最大匹配算法 Max Matching——贪心算法何为最大？
+1. 基于匹配规则的方法最大匹配算法 Max Matching——贪心算法何为最
                         
                     </div>
                     <div class="publish-info">

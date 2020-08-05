@@ -462,14 +462,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2020-07-24
+                    2020-08-04
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    599
+                    611
                 </div>
                 
 
@@ -493,7 +493,7 @@
             <div id="articleContent">
                 <h3 id="0-（注意是巧用：提高效率-简化代码的use-case）"><a href="#0-（注意是巧用：提高效率-简化代码的use-case）" class="headerlink" title="0. （注意是巧用：提高效率/简化代码的use case）"></a>0. （注意是巧用：<font color="#dd0000">提高效率/简化代码</font>的use case）</h3><h3 id="1-获取的数据是倒叙的，但要求他们正序输出"><a href="#1-获取的数据是倒叙的，但要求他们正序输出" class="headerlink" title="1. 获取的数据是倒叙的，但要求他们正序输出"></a>1. 获取的数据是倒叙的，但要求他们正序输出</h3><p>出处：Coursera算法 <strong>图的DFS in 搜索树</strong></p>
 <h4 id="i-暴力解法用：数组"><a href="#i-暴力解法用：数组" class="headerlink" title="i. 暴力解法用：数组"></a>i. 暴力解法用：数组</h4><p>1by1存到数组里，然后想办法把<strong>数组reverse倒序</strong>，再输出</p>
-<h4 id="ii-简化代码，使用数据结构：栈"><a href="#ii-简化代码，使用数据结构：栈" class="headerlink" title="ii. 简化代码，使用数据结构：栈"></a>ii. 简化代码，使用数据结构：栈</h4><p>1by1 push到栈里，利用<strong>栈的Java@for each遍历</strong><font color="#dd0000"><strong>默认</strong>是从<strong>栈顶</strong>开始的</font>——所以遍历时，自动会从最后push的开始，达到<strong>自动正序</strong>的输出</p>
+<h4 id="ii-简化代码，使用数据结构：栈"><a href="#ii-简化代码，使用数据结构：栈" class="headerlink" title="ii. 简化代码，使用数据结构：栈"></a>ii. 简化代码，使用数据结构：<u>栈</u></h4><p>1by1 push到栈里，利用<strong>栈的Java@for each遍历</strong><font color="#dd0000"><strong>默认</strong>是从<strong>栈顶</strong>开始的</font>——所以遍历时，自动会从最后push的开始，达到<strong>自动正序</strong>的输出</p>
 <p>实例应用：DFS深度优先算法搜索，或许源s到任何一个v的<strong>完整路径</strong></p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggbj8a6k3oj30qa0i8n16.jpg" style="zoom:33%;" />
 
@@ -528,7 +528,11 @@
 <p><strong>Level</strong> order traversal(一次性递归所有子node) uses a queue data structure to visit the nodes <strong>level by level</strong></p>
 </blockquote>
 <p><strong>不光是</strong>树的层序遍历，Queue适合存储:<strong>需要递归时，各自递归</strong>的<strong>“网状扩散处理”型</strong>的结果：比如递归节点是1-&gt;3，扩散完把3个新递归enqueue后，把1从队列首dequeue；3再-&gt;6同理…这种模式</p>
+<h3 id="4-实现循环Queue用到的抽象"><a href="#4-实现循环Queue用到的抽象" class="headerlink" title="4. 实现循环Queue用到的抽象"></a>4. 实现循环Queue用到的抽象</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gheuhwcabsj31dw0ks0x9.jpg" alt="抽象：代码" style="zoom:40%;" />
 
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gheujpnv8oj30z00dsdho.jpg" alt="不抽象的表示" style="zoom:33%;" />
+
+<h3 id="5"><a href="#5" class="headerlink" title="5."></a>5.</h3>
             </div>
             <hr/>
 
@@ -830,14 +834,14 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            文本的表示和特征提取文本表示(向量)单词表示one-hot维度=|词典|
+                            文本的表示和特征提取文本表示(向量)单词one-hot维度=|词典|
 
 
 
 
-句子表示1. boolean representation(类似one-hot)维度=|词典|
+句子1. Sparse boolean representation(类似one-hot)维度=|词典|
 不管词频无论一个单词出现了几次，都设为1(true)
-2. C
+明
                         
                     </div>
                     <div class="publish-info">

@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="DeepLearning.ai的5月新课AI 4 medicince笔记, 池中之物">
+    <meta name="keywords" content="DeepLearning.ai5月新课-AI4Medicince笔记, 池中之物">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>DeepLearning.ai的5月新课AI 4 medicince笔记 | 池中之物</title>
+    <title>DeepLearning.ai5月新课-AI4Medicince笔记 | 池中之物</title>
     <link rel="icon" type="image/png" href="/Kenny_Ng.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/Kenny_Ng.github.io/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/Kenny_Ng.github.io/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/Kenny_Ng.github.io/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">DeepLearning.ai的5月新课AI 4 medicince笔记</h1>
+                    <h1 class="description center-align post-title">DeepLearning.ai5月新课-AI4Medicince笔记</h1>
                 </div>
             </div>
         </div>
@@ -466,21 +466,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2020-07-28
+                    2020-08-02
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.6k
+                    4.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    9 Min
+                    15 Min
                 </div>
                 
 
@@ -526,7 +526,6 @@
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh4diz8x92j30xc0gawjg.jpg" alt="训练examples和loss形式的对应改变" style="zoom:43%;" />
 
 <p>data分布，也可能出class imbalance问题：像这样一次处理许多疾病，在收集资料的时候也有可能出现比重不均的情况——所以在多重任务的情况下也可以使用解决方法的加上权重。</p>
-<p><img src="https://miro.medium.com/max/60/1*pOQ5doanwmA6jgpHMUaE2w.png?q=20" alt="Image for post"></p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh4dt34bvlj30vo09wgnp.jpg" alt="权重w，按各自病的数据分开算哦！" style="zoom:50%;" />
 
 
@@ -535,17 +534,16 @@
 <h4 id="2种解决的方式"><a href="#2种解决的方式" class="headerlink" title="2种解决的方式"></a>2种解决的方式</h4><h5 id="1-Transfer-Learning，使用pre-training。"><a href="#1-Transfer-Learning，使用pre-training。" class="headerlink" title="1. Transfer Learning，使用pre-training。"></a><strong>1. Transfer Learning，使用pre-training。</strong></h5><p>下面这张图在pretraining的部分，这一个模型先被拿去做分辨企鹅的训练等到分辨企鹅的训练完成之后再转移到第二个步骤Fine-tuning，这时候工程师可以视情况决定需不需要升级这个训练模型，最后的目标是要让这一个模型可以分辨胸腔X光并且输出是哪一个疾病。</p>
 <p>为什么用企鹅当作例子？</p>
 <p>讲师在这边有提到因为企鹅整体的形状很像肺形状，所以在初期几层的神经网路当中可以去让模型分辨一些比较大的，例如边缘形状等等的问题，在第二次Fine -tuning的时候这个模型就会被修改并且能够分辨比较细节的部分。其实像这样的方式就是所谓的Transfer Learning。</p>
-<p><img src="https://miro.medium.com/max/60/1*eHrveqPrTYSDYJnE8Ai5wg.png?q=20" alt="Image for post"></p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh4ezmo6yvj30x80ey0y2.jpg" style="zoom:50%;" />
 
 <h6 id="题外话：而当数据充足时，你可以："><a href="#题外话：而当数据充足时，你可以：" class="headerlink" title="题外话：而当数据充足时，你可以："></a><strong>题外话</strong>：而当<strong>数据充足</strong>时，你可以：</h6><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh4h5xu7cmj31i40u0gst.jpg" alt="从头开始:新训练模型" style="zoom:33%;" />
 
 <h5 id="2-Data-Augmentation数据增强"><a href="#2-Data-Augmentation数据增强" class="headerlink" title="2. Data Augmentation数据增强"></a><strong>2. Data Augmentation数据增强</strong></h5><p>如果喂给机器训练的影像数量太小的话，还有一种方法可以让影像变多！那就是以人工的方式将影像进行一些变化后再重新把变化过后的影像喂回机器做训练，这个就是Data Augmentation。</p>
-<p>但是这边要注意一点像是胸腔X光来说，我们可以旋转图片重新喂给模型或是改变对比度去产生一张新的影像，然而如果我们将胸腔X光做180度的翻转时，这样机器就无法分辨他是正常的胸腔或是dextrocardia（右位心）也就是说这种情况下，label的状态改变了，由正常的影像变成右位心的影像。所以结论就是，当我们想要利用这种方式去增加影像的数量时，我们必须考虑到这一张影像的label状态会不会改变。</p>
-<img src="https://miro.medium.com/max/1390/1*PstRJ3s2Nw3mQEG3c5joug.png" alt="数据增强是有要求的" style="zoom:43%;" />
+<p>但是这边要注意一点像是胸腔X光来说，我们可以旋转图片重新喂给模型或是改变对比度去产生一张新的影像，然而如果我们将胸腔X光做<strong>180度的翻转</strong>时，这样机器就无法分辨他是正常的胸腔或是dextrocardia（右位心）——也就是说这种情况下，<strong>label的状态改变</strong>了，由正常的影像变成右位心的影像。</p>
+<p>所以结论就是，当我们想要利用这种方式去增加影像的数量时，我们必须<strong>考虑到这一张影像的label状态会不会改变</strong>。</p>
+<img src="https://miro.medium.com/max/1390/1*PstRJ3s2Nw3mQEG3c5joug.png" alt="数据增强不是任意的，是有规范的" style="zoom:43%;" />
 
-
-
+<hr>
 <h2 id="II-再聊训练验证和测试集的进阶问题"><a href="#II-再聊训练验证和测试集的进阶问题" class="headerlink" title="II. 再聊训练验证和测试集的进阶问题"></a>II. 再聊训练验证和测试集的<u>进阶</u>问题</h2><img src="https://miro.medium.com/max/2279/1*GBsxeGzhvdr-iVTGc-dZaw.png" alt="训练、验证、测试的别名" style="zoom:50%;" />
 
 <p>一般来说机器学习会将我们所拥有的数据分做三组<br>1.Training set训练集 2.Validation set验证集 3.Test set测试集</p>
@@ -559,7 +557,8 @@
 
 <h3 id="Q1-Data-leakage-数据-因果关系-的泄露"><a href="#Q1-Data-leakage-数据-因果关系-的泄露" class="headerlink" title="Q1: Data leakage 数据(因果关系)的泄露"></a>Q1: Data leakage 数据(因果关系)的泄露</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>Data Leakage 跟其他场合说的<strong>数据安全数据泄漏</strong>, <strong>完全不一样</strong>: 不是数据量因为泄露少了，<strong>而是因果关系的提前泄漏</strong>。是由于<strong>前期</strong>的<strong>准备数据/数据采样</strong>的时候出了问题，误将与<strong>结果直接相关或存在颠倒因果关系的feature纳入了数据集</strong>，使模型使用<strong>颠倒的因果关系的数据</strong>进行预测，得到<strong>over-optimistic 过于乐观的</strong>结果。</p>
 <h5 id="具体实例-Patient-Overlap"><a href="#具体实例-Patient-Overlap" class="headerlink" title="具体实例: Patient Overlap"></a>具体实例: Patient <u>Overlap</u></h5><p>如果<strong>重复的病人数据</strong>被分别使用在训练组以及测试组的时候，机器可能会<strong>”记忆“</strong>该位病人的某项特殊特征，误将将这项特殊的特征当作是一个可以判断的依据，这种现象是Over-optimistic test set performance。就有点像是考试前你已经看过考题了一样，机器就会像这样子把答案记下来，并非像是你想让他做的-倚靠其他更有依据的线索找到答案。</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh6rdqztzuj310u0ng4e2.jpg" alt="image-20200728161900099"></p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh6rdqztzuj310u0ng4e2.jpg" style="zoom:33%;" />
+
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh6r9x0iyej315g0lw7ca.jpg" alt="不同时期normal的照片加入2个set..." style="zoom:50%;" />
 
 
@@ -583,19 +582,124 @@
 <li><p>当这两组的数据设定完之后<strong>剩下的所有数据</strong>，会被用作是<strong>训练集</strong>。</p>
 </li>
 </ol>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh4gx81troj31d20d87bu.jpg" alt="image-20200726164601303"></p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh4gx81troj31d20d87bu.jpg" style="zoom:33%;" />
+
+
+
 <h5 id="即data-sampling顺序-是test→validation→train"><a href="#即data-sampling顺序-是test→validation→train" class="headerlink" title="即data sampling顺序: 是test→validation→train"></a>即data sampling顺序: 是test→validation→train</h5><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh4gygxttdj30ba06m0tz.jpg" style="zoom:50%;" />
 
 
 
 
 
-<h3 id="Q3-Ground-Truth-如何定义”正确”-定义truth"><a href="#Q3-Ground-Truth-如何定义”正确”-定义truth" class="headerlink" title="Q3: Ground Truth(如何定义”正确” 定义truth)"></a>Q3: Ground Truth(如何定义”正确” 定义truth)</h3><h4 id="问题-1"><a href="#问题-1" class="headerlink" title="问题"></a>问题</h4><p>在医学里面数据label，也就是学习结果的「正确答案」，在机器学习里面常<strong>被称作Ground truth</strong>， 而在医学上面同样的东西会被称作Reference Standard。</p>
+<h3 id="Q3-Ground-Truth-“正确”的label"><a href="#Q3-Ground-Truth-“正确”的label" class="headerlink" title="Q3: Ground Truth(“正确”的label)"></a>Q3: Ground Truth(“正确”的label)</h3><h4 id="问题-1"><a href="#问题-1" class="headerlink" title="问题"></a>问题</h4><p>在医学里面数据label，也就是学习结果的「正确答案」，在机器学习里面常<strong>被称作Ground truth</strong>， 而在医学上面同样的东西会被称作Reference Standard。</p>
 <p>医学里面会常常<strong>会有没有正确解答的现象</strong>，就举胸腔X光来说，也许某一位放射科医师认为某张影像是肺炎，但同样的影像另外一位放射科医生可能<strong>会有不同的意见</strong>，这个叫做Inter-observer disagreement。</p>
 <h4 id="定义”正确”的方法"><a href="#定义”正确”的方法" class="headerlink" title="定义”正确”的方法"></a>定义”正确”的方法</h4><p>如此一来决定Ground truth的方法也变得很重要，常见的方法有：</p>
-<p><strong>1.Consensus Voting</strong>✅<br>就以胸腔X光来说，这个方式就是由一组放射科医生可能是<u>投票决定又或者是经由讨论达到某个共识</u>而决定最后的答案。</p>
+<p><strong>1.Consensus Voting</strong> ✅<br>就以胸腔X光来说，这个方式就是由一组放射科医生可能是<u>投票决定又或者是经由讨论达到某个共识</u>而决定最后的答案。</p>
 <p><strong>2.Additional Medical Testing</strong></p>
 <p>例如就像刚刚举例的胸腔X光，如果当放射科医生无法从胸腔X光得到最后的Ground truth时，这时病人会被建议去做其他的测试，例如CT，得到更精确的解答，验证胸腔X光的Ground truth。除了X光影像之外，例如皮肤癌照片也通常会由组织切片的验证结果才得到该照片的Ground truth。不过这个方法比较费时费力，所以<strong>目前研究大多都是用第一个方式</strong>。</p>
+<hr>
+<h2 id="III-再聊分类问题的evaluation-metrics"><a href="#III-再聊分类问题的evaluation-metrics" class="headerlink" title="III. 再聊分类问题的evaluation metrics"></a>III. 再聊<u>分类问题</u>的evaluation metrics</h2><h3 id="accuracy准确性的计算"><a href="#accuracy准确性的计算" class="headerlink" title="accuracy准确性的计算"></a>accuracy准确性的计算</h3><h4 id="accuracy定义和概率计算，有数学上的一致性"><a href="#accuracy定义和概率计算，有数学上的一致性" class="headerlink" title="accuracy定义和概率计算，有数学上的一致性"></a>accuracy定义和概率计算，有数学上的一致性</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghbb8xauogj319s0jytgv.jpg" alt="概率计算得到acc" style="zoom:43%;" />
+
+
+
+<p>所以只<strong>要有sensitivity和specificity</strong>，结合统计得到的prevalence，就可以<strong>算出accuracy</strong></p>
+<h3 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh6yd5wykaj31ho0kyn70.jpg" alt="Confusion Matrix"></p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghb6apedduj30rw07wq4i.jpg" alt="注意这两个：实际是!" style="zoom:50%;" />
+
+
+
+<h4 id="助记！"><a href="#助记！" class="headerlink" title="助记！"></a>助记！</h4><h5 id="铺垫：什么NP-R，TP-R这种rate怎么算："><a href="#铺垫：什么NP-R，TP-R这种rate怎么算：" class="headerlink" title="铺垫：什么NP R，TP R这种rate怎么算："></a>铺垫：什么NP R，TP R这种rate怎么算：</h5><p>rate就不只是直接拿confusion matrix里的值了，而是<strong><font color="#dd0000">再除以对应行/列的<u>总和</u></font></strong>，即做分母!!</p>
+<p>(以下均为rate)：</p>
+<ul>
+<li><p>灵敏度(Sensitivity, <strong>TPR</strong>)和特异度(Specificity, <strong>TNR</strong>)，作为分母的是“<strong>实际</strong>有病/没病的总数“，所以可以看到是(TP，FN)和(TN, FP)这种<font color="#dd0000"><strong>两两相反，四个字母完全不同</strong></font>的搭配！！</p>
+</li>
+<li><p>查准率PPV(Precision)和NPV，作为分母的是“<strong>预测</strong>有病/没病的总数“，所以可以看到是(TP，FP)和(TN, FN)这种<font color="#dd0000"><strong>两两预测的pos和neg类相同，而结果的正确性true/false不同</strong></font>的搭配！！</p>
+</li>
+</ul>
+<ul>
+<li>查全率(Recall, Sensitivty) 和查准率(Precision, PPV)<font color="#dd0000">都是关于<strong>postive类</strong>的指标——<strong>找到positve类(比如患病)</strong>一般才是<strong>ML预测的主要对象, 而不是关注negative类</strong></font></li>
+</ul>
+<hr>
+<h3 id="先验-prevalence-做分母：sensitivity灵敏度-即查全率-和specificity特异度"><a href="#先验-prevalence-做分母：sensitivity灵敏度-即查全率-和specificity特异度" class="headerlink" title="先验(prevalence)做分母：sensitivity灵敏度(即查全率)和specificity特异度"></a>先验(prevalence)做分母：sensitivity灵敏度(即查全率)和specificity特异度</h3><blockquote>
+<p>Sensitivity <strong>only</strong> considers output on people <strong>in the positive class</strong></p>
+<p>Similarly, specificity <strong>only</strong> considers output on people <strong>in the negative class</strong>.</p>
+</blockquote>
+<ul>
+<li><p><strong>灵敏度/查全率(recall) P(+|disease)</strong>：model预测为pos且实际为pos/所有实际为pos(TP+<strong>FN</strong>)，的比例</p>
+<p>理解<u><strong>查全</strong></u>：<strong>在实际pos的样本中，model预测为正且预测正确</strong>的比例——<strong>非漏诊性！越高，说明放过<u>更少的</u>患病者</strong></p>
+<p>计算公式为：TPR=TP/ (TP+ FN)</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>特异度P(—|non-disease)，P(—|neg)</strong> 简称<strong>TNR，TN <u>Rate</u></strong>：model预测为neg且实际为neg/所有实际为neg，的比例——<strong>分母是<font color="#dd0000">non-disease，诊断没病的查全率</font>，非误诊性！越高，说明<u>将越多的非病人正确排除</u></strong></p>
+<p>计算公式为：TNR= TN / (FP + TN)</p>
+</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghba7wvrgaj30xf0u04qp.jpg" alt="灵敏度和特异度的解释" style="zoom:43%;" />
+
+<h5 id="结论：敏感度高-漏诊率低，查全率高；特异度高-误诊率低"><a href="#结论：敏感度高-漏诊率低，查全率高；特异度高-误诊率低" class="headerlink" title="结论：敏感度高=漏诊率低，查全率高；特异度高=误诊率低"></a>结论：敏感度高=漏诊率低，查全率高；特异度高=误诊率低</h5><p>注：(P(+|disease)<u>分子的+</u>,是<strong>model</strong>预测的结果！！！)</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh6v7xrtswj314w0hswkh.jpg" alt="注意: 先验概率+是model判定为正的！！" style="zoom:33%;" />
+
+
+
+<h5 id="练习题：坑"><a href="#练习题：坑" class="headerlink" title="练习题：坑"></a>练习题：坑</h5><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghbd7v75vtj317y0tw7cp.jpg" style="zoom:40%;" />
+
+
+
+<h3 id="ROC曲线"><a href="#ROC曲线" class="headerlink" title="ROC曲线"></a>ROC曲线</h3><h4 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h4><p>理想情况下我们<strong>希望敏感度和特异度都很高</strong>，然而实际上一般在敏感度和特异度中<strong>寻找一个平衡点</strong>，这个过程可以<strong>用ROC(Receiver Operating Characteristic)曲线</strong>来表示, 和 <a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_the_curve" target="_blank" rel="noopener">AUC</a>值(Area Under the Curve) 来精确表示：</p>
+<h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><ul>
+<li>纵坐标：<strong>RPR，sensitivity</strong></li>
+<li>横坐标：<strong>FPR = 1 — specificity(TNR)</strong>——<strong>误诊率</strong></li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghbg9nfon6j30f80fi42l.jpg" style="zoom:50%;" />
+
+<h4 id="为什么横坐标用误诊率？1-特异性？"><a href="#为什么横坐标用误诊率？1-特异性？" class="headerlink" title="为什么横坐标用误诊率？1 - 特异性？"></a>为什么横坐标用误诊率？1 - 特异性？</h4><p>为了满足：<strong>Sensitivity、Specificity这两个指标越大</strong>的情况</p>
+<p>理想情况下，<strong>TPR应该接近1，FPR应该接近0</strong>, 即TPR=1，FPR=0，即<strong>图中(0,1)点。故ROC曲线越靠拢(0,1)点，越偏离45度对角线越好</strong>，<strong>Sensitivity、Specificity越大</strong>效果越好。</p>
+<h4 id="深度理解ROC"><a href="#深度理解ROC" class="headerlink" title="深度理解ROC"></a>深度理解ROC</h4><p>ROC曲线的<strong>横坐标和纵坐标其实是<font color="#dd0000">没有相关性的</font></strong>，所以<font color="#dd0000"><strong>不能把ROC曲线当做一个函数曲线来分析，应该把ROC曲线看成无数个点</strong></font>，每个点都代表一个分类器，其横纵坐标表征了<font color="#dd0000">这个<strong>分类器的性能</strong></font>。为了更好的理解ROC曲线，我们先引入ROC空间</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghbfjctbu0j30n80nawhi.jpg" alt="ROC space" style="zoom:50%;" />
+
+<p>明显的，C’的性能最好。而B的准确率只有0.5，几乎是随机分类。特别的，图中左上角坐标为（1,0）的点为<strong>完美分类点（perfect classification），它代表所有的分类全部正确</strong>，即模型<strong>预测为1的点全部正确（TPR=1），归为0的点没有错误（FPR=0）</strong>。</p>
+<p>通过ROC空间，我们明白了一条ROC曲线其实<strong>代表了无数个分类器</strong>：那么我们为什么常常用一条ROC曲线来<strong>描述一个分类器</strong>呢？</p>
+<p>仔细观察ROC曲线，发现其都是上升的曲线（斜率大于0），且都通过点（0,0）和点（1,1）。其实，这些点是一个个的分类器，而每个分类器实际<strong>习得的<font color="#dd0000">也是一个最佳阈值</font></strong>。所以ROC,可以代表着<strong>一个</strong>分类器<strong>在不同阈值下</strong>的分类效果，即曲线从左往右可以<strong>认为是阈值</strong>变化过程——但是<strong><font color="#dd0000">不一定是从0到1的，也可能是反过来——得看具体场景</font></strong></p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghbcutbqclj30z50u0awm.jpg" alt="完美划分时, 无论阈值是什么总恰有一个坐标=1" style="zoom:43%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghbczdv3vej30es0fawgl.jpg" alt="完美划分时的ROC" style="zoom:33%;" />
+
+
+
+
+
+<h4 id="AUC值"><a href="#AUC值" class="headerlink" title="AUC值"></a><strong>AUC</strong>值</h4><p>那么AUC值的含义是什么呢？</p>
+<blockquote>
+<p>The AUC value is equivalent to the probability that a randomly chosen positive example is ranked higher than a randomly chosen negative example.</p>
+</blockquote>
+<p>这句话有些绕，我尝试解释一下：首先<strong>AUC值是一个<u>概率值</u></strong>——随机挑选一个正样本以及一个负样本，当前的分类算法，根据计算得到的Score值并<strong>将这个正样本排在负样本前面的概率</strong>就是AUC值。当然，<strong>AUC值越大</strong>，当前的分类算法<strong>越有可能</strong>将正样本排在负样本前面，即能够更好的分类。</p>
+<p>从AUC判断分类器（预测模型）优劣的标准：</p>
+<ul>
+<li>AUC = 1，是完美分类器，采用这个预测模型时，<strong><font color="#dd0000">存在至少一个</font>阈值能得出完美预测</strong>(绝大多数预测的场合，不存在完美分类器)</li>
+<li>0.5 &lt; AUC &lt; 1，优于随机猜测。这个分类器（模型）妥善设定阈值的话，能有预测价值。</li>
+<li>AUC = 0.5，跟随机猜测一样（例：丢铜板），模型没有预测价值。</li>
+<li>AUC &lt; 0.5，比随机猜测还差；但只要总是反预测而行，就优于随机猜测。</li>
+</ul>
+<p>三种AUC值示例：</p>
+<p><img src="https://pic3.zhimg.com/80/v2-f9d1bf42ddcaaab151464e1d2e9f1d30_1440w.jpg" alt="img"></p>
+<p>简单说：<strong>AUC值越大的分类器，正确率越高</strong></p>
+<h4 id="为什么使用ROC曲线"><a href="#为什么使用ROC曲线" class="headerlink" title="为什么使用ROC曲线"></a>为什么使用ROC曲线</h4><p>既然已经这么多评价标准，为什么还要使用ROC和AUC呢？</p>
+<p>因为ROC曲线有个<strong>很好的特性</strong>：当测试集中的<strong>正负样本的分布变化的时候，ROC曲线能够保持不变</strong>——在实际的数据集中经常会出现类<strong>不平衡（class imbalance）</strong>现象，即负样本比正样本多很多（或者相反），而且测试数据中的正负样本的分布也可能随着时间变化</p>
+<hr>
+<h3 id="后验-预测结果-做分母：PPV查准率-又Precision-、NPV"><a href="#后验-预测结果-做分母：PPV查准率-又Precision-、NPV" class="headerlink" title="后验(预测结果)做分母：PPV查准率(又Precision)、NPV"></a>后验(预测结果)做分母：PPV查准率(又Precision)、NPV</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh6vcxavpoj30v80awq6f.jpg" alt="PPV" style="zoom:33%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh6vdcaqw1j30vq0amdjl.jpg" alt="NPV" style="zoom:33%;" />
+
+<hr>
+<h3 id="PRC曲线-precision-recall"><a href="#PRC曲线-precision-recall" class="headerlink" title="PRC曲线(precision-recall)"></a>PRC曲线(precision-recall)</h3><h4 id="目的-1"><a href="#目的-1" class="headerlink" title="目的"></a>目的</h4><p>和ROC曲线用于权衡灵敏度和特异度的作用类似，理想情况下我们<strong>希望precision和recall都高”</strong>， “实际上一般在敏感度和特异度中<strong>寻找一个平衡点</strong>，</p>
+<p>ROC shows the trade-off between precision and recall for different thresholds. A high area under the curve represents both high recall and high precision,</p>
+<h4 id="F1-score-量化PRC"><a href="#F1-score-量化PRC" class="headerlink" title="F1-score(量化PRC)"></a>F1-score(量化PRC)</h4><p>同理，类似AUC值的精确作用，F1 score: harmonic mean of the precision and recall, where an F1 score reaches its best value at 1 (perfect precision and recall) and worst at 0.</p>
 <h1 id="2-Course2-AI-for-Medical-Prognosis-预断-预后"><a href="#2-Course2-AI-for-Medical-Prognosis-预断-预后" class="headerlink" title="2. Course2-AI for Medical Prognosis(预断,预后)"></a>2. Course2-AI for Medical Prognosis(预断,预后)</h1>
             </div>
             <hr/>
@@ -849,9 +953,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="/Kenny_Ng.github.io/medias/featureimages/22.jpg" class="responsive-img" alt="DeepLearning.ai的5月新课AI 4 medicince笔记">
+                        <img src="/Kenny_Ng.github.io/medias/featureimages/11.jpg" class="responsive-img" alt="DeepLearning.ai5月新课-AI4Medicince笔记">
                         
-                        <span class="card-title">DeepLearning.ai的5月新课AI 4 medicince笔记</span>
+                        <span class="card-title">DeepLearning.ai5月新课-AI4Medicince笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
