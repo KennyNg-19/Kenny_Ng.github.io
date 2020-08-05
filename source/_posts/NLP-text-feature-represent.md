@@ -13,7 +13,7 @@ tags: [NLP]
 
 ## 文本表示(向量)
 
-### 单词表示
+### 单词
 
 #### one-hot
 
@@ -23,15 +23,23 @@ tags: [NLP]
 
 
 
-### 句子表示
+### 句子
 
-#### 1. boolean representation(类似one-hot)
+#### 1. <u>Sparse</u> boolean representation(类似one-hot)
 
 **维度=|词典|**
 
 ##### 不管词频
 
 **无论**一个单词出现了**几次**，**都设为1**(true)
+
+
+
+##### 明显缺点
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghg07t9frvj31ay0m2aiz.jpg" alt="参数量 ∝ 单词总量V" style="zoom:33%;" />
+
+
 
 
 

@@ -24,7 +24,12 @@ tags: [NLP]
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm2bbdbwoj30zg0eaaj2.jpg" style="zoom:33%;" />
 
-<hr>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghg5ar7dblj30pi06kdgk.jpg" alt="预处理文本大致步骤" style="zoom:50%;" />
+
+
+
+------
+
 
 
 ## A. 分词的常用底层算法
@@ -207,9 +212,21 @@ c，为**现有词典里的<font color="#dd0000">正确的</font>单词**
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfn8q0eqdxj30rg058tcj.jpg" alt="image-20200610154719443" style="zoom:33%;" />
 
-比如：”好，很好“这种停用词，在<u>sentiment analysis</u>中就<u>不应该被移除</u>——此时，可能需要**修改**<u>停用词库</u>
+比如：”好，很好“这种停用词，在<u>sentiment analysis</u>中就<u>不应该被移除</u>——反而可能需要**修改**<u>停用词库</u>
 
 
+
+#### 例子
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghg591mrcpj31ko0sutgr.jpg" style="zoom:33%;" />
+
+
+
+### 注意: 在情感分析中，stem的词可只留着前缀！
+
+因为**分类**问题，只需要知道什么词占对应情感类别**的比例/程度**即可
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghg5d0rmhjj31ie0au40q.jpg" alt="stem后 词并不是正确拼写的" style="zoom:43%;" />
 
 ## D. 词的标准化(英文文本)
 
@@ -221,7 +238,13 @@ c，为**现有词典里的<font color="#dd0000">正确的</font>单词**
 
 ### 常用技术
 
-#### Stemming
+#### Stemming: 基本还原成原形
+
+> Stemming is the process of converting a word **to its most general form, or stem**. This helps in reducing the size of our vocabulary.
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghg0nir63dj31340gm43m.jpg" style="zoom:33%;" />
+
+
 
 #### Lemmazation(更严格)
 

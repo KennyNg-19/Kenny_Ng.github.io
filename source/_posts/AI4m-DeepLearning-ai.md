@@ -1,5 +1,5 @@
 ---
-title: DeepLearning.ai的5月新课AI 4 medicince笔记
+title: DeepLearning.ai5月新课-AI4Medicince笔记
 date: 2020-07-25 17:26:33
 tags: [advancedML, ML, CV, math]
 ---
@@ -199,7 +199,7 @@ Data Leakage 跟其他场合说的**数据安全数据泄漏**, **完全不一�
 
 
 
-### Q3: Ground Truth(如何定义"正确" 定义truth)
+### Q3: Ground Truth("正确"的label)
 
 #### 问题
 
@@ -250,11 +250,32 @@ Data Leakage 跟其他场合说的**数据安全数据泄漏**, **完全不一�
 
 
 
-记：查全率(Precision)和查全率(Sensitivity)**最重要**，<font color="#dd0000">都是关于postive类的指标——**找到positve类(比如患病)**一般才是**ML预测的主要对象, 而不是关注negative类**</font>
+#### 助记！
+
+##### 铺垫：什么NP R，TP R这种rate怎么算：
+
+rate就不只是直接拿confusion matrix里的值了，而是**<font color="#dd0000">再除以对应行/列的<u>总和</u></font>**，即做分母!!
+
+(以下均为rate)：
+
+- 灵敏度(Sensitivity, **TPR**)和特异度(Specificity, **TNR**)，作为分母的是“**实际**有病/没病的总数“，所以可以看到是(TP，FN)和(TN, FP)这种<font color="#dd0000">**两两相反，四个字母完全不同**</font>的搭配！！
+
+- 查准率PPV(Precision)和NPV，作为分母的是“**预测**有病/没病的总数“，所以可以看到是(TP，FP)和(TN, FN)这种<font color="#dd0000">**两两预测的pos和neg类相同，而结果的正确性true/false不同**</font>的搭配！！
+
+  
+
+- 查全率(Recall, Sensitivty) 和查准率(Precision, PPV)<font color="#dd0000">都是关于**postive类**的指标——**找到positve类(比如患病)**一般才是**ML预测的主要对象, 而不是关注negative类**</font>
+
+------
 
 
 
 ### 先验(prevalence)做分母：sensitivity灵敏度(即查全率)和specificity特异度
+
+> Sensitivity **only** considers output on people **in the positive class**
+>
+> Similarly, specificity **only** considers output on people **in the negative class**.
+>
 
 - **灵敏度/查全率(recall) P(+|disease)**：model预测为pos且实际为pos/所有实际为pos(TP+**FN**)，的比例
 
@@ -264,7 +285,7 @@ Data Leakage 跟其他场合说的**数据安全数据泄漏**, **完全不一�
 
 
 
-- **特异度P(—|non-disease)，P(—|neg)**：model预测为neg且实际为neg/所有实际为neg，的比例——**非误诊性！越高，说明越策neg的且正确的数量高，则冤枉没病的人<u>越少</u>**
+- **特异度P(—|non-disease)，P(—|neg)** 简称**TNR，TN <u>Rate</u>**：model预测为neg且实际为neg/所有实际为neg，的比例——**分母是<font color="#dd0000">non-disease，诊断没病的查全率</font>，非误诊性！越高，说明<u>将越多的非病人正确排除</u>**
 
   计算公式为：TNR= TN / (FP + TN)
 
@@ -286,9 +307,44 @@ Data Leakage 跟其他场合说的**数据安全数据泄漏**, **完全不一�
 
 
 
-#### ROC曲线
+### ROC曲线
+
+#### 目的
 
 理想情况下我们**希望敏感度和特异度都很高**，然而实际上一般在敏感度和特异度中**寻找一个平衡点**，这个过程可以**用ROC(Receiver Operating Characteristic)曲线**来表示, 和 [AUC](https://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_the_curve)值(Area Under the Curve) 来精确表示：
+
+
+
+#### 定义
+
+- 纵坐标：**RPR，sensitivity**
+- 横坐标：**FPR = 1 — specificity(TNR)**——**误诊率**
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghbg9nfon6j30f80fi42l.jpg" style="zoom:50%;" />
+
+#### 为什么横坐标用误诊率？1 - 特异性？
+
+为了满足：**Sensitivity、Specificity这两个指标越大**的情况
+
+理想情况下，**TPR应该接近1，FPR应该接近0**, 即TPR=1，FPR=0，即**图中(0,1)点。故ROC曲线越靠拢(0,1)点，越偏离45度对角线越好**，**Sensitivity、Specificity越大**效果越好。
+
+
+
+#### 深度理解ROC
+
+ROC曲线的**横坐标和纵坐标其实是<font color="#dd0000">没有相关性的</font>**，所以<font color="#dd0000">**不能把ROC曲线当做一个函数曲线来分析，应该把ROC曲线看成无数个点**</font>，每个点都代表一个分类器，其横纵坐标表征了<font color="#dd0000">这个**分类器的性能**</font>。为了更好的理解ROC曲线，我们先引入ROC空间
+
+
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghbfjctbu0j30n80nawhi.jpg" alt="ROC space" style="zoom:50%;" />
+
+明显的，C'的性能最好。而B的准确率只有0.5，几乎是随机分类。特别的，图中左上角坐标为（1,0）的点为**完美分类点（perfect classification），它代表所有的分类全部正确**，即模型**预测为1的点全部正确（TPR=1），归为0的点没有错误（FPR=0）**。
+
+
+
+通过ROC空间，我们明白了一条ROC曲线其实**代表了无数个分类器**：那么我们为什么常常用一条ROC曲线来**描述一个分类器**呢？
+
+仔细观察ROC曲线，发现其都是上升的曲线（斜率大于0），且都通过点（0,0）和点（1,1）。其实，这些点是一个个的分类器，而每个分类器实际**习得的<font color="#dd0000">也是一个最佳阈值</font>**。所以ROC,可以代表着**一个**分类器**在不同阈值下**的分类效果，即曲线从左往右可以**认为是阈值**变化过程——但是**<font color="#dd0000">不一定是从0到1的，也可能是反过来——得看具体场景</font>**
 
 
 
@@ -300,9 +356,40 @@ Data Leakage 跟其他场合说的**数据安全数据泄漏**, **完全不一�
 
 
 
-通过ROC空间，我们明白了一条ROC曲线其实**代表了无数个分类器**：那么我们为什么常常用一条ROC曲线来**描述一个分类器**呢？
 
-仔细观察ROC曲线，发现其都是上升的曲线（斜率大于0），且都通过点（0,0）和点（1,1）。其实，这些点是一个个的分类器，而每个分类器实际**习得的<font color="#dd0000">也是一个最佳阈值</font>**。所以ROC,可以代表着**一个**分类器**在不同阈值下**的分类效果，即曲线从左往右可以**认为是阈值从0到1的**变化过程。
+
+#### **AUC**值
+
+那么AUC值的含义是什么呢？
+
+> The AUC value is equivalent to the probability that a randomly chosen positive example is ranked higher than a randomly chosen negative example.
+
+这句话有些绕，我尝试解释一下：首先**AUC值是一个<u>概率值</u>**——随机挑选一个正样本以及一个负样本，当前的分类算法，根据计算得到的Score值并**将这个正样本排在负样本前面的概率**就是AUC值。当然，**AUC值越大**，当前的分类算法**越有可能**将正样本排在负样本前面，即能够更好的分类。
+
+
+
+从AUC判断分类器（预测模型）优劣的标准：
+
+- AUC = 1，是完美分类器，采用这个预测模型时，**<font color="#dd0000">存在至少一个</font>阈值能得出完美预测**(绝大多数预测的场合，不存在完美分类器)
+- 0.5 < AUC < 1，优于随机猜测。这个分类器（模型）妥善设定阈值的话，能有预测价值。
+- AUC = 0.5，跟随机猜测一样（例：丢铜板），模型没有预测价值。
+- AUC < 0.5，比随机猜测还差；但只要总是反预测而行，就优于随机猜测。
+
+三种AUC值示例：
+
+![img](https://pic3.zhimg.com/80/v2-f9d1bf42ddcaaab151464e1d2e9f1d30_1440w.jpg)
+
+简单说：**AUC值越大的分类器，正确率越高**
+
+
+
+#### 为什么使用ROC曲线
+
+既然已经这么多评价标准，为什么还要使用ROC和AUC呢？
+
+因为ROC曲线有个**很好的特性**：当测试集中的**正负样本的分布变化的时候，ROC曲线能够保持不变**——在实际的数据集中经常会出现类**不平衡（class imbalance）**现象，即负样本比正样本多很多（或者相反），而且测试数据中的正负样本的分布也可能随着时间变化
+
+------
 
 
 
@@ -317,6 +404,20 @@ Data Leakage 跟其他场合说的**数据安全数据泄漏**, **完全不一�
 ------
 
 
+
+### PRC曲线(precision-recall)
+
+#### 目的
+
+和ROC曲线用于权衡灵敏度和特异度的作用类似，理想情况下我们**希望precision和recall都高"**， "实际上一般在敏感度和特异度中**寻找一个平衡点**，
+
+ROC shows the trade-off between precision and recall for different thresholds. A high area under the curve represents both high recall and high precision,
+
+
+
+#### F1-score(量化PRC)
+
+同理，类似AUC值的精确作用，F1 score: harmonic mean of the precision and recall, where an F1 score reaches its best value at 1 (perfect precision and recall) and worst at 0.
 
 # 2. Course2-AI for Medical Prognosis(预断,预后)
 

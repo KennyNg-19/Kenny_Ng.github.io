@@ -20,7 +20,7 @@ tags: [CS, 数据结构, 算法]
 
 
 
-#### ii. 简化代码，使用数据结构：栈
+#### ii. 简化代码，使用数据结构：<u>栈</u>
 
 1by1 push到栈里，利用**栈的Java@for each遍历**<font color="#dd0000">**默认**是从**栈顶**开始的</font>——所以遍历时，自动会从最后push的开始，达到**自动正序**的输出
 
@@ -89,3 +89,13 @@ tags: [CS, 数据结构, 算法]
 > **Level** order traversal(一次性递归所有子node) uses a queue data structure to visit the nodes **level by level**
 
 **不光是**树的层序遍历，Queue适合存储:**需要递归时，各自递归**的**"网状扩散处理"型**的结果：比如递归节点是1->3，扩散完把3个新递归enqueue后，把1从队列首dequeue；3再->6同理...这种模式
+
+
+
+### 4. 实现循环Queue用到的抽象
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gheuhwcabsj31dw0ks0x9.jpg" alt="抽象：代码" style="zoom:40%;" />
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gheujpnv8oj30z00dsdho.jpg" alt="不抽象的表示" style="zoom:33%;" />
+
+### 5. 
