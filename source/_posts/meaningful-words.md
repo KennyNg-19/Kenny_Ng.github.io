@@ -30,4 +30,6 @@ tags: [feeling&mind]
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggzr92fnejj310y0hijwy.jpg" alt="理论vs实践" style="zoom:50%;" />
 
-### 5. 
+### 5. 关于出身时机~
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghiqjayfzrj30ny0363yp.jpg" alt="戏谑出身时机" style="zoom:50%;" />

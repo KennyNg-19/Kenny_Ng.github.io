@@ -1,28 +1,28 @@
 ---
 title: ML,DL的混淆点/易错点
 date: 2020-07-25 13:00:22
-tags: [ML]
+tags: [ML, math, 概率, 统计]
 ---
 
-# ML, DL中的常见知识、易错点和一般性结论
+# ML(数学)中的常见混淆, 易错点和一般性结论
 
 ## 1. 均值化？归一化？傻傻分不清
 
-"标准化"和"归一化"这两个中文词要指代四种Feature scaling(特征缩放)方法, 实质是一种线性变换: 对向量 ![[公式]](https://www.zhihu.com/equation?tex=X)**按照比例压缩**![[公式]](https://www.zhihu.com/equation?tex=%5Calpha)**再进行平移**。线性变换有很多良好的性质，这些性质**决定了对数据改变后<u>不会造成“失效”，反而能提高数据的表现</u>**，这些性质是归一化/标准化的前提, 详情见[特征工程中的「归一化」有什么作用？- 知乎](https://www.zhihu.com/question/20455227/answer/370658612) 。
+"标准化"和"归一化"这两个中文词要指代四种Feature scaling(特征缩放)方法, 实质是<font color="#dd0000">**一种线性变换**: **对向量 X 按照比例α压缩, 再进行平移**</font>。线性变换有很多良好的性质，这些性质**决定了对数据改变后<u>不会造成“失效”，反而能提高数据的表现</u>**，这些性质是归一化/标准化的前提, 详情见[特征工程中的「归一化」有什么作用？- 知乎](https://www.zhihu.com/question/20455227/answer/370658612) 。
 
 这四种分别是 
 
-1.  **归一化** Rescaling (**min-max normalization**)  ，![[公式]](https://www.zhihu.com/equation?tex=x%5E%7B%27%7D+%3D+%5Cfrac%7Bx-min%28x%29%7D%7Bmax%28x%29-min%28x%29%7D) 
+1.  **归一化** Rescaling (**min-max normalization**)  ，![[归一化]](https://www.zhihu.com/equation?tex=x%5E%7B%27%7D+%3D+%5Cfrac%7Bx-min%28x%29%7D%7Bmax%28x%29-min%28x%29%7D) 
 
-2.  **均值归一化** mean normalization  ![[公式]](https://www.zhihu.com/equation?tex=x%5E%7B%27%7D+%3D+%5Cfrac%7Bx-mean%28x%29%7D%7Bmax%28x%29-min%28x%29%7D+) 
+2.  **均值归一化** mean normalization  ![[均值归一化]](https://www.zhihu.com/equation?tex=x%5E%7B%27%7D+%3D+%5Cfrac%7Bx-mean%28x%29%7D%7Bmax%28x%29-min%28x%29%7D+) 
 
    归一化性质总结：把数据变成(0,1)或者（1,1）之间的小数。主要是为了数据处理方便提出来的，把数据映射到0～1**范围**之内处理，更加便捷快速
 
    目的关键词：归一化的缩放，顾名思义，"归一"——**“拍扁”压缩到<font color="#dd0000">区间</font>（仅由极值决定）**
 
-3.  **标准化 Standardization**(**<u>Z-score</u> normalization**)  ![[公式]](https://www.zhihu.com/equation?tex=+x%5E%7B%27%7D+%3D+%5Cfrac%7Bx-mean%28x%29%7D%7B%5Csigma%7D) 
+3.  **标准化 Standardization**(**<u>Z-score</u> normalization**)  ![[标准化]](https://www.zhihu.com/equation?tex=+x%5E%7B%27%7D+%3D+%5Cfrac%7Bx-mean%28x%29%7D%7B%5Csigma%7D) 
 
-   标准化总结：**能伸能缩**，当数据较为集中时， ![[公式]](https://www.zhihu.com/equation?tex=%5Calpha) 更小，于是数据在标准化后就会**更加分散**。如果数据本身分布很广，那么 ![[公式]](https://www.zhihu.com/equation?tex=%5Calpha) 较大，数据就会被**更加集中**，到更小的范围内。
+   标准化总结：**能伸能缩**，当数据较为集中时， α更小，于是数据在标准化后就会**更加分散**。如果数据本身分布很广，那么 α 较大，数据就会被**更加集中**，到更小的范围内。
 
    目的关键词：标准化的缩放**是更加“弹性”和“动态”的能伸能缩，和<font color="#dd0000">整体样本的分布</font>有很大的关系，每个点都在贡献缩放，通过方差（variance）体现出来**。
 
@@ -71,7 +71,7 @@ tags: [ML]
 
 
 
-## 4. 无监督学习的所有输入数据都是unlabeled?
+## 4. 无监督学习的所有输入数据<u>都是unlabeled</u>?
 
 无监督学习，只是说 模型**上线后，用于实际业务**时，输入数据是unlabeled——在模型**训练/验证/测试**过程中，**也是要求**最优参数的(如，异常检测的异常阈值)，当然**可以使用labeled data**
 
@@ -116,3 +116,77 @@ There is one technical note.
 	▪	在三维的平面中，它是面 
 	▪	**在更高的维度中，我们称之为超平面** 
 所以，**广义上**，1D直线、2D平面，都可叫超平面
+
+
+
+## 7. 区分向量的点积(内积)、叉积(外积)
+
+### a. 点积(内积): 结果是数(标量)
+
+向量的点乘,也叫向量的内积、数量积，对两个向量执行点乘运算，就是对这两个向量对应位一一相乘之后求和的操作，点乘的结果是一个标量。
+
+### 
+
+对于向量a和向量b，要求一维向量a和向量b的**行列数相同**，点积公式为：
+
+![img](https://img-blog.csdn.net/20160902214456788)
+
+
+
+
+
+可以看出，计算结果是个标量！
+
+
+
+#### 实现：numpy.dot
+
+#### [几何意义](https://blog.csdn.net/dcrmg/article/details/52416832)
+
+
+
+### b. 叉积(外积): 类似矩阵乘法
+
+两个向量的叉乘，又叫向量积、外积、叉积，叉乘的运算结果**是一个向量**而不是一个标量。并且两个向量的叉积**与这两个向量组成的坐标平面垂直**。
+
+
+
+对于向量a和向量b，叉乘公式为：
+
+<img src="https://img-blog.csdn.net/20160902230539163" style="zoom:75%;" />
+
+<img src="https://img-blog.csdn.net/20160902231520146" style="zoom:75%;" />
+
+#### [几何意义](https://blog.csdn.net/dcrmg/article/details/52416832)
+
+
+
+### 顺带一提：np.array的+-×÷
+
+和上面两个情况都不同：单纯的**对位操作**，但不像点积——不相加
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghh5wqiu4cj30m607241f.jpg" style="zoom:43%;" />
+
+也自然要求：~~一维向量~~array a和b的**~~行列数~~<u>维度</u>相同**
+
+
+
+## 8. 条件概率和交集概率的区分
+
+### 交集概率: 分母是<u>全集</u>(所以默认忽略)
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlntiq7ocj31dq0kak1t.jpg" style="zoom:40%;" />
+
+
+
+### 条件概率: 分母是<u>做条件的那个概率</u>的所在集
+
+#### 分子用了交集概率，分母是<u>做条件的概率</u>的所在集
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlnqr41w2j31f20jiaj3.jpg" style="zoom:40%;" />
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlnppukfmj315w0imaha.jpg" style="zoom:50%;" />
+
+
+
+## 9.
