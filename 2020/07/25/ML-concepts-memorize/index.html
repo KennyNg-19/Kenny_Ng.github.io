@@ -435,6 +435,18 @@
                                 <span class="chip bg-color">ML</span>
                             </a>
                         
+                            <a href="/Kenny_Ng.github.io/tags/math/">
+                                <span class="chip bg-color">math</span>
+                            </a>
+                        
+                            <a href="/Kenny_Ng.github.io/tags/%E6%A6%82%E7%8E%87/">
+                                <span class="chip bg-color">概率</span>
+                            </a>
+                        
+                            <a href="/Kenny_Ng.github.io/tags/%E7%BB%9F%E8%AE%A1/">
+                                <span class="chip bg-color">统计</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -454,21 +466,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2020-07-28
+                    2020-08-10
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.5k
+                    1.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    5 Min
+                    6 Min
                 </div>
                 
 
@@ -483,16 +495,16 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="ML-DL中的常见知识、易错点和一般性结论"><a href="#ML-DL中的常见知识、易错点和一般性结论" class="headerlink" title="ML, DL中的常见知识、易错点和一般性结论"></a>ML, DL中的常见知识、易错点和一般性结论</h1><h2 id="1-均值化？归一化？傻傻分不清"><a href="#1-均值化？归一化？傻傻分不清" class="headerlink" title="1. 均值化？归一化？傻傻分不清"></a>1. 均值化？归一化？傻傻分不清</h2><p>“标准化”和”归一化”这两个中文词要指代四种Feature scaling(特征缩放)方法, 实质是一种线性变换: 对向量 <img src="https://www.zhihu.com/equation?tex=X" alt="[公式]">)<strong>按照比例压缩</strong><img src="https://www.zhihu.com/equation?tex=%5Calpha" alt="[公式]"><strong>再进行平移</strong>。线性变换有很多良好的性质，这些性质<strong>决定了对数据改变后<u>不会造成“失效”，反而能提高数据的表现</u></strong>，这些性质是归一化/标准化的前提, 详情见<a href="https://www.zhihu.com/question/20455227/answer/370658612" target="_blank" rel="noopener">特征工程中的「归一化」有什么作用？- 知乎</a> 。</p>
+                <h1 id="ML-数学-中的常见混淆-易错点和一般性结论"><a href="#ML-数学-中的常见混淆-易错点和一般性结论" class="headerlink" title="ML(数学)中的常见混淆, 易错点和一般性结论"></a>ML(数学)中的常见混淆, 易错点和一般性结论</h1><h2 id="1-均值化？归一化？傻傻分不清"><a href="#1-均值化？归一化？傻傻分不清" class="headerlink" title="1. 均值化？归一化？傻傻分不清"></a>1. 均值化？归一化？傻傻分不清</h2><p>“标准化”和”归一化”这两个中文词要指代四种Feature scaling(特征缩放)方法, 实质是<font color="#dd0000"><strong>一种线性变换</strong>: <strong>对向量 X 按照比例α压缩, 再进行平移</strong></font>。线性变换有很多良好的性质，这些性质<strong>决定了对数据改变后<u>不会造成“失效”，反而能提高数据的表现</u></strong>，这些性质是归一化/标准化的前提, 详情见<a href="https://www.zhihu.com/question/20455227/answer/370658612" target="_blank" rel="noopener">特征工程中的「归一化」有什么作用？- 知乎</a> 。</p>
 <p>这四种分别是 </p>
 <ol>
-<li><p><strong>归一化</strong> Rescaling (<strong>min-max normalization</strong>)  ，<img src="https://www.zhihu.com/equation?tex=x%5E%7B%27%7D+%3D+%5Cfrac%7Bx-min%28x%29%7D%7Bmax%28x%29-min%28x%29%7D" alt="[公式]"> </p>
+<li><p><strong>归一化</strong> Rescaling (<strong>min-max normalization</strong>)  ，<img src="https://www.zhihu.com/equation?tex=x%5E%7B%27%7D+%3D+%5Cfrac%7Bx-min%28x%29%7D%7Bmax%28x%29-min%28x%29%7D" alt="[归一化]"> </p>
 </li>
-<li><p><strong>均值归一化</strong> mean normalization  <img src="https://www.zhihu.com/equation?tex=x%5E%7B%27%7D+%3D+%5Cfrac%7Bx-mean%28x%29%7D%7Bmax%28x%29-min%28x%29%7D+" alt="[公式]"> </p>
+<li><p><strong>均值归一化</strong> mean normalization  <img src="https://www.zhihu.com/equation?tex=x%5E%7B%27%7D+%3D+%5Cfrac%7Bx-mean%28x%29%7D%7Bmax%28x%29-min%28x%29%7D+" alt="[均值归一化]"> </p>
 <p>归一化性质总结：把数据变成(0,1)或者（1,1）之间的小数。主要是为了数据处理方便提出来的，把数据映射到0～1<strong>范围</strong>之内处理，更加便捷快速</p>
 <p>目的关键词：归一化的缩放，顾名思义，”归一”——<strong>“拍扁”压缩到<font color="#dd0000">区间</font>（仅由极值决定）</strong></p>
 </li>
-<li><p><strong>标准化 Standardization</strong>(<strong><u>Z-score</u> normalization</strong>)  <img src="https://www.zhihu.com/equation?tex=+x%5E%7B%27%7D+%3D+%5Cfrac%7Bx-mean%28x%29%7D%7B%5Csigma%7D" alt="[公式]"> </p>
+<li><p><strong>标准化 Standardization</strong>(<strong><u>Z-score</u> normalization</strong>)  <img src="https://www.zhihu.com/equation?tex=+x%5E%7B%27%7D+%3D+%5Cfrac%7Bx-mean%28x%29%7D%7B%5Csigma%7D" alt="[标准化]"> </p>
 <p>标准化总结：<strong>能伸能缩</strong>，当数据较为集中时， <img src="https://www.zhihu.com/equation?tex=%5Calpha" alt="[公式]"> 更小，于是数据在标准化后就会<strong>更加分散</strong>。如果数据本身分布很广，那么 <img src="https://www.zhihu.com/equation?tex=%5Calpha" alt="[公式]"> 较大，数据就会被<strong>更加集中</strong>，到更小的范围内。</p>
 <p>目的关键词：标准化的缩放<strong>是更加“弹性”和“动态”的能伸能缩，和<font color="#dd0000">整体样本的分布</font>有很大的关系，每个点都在贡献缩放，通过方差（variance）体现出来</strong>。</p>
 <p>补充说明：</p>
@@ -528,7 +540,7 @@
 </li>
 </ol>
 <h2 id="3-训练的目的是输出最佳参数"><a href="#3-训练的目的是输出最佳参数" class="headerlink" title="3. 训练的目的是输出最佳参数"></a>3. 训练的目的是输出最佳参数</h2><p>用训练数据的训练过程，根本目的是<strong>输出最佳的参数(即带着该参数的hypothesis)，而非<u>最低的错误率——错误率只是判定的指标</u></strong>。所以相应的<strong>简化训练过程/提高效率的技巧</strong>，如PCA降维，只能用在训练集(但因为用了PCA，同一个数据降维的mapping, Ureduce 也需要对验证/测试集，使用！)</p>
-<h2 id="4-无监督学习的所有输入数据都是unlabeled"><a href="#4-无监督学习的所有输入数据都是unlabeled" class="headerlink" title="4. 无监督学习的所有输入数据都是unlabeled?"></a>4. 无监督学习的所有输入数据都是unlabeled?</h2><p>无监督学习，只是说 模型<strong>上线后，用于实际业务</strong>时，输入数据是unlabeled——在模型<strong>训练/验证/测试</strong>过程中，<strong>也是要求</strong>最优参数的(如，异常检测的异常阈值)，当然<strong>可以使用labeled data</strong></p>
+<h2 id="4-无监督学习的所有输入数据都是unlabeled"><a href="#4-无监督学习的所有输入数据都是unlabeled" class="headerlink" title="4. 无监督学习的所有输入数据都是unlabeled?"></a>4. 无监督学习的所有输入数据<u>都是unlabeled</u>?</h2><p>无监督学习，只是说 模型<strong>上线后，用于实际业务</strong>时，输入数据是unlabeled——在模型<strong>训练/验证/测试</strong>过程中，<strong>也是要求</strong>最优参数的(如，异常检测的异常阈值)，当然<strong>可以使用labeled data</strong></p>
 <h2 id="5-数据增强器对于不同数据集"><a href="#5-数据增强器对于不同数据集" class="headerlink" title="5. 数据增强器对于不同数据集"></a>5. 数据增强<u>器</u>对于<u>不同数据集</u></h2><p>已知给training set构造了ImageDataGenerator,  我们应该构造a <u><strong>separate</strong></u> generator for <strong>valid and test sets</strong></p>
 <h3 id="Why用构造不同的generator"><a href="#Why用构造不同的generator" class="headerlink" title="Why用构造不同的generator?"></a>Why用构造不同的generator?</h3><p><strong>Why can’t we use the same generator as for the training data?</strong></p>
 <p>Look back at the generator we wrote for the training data.</p>
@@ -550,7 +562,30 @@
 </ul>
 <h2 id="6-ml理论中常见的超平面概念"><a href="#6-ml理论中常见的超平面概念" class="headerlink" title="6. ml理论中常见的超平面概念"></a>6. ml理论中常见的超平面概念</h2><p>超平面一般化的广义叫法：</p>
 <p>超平面是【分解平面】的一般化：<br>    ▪    在一维的平面中，它是点 <br>    ▪    在二维的平面中，它是线 <br>    ▪    在三维的平面中，它是面 <br>    ▪    <strong>在更高的维度中，我们称之为超平面</strong> <br>所以，<strong>广义上</strong>，1D直线、2D平面，都可叫超平面</p>
+<h2 id="7-区分向量的点积-内积-、叉积-外积"><a href="#7-区分向量的点积-内积-、叉积-外积" class="headerlink" title="7. 区分向量的点积(内积)、叉积(外积)"></a>7. 区分向量的点积(内积)、叉积(外积)</h2><h3 id="a-点积-内积-结果是数-标量"><a href="#a-点积-内积-结果是数-标量" class="headerlink" title="a. 点积(内积): 结果是数(标量)"></a>a. 点积(内积): 结果是数(标量)</h3><p>向量的点乘,也叫向量的内积、数量积，对两个向量执行点乘运算，就是对这两个向量对应位一一相乘之后求和的操作，点乘的结果是一个标量。</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>对于向量a和向量b，要求一维向量a和向量b的<strong>行列数相同</strong>，点积公式为：</p>
+<p><img src="https://img-blog.csdn.net/20160902214456788" alt="img"></p>
+<p>可以看出，计算结果是个标量！</p>
+<h4 id="实现：numpy-dot"><a href="#实现：numpy-dot" class="headerlink" title="实现：numpy.dot"></a>实现：numpy.dot</h4><h4 id="几何意义"><a href="#几何意义" class="headerlink" title="几何意义"></a><a href="https://blog.csdn.net/dcrmg/article/details/52416832" target="_blank" rel="noopener">几何意义</a></h4><h3 id="b-叉积-外积-类似矩阵乘法"><a href="#b-叉积-外积-类似矩阵乘法" class="headerlink" title="b. 叉积(外积): 类似矩阵乘法"></a>b. 叉积(外积): 类似矩阵乘法</h3><p>两个向量的叉乘，又叫向量积、外积、叉积，叉乘的运算结果<strong>是一个向量</strong>而不是一个标量。并且两个向量的叉积<strong>与这两个向量组成的坐标平面垂直</strong>。</p>
+<p>对于向量a和向量b，叉乘公式为：</p>
+<img src="https://img-blog.csdn.net/20160902230539163" style="zoom:75%;" />
 
+<img src="https://img-blog.csdn.net/20160902231520146" style="zoom:75%;" />
+
+<h4 id="几何意义-1"><a href="#几何意义-1" class="headerlink" title="几何意义"></a><a href="https://blog.csdn.net/dcrmg/article/details/52416832" target="_blank" rel="noopener">几何意义</a></h4><h3 id="顺带一提：np-array的-×÷"><a href="#顺带一提：np-array的-×÷" class="headerlink" title="顺带一提：np.array的+-×÷"></a>顺带一提：np.array的+-×÷</h3><p>和上面两个情况都不同：单纯的<strong>对位操作</strong>，但不像点积——不相加</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghh5wqiu4cj30m607241f.jpg" alt="image-20200806161715565"></p>
+<p>也自然要求：<del>一维向量</del>array a和b的<strong><del>行列数</del><u>维度</u>相同</strong></p>
+<h2 id="8-条件概率和交集概率的区分"><a href="#8-条件概率和交集概率的区分" class="headerlink" title="8. 条件概率和交集概率的区分"></a>8. 条件概率和交集概率的区分</h2><h3 id="交集概率-分母是全集-所以默认忽略"><a href="#交集概率-分母是全集-所以默认忽略" class="headerlink" title="交集概率: 分母是全集(所以默认忽略)"></a>交集概率: 分母是<u>全集</u>(所以默认忽略)</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlntiq7ocj31dq0kak1t.jpg" alt="image-20200810133913444" style="zoom:40%;" />
+
+
+
+<h3 id="条件概率-分母是做条件的那个概率的所在集"><a href="#条件概率-分母是做条件的那个概率的所在集" class="headerlink" title="条件概率: 分母是做条件的那个概率的所在集"></a>条件概率: 分母是<u>做条件的那个概率</u>的所在集</h3><h4 id="分子用了交集概率，分母是做条件的概率的所在集"><a href="#分子用了交集概率，分母是做条件的概率的所在集" class="headerlink" title="分子用了交集概率，分母是做条件的概率的所在集"></a>分子用了交集概率，分母是<u>做条件的概率</u>的所在集</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlnqr41w2j31f20jiaj3.jpg" alt="image-20200810133625342" style="zoom:40%;" />
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlnppukfmj315w0imaha.jpg" alt="image-20200810133533818" style="zoom:50%;" />
+
+
+
+<h2 id="9"><a href="#9" class="headerlink" title="9."></a>9.</h2>
             </div>
             <hr/>
 
@@ -615,6 +650,18 @@
                             
                                 <a href="/Kenny_Ng.github.io/tags/ML/">
                                     <span class="chip bg-color">ML</span>
+                                </a>
+                            
+                                <a href="/Kenny_Ng.github.io/tags/math/">
+                                    <span class="chip bg-color">math</span>
+                                </a>
+                            
+                                <a href="/Kenny_Ng.github.io/tags/%E6%A6%82%E7%8E%87/">
+                                    <span class="chip bg-color">概率</span>
+                                </a>
+                            
+                                <a href="/Kenny_Ng.github.io/tags/%E7%BB%9F%E8%AE%A1/">
+                                    <span class="chip bg-color">统计</span>
                                 </a>
                             
                         </div>
@@ -863,7 +910,7 @@ a. 训练数据分布-Class imbalance问题如 实际在收集要拿來做DL的�
 3. 习惯：言简意赅
 4. 理论vs实践
 
-5.
+5. 关于出身时机~
                         
                     </div>
                     <div class="publish-info">
