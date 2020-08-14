@@ -262,9 +262,13 @@ Quirk： 人类语言中的 带有sarcasm irony讽刺、euphemism委婉等色彩
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghmxqfa2p7j31fo0he4ab.jpg" alt="这种反义，属于adversarial" style="zoom:33%;" />
 
+------
 
 
-# 2. Vector Space 向量空间模型
+
+# 2. Word Vector 和 Vector Space入门
+
+词向量，向量空间模型
 
 ## Why vector space? 形式和应用
 
@@ -308,7 +312,7 @@ Vector space models will
 
 
 
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghmz1fgbtgj31ea0f8n6b.jpg" alt="若词出现在k距离内次数越频繁，则这组词越相关" style="zoom:43%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghmz1fgbtgj31ea0f8n6b.jpg" alt="若词出现在k距离内次数越频繁，则这组词越相关" style="zoom:33%;" />
 
 
 
@@ -316,7 +320,7 @@ Vector space models will
 
 
 
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghnzcssgqnj313s0kgdqr.jpg" alt="在doc库的各种类，出现的频率" style="zoom:43%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghnzcssgqnj313s0kgdqr.jpg" alt="在doc库的各种类，出现的频率" style="zoom:33%;" />
 
 
 
@@ -328,17 +332,17 @@ Vector space models will
 
 
 
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghnzi90xuuj31ei0ligyp.jpg" style="zoom:40%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghnzi90xuuj31ei0ligyp.jpg" style="zoom:30%;" />
 
 
 
-#### vector space的应用：挖掘词之间潜在的关系by相似性
+#### vector space的应用：挖掘word analogies
 
 **infer unknown relations** among words
 
 
 
-##### 如通过已知的关系，推导出，<u>相似的但未知的关系</u>
+##### 如通过词已知的关系，推导出，<u>词之间相似但未知的关系</u>
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gho0me9qq5j30zy0jgwn9.jpg" alt="推测未知的首都" style="zoom:33%;" />
 
@@ -387,4 +391,178 @@ Generalize到更高维的
  
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gho07dveoxj31fe0hwn4x.jpg" alt="0-90°的夹角，也对相似度有影响" style="zoom:33%;" />
+
+
+
+### <font color="#dd0000">word embeddings 词嵌入</font>(向量)
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghp2rgex4zj31p005mwh8.jpg" alt="word represents by vector" style="zoom:53%;" />
+
+....
+
+
+
+------
+
+### PCA: 高纬数据的降维
+
+a **statistical technique**
+
+#### 目的: 方便可视化
+
+##### 降维到2D方便可视化，来找关系
+
+**Word embeaddings** end up having **vectors in very, very high dimensions**.
+
+
+
+PCA：a way to **reduce the dimension of these vectors to two dimensions so you can plot it on an X-Y axis, 2D plot.** 
+
+helpful for <u>**visualizing**</u> your data to check if your representation is **<u>capturing relationships</u> among words**
+
+![](https://tva1.sinaimg.cn/large/007S8ZIlly1ghp7blx33uj31po092adg.jpg)
+
+
+
+#### 步骤
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gho4f0u4nrj31hu0j2drh.jpg" style="zoom:33%;" />
+
+
+
+需要：向量的**特征值和特征向量**
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gho6suirinj317u074goy.jpg" style="zoom:33%;" />
+
+
+
+为什么要不相关的feature? 因为**自然语言文本总是上下文相关的**，所以feature之间总有一定相关性，
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gho6ula7l9j31io0ne12y.jpg" alt="Step1 生成uncorrelated features" style="zoom:33%;" />
+
+注：PCA works better **if the data is <u>centered</u>**
+
+
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gho6veh9o8j31cu0guwo4.jpg" alt="Step2 通过和特征向量的点积，求出压缩后的向量" style="zoom:33%;" />
+
+------
+
+
+
+# 3. 词向量Task: 机器翻译和相似doc搜索
+
+## 
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghp8c3q9suj31bw0h2n5y.jpg" alt="相关知识" style="zoom:50%;" />
+
+
+
+## Task: 翻译
+
+[一种实现：维特比算法](https://kennyng-19.github.io/Kenny_Ng.github.io/2020/01/29/NLP-intro/#1-case-%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91)
+
+
+
+另一种实现：**已知两种语言的word embeddings**，通过**寻找<u>transform matrix</u>**，找到转换后 **目标语言中最相似的word vector**——我们称该过程为**"align word vectors"**
+
+
+
+#### Step1: Transfor vector by <u>matrix</u>
+
+find **a transformation matrix** from English to French vector space embeddings. 
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghp9x50omjj31e40hadnt.jpg" alt ="align word vectors" style="zoom:33%;" />
+
+
+
+Such a transformation matrix is **a matrix that <font color="#dd0000">rotates and scales vector spaces</font>**——回忆《**线性代数的本质**》
+
+#### **然后怎么计算该矩阵呢？还是优化问题**
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghpa0ho7c8j30ya0gk78h.jpg" alt="还是梯度下降，这不过这次是矩阵的" style="zoom:50%;" />
+
+
+
+#### 补充notation-Frobenius范数: 即矩阵元素的平方和的开方
+
+F范数是**针对矩阵而言**的，具体定义可以**类比向量的L2范数**
+
+<img src="https://pic3.zhimg.com/80/ded8e501d6d54eaf3d218491423380df_1440w.jpg?source=1940ef5c" alt="F范数" style="zoom:80%;" />
+
+当然在ML中，为了简化计算(因为范数只是用于**<u>最优化</u>**)，可以**不开方而是保留平方**
+
+
+
+所以保留开方后，Loss函数最终形式为：
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghpa22ro8jj30z00b876y.jpg" alt="Loss函数最终形式" style="zoom:33%;" />
+
+
+
+
+
+##### 拓展，3 main vector transformations的几何意义
+
+(更多，请回忆《**线性代数的本质**》)
+
+- Scaling
+- Translatio
+- Rotation
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghp9qtx6x8j313f0u0dr9.jpg" alt="关于施加rotation矩阵的结论" style="zoom:50%;" />
+
+
+
+#### Step 2: 寻找最相似的<u>几个</u>翻译结果by <u>KNN</u>
+
+因为word embedding空间不一定有，和matrix转换的**结果数值一模一样的词向量**，且存在<u>近义词</u>——所以一般是会输出**几个最近似**的词向量，供选择。这里会用到KNN算法
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghpa5okk64j314g0fm0zw.jpg" style="zoom:30%;" />
+
+#### 改进版 fast KNN
+
+##### 启发思路：划分区域
+
+**slice the space <u>into regions</u>**: you could **search just <u>within</u> those regions**. When you think about organizing subsets of a dataset efficiently, you may think about placing your data **into <u>buckets</u>**
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqbl9ocp8j31220jywwe.jpg" alt="image-20200814142356266" style="zoom:33%;" />
+
+
+
+If you think about buckets, then you'll definitely want to think about <font color="#dd0000">**<u>hash tables</u>**</font>.
+
+
+
+##### 提升KNN效率：**Locality Sensitive Hashing**——a hash function to be locality sensitive
+
+定义：把vector根据在**vector space中的距离足够近**的**分到一起**，的Hashing方法
+
+> Locality is another word for location, sensitive is another word for caring 
+
+So locality sensitive hashing is a **hashing method** that's **cares very deeply about assigning items based on where they're <u>located in vector space</u>**.
+
+
+
+
+
+
+
+## Task: 相似doc搜索
+
+![image-20200813154308294](https://tva1.sinaimg.cn/large/007S8ZIlly1ghp89bzp7ej31e00bgq9h.jpg)
+
+同理用fast KNN
+
+
+
+虽然doc的表示和word的vector表示不完全相同，但doc也是word组成——可以用word embedding中存在的word vector值的**累加**，表示
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqhe1yls3j30zy0my7ai.jpg" alt="累加word vector的embedding值" style="zoom:33%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqhihbgq4j310k0gw4br.jpg" alt="拆分doc成word, 用embedding中存在的word vector累加" style="zoom:33%;" />
+
+有了所有doc的vector，剩下的寻找**近似目标**，就和上述KNN过程一样了...
 

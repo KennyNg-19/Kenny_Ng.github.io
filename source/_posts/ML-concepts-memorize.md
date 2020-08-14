@@ -14,9 +14,15 @@ tags: [ML, math, 概率, 统计]
 
 1.  **归一化** Rescaling (**min-max normalization**)  ，![[归一化]](https://www.zhihu.com/equation?tex=x%5E%7B%27%7D+%3D+%5Cfrac%7Bx-min%28x%29%7D%7Bmax%28x%29-min%28x%29%7D) 
 
-2.  **均值归一化** mean normalization  ![[均值归一化]](https://www.zhihu.com/equation?tex=x%5E%7B%27%7D+%3D+%5Cfrac%7Bx-mean%28x%29%7D%7Bmax%28x%29-min%28x%29%7D+) 
+2. **均值归一化** mean normalization  ![[均值归一化]](https://www.zhihu.com/equation?tex=x%5E%7B%27%7D+%3D+%5Cfrac%7Bx-mean%28x%29%7D%7Bmax%28x%29-min%28x%29%7D+) 
+
+   先说**x - mean**：这叫**centralize中心化**。因为 sum = mean * N, 而处理是每一项减去mean就是总共减去了mean * N，这样可以保证**处理后的sum为0**！
+
+   
 
    归一化性质总结：把数据变成(0,1)或者（1,1）之间的小数。主要是为了数据处理方便提出来的，把数据映射到0～1**范围**之内处理，更加便捷快速
+
+   
 
    目的关键词：归一化的缩放，顾名思义，"归一"——**“拍扁”压缩到<font color="#dd0000">区间</font>（仅由极值决定）**
 
@@ -111,11 +117,31 @@ There is one technical note.
 超平面一般化的广义叫法：
 
 超平面是【分解平面】的一般化：
-	▪	在一维的平面中，它是点 
-	▪	在二维的平面中，它是线 
-	▪	在三维的平面中，它是面 
-	▪	**在更高的维度中，我们称之为超平面** 
-所以，**广义上**，1D直线、2D平面，都可叫超平面
+
+- 在一维的平面中，它是点 
+
+- 在二维的平面中，它是线 
+
+  - <font color="#dd0000">**为什么**</font>是平面？因为**normal vector法向量和plane是一一对应的**，等价！而实际正是normal vector在分割
+
+    A plane would be this magenta line into two-dimensional space, and it **actually represents all the possible vectors that would be sitting on that line(之后都用plane).** In other words, they would be parallel to the plane, such as this blue vector or this orange vector. 
+
+    You can define a plane with a single vector. This magenta vector is **perpendicular to the plane**, and it's called the **<u>normal vector</u> to that plane**. So normal vector is perpendicular to **any vectors that lie on the plane**. 
+
+    <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqf03pey5j30ui0ki0vw.jpg" style="zoom:33%;" />
+
+    - 关于分割：实际就是normal vector在发挥作用（而该vector对应它所垂直的plane！)
+
+      如何在数学上而不是几何视觉上，计算分割的结果we are able to see **visually** when the vector is **on one side of the plane** or the other, but how do you **do this <u>mathematically</u>**?  把目标向量和normal vector，**做dot product**，正负号表明在同侧/异侧——实际是**俩向量，夹角的cos**在决定！！
+
+      <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqf6a99ekj31d60ig7c3.jpg" alt="2Dplane，数学上是这样起到“分割”作用的" style="zoom:43%;" />
+
+- 在三维的平面中，它是面 
+
+- ...
+
+- 在更高的维度中，我们称之为超平面** 
+  所以，**广义上**，1D直线、2D平面，都可叫超平面
 
 
 
@@ -123,7 +149,7 @@ There is one technical note.
 
 ### a. 点积(内积): 结果是数(标量)
 
-向量的点乘,也叫向量的内积、数量积，对两个向量执行点乘运算，就是对这两个向量对应位一一相乘之后求和的操作，点乘的结果是一个标量。
+向量的点乘,也叫向量的内积、数量积，对两个向量执行点乘运算，就是对这两个向量对位①**一一相乘**之后 ②**再求和**的操作，点乘的结果是一个标量。
 
 ### 
 
@@ -139,7 +165,13 @@ There is one technical note.
 
 
 
-#### 实现：numpy.dot
+#### 实现：numpy.dot 
+
+注：虽然数学公式很清楚，但该np.dot要求了2个输入向量的维度，同**矩阵乘法**一样：**第一个v的行数 = 第二个v的列数**。
+
+如：2个等长的向量v1, v2相乘——写成np.dot(v1, v2**.T**)
+
+
 
 #### [几何意义](https://blog.csdn.net/dcrmg/article/details/52416832)
 
@@ -163,7 +195,9 @@ There is one technical note.
 
 ### 顺带一提：np.array的+-×÷
 
-和上面两个情况都不同：单纯的**对位操作**，但不像点积——不相加
+> The product operator * when used on arrays or matrices indicates **element-wise** multiplications.
+
+**四则运算符号**，都是单纯的**element-wise的对位操作**，不像点积——不相加
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghh5wqiu4cj30m607241f.jpg" style="zoom:43%;" />
 
@@ -189,4 +223,6 @@ There is one technical note.
 
 
 
-## 9.
+## 9. np.array的转置: 至少是2D
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gho372sm9hj31f70u079y.jpg" style="zoom:40%;" />
