@@ -466,21 +466,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2020-08-10
+                    2020-08-14
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.8k
+                    2.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    6 Min
+                    8 Min
                 </div>
                 
 
@@ -501,9 +501,12 @@
 <li><p><strong>归一化</strong> Rescaling (<strong>min-max normalization</strong>)  ，<img src="https://www.zhihu.com/equation?tex=x%5E%7B%27%7D+%3D+%5Cfrac%7Bx-min%28x%29%7D%7Bmax%28x%29-min%28x%29%7D" alt="[归一化]"> </p>
 </li>
 <li><p><strong>均值归一化</strong> mean normalization  <img src="https://www.zhihu.com/equation?tex=x%5E%7B%27%7D+%3D+%5Cfrac%7Bx-mean%28x%29%7D%7Bmax%28x%29-min%28x%29%7D+" alt="[均值归一化]"> </p>
-<p>归一化性质总结：把数据变成(0,1)或者（1,1）之间的小数。主要是为了数据处理方便提出来的，把数据映射到0～1<strong>范围</strong>之内处理，更加便捷快速</p>
-<p>目的关键词：归一化的缩放，顾名思义，”归一”——<strong>“拍扁”压缩到<font color="#dd0000">区间</font>（仅由极值决定）</strong></p>
+<p>先说<strong>x - mean</strong>：这叫<strong>centralize中心化</strong>。因为 sum = mean * N, 而处理是每一项减去mean就是总共减去了mean * N，这样可以保证<strong>处理后的sum为0</strong>！</p>
 </li>
+</ol>
+<p>   归一化性质总结：把数据变成(0,1)或者（1,1）之间的小数。主要是为了数据处理方便提出来的，把数据映射到0～1<strong>范围</strong>之内处理，更加便捷快速</p>
+<p>   目的关键词：归一化的缩放，顾名思义，”归一”——<strong>“拍扁”压缩到<font color="#dd0000">区间</font>（仅由极值决定）</strong></p>
+<ol start="3">
 <li><p><strong>标准化 Standardization</strong>(<strong><u>Z-score</u> normalization</strong>)  <img src="https://www.zhihu.com/equation?tex=+x%5E%7B%27%7D+%3D+%5Cfrac%7Bx-mean%28x%29%7D%7B%5Csigma%7D" alt="[标准化]"> </p>
 <p>标准化总结：<strong>能伸能缩</strong>，当数据较为集中时， α更小，于是数据在标准化后就会<strong>更加分散</strong>。如果数据本身分布很广，那么 α 较大，数据就会被<strong>更加集中</strong>，到更小的范围内。</p>
 <p>目的关键词：标准化的缩放<strong>是更加“弹性”和“动态”的能伸能缩，和<font color="#dd0000">整体样本的分布</font>有很大的关系，每个点都在贡献缩放，通过方差（variance）体现出来</strong>。</p>
@@ -561,18 +564,49 @@
 </li>
 </ul>
 <h2 id="6-ml理论中常见的超平面概念"><a href="#6-ml理论中常见的超平面概念" class="headerlink" title="6. ml理论中常见的超平面概念"></a>6. ml理论中常见的超平面概念</h2><p>超平面一般化的广义叫法：</p>
-<p>超平面是【分解平面】的一般化：<br>    ▪    在一维的平面中，它是点 <br>    ▪    在二维的平面中，它是线 <br>    ▪    在三维的平面中，它是面 <br>    ▪    <strong>在更高的维度中，我们称之为超平面</strong> <br>所以，<strong>广义上</strong>，1D直线、2D平面，都可叫超平面</p>
-<h2 id="7-区分向量的点积-内积-、叉积-外积"><a href="#7-区分向量的点积-内积-、叉积-外积" class="headerlink" title="7. 区分向量的点积(内积)、叉积(外积)"></a>7. 区分向量的点积(内积)、叉积(外积)</h2><h3 id="a-点积-内积-结果是数-标量"><a href="#a-点积-内积-结果是数-标量" class="headerlink" title="a. 点积(内积): 结果是数(标量)"></a>a. 点积(内积): 结果是数(标量)</h3><p>向量的点乘,也叫向量的内积、数量积，对两个向量执行点乘运算，就是对这两个向量对应位一一相乘之后求和的操作，点乘的结果是一个标量。</p>
+<p>超平面是【分解平面】的一般化：</p>
+<ul>
+<li><p>在一维的平面中，它是点 </p>
+</li>
+<li><p>在二维的平面中，它是线 </p>
+<ul>
+<li><p><font color="#dd0000"><strong>为什么</strong></font>是平面？因为<strong>normal vector法向量和plane是一一对应的</strong>，等价！而实际正是normal vector在分割</p>
+<p>A plane would be this magenta line into two-dimensional space, and it <strong>actually represents all the possible vectors that would be sitting on that line(之后都用plane).</strong> In other words, they would be parallel to the plane, such as this blue vector or this orange vector. </p>
+<p>You can define a plane with a single vector. This magenta vector is <strong>perpendicular to the plane</strong>, and it’s called the <strong><u>normal vector</u> to that plane</strong>. So normal vector is perpendicular to <strong>any vectors that lie on the plane</strong>. </p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqf03pey5j30ui0ki0vw.jpg" style="zoom:33%;" />
+
+<ul>
+<li><p>关于分割：实际就是normal vector在发挥作用（而该vector对应它所垂直的plane！)</p>
+<p>如何在数学上而不是几何视觉上，计算分割的结果we are able to see <strong>visually</strong> when the vector is <strong>on one side of the plane</strong> or the other, but how do you <strong>do this <u>mathematically</u></strong>?  把目标向量和normal vector，<strong>做dot product</strong>，正负号表明在同侧/异侧——实际是<strong>俩向量，夹角的cos</strong>在决定！！</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqf6a99ekj31d60ig7c3.jpg" alt="2Dplane，数学上是这样起到“分割”作用的" style="zoom:43%;" />
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>在三维的平面中，它是面 </p>
+</li>
+<li><p>…</p>
+</li>
+<li><p>在更高的维度中，我们称之为超平面** <br>所以，<strong>广义上</strong>，1D直线、2D平面，都可叫超平面</p>
+</li>
+</ul>
+<h2 id="7-区分向量的点积-内积-、叉积-外积"><a href="#7-区分向量的点积-内积-、叉积-外积" class="headerlink" title="7. 区分向量的点积(内积)、叉积(外积)"></a>7. 区分向量的点积(内积)、叉积(外积)</h2><h3 id="a-点积-内积-结果是数-标量"><a href="#a-点积-内积-结果是数-标量" class="headerlink" title="a. 点积(内积): 结果是数(标量)"></a>a. 点积(内积): 结果是数(标量)</h3><p>向量的点乘,也叫向量的内积、数量积，对两个向量执行点乘运算，就是对这两个向量对位①<strong>一一相乘</strong>之后 ②<strong>再求和</strong>的操作，点乘的结果是一个标量。</p>
 <h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>对于向量a和向量b，要求一维向量a和向量b的<strong>行列数相同</strong>，点积公式为：</p>
 <p><img src="https://img-blog.csdn.net/20160902214456788" alt="img"></p>
 <p>可以看出，计算结果是个标量！</p>
-<h4 id="实现：numpy-dot"><a href="#实现：numpy-dot" class="headerlink" title="实现：numpy.dot"></a>实现：numpy.dot</h4><h4 id="几何意义"><a href="#几何意义" class="headerlink" title="几何意义"></a><a href="https://blog.csdn.net/dcrmg/article/details/52416832" target="_blank" rel="noopener">几何意义</a></h4><h3 id="b-叉积-外积-类似矩阵乘法"><a href="#b-叉积-外积-类似矩阵乘法" class="headerlink" title="b. 叉积(外积): 类似矩阵乘法"></a>b. 叉积(外积): 类似矩阵乘法</h3><p>两个向量的叉乘，又叫向量积、外积、叉积，叉乘的运算结果<strong>是一个向量</strong>而不是一个标量。并且两个向量的叉积<strong>与这两个向量组成的坐标平面垂直</strong>。</p>
+<h4 id="实现：numpy-dot"><a href="#实现：numpy-dot" class="headerlink" title="实现：numpy.dot"></a>实现：numpy.dot</h4><p>注：虽然数学公式很清楚，但该np.dot要求了2个输入向量的维度，同<strong>矩阵乘法</strong>一样：<strong>第一个v的行数 = 第二个v的列数</strong>。</p>
+<p>如：2个等长的向量v1, v2相乘——写成np.dot(v1, v2<strong>.T</strong>)</p>
+<h4 id="几何意义"><a href="#几何意义" class="headerlink" title="几何意义"></a><a href="https://blog.csdn.net/dcrmg/article/details/52416832" target="_blank" rel="noopener">几何意义</a></h4><h3 id="b-叉积-外积-类似矩阵乘法"><a href="#b-叉积-外积-类似矩阵乘法" class="headerlink" title="b. 叉积(外积): 类似矩阵乘法"></a>b. 叉积(外积): 类似矩阵乘法</h3><p>两个向量的叉乘，又叫向量积、外积、叉积，叉乘的运算结果<strong>是一个向量</strong>而不是一个标量。并且两个向量的叉积<strong>与这两个向量组成的坐标平面垂直</strong>。</p>
 <p>对于向量a和向量b，叉乘公式为：</p>
 <img src="https://img-blog.csdn.net/20160902230539163" style="zoom:75%;" />
 
 <img src="https://img-blog.csdn.net/20160902231520146" style="zoom:75%;" />
 
-<h4 id="几何意义-1"><a href="#几何意义-1" class="headerlink" title="几何意义"></a><a href="https://blog.csdn.net/dcrmg/article/details/52416832" target="_blank" rel="noopener">几何意义</a></h4><h3 id="顺带一提：np-array的-×÷"><a href="#顺带一提：np-array的-×÷" class="headerlink" title="顺带一提：np.array的+-×÷"></a>顺带一提：np.array的+-×÷</h3><p>和上面两个情况都不同：单纯的<strong>对位操作</strong>，但不像点积——不相加</p>
+<h4 id="几何意义-1"><a href="#几何意义-1" class="headerlink" title="几何意义"></a><a href="https://blog.csdn.net/dcrmg/article/details/52416832" target="_blank" rel="noopener">几何意义</a></h4><h3 id="顺带一提：np-array的-×÷"><a href="#顺带一提：np-array的-×÷" class="headerlink" title="顺带一提：np.array的+-×÷"></a>顺带一提：np.array的+-×÷</h3><blockquote>
+<p>The product operator * when used on arrays or matrices indicates <strong>element-wise</strong> multiplications.</p>
+</blockquote>
+<p><strong>四则运算符号</strong>，都是单纯的<strong>element-wise的对位操作</strong>，不像点积——不相加</p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghh5wqiu4cj30m607241f.jpg" style="zoom:43%;" />
 
 <p>也自然要求：<del>一维向量</del>array a和b的<strong><del>行列数</del><u>维度</u>相同</strong></p>
@@ -586,7 +620,7 @@
 
 
 
-<h2 id="9"><a href="#9" class="headerlink" title="9."></a>9.</h2>
+<h2 id="9-np-array的转置-至少是2D"><a href="#9-np-array的转置-至少是2D" class="headerlink" title="9. np.array的转置: 至少是2D"></a>9. np.array的转置: 至少是2D</h2><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gho372sm9hj31f70u079y.jpg" style="zoom:40%;" />
             </div>
             <hr/>
 
