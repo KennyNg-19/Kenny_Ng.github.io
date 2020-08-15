@@ -458,21 +458,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2020-08-14
+                    2020-08-15
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.3k
+                    2.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    10 Min
+                    11 Min
                 </div>
                 
 
@@ -746,18 +746,38 @@
 <h4 id="Step-2-寻找最相似的几个翻译结果by-KNN"><a href="#Step-2-寻找最相似的几个翻译结果by-KNN" class="headerlink" title="Step 2: 寻找最相似的几个翻译结果by KNN"></a>Step 2: 寻找最相似的<u>几个</u>翻译结果by <u>KNN</u></h4><p>因为word embedding空间不一定有，和matrix转换的<strong>结果数值一模一样的词向量</strong>，且存在<u>近义词</u>——所以一般是会输出<strong>几个最近似</strong>的词向量，供选择。这里会用到KNN算法</p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghpa5okk64j314g0fm0zw.jpg" style="zoom:30%;" />
 
-<h4 id="改进版-fast-KNN"><a href="#改进版-fast-KNN" class="headerlink" title="改进版 fast KNN"></a>改进版 fast KNN</h4><h5 id="启发思路：划分区域"><a href="#启发思路：划分区域" class="headerlink" title="启发思路：划分区域"></a>启发思路：划分区域</h5><p><strong>slice the space <u>into regions</u></strong>: you could <strong>search just <u>within</u> those regions</strong>. When you think about organizing subsets of a dataset efficiently, you may think about placing your data <strong>into <u>buckets</u></strong></p>
+<h4 id="改进版-faster-KNN"><a href="#改进版-faster-KNN" class="headerlink" title="改进版 faster KNN"></a>改进版 faster KNN</h4><h5 id="启发思路：划分区域"><a href="#启发思路：划分区域" class="headerlink" title="启发思路：划分区域"></a>启发思路：划分区域</h5><p><strong>slice the space <u>into regions</u></strong>: you could <strong>search just <u>within</u> those regions</strong>. When you think about organizing subsets of a dataset efficiently, you may think about placing your data <strong>into <u>buckets</u></strong></p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqbl9ocp8j31220jywwe.jpg" alt="image-20200814142356266" style="zoom:33%;" />
 
 
 
 <p>If you think about buckets, then you’ll definitely want to think about <font color="#dd0000"><strong><u>hash tables</u></strong></font>.</p>
-<h5 id="提升KNN效率：Locality-Sensitive-Hashing——a-hash-function-to-be-locality-sensitive"><a href="#提升KNN效率：Locality-Sensitive-Hashing——a-hash-function-to-be-locality-sensitive" class="headerlink" title="提升KNN效率：Locality Sensitive Hashing——a hash function to be locality sensitive"></a>提升KNN效率：<strong>Locality Sensitive Hashing</strong>——a hash function to be locality sensitive</h5><p>定义：把vector根据在<strong>vector space中的距离足够近</strong>的<strong>分到一起</strong>，的Hashing方法</p>
+<h5 id="提升KNN效率：Locality-Sensitive-Hashing"><a href="#提升KNN效率：Locality-Sensitive-Hashing" class="headerlink" title="提升KNN效率：Locality Sensitive Hashing"></a>提升KNN效率：Locality Sensitive Hashing</h5><p>本质还是 a <strong>hash function</strong>, to be locality sensitive</p>
+<p>定义：把vector根据在<strong>vector space中的距离足够近</strong>的<strong>分到一起</strong>，的Hashing方法</p>
 <blockquote>
 <p>Locality is another word for location, sensitive is another word for caring </p>
 </blockquote>
 <p>So locality sensitive hashing is a <strong>hashing method</strong> that’s <strong>cares very deeply about assigning items based on where they’re <u>located in vector space</u></strong>.</p>
-<h2 id="Task-相似doc搜索"><a href="#Task-相似doc搜索" class="headerlink" title="Task: 相似doc搜索"></a>Task: 相似doc搜索</h2><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghp89bzp7ej31e00bgq9h.jpg" alt="image-20200813154308294"></p>
+<h6 id="核心：Multiplanes-hash-functions"><a href="#核心：Multiplanes-hash-functions" class="headerlink" title="核心：Multiplanes hash functions"></a>核心：<u><strong>Multiplanes hash functions</strong></u></h6><blockquote>
+<p>In order to divide your vector space <strong>into <u>manageable</u> regions</strong>, you’ll want to use <strong><u>more than one plane</u></strong>. Based on the idea of <strong>numbering every single region</strong> that is <strong>formed by the <u>intersection of n planes</u>.</strong></p>
+</blockquote>
+<p><a href="https://kennyng-19.github.io/Kenny_Ng.github.io/2020/07/25/ML-concepts-memorize/#6-ml理论中常见的超平面概念" target="_blank" rel="noopener">思路</a>：每一个plane，实际就是定义一个<strong>法向量</strong></p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghrkcqi8smj313602kjsl.jpg" style="zoom:33%;" />
+
+<p>几何上，you have multiple planes and it helps us to divide the vector space into smaller sub regions. But you <strong>want to have a single hash value</strong> to know <strong>which bucket to assign the vectoring</strong>. You do this by <strong>combining the signals from all the planes</strong> into a single hash value.</p>
+<p>那么定义一组plane就等于一组法向量 output value is a <strong>combination of the side of the plane</strong> where the vector is localized with respect to the collection of planes.</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghrkdjszw6j30zu0lygq0.jpg" style="zoom:33%;" />
+
+
+
+<p>Locality Sensitive Hashing<strong>最终计算公式</strong>：看sign定boolean值h，再用2的幂次求和公式</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghrkhg1by3j312a0k0k0i.jpg" style="zoom:40%;" />
+
+
+
+<h6 id="注意-因为是随机生成的法向量-plane，请重复多次得到更合理的结果-make-sets-of-random-planes"><a href="#注意-因为是随机生成的法向量-plane，请重复多次得到更合理的结果-make-sets-of-random-planes" class="headerlink" title="注意: 因为是随机生成的法向量-plane，请重复多次得到更合理的结果 make sets of random planes"></a>注意: 因为是随机生成的法向量-plane，请重复多次得到更合理的结果 make sets of <strong>random planes</strong></h6><p>You will make <u>multiple</u> sets of <strong><u>random planes</u></strong> in order to make the approximate nearest neighbors <strong>more accurate.</strong></p>
+<h2 id="Task-相似doc搜索"><a href="#Task-相似doc搜索" class="headerlink" title="Task: 相似doc搜索"></a>Task: 相似doc搜索</h2><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghp89bzp7ej31e00bgq9h.jpg" style="zoom:33%;" />
+
 <p>同理用fast KNN</p>
 <p>虽然doc的表示和word的vector表示不完全相同，但doc也是word组成——可以用word embedding中存在的word vector值的<strong>累加</strong>，表示</p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqhe1yls3j30zy0my7ai.jpg" alt="累加word vector的embedding值" style="zoom:33%;" />
