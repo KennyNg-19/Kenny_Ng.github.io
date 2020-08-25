@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="DeepLearning.ai新课-NLP系列 要点, 池中之物">
+    <meta name="keywords" content="DeepLearning.ai新课-NLP-Course1, 池中之物">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>DeepLearning.ai新课-NLP系列 要点 | 池中之物</title>
+    <title>DeepLearning.ai新课-NLP-Course1 | 池中之物</title>
     <link rel="icon" type="image/png" href="/Kenny_Ng.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/Kenny_Ng.github.io/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/Kenny_Ng.github.io/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/Kenny_Ng.github.io/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">DeepLearning.ai新课-NLP系列 要点</h1>
+                    <h1 class="description center-align post-title">DeepLearning.ai新课-NLP-Course1</h1>
                 </div>
             </div>
         </div>
@@ -458,21 +458,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2020-08-15
+                    2020-08-16
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.5k
+                    2.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    11 Min
+                    12 Min
                 </div>
                 
 
@@ -746,16 +746,18 @@
 <h4 id="Step-2-寻找最相似的几个翻译结果by-KNN"><a href="#Step-2-寻找最相似的几个翻译结果by-KNN" class="headerlink" title="Step 2: 寻找最相似的几个翻译结果by KNN"></a>Step 2: 寻找最相似的<u>几个</u>翻译结果by <u>KNN</u></h4><p>因为word embedding空间不一定有，和matrix转换的<strong>结果数值一模一样的词向量</strong>，且存在<u>近义词</u>——所以一般是会输出<strong>几个最近似</strong>的词向量，供选择。这里会用到KNN算法</p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghpa5okk64j314g0fm0zw.jpg" style="zoom:30%;" />
 
-<h4 id="改进版-faster-KNN"><a href="#改进版-faster-KNN" class="headerlink" title="改进版 faster KNN"></a>改进版 faster KNN</h4><h5 id="启发思路：划分区域"><a href="#启发思路：划分区域" class="headerlink" title="启发思路：划分区域"></a>启发思路：划分区域</h5><p><strong>slice the space <u>into regions</u></strong>: you could <strong>search just <u>within</u> those regions</strong>. When you think about organizing subsets of a dataset efficiently, you may think about placing your data <strong>into <u>buckets</u></strong></p>
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqbl9ocp8j31220jywwe.jpg" alt="image-20200814142356266" style="zoom:33%;" />
+<h4 id="改进版-faster-approximate-KNN"><a href="#改进版-faster-approximate-KNN" class="headerlink" title="改进版 faster approximate KNN"></a>改进版 faster <u>approximate</u> KNN</h4><h5 id="启发思路：空间划分"><a href="#启发思路：空间划分" class="headerlink" title="启发思路：空间划分"></a>启发思路：空间划分</h5><p>(下图只是<strong>简单的2D空间</strong>) <strong>slice the space <u>into regions</u></strong>: you could <strong>search just <u>within</u> those regions</strong>. When you think about organizing subsets of a dataset efficiently, you may think about placing your data <strong>into <u>buckets</u></strong></p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqbl9ocp8j31220jywwe.jpg" style="zoom:33%;" />
 
 
 
 <p>If you think about buckets, then you’ll definitely want to think about <font color="#dd0000"><strong><u>hash tables</u></strong></font>.</p>
-<h5 id="提升KNN效率：Locality-Sensitive-Hashing"><a href="#提升KNN效率：Locality-Sensitive-Hashing" class="headerlink" title="提升KNN效率：Locality Sensitive Hashing"></a>提升KNN效率：Locality Sensitive Hashing</h5><p>本质还是 a <strong>hash function</strong>, to be locality sensitive</p>
-<p>定义：把vector根据在<strong>vector space中的距离足够近</strong>的<strong>分到一起</strong>，的Hashing方法</p>
+<h5 id="提升KNN，处理高维数据的效率：Locality-Sensitive-Hashing"><a href="#提升KNN，处理高维数据的效率：Locality-Sensitive-Hashing" class="headerlink" title="提升KNN，处理高维数据的效率：Locality Sensitive Hashing"></a>提升KNN，处理<u>高维数据</u>的效率：Locality Sensitive Hashing</h5><p>本质是 a <strong>hash function</strong>, to be locality sensitive; an <strong><a href="https://en.wikipedia.org/wiki/Locality-sensitive_hashing" target="_blank" rel="noopener">algorithmic technique</a></strong> that hashes <strong>similar input items into the same “buckets” with <u>high probability</u></strong>——所以说是一种<strong>近似法, “approximate”</strong></p>
+<p>白话定义：把vector根据在<strong>vector space中的距离足够近</strong>的<strong>分到一起</strong>，的Hashing方法</p>
 <blockquote>
 <p>Locality is another word for location, sensitive is another word for caring </p>
+<p>This is kNN in simple terms: You have a labelled dataset and now you are trying to label a new data point. Find the k nearest data points from your labelled dataset to the new point. The majority vote among the k nearest neighbors is the label of the new point. Add the new point and it’s label to your dataset</p>
+<p>One of the <strong>biggest problems with kNN 处理高维数据时</strong> is that <strong>常规的暴力法下，for each new data point, you have to calculate its distance from all existing points in your dataset.</strong> The LSH technique, differing from <a href="https://en.wikipedia.org/wiki/Hash_function" target="_blank" rel="noopener">conventional hashing techniques</a> in that hash collisions are maximized, not minimized,  can be seen as a way to <strong>reduce the dimensionality of high-dimensional data</strong>; high-dimensional input items can be <strong>reduced to low-dimensional versions while preserving <u>relative distances</u> between items</strong>. And this problem is what LSH is <strong>trying to solve</strong>.</p>
 </blockquote>
 <p>So locality sensitive hashing is a <strong>hashing method</strong> that’s <strong>cares very deeply about assigning items based on where they’re <u>located in vector space</u></strong>.</p>
 <h6 id="核心：Multiplanes-hash-functions"><a href="#核心：Multiplanes-hash-functions" class="headerlink" title="核心：Multiplanes hash functions"></a>核心：<u><strong>Multiplanes hash functions</strong></u></h6><blockquote>
@@ -1032,9 +1034,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="/Kenny_Ng.github.io/medias/featureimages/5.jpg" class="responsive-img" alt="DeepLearning.ai新课-NLP系列 要点">
+                        <img src="/Kenny_Ng.github.io/medias/featureimages/0.jpg" class="responsive-img" alt="DeepLearning.ai新课-NLP-Course1">
                         
-                        <span class="card-title">DeepLearning.ai新课-NLP系列 要点</span>
+                        <span class="card-title">DeepLearning.ai新课-NLP-Course1</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1287,15 +1289,6 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
     }
 
     
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
-        left: -66px !important;
-    }
-
-    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
-        left: 0px !important;
-    }
-
-    
 </style>
 <div class="">
     
@@ -1303,15 +1296,15 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
         <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
                    server="netease"
                    type="playlist"
-                   id="503838841"
+                   id="5200611191"
                    fixed='true'
-                   autoplay='false'
+                   autoplay='true'
                    theme='#42b983'
                    loop='all'
                    order='random'
                    preload='auto'
-                   volume='0.7'
-                   list-folded='true'
+                   volume='0.5'
+                   list-folded='false'
         >
         </meting-js>
     </div>
