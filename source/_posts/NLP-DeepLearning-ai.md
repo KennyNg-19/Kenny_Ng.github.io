@@ -1,5 +1,5 @@
 ---
-title: DeepLearning.ai新课-NLP系列 要点
+title: DeepLearning.ai新课-NLP-Course1
 date: 2020-08-08 13:45:24
 tags: [NLP, math]
 ---
@@ -520,13 +520,13 @@ F范数是**针对矩阵而言**的，具体定义可以**类比向量的L2范�
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghpa5okk64j314g0fm0zw.jpg" style="zoom:30%;" />
 
-#### 改进版 fast KNN
+#### 改进版 faster <u>approximate</u> KNN
 
-##### 启发思路：划分区域
+##### 启发思路：空间划分
 
-**slice the space <u>into regions</u>**: you could **search just <u>within</u> those regions**. When you think about organizing subsets of a dataset efficiently, you may think about placing your data **into <u>buckets</u>**
+(下图只是**简单的2D空间**) **slice the space <u>into regions</u>**: you could **search just <u>within</u> those regions**. When you think about organizing subsets of a dataset efficiently, you may think about placing your data **into <u>buckets</u>**
 
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqbl9ocp8j31220jywwe.jpg" alt="image-20200814142356266" style="zoom:33%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqbl9ocp8j31220jywwe.jpg" style="zoom:33%;" />
 
 
 
@@ -534,23 +534,57 @@ If you think about buckets, then you'll definitely want to think about <font col
 
 
 
-##### 提升KNN效率：**Locality Sensitive Hashing**——a hash function to be locality sensitive
+##### 提升KNN，处理<u>高维数据</u>的效率：Locality Sensitive Hashing
 
-定义：把vector根据在**vector space中的距离足够近**的**分到一起**，的Hashing方法
+本质是 a **hash function**, to be locality sensitive; an **[algorithmic technique](https://en.wikipedia.org/wiki/Locality-sensitive_hashing)** that hashes **similar input items into the same "buckets" with <u>high probability</u>**——所以说是一种**近似法, "approximate"**
+
+白话定义：把vector根据在**vector space中的距离足够近**的**分到一起**，的Hashing方法
 
 > Locality is another word for location, sensitive is another word for caring 
+>
+> This is kNN in simple terms: You have a labelled dataset and now you are trying to label a new data point. Find the k nearest data points from your labelled dataset to the new point. The majority vote among the k nearest neighbors is the label of the new point. Add the new point and it's label to your dataset
+>
+> One of the **biggest problems with kNN 处理高维数据时** is that **常规的暴力法下，for each new data point, you have to calculate its distance from all existing points in your dataset.** The LSH technique, differing from [conventional hashing techniques](https://en.wikipedia.org/wiki/Hash_function) in that hash collisions are maximized, not minimized,  can be seen as a way to **reduce the dimensionality of high-dimensional data**; high-dimensional input items can be **reduced to low-dimensional versions while preserving <u>relative distances</u> between items**. And this problem is what LSH is **trying to solve**.
+
+
 
 So locality sensitive hashing is a **hashing method** that's **cares very deeply about assigning items based on where they're <u>located in vector space</u>**.
 
 
 
+###### 核心：<u>**Multiplanes hash functions**</u>
 
+> In order to divide your vector space **into <u>manageable</u> regions**, you'll want to use **<u>more than one plane</u>**. Based on the idea of **numbering every single region** that is **formed by the <u>intersection of n planes</u>.**
+
+[思路](https://kennyng-19.github.io/Kenny_Ng.github.io/2020/07/25/ML-concepts-memorize/#6-ml理论中常见的超平面概念)：每一个plane，实际就是定义一个**法向量**
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghrkcqi8smj313602kjsl.jpg" style="zoom:33%;" />
+
+几何上，you have multiple planes and it helps us to divide the vector space into smaller sub regions. But you **want to have a single hash value** to know **which bucket to assign the vectoring**. You do this by **combining the signals from all the planes** into a single hash value.
+
+
+
+那么定义一组plane就等于一组法向量 output value is a **combination of the side of the plane** where the vector is localized with respect to the collection of planes.
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghrkdjszw6j30zu0lygq0.jpg" style="zoom:33%;" />
+
+
+
+Locality Sensitive Hashing**最终计算公式**：看sign定boolean值h，再用2的幂次求和公式
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghrkhg1by3j312a0k0k0i.jpg" style="zoom:40%;" />
+
+
+
+###### 注意: 因为是随机生成的法向量-plane，请重复多次得到更合理的结果 make sets of **random planes** 
+
+You will make <u>multiple</u> sets of **<u>random planes</u>** in order to make the approximate nearest neighbors **more accurate.**
 
 
 
 ## Task: 相似doc搜索
 
-![image-20200813154308294](https://tva1.sinaimg.cn/large/007S8ZIlly1ghp89bzp7ej31e00bgq9h.jpg)
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghp89bzp7ej31e00bgq9h.jpg" style="zoom:33%;" />
 
 同理用fast KNN
 

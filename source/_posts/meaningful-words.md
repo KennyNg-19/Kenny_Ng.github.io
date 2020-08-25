@@ -33,3 +33,13 @@ tags: [feeling&mind]
 ### 5. 关于出身时机~
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghiqjayfzrj30ny0363yp.jpg" alt="戏谑出身时机" style="zoom:50%;" />
+
+
+
+### 6. 文字聊天是离散非线性的
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gi25zo73thj30pg044js1.jpg" style="zoom:50%;" />
+
+### 7. 童年的重要性
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gi25zy33oyj30lf07xgn3.jpg" style="zoom:40%;" />
