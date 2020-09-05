@@ -1,7 +1,10 @@
 ---
-title: 有趣有思想的句子积累
+title: 有趣有思想的words积累
 date: 2020-07-09 00:25:23
 tags: [feeling&mind]
+img: /medias/featureimages/12.jpg
+top: true
+summary: 积累下日常看到的，有意思的有思想的words(截图)
 ---
 
 

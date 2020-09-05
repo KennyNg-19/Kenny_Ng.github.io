@@ -1,6 +1,7 @@
 ---
 title: DeepLearning.ai5月新课-AI4Medicince笔记
 date: 2020-07-25 17:26:33
+img: https://miro.medium.com/max/2344/1*uc2HNS1m4CjG8Yb4AxGqbQ.png
 tags: [advancedML, ML, CV, math]
 ---
 

@@ -6,6 +6,76 @@ tags: [ML, math, 概率, 统计]
 
 # ML(数学)中的常见混淆, 易错点和一般性结论
 
+## 0. 似然？
+
+似然和概率在统计学中是经常见到的两个术语，有时候这两个概念是一个意思，有时候却有很大区别。这里梳理下这两个术语所代表的具体含义。
+
+#### 本文中数学符号及含义
+
+| 符号                                                         | 含义             |
+| ------------------------------------------------------------ | ---------------- |
+| O                                                            | 观测值           |
+| θ                                                            | 随机过程中的参数 |
+| <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gifp45h7myj303c02q745.jpg" alt="image-20200905131059137" style="zoom:35%;" /> | 参数的估计       |
+| P(O\|θ)                                                      | 概率             |
+| L(θ\|O)                                                      | **似然函数**     |
+
+#### wiki中关于“似然”和“概率”的解释
+
+- 在频率推论中，似然函数（常常简称为似然）是一个在给定了数据以及模型中关于参数的函数。**在非正式情况下，“似然”通常被用作“概率”的同义词。**
+- 在**<u>数理统计</u>**中，两个术语**<u>则有不同的意思</u>**：
+  - “概率”描述了**给定模型参数后**，输出**结果的合理性(可能性大小)**，而不涉及任何观察到的数据。
+  - “似然”则描述了**给定了特定观测结果**后，描述模型**参数是否合理**
+
+#### 似然函数公式
+
+先看似然函数的定义，它是给定联合样本值![[公式]](https://www.zhihu.com/equation?tex=%5Ctextbf%7Bx%7D)下关于(未知)参数![[公式]](https://www.zhihu.com/equation?tex=%5Ctheta) 的函数：![[公式]](https://www.zhihu.com/equation?tex=L%28%5Ctheta+%7C+%5Ctextbf%7Bx%7D%29+%3D+f%28%5Ctextbf%7Bx%7D+%7C+%5Ctheta%29)
+
+- 这里的小![[公式]](https://www.zhihu.com/equation?tex=%5Ctextbf%7Bx%7D)是指联合样本随机变量![[公式]](https://www.zhihu.com/equation?tex=%5Ctextbf%7BX%7D)取到的值，即![[公式]](https://www.zhihu.com/equation?tex=%5Ctextbf%7BX%7D+%3D+%5Ctextbf%7Bx%7D)；
+
+- 这里的![[公式]](https://www.zhihu.com/equation?tex=%5Ctheta)是指未知参数，它属于参数空间；
+
+- 这里的![[公式]](https://www.zhihu.com/equation?tex=f%28%5Ctextbf%7Bx%7D%7C%5Ctheta%29)是一个**概率密度函数**，特别地表示(给定)![[公式]](https://www.zhihu.com/equation?tex=%5Ctheta)下关于联合样本值![[公式]](https://www.zhihu.com/equation?tex=%5Ctextbf%7Bx%7D)的**联合密度函数**。
+
+所以从定义上，似然函数和密度函数是完全不同的两个**数学对象**：前者是关于![[公式]](https://www.zhihu.com/equation?tex=%5Ctheta)的函数，后者是关于![[公式]](https://www.zhihu.com/equation?tex=%5Ctextbf%7Bx%7D)的函数。所以这里的等号![[公式]](https://www.zhihu.com/equation?tex=%3D) 理解为**<font color="#dd0000">函数值形式</font>的相等**，而<font color="#dd0000">不是两个函数本身是同一函数</font>。所以这个式子的**严格书写方式**是![[公式]](https://www.zhihu.com/equation?tex=L%28%5Ctheta+%7C+%5Ctextbf%7Bx%7D%29+%3D+f%28%5Ctextbf%7Bx%7D+%3B+%5Ctheta%29)(分号示把参数隔开), 即**![[公式]](https://www.zhihu.com/equation?tex=%5Ctheta)在右端只当作参数**。
+
+
+
+#### 本质: “似然”和“概率”是站在<u>两个角度</u>看待问题
+
+对于这个函数：P(O|θ)
+
+输入有两个：O表示某一个具体的数据；θ表示模型的参数。
+
+- 如果θ是已知确定的，O是变量，这个函数叫做概率函数(probability function)，它描述对于不同的样本O，其出现概率是多少。
+- 如果O是已知确定的，θ是变量，这个函数叫做似然函数(likelihOd function), 它描述对于不同的模型参数，出现x这个样本点的概率是多少。
+
+##### 例如
+
+- 概率
+
+> 抛一枚均匀的硬币，拋20次，问15次拋得正面的可能性有多大？ 这里的可能性就是”概率”，均匀的硬币就是给定参数θ=0.5，“拋20次15次正面”是观测值O。求概率P(H=15|θ=0.5)=？的概率。
+
+- **“似然”描述了给定了特定观测值后，描述模型参数是否合理。**
+
+> 拋一枚硬币，拋20次，结果15次正面向上，问其为均匀的可能性？ 这里的可能性就是”似然”，“拋20次15次正面”为观测值O为已知，参数θ=?，并不知道，求L(θ|H=15)=P(H=15|θ=0.5) 的最大化下的θ 值。
+
+
+
+
+
+
+
+
+
+#### 离散随机变量的“似然”与“概率”
+
+
+
+#### 连续型随机变量的“似然”与“概率”
+
+
+
 ## 1. 均值化？归一化？傻傻分不清
 
 "标准化"和"归一化"这两个中文词要指代四种Feature scaling(特征缩放)方法, 实质是<font color="#dd0000">**一种线性变换**: **对向量 X 按照比例α压缩, 再进行平移**</font>。线性变换有很多良好的性质，这些性质**决定了对数据改变后<u>不会造成“失效”，反而能提高数据的表现</u>**，这些性质是归一化/标准化的前提, 详情见[特征工程中的「归一化」有什么作用？- 知乎](https://www.zhihu.com/question/20455227/answer/370658612) 。
@@ -91,7 +161,7 @@ tags: [ML, math, 概率, 统计]
 
 **Why can't we use the same generator as for the training data?**
 
-Look back at the generator we wrote for the training data.
+LOk back at the generator we wrote for the training data.
 
 - It normalizes each image **per batch**, meaning that it uses **batch statistics**.
 - We should not do this with the test and validation data, since in a real life scenario we **don't process incoming images <u>a batch</u> at a time** (we process **<u>one image</u> at a time**).
@@ -128,13 +198,13 @@ There is one technical note.
 
     You can define a plane with a single vector. This magenta vector is **perpendicular to the plane**, and it's called the **<u>normal vector</u> to that plane**. So normal vector is perpendicular to **any vectors that lie on the plane**. 
 
-    <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqf03pey5j30ui0ki0vw.jpg" style="zoom:33%;" />
+    <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqf03pey5j30ui0ki0vw.jpg" style="zOm:33%;" />
 
     - 关于分割：实际就是normal vector在发挥作用（而该vector对应它所垂直的plane！)
 
       如何在数学上而不是几何视觉上，计算分割的结果we are able to see **visually** when the vector is **on one side of the plane** or the other, but how do you **do this <u>mathematically</u>**?  把目标向量和normal vector，**做dot product**，正负号表明在同侧/异侧——实际是**俩向量，夹角的cos**在决定！！
 
-      <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqf6a99ekj31d60ig7c3.jpg" alt="2Dplane，数学上是这样起到“分割”作用的" style="zoom:43%;" />
+      <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqf6a99ekj31d60ig7c3.jpg" alt="2Dplane，数学上是这样起到“分割”作用的" style="zOm:43%;" />
 
 - 在三维的平面中，它是面 
 
@@ -185,9 +255,9 @@ There is one technical note.
 
 对于向量a和向量b，叉乘公式为：
 
-<img src="https://img-blog.csdn.net/20160902230539163" style="zoom:75%;" />
+<img src="https://img-blog.csdn.net/20160902230539163" style="zOm:75%;" />
 
-<img src="https://img-blog.csdn.net/20160902231520146" style="zoom:75%;" />
+<img src="https://img-blog.csdn.net/20160902231520146" style="zOm:75%;" />
 
 #### [几何意义](https://blog.csdn.net/dcrmg/article/details/52416832)
 
@@ -199,7 +269,7 @@ There is one technical note.
 
 **四则运算符号**，都是单纯的**element-wise的对位操作**，不像点积——不相加
 
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghh5wqiu4cj30m607241f.jpg" style="zoom:43%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghh5wqiu4cj30m607241f.jpg" style="zOm:43%;" />
 
 也自然要求：~~一维向量~~array a和b的**~~行列数~~<u>维度</u>相同**
 
@@ -209,7 +279,7 @@ There is one technical note.
 
 ### 交集概率: 分母是<u>全集</u>(所以默认忽略)
 
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlntiq7ocj31dq0kak1t.jpg" style="zoom:40%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlntiq7ocj31dq0kak1t.jpg" style="zOm:40%;" />
 
 
 
@@ -217,12 +287,12 @@ There is one technical note.
 
 #### 分子用了交集概率，分母是<u>做条件的概率</u>的所在集
 
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlnqr41w2j31f20jiaj3.jpg" style="zoom:40%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlnqr41w2j31f20jiaj3.jpg" style="zOm:40%;" />
 
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlnppukfmj315w0imaha.jpg" style="zoom:50%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlnppukfmj315w0imaha.jpg" style="zOm:50%;" />
 
 
 
 ## 9. np.array的转置: 至少是2D
 
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gho372sm9hj31f70u079y.jpg" style="zoom:40%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gho372sm9hj31f70u079y.jpg" style="zOm:40%;" />
