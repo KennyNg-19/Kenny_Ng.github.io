@@ -466,21 +466,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2020-08-14
+                    2020-09-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    2.2k
+                    3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    8 Min
+                    11 Min
                 </div>
                 
 
@@ -495,7 +495,72 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="ML-数学-中的常见混淆-易错点和一般性结论"><a href="#ML-数学-中的常见混淆-易错点和一般性结论" class="headerlink" title="ML(数学)中的常见混淆, 易错点和一般性结论"></a>ML(数学)中的常见混淆, 易错点和一般性结论</h1><h2 id="1-均值化？归一化？傻傻分不清"><a href="#1-均值化？归一化？傻傻分不清" class="headerlink" title="1. 均值化？归一化？傻傻分不清"></a>1. 均值化？归一化？傻傻分不清</h2><p>“标准化”和”归一化”这两个中文词要指代四种Feature scaling(特征缩放)方法, 实质是<font color="#dd0000"><strong>一种线性变换</strong>: <strong>对向量 X 按照比例α压缩, 再进行平移</strong></font>。线性变换有很多良好的性质，这些性质<strong>决定了对数据改变后<u>不会造成“失效”，反而能提高数据的表现</u></strong>，这些性质是归一化/标准化的前提, 详情见<a href="https://www.zhihu.com/question/20455227/answer/370658612" target="_blank" rel="noopener">特征工程中的「归一化」有什么作用？- 知乎</a> 。</p>
+                <h1 id="ML-数学-中的常见混淆-易错点和一般性结论"><a href="#ML-数学-中的常见混淆-易错点和一般性结论" class="headerlink" title="ML(数学)中的常见混淆, 易错点和一般性结论"></a>ML(数学)中的常见混淆, 易错点和一般性结论</h1><h2 id="0-似然？"><a href="#0-似然？" class="headerlink" title="0. 似然？"></a>0. 似然？</h2><p>似然和概率在统计学中是经常见到的两个术语，有时候这两个概念是一个意思，有时候却有很大区别。这里梳理下这两个术语所代表的具体含义。</p>
+<h4 id="本文中数学符号及含义"><a href="#本文中数学符号及含义" class="headerlink" title="本文中数学符号及含义"></a>本文中数学符号及含义</h4><table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>O</td>
+<td>观测值</td>
+</tr>
+<tr>
+<td>θ</td>
+<td>随机过程中的参数</td>
+</tr>
+<tr>
+<td><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gifp45h7myj303c02q745.jpg" alt="image-20200905131059137" style="zoom:35%;" /></td>
+<td>参数的估计</td>
+</tr>
+<tr>
+<td>P(O|θ)</td>
+<td>概率</td>
+</tr>
+<tr>
+<td>L(θ|O)</td>
+<td><strong>似然函数</strong></td>
+</tr>
+</tbody></table>
+<h4 id="wiki中关于“似然”和“概率”的解释"><a href="#wiki中关于“似然”和“概率”的解释" class="headerlink" title="wiki中关于“似然”和“概率”的解释"></a>wiki中关于“似然”和“概率”的解释</h4><ul>
+<li>在频率推论中，似然函数（常常简称为似然）是一个在给定了数据以及模型中关于参数的函数。<strong>在非正式情况下，“似然”通常被用作“概率”的同义词。</strong></li>
+<li>在<strong><u>数理统计</u></strong>中，两个术语<strong><u>则有不同的意思</u></strong>：<ul>
+<li>“概率”描述了<strong>给定模型参数后</strong>，输出<strong>结果的合理性(可能性大小)</strong>，而不涉及任何观察到的数据。</li>
+<li>“似然”则描述了<strong>给定了特定观测结果</strong>后，描述模型<strong>参数是否合理</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="似然函数公式"><a href="#似然函数公式" class="headerlink" title="似然函数公式"></a>似然函数公式</h4><p>先看似然函数的定义，它是给定联合样本值<img src="https://www.zhihu.com/equation?tex=%5Ctextbf%7Bx%7D" alt="[公式]">)下关于(未知)参数<img src="https://www.zhihu.com/equation?tex=%5Ctheta" alt="[公式]"> 的函数：<img src="https://www.zhihu.com/equation?tex=L%28%5Ctheta+%7C+%5Ctextbf%7Bx%7D%29+%3D+f%28%5Ctextbf%7Bx%7D+%7C+%5Ctheta%29" alt="[公式]"></p>
+<ul>
+<li><p>这里的小<img src="https://www.zhihu.com/equation?tex=%5Ctextbf%7Bx%7D" alt="[公式]">)是指联合样本随机变量<img src="https://www.zhihu.com/equation?tex=%5Ctextbf%7BX%7D" alt="[公式]">)取到的值，即<img src="https://www.zhihu.com/equation?tex=%5Ctextbf%7BX%7D+%3D+%5Ctextbf%7Bx%7D" alt="[公式]">；</p>
+</li>
+<li><p>这里的<img src="https://www.zhihu.com/equation?tex=%5Ctheta" alt="[公式]">是指未知参数，它属于参数空间；</p>
+</li>
+<li><p>这里的<img src="https://www.zhihu.com/equation?tex=f%28%5Ctextbf%7Bx%7D%7C%5Ctheta%29" alt="[公式]">)是一个<strong>概率密度函数</strong>，特别地表示(给定)<img src="https://www.zhihu.com/equation?tex=%5Ctheta" alt="[公式]">)下关于联合样本值<img src="https://www.zhihu.com/equation?tex=%5Ctextbf%7Bx%7D" alt="[公式]">的<strong>联合密度函数</strong>。</p>
+</li>
+</ul>
+<p>所以从定义上，似然函数和密度函数是完全不同的两个<strong>数学对象</strong>：前者是关于<img src="https://www.zhihu.com/equation?tex=%5Ctheta" alt="[公式]">)的函数，后者是关于<img src="https://www.zhihu.com/equation?tex=%5Ctextbf%7Bx%7D" alt="[公式]">)的函数。所以这里的等号<img src="https://www.zhihu.com/equation?tex=%3D" alt="[公式]"> 理解为<strong><font color="#dd0000">函数值形式</font>的相等</strong>，而<font color="#dd0000">不是两个函数本身是同一函数</font>。所以这个式子的<strong>严格书写方式</strong>是<img src="https://www.zhihu.com/equation?tex=L%28%5Ctheta+%7C+%5Ctextbf%7Bx%7D%29+%3D+f%28%5Ctextbf%7Bx%7D+%3B+%5Ctheta%29" alt="[公式]">)(分号示把参数隔开), 即<strong><img src="https://www.zhihu.com/equation?tex=%5Ctheta" alt="[公式]">在右端只当作参数</strong>。</p>
+<h4 id="本质-“似然”和“概率”是站在两个角度看待问题"><a href="#本质-“似然”和“概率”是站在两个角度看待问题" class="headerlink" title="本质: “似然”和“概率”是站在两个角度看待问题"></a>本质: “似然”和“概率”是站在<u>两个角度</u>看待问题</h4><p>对于这个函数：P(O|θ)</p>
+<p>输入有两个：O表示某一个具体的数据；θ表示模型的参数。</p>
+<ul>
+<li>如果θ是已知确定的，O是变量，这个函数叫做概率函数(probability function)，它描述对于不同的样本O，其出现概率是多少。</li>
+<li>如果O是已知确定的，θ是变量，这个函数叫做似然函数(likelihOd function), 它描述对于不同的模型参数，出现x这个样本点的概率是多少。</li>
+</ul>
+<h5 id="例如"><a href="#例如" class="headerlink" title="例如"></a>例如</h5><ul>
+<li>概率</li>
+</ul>
+<blockquote>
+<p>抛一枚均匀的硬币，拋20次，问15次拋得正面的可能性有多大？ 这里的可能性就是”概率”，均匀的硬币就是给定参数θ=0.5，“拋20次15次正面”是观测值O。求概率P(H=15|θ=0.5)=？的概率。</p>
+</blockquote>
+<ul>
+<li><strong>“似然”描述了给定了特定观测值后，描述模型参数是否合理。</strong></li>
+</ul>
+<blockquote>
+<p>拋一枚硬币，拋20次，结果15次正面向上，问其为均匀的可能性？ 这里的可能性就是”似然”，“拋20次15次正面”为观测值O为已知，参数θ=?，并不知道，求L(θ|H=15)=P(H=15|θ=0.5) 的最大化下的θ 值。</p>
+</blockquote>
+<h4 id="离散随机变量的“似然”与“概率”"><a href="#离散随机变量的“似然”与“概率”" class="headerlink" title="离散随机变量的“似然”与“概率”"></a>离散随机变量的“似然”与“概率”</h4><h4 id="连续型随机变量的“似然”与“概率”"><a href="#连续型随机变量的“似然”与“概率”" class="headerlink" title="连续型随机变量的“似然”与“概率”"></a>连续型随机变量的“似然”与“概率”</h4><h2 id="1-均值化？归一化？傻傻分不清"><a href="#1-均值化？归一化？傻傻分不清" class="headerlink" title="1. 均值化？归一化？傻傻分不清"></a>1. 均值化？归一化？傻傻分不清</h2><p>“标准化”和”归一化”这两个中文词要指代四种Feature scaling(特征缩放)方法, 实质是<font color="#dd0000"><strong>一种线性变换</strong>: <strong>对向量 X 按照比例α压缩, 再进行平移</strong></font>。线性变换有很多良好的性质，这些性质<strong>决定了对数据改变后<u>不会造成“失效”，反而能提高数据的表现</u></strong>，这些性质是归一化/标准化的前提, 详情见<a href="https://www.zhihu.com/question/20455227/answer/370658612" target="_blank" rel="noopener">特征工程中的「归一化」有什么作用？- 知乎</a> 。</p>
 <p>这四种分别是 </p>
 <ol>
 <li><p><strong>归一化</strong> Rescaling (<strong>min-max normalization</strong>)  ，<img src="https://www.zhihu.com/equation?tex=x%5E%7B%27%7D+%3D+%5Cfrac%7Bx-min%28x%29%7D%7Bmax%28x%29-min%28x%29%7D" alt="[归一化]"> </p>
@@ -546,7 +611,7 @@
 <h2 id="4-无监督学习的所有输入数据都是unlabeled"><a href="#4-无监督学习的所有输入数据都是unlabeled" class="headerlink" title="4. 无监督学习的所有输入数据都是unlabeled?"></a>4. 无监督学习的所有输入数据<u>都是unlabeled</u>?</h2><p>无监督学习，只是说 模型<strong>上线后，用于实际业务</strong>时，输入数据是unlabeled——在模型<strong>训练/验证/测试</strong>过程中，<strong>也是要求</strong>最优参数的(如，异常检测的异常阈值)，当然<strong>可以使用labeled data</strong></p>
 <h2 id="5-数据增强器对于不同数据集"><a href="#5-数据增强器对于不同数据集" class="headerlink" title="5. 数据增强器对于不同数据集"></a>5. 数据增强<u>器</u>对于<u>不同数据集</u></h2><p>已知给training set构造了ImageDataGenerator,  我们应该构造a <u><strong>separate</strong></u> generator for <strong>valid and test sets</strong></p>
 <h3 id="Why用构造不同的generator"><a href="#Why用构造不同的generator" class="headerlink" title="Why用构造不同的generator?"></a>Why用构造不同的generator?</h3><p><strong>Why can’t we use the same generator as for the training data?</strong></p>
-<p>Look back at the generator we wrote for the training data.</p>
+<p>LOk back at the generator we wrote for the training data.</p>
 <ul>
 <li>It normalizes each image <strong>per batch</strong>, meaning that it uses <strong>batch statistics</strong>.</li>
 <li>We should not do this with the test and validation data, since in a real life scenario we <strong>don’t process incoming images <u>a batch</u> at a time</strong> (we process <strong><u>one image</u> at a time</strong>).</li>
@@ -573,12 +638,12 @@
 <li><p><font color="#dd0000"><strong>为什么</strong></font>是平面？因为<strong>normal vector法向量和plane是一一对应的</strong>，等价！而实际正是normal vector在分割</p>
 <p>A plane would be this magenta line into two-dimensional space, and it <strong>actually represents all the possible vectors that would be sitting on that line(之后都用plane).</strong> In other words, they would be parallel to the plane, such as this blue vector or this orange vector. </p>
 <p>You can define a plane with a single vector. This magenta vector is <strong>perpendicular to the plane</strong>, and it’s called the <strong><u>normal vector</u> to that plane</strong>. So normal vector is perpendicular to <strong>any vectors that lie on the plane</strong>. </p>
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqf03pey5j30ui0ki0vw.jpg" style="zoom:33%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqf03pey5j30ui0ki0vw.jpg" style="zOm:33%;" />
 
 <ul>
 <li><p>关于分割：实际就是normal vector在发挥作用（而该vector对应它所垂直的plane！)</p>
 <p>如何在数学上而不是几何视觉上，计算分割的结果we are able to see <strong>visually</strong> when the vector is <strong>on one side of the plane</strong> or the other, but how do you <strong>do this <u>mathematically</u></strong>?  把目标向量和normal vector，<strong>做dot product</strong>，正负号表明在同侧/异侧——实际是<strong>俩向量，夹角的cos</strong>在决定！！</p>
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqf6a99ekj31d60ig7c3.jpg" alt="2Dplane，数学上是这样起到“分割”作用的" style="zoom:43%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqf6a99ekj31d60ig7c3.jpg" alt="2Dplane，数学上是这样起到“分割”作用的" style="zOm:43%;" />
 </li>
 </ul>
 </li>
@@ -599,28 +664,28 @@
 <p>如：2个等长的向量v1, v2相乘——写成np.dot(v1, v2<strong>.T</strong>)</p>
 <h4 id="几何意义"><a href="#几何意义" class="headerlink" title="几何意义"></a><a href="https://blog.csdn.net/dcrmg/article/details/52416832" target="_blank" rel="noopener">几何意义</a></h4><h3 id="b-叉积-外积-类似矩阵乘法"><a href="#b-叉积-外积-类似矩阵乘法" class="headerlink" title="b. 叉积(外积): 类似矩阵乘法"></a>b. 叉积(外积): 类似矩阵乘法</h3><p>两个向量的叉乘，又叫向量积、外积、叉积，叉乘的运算结果<strong>是一个向量</strong>而不是一个标量。并且两个向量的叉积<strong>与这两个向量组成的坐标平面垂直</strong>。</p>
 <p>对于向量a和向量b，叉乘公式为：</p>
-<img src="https://img-blog.csdn.net/20160902230539163" style="zoom:75%;" />
+<img src="https://img-blog.csdn.net/20160902230539163" style="zOm:75%;" />
 
-<img src="https://img-blog.csdn.net/20160902231520146" style="zoom:75%;" />
+<img src="https://img-blog.csdn.net/20160902231520146" style="zOm:75%;" />
 
 <h4 id="几何意义-1"><a href="#几何意义-1" class="headerlink" title="几何意义"></a><a href="https://blog.csdn.net/dcrmg/article/details/52416832" target="_blank" rel="noopener">几何意义</a></h4><h3 id="顺带一提：np-array的-×÷"><a href="#顺带一提：np-array的-×÷" class="headerlink" title="顺带一提：np.array的+-×÷"></a>顺带一提：np.array的+-×÷</h3><blockquote>
 <p>The product operator * when used on arrays or matrices indicates <strong>element-wise</strong> multiplications.</p>
 </blockquote>
 <p><strong>四则运算符号</strong>，都是单纯的<strong>element-wise的对位操作</strong>，不像点积——不相加</p>
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghh5wqiu4cj30m607241f.jpg" style="zoom:43%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghh5wqiu4cj30m607241f.jpg" style="zOm:43%;" />
 
 <p>也自然要求：<del>一维向量</del>array a和b的<strong><del>行列数</del><u>维度</u>相同</strong></p>
-<h2 id="8-条件概率和交集概率的区分"><a href="#8-条件概率和交集概率的区分" class="headerlink" title="8. 条件概率和交集概率的区分"></a>8. 条件概率和交集概率的区分</h2><h3 id="交集概率-分母是全集-所以默认忽略"><a href="#交集概率-分母是全集-所以默认忽略" class="headerlink" title="交集概率: 分母是全集(所以默认忽略)"></a>交集概率: 分母是<u>全集</u>(所以默认忽略)</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlntiq7ocj31dq0kak1t.jpg" style="zoom:40%;" />
+<h2 id="8-条件概率和交集概率的区分"><a href="#8-条件概率和交集概率的区分" class="headerlink" title="8. 条件概率和交集概率的区分"></a>8. 条件概率和交集概率的区分</h2><h3 id="交集概率-分母是全集-所以默认忽略"><a href="#交集概率-分母是全集-所以默认忽略" class="headerlink" title="交集概率: 分母是全集(所以默认忽略)"></a>交集概率: 分母是<u>全集</u>(所以默认忽略)</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlntiq7ocj31dq0kak1t.jpg" style="zOm:40%;" />
 
 
 
-<h3 id="条件概率-分母是做条件的那个概率的所在集"><a href="#条件概率-分母是做条件的那个概率的所在集" class="headerlink" title="条件概率: 分母是做条件的那个概率的所在集"></a>条件概率: 分母是<u>做条件的那个概率</u>的所在集</h3><h4 id="分子用了交集概率，分母是做条件的概率的所在集"><a href="#分子用了交集概率，分母是做条件的概率的所在集" class="headerlink" title="分子用了交集概率，分母是做条件的概率的所在集"></a>分子用了交集概率，分母是<u>做条件的概率</u>的所在集</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlnqr41w2j31f20jiaj3.jpg" style="zoom:40%;" />
+<h3 id="条件概率-分母是做条件的那个概率的所在集"><a href="#条件概率-分母是做条件的那个概率的所在集" class="headerlink" title="条件概率: 分母是做条件的那个概率的所在集"></a>条件概率: 分母是<u>做条件的那个概率</u>的所在集</h3><h4 id="分子用了交集概率，分母是做条件的概率的所在集"><a href="#分子用了交集概率，分母是做条件的概率的所在集" class="headerlink" title="分子用了交集概率，分母是做条件的概率的所在集"></a>分子用了交集概率，分母是<u>做条件的概率</u>的所在集</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlnqr41w2j31f20jiaj3.jpg" style="zOm:40%;" />
 
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlnppukfmj315w0imaha.jpg" style="zoom:50%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlnppukfmj315w0imaha.jpg" style="zOm:50%;" />
 
 
 
-<h2 id="9-np-array的转置-至少是2D"><a href="#9-np-array的转置-至少是2D" class="headerlink" title="9. np.array的转置: 至少是2D"></a>9. np.array的转置: 至少是2D</h2><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gho372sm9hj31f70u079y.jpg" style="zoom:40%;" />
+<h2 id="9-np-array的转置-至少是2D"><a href="#9-np-array的转置-至少是2D" class="headerlink" title="9. np.array的转置: 至少是2D"></a>9. np.array的转置: 至少是2D</h2><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gho372sm9hj31f70u079y.jpg" style="zOm:40%;" />
             </div>
             <hr/>
 
