@@ -16,7 +16,7 @@ tags: [ML, math, 概率, 统计]
 | ------------------------------------------------------------ | ---------------- |
 | O                                                            | 观测值           |
 | θ                                                            | 随机过程中的参数 |
-| <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gifp45h7myj303c02q745.jpg" alt="image-20200905131059137" style="zoom:35%;" /> | 参数的估计       |
+| <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gifp45h7myj303c02q745.jpg" style="zoom:25%;" /> | 参数的估计       |
 | P(O\|θ)                                                      | 概率             |
 | L(θ\|O)                                                      | **似然函数**     |
 
@@ -296,3 +296,21 @@ There is one technical note.
 ## 9. np.array的转置: 至少是2D
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gho372sm9hj31f70u079y.jpg" style="zOm:40%;" />
+
+
+
+## 10. ML算法3种表达 + 贝叶斯表达
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gifuko31hlj31mf0u0b29.jpg" alt="" style="zoom:67%;" />
+
+
+
+#### Going Bayesian：让具体的标量参数，变为概率分布
+
+
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gifus5k4vuj30no15owp0.jpg" alt="Going Bayesian" style="zoom:40%;" />
+
+进而，导致得到的model也不是唯一的，而是处于一个**范围的所有**
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gifuqihxwsj30sa0fawhh.jpg" style="zoom:50%;" />

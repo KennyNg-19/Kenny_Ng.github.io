@@ -1,12 +1,37 @@
 ---
-title: 遇到过的data structure的实例use cases积累
+title: 算法题的自我经验总结
 date: 2020-07-01 15:53:01
 tags: [CS, 数据结构, 算法]
+summary: 包括 1.编码前，头脑风暴上的trick 2.亲历data structure的巧用的实例
 ---
 
 
 
-### 0. （注意是巧用：<font color="#dd0000">提高效率/简化代码</font>的use case）
+（注意是数据结构的巧用：<font color="#dd0000">提高效率/简化代码</font>的use case）
+
+### 0. 树的递归 初步—画<font color="#dd0000">草图</font>找递归部分
+
+在正式编码之前，思考时，我们知道递归是强调找到**结构类似的子问题**，且递归那几行代码就是**针对这个子结构的**——所以我们可以在brainstorm解法中，**通过<font color="#dd0000">比划草图</font>，确定**递归代码要**<font color="#dd0000">覆盖树的<u>几层</u></font>**，这样方便**初步<u>比划</u>想出一个解法 + 验证它**。
+
+
+
+如下面这题
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gikgndvfutj30b208qwf1.jpg" style="zoom:50%;" />
+
+思路：可以画出下面这种草图，确定自己<font color="#dd0000">**要track的node**具体 在每次递归是什么</font>，从而总结出递归结构的)
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gikgb3588wj30rw0hawn2.jpg" alt="红色相连要比较的，蓝色和绿色是第1、2次的递归结构" style="zoom:50%;" />
+
+- tree level 1: 先判定 root == null；
+- tree level 2: 判断**root.**left和right树不为空(**防止Nullpointer Exception**); 都确定存在后，确定**值相同否**
+- (tree level 3): 若相同，则递归判断 left right**各自的**子left, right树是否满足**<u>对称</u>**——**通过草图，可以发现后续比较的是**left.left 和 right.right，right.left 和 left.right，**而不是像root node那样最简单的情况——自己是中轴 把对称的两个2对比即可**！
+
+
+
+所以，初步认为，一次递归的**比较、判定(返回boolean)部分**会覆盖了tree的2层，而接着第3层会加入递归结构——而且继续往下递归，入参就是从level 1到level 2的**root.**left和right
+
+
 
 ### 1. 获取的数据是倒叙的，但要求他们正序输出
 
@@ -94,8 +119,8 @@ tags: [CS, 数据结构, 算法]
 
 ### 4. 实现循环Queue用到的抽象
 
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gheuhwcabsj31dw0ks0x9.jpg" alt="抽象：代码" style="zoom:40%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gheuhwcabsj31dw0ks0x9.jpg" alt="抽象：代码描述" style="zoom:40%;" />
 
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gheujpnv8oj30z00dsdho.jpg" alt="不抽象的表示" style="zoom:33%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gheujpnv8oj30z00dsdho.jpg" alt="(不抽象的)具体形象表达" style="zoom:33%;" />
 
-### 5. 
+### 
