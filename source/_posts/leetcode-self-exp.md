@@ -1,7 +1,7 @@
 ---
 title: 算法题的自我经验总结
 date: 2020-07-01 15:53:01
-tags: [CS, 数据结构, 算法]
+tags: [CS, 数据结构, 算法, Java]
 summary: 包括 1.编码前，头脑风暴上的trick 2.亲历data structure的巧用的实例
 ---
 
@@ -123,4 +123,23 @@ summary: 包括 1.编码前，头脑风暴上的trick 2.亲历data structure的�
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gheujpnv8oj30z00dsdho.jpg" alt="(不抽象的)具体形象表达" style="zoom:33%;" />
 
-### 
+### 5. java的深浅拷贝
+
+
+
+#### 浅拷贝的<font color="#dd0000">特例</font>：集合存的是immutable Objects
+
+
+
+##### 如：包装类，String类
+
+包装类型，即基本类型的包装类，由于自动装箱的缘故，复制后的集合与原集合所指向的**并非指向同一个内存对象**
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gikloyqteij31fq0iq16y.jpg" alt="如果集合存的是immutable对象，则可以看成”深拷贝“" style="zoom:50%;" />
+
+
+
+##### 如：113题.路径总和-ii
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gikly698h0j31980tq453.jpg" style="zoom:43%;" />
+
