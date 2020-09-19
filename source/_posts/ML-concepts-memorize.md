@@ -6,6 +6,8 @@ tags: [ML, math, 概率, 统计]
 
 # ML(数学)中的常见混淆, 易错点和一般性结论
 
+
+
 ## 0. 似然？
 
 似然和概率在统计学中是经常见到的两个术语，有时候这两个概念是一个意思，有时候却有很大区别。这里梳理下这两个术语所代表的具体含义。
@@ -29,15 +31,15 @@ tags: [ML, math, 概率, 统计]
 
 #### 似然函数公式
 
-先看似然函数的定义，它是给定联合样本值![[公式]](https://www.zhihu.com/equation?tex=%5Ctextbf%7Bx%7D)下关于(未知)参数![[公式]](https://www.zhihu.com/equation?tex=%5Ctheta) 的函数：![[公式]](https://www.zhihu.com/equation?tex=L%28%5Ctheta+%7C+%5Ctextbf%7Bx%7D%29+%3D+f%28%5Ctextbf%7Bx%7D+%7C+%5Ctheta%29)
+先看似然函数的定义，它是给定联合样本值x下关于(未知)参数θ的函数：![[公式]](https://www.zhihu.com/equation?tex=L%28%5Ctheta+%7C+%5Ctextbf%7Bx%7D%29+%3D+f%28%5Ctextbf%7Bx%7D+%7C+%5Ctheta%29)
 
-- 这里的小![[公式]](https://www.zhihu.com/equation?tex=%5Ctextbf%7Bx%7D)是指联合样本随机变量![[公式]](https://www.zhihu.com/equation?tex=%5Ctextbf%7BX%7D)取到的值，即![[公式]](https://www.zhihu.com/equation?tex=%5Ctextbf%7BX%7D+%3D+%5Ctextbf%7Bx%7D)；
+- 这里的小x 指联合样本随机变量X取到的值，即X=x；
 
-- 这里的![[公式]](https://www.zhihu.com/equation?tex=%5Ctheta)是指未知参数，它属于参数空间；
+- 这里的θ是指未知参数，属于参数空间；
 
-- 这里的![[公式]](https://www.zhihu.com/equation?tex=f%28%5Ctextbf%7Bx%7D%7C%5Ctheta%29)是一个**概率密度函数**，特别地表示(给定)![[公式]](https://www.zhihu.com/equation?tex=%5Ctheta)下关于联合样本值![[公式]](https://www.zhihu.com/equation?tex=%5Ctextbf%7Bx%7D)的**联合密度函数**。
+- 这里的f(x|θ)是一个**概率密度函数**，特别地表示(给定)θ下，关于联合样本值x的**联合密度函数**。
 
-所以从定义上，似然函数和密度函数是完全不同的两个**数学对象**：前者是关于![[公式]](https://www.zhihu.com/equation?tex=%5Ctheta)的函数，后者是关于![[公式]](https://www.zhihu.com/equation?tex=%5Ctextbf%7Bx%7D)的函数。所以这里的等号![[公式]](https://www.zhihu.com/equation?tex=%3D) 理解为**<font color="#dd0000">函数值形式</font>的相等**，而<font color="#dd0000">不是两个函数本身是同一函数</font>。所以这个式子的**严格书写方式**是![[公式]](https://www.zhihu.com/equation?tex=L%28%5Ctheta+%7C+%5Ctextbf%7Bx%7D%29+%3D+f%28%5Ctextbf%7Bx%7D+%3B+%5Ctheta%29)(分号示把参数隔开), 即**![[公式]](https://www.zhihu.com/equation?tex=%5Ctheta)在右端只当作参数**。
+所以从定义上，似然函数和密度函数是完全不同的两个**数学对象**：前者是关于θ的函数，后者是关x的函数。所以这里的等号![[公式]](https://www.zhihu.com/equation?tex=%3D) 理解为**<font color="#dd0000">函数值形式</font>的相等**，而<font color="#dd0000">不是两个函数本身是同一函数</font>。所以这个式子的**严格书写方式**是![[公式]](https://www.zhihu.com/equation?tex=L%28%5Ctheta+%7C+%5Ctextbf%7Bx%7D%29+%3D+f%28%5Ctextbf%7Bx%7D+%3B+%5Ctheta%29)(分号示把参数隔开) 即**θ在右端只当作参数**。
 
 
 
@@ -59,12 +61,6 @@ tags: [ML, math, 概率, 统计]
 - **“似然”描述了给定了特定观测值后，描述模型参数是否合理。**
 
 > 拋一枚硬币，拋20次，结果15次正面向上，问其为均匀的可能性？ 这里的可能性就是”似然”，“拋20次15次正面”为观测值O为已知，参数θ=?，并不知道，求L(θ|H=15)=P(H=15|θ=0.5) 的最大化下的θ 值。
-
-
-
-
-
-
 
 
 
@@ -299,7 +295,39 @@ There is one technical note.
 
 
 
-## 10. ML算法3种表达 + 贝叶斯表达
+## 10. 贝叶斯学习—ML的概率表示
+
+
+
+<img src="/Users/kenny/Library/Application Support/typora-user-images/image-20200917171456223.png" style="zoom:43%;" />
+
+
+
+
+
+一般来说一个<u>巨大（通常为无限）的假设空间</u>，可已有<u>无数个假设</u>。
+
+贝叶斯学习的本质是：左边直观解释是，在**已有的(训练)数据**条件下，得到各个h的概率；公式右边分子是，**<u>符合(fit)这些数据D分布</u>的，假设h的概率**——学习的目标则是，确定左边那个 P(h|D) 的 argmax 函数，得到最优的h
+
+为了简化，**去掉分母 P(D) 的项，因为它不依赖于假设而是已有的数据。这个方法被称为最大后验（MAP）。**
+
+现在我们应用下面的数学技巧：
+
+- 最大化原函数和最大化取对数的原函数的过程是相似的，即取对数不影响求最大值问题。
+- 乘积的对数等于对数的和。
+- 正量的最大化等同于负量的最小化。
+
+![img](https://tva1.sinaimg.cn/large/007S8ZIlgy1gitrm3yzidj30kr07274b.jpg)
+
+
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gitrkb5ka4j31ew0agtbl.jpg" alt="总结" style="zoom:43%;" />
+
+底数为 2 的负对数项看起来是不是很熟悉？这都来自「信息论」
+
+
+
+## 11. ML算法3种表达 + 贝叶斯(概率角度)表达
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gifuko31hlj31mf0u0b29.jpg" alt="" style="zoom:67%;" />
 
@@ -314,3 +342,17 @@ There is one technical note.
 进而，导致得到的model也不是唯一的，而是处于一个**范围的所有**
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gifuqihxwsj30sa0fawhh.jpg" style="zoom:50%;" />
+
+
+
+## 12. 统计学 vs 统计(机器)学习
+
+https://zhuanlan.zhihu.com/p/61964658
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gitsm0lryej31d00u0ans.jpg" alt="区分" style="zoom:67%;" />
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gitsff759nj30s40qw77x.jpg" alt="总结" style="zoom:40%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gitsfzesikj30yc0c842g.jpg" alt="总结" style="zoom:40%;" />

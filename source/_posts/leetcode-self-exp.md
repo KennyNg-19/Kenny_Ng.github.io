@@ -9,9 +9,17 @@ summary: 包括 1.编码前，头脑风暴上的trick 2.亲历data structure的�
 
 （注意是数据结构的巧用：<font color="#dd0000">提高效率/简化代码</font>的use case）
 
+
+
+
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1giknzozs6tj31640f0dto.jpg" alt="刷题6步-注意第2步" style="zoom:50%;" />
+
+
+
 ### 0. 树的递归 初步—画<font color="#dd0000">草图</font>找递归部分
 
-在正式编码之前，思考时，我们知道递归是强调找到**结构类似的子问题**，且递归那几行代码就是**针对这个子结构的**——所以我们可以在brainstorm解法中，**通过<font color="#dd0000">比划草图</font>，确定**递归代码要**<font color="#dd0000">覆盖树的<u>几层</u></font>**，这样方便**初步<u>比划</u>想出一个解法 + 验证它**。
+在正式编码之前，思考时，我们知道递归是强调找到**结构类似的子问题**，且递归那几行代码就是**针对这个子结构的**——所以我们可以brainstorm解法中，**在上面<u>第2步</u>，通过<font color="#dd0000">比划草图和<u>具体输入</u></font>，确定**递归代码要**<font color="#dd0000">覆盖树的<u>几层</u></font>**，这样方便**初步<u>比划</u>想出一个解法 + 单步运行验证它**。
 
 
 
