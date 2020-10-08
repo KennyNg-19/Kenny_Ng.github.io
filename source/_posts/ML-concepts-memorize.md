@@ -31,7 +31,7 @@ tags: [ML, math, 概率, 统计]
 
 #### 似然函数公式
 
-先看似然函数的定义，它是给定联合样本值x下关于(未知)参数θ的函数：![[公式]](https://www.zhihu.com/equation?tex=L%28%5Ctheta+%7C+%5Ctextbf%7Bx%7D%29+%3D+f%28%5Ctextbf%7Bx%7D+%7C+%5Ctheta%29)
+先看似然函数的定义，它是给定联合样本值x下关于(未知)参数θ的函数：(等号应该是**<u>正比于</u>**)![](https://www.zhihu.com/equation?tex=L%28%5Ctheta+%7C+%5Ctextbf%7Bx%7D%29+%3D+f%28%5Ctextbf%7Bx%7D+%7C+%5Ctheta%29)
 
 - 这里的小x 指联合样本随机变量X取到的值，即X=x；
 
@@ -39,11 +39,17 @@ tags: [ML, math, 概率, 统计]
 
 - 这里的f(x|θ)是一个**概率密度函数**，特别地表示(给定)θ下，关于联合样本值x的**联合密度函数**。
 
-所以从定义上，似然函数和密度函数是完全不同的两个**数学对象**：前者是关于θ的函数，后者是关x的函数。所以这里的等号![[公式]](https://www.zhihu.com/equation?tex=%3D) 理解为**<font color="#dd0000">函数值形式</font>的相等**，而<font color="#dd0000">不是两个函数本身是同一函数</font>。所以这个式子的**严格书写方式**是![[公式]](https://www.zhihu.com/equation?tex=L%28%5Ctheta+%7C+%5Ctextbf%7Bx%7D%29+%3D+f%28%5Ctextbf%7Bx%7D+%3B+%5Ctheta%29)(分号示把参数隔开) 即**θ在右端只当作参数**。
+所以从定义上，似然函数和密度函数是完全不同的两个**数学对象**：前者是关于θ的函数，后者是关x的函数。所以这里的等号=，应理解为**<font color="#dd0000">函数值形式</font>的相等**，而<font color="#dd0000">不是两个函数本身是同一函数</font>。所以这个式子的**严格书写方式**是![](https://www.zhihu.com/equation?tex=L%28%5Ctheta+%7C+%5Ctextbf%7Bx%7D%29+%3D+f%28%5Ctextbf%7Bx%7D+%3B+%5Ctheta%29)(分号示把参数隔开) 即**θ在右端只当作参数**。
 
 
 
-#### 本质: “似然”和“概率”是站在<u>两个角度</u>看待问题
+#### 注意：在贝叶斯中，具体求后验时，似然值怎么找——与已经设为定值的分母无关！
+
+![直觉上，若有分母一定时的分子概率，那就是似然值](https://tva1.sinaimg.cn/large/007S8ZIlgy1gji415ep10j30fa03udhm.jpg)
+
+
+
+#### 对比本质: “似然”和“概率”是站在<u>两个角度</u>看待问题
 
 对于这个函数：P(O|θ)
 
@@ -58,9 +64,11 @@ tags: [ML, math, 概率, 统计]
 
 > 抛一枚均匀的硬币，拋20次，问15次拋得正面的可能性有多大？ 这里的可能性就是”概率”，均匀的硬币就是给定参数θ=0.5，“拋20次15次正面”是观测值O。求概率P(H=15|θ=0.5)=？的概率。
 
-- **“似然”描述了给定了特定观测值后，描述模型参数是否合理。**
+- **“似然”描述了给定了特定观测值后，描述<u>模型参数</u>是否合理。**
 
-> 拋一枚硬币，拋20次，结果15次正面向上，问其为均匀的可能性？ 这里的可能性就是”似然”，“拋20次15次正面”为观测值O为已知，参数θ=?，并不知道，求L(θ|H=15)=P(H=15|θ=0.5) 的最大化下的θ 值。
+> 拋一枚硬币，拋20次，结果15次正面向上，问其为均匀的可能性？ 这里的可能性就是”似然”
+>
+> “拋20次15次正面”为观测值O为已知，参数θ并不知道，求L(θ|H=15)=P(H=15|θ=0.5)(prior和evidence都是常数) 的**最大化下的θ 值**
 
 
 
@@ -74,9 +82,15 @@ tags: [ML, math, 概率, 统计]
 
 ## 1. 均值化？归一化？傻傻分不清
 
-"标准化"和"归一化"这两个中文词要指代四种Feature scaling(特征缩放)方法, 实质是<font color="#dd0000">**一种线性变换**: **对向量 X 按照比例α压缩, 再进行平移**</font>。线性变换有很多良好的性质，这些性质**决定了对数据改变后<u>不会造成“失效”，反而能提高数据的表现</u>**，这些性质是归一化/标准化的前提, 详情见[特征工程中的「归一化」有什么作用？- 知乎](https://www.zhihu.com/question/20455227/answer/370658612) 。
+"标准化"和"归一化"这两个中文词要指代**四种**Feature scaling(特征缩放)方法, 实质是<font color="#dd0000">**一种线性变换**: **对向量 X 按照比例α压缩, 再进行平移**</font>。线性变换有很多良好的性质，这些性质**决定了对数据改变后<u>不会造成“失效”，反而能提高数据的表现</u>**，这些性质是归一化/标准化的前提, 详情见[特征工程中的「归一化」有什么作用？- 知乎](https://www.zhihu.com/question/20455227/answer/370658612) 。
 
-这四种分别是 
+
+
+先说**<u>数学领域</u>的normalization <u>标准化</u>**: 泛指将一组数，**<u>除以它们的sum</u>**, **得到各自占比且总和为1**——常见的就是求**概率值**或**概率分布**
+
+
+
+再到了**<u>ML方面处理feature</u>**时，具体这四种常用的分别是：
 
 1.  **归一化** Rescaling (**min-max normalization**)  ，![[归一化]](https://www.zhihu.com/equation?tex=x%5E%7B%27%7D+%3D+%5Cfrac%7Bx-min%28x%29%7D%7Bmax%28x%29-min%28x%29%7D) 
 
@@ -108,7 +122,7 @@ tags: [ML, math, 概率, 统计]
 
    平均值为0，对标准差无要求
 
-5.  Scaling to unit length  ![[公式]](https://www.zhihu.com/equation?tex=x%5E%7B%27%7D+%3D+%5Cfrac%7Bx%7D%7B%7C%7Cx%7C%7C%7D) 
+5.  Scaling to unit length  ![](https://www.zhihu.com/equation?tex=x%5E%7B%27%7D+%3D+%5Cfrac%7Bx%7D%7B%7C%7Cx%7C%7C%7D) 
 
 
 
@@ -194,13 +208,13 @@ There is one technical note.
 
     You can define a plane with a single vector. This magenta vector is **perpendicular to the plane**, and it's called the **<u>normal vector</u> to that plane**. So normal vector is perpendicular to **any vectors that lie on the plane**. 
 
-    <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqf03pey5j30ui0ki0vw.jpg" style="zOm:33%;" />
+    <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqf03pey5j30ui0ki0vw.jpg" style="zoom:33%;" />
 
     - 关于分割：实际就是normal vector在发挥作用（而该vector对应它所垂直的plane！)
 
       如何在数学上而不是几何视觉上，计算分割的结果we are able to see **visually** when the vector is **on one side of the plane** or the other, but how do you **do this <u>mathematically</u>**?  把目标向量和normal vector，**做dot product**，正负号表明在同侧/异侧——实际是**俩向量，夹角的cos**在决定！！
 
-      <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqf6a99ekj31d60ig7c3.jpg" alt="2Dplane，数学上是这样起到“分割”作用的" style="zOm:43%;" />
+      <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghqf6a99ekj31d60ig7c3.jpg" alt="2D plane，数学上是这样起到“分割”作用的" style="zoom:43%;" />
 
 - 在三维的平面中，它是面 
 
@@ -211,17 +225,17 @@ There is one technical note.
 
 
 
-## 7. 区分向量的点积(内积)、叉积(外积)
+## 7. 区分点积(内积)、叉积(外积)、矩阵乘法
 
 ### a. 点积(内积): 结果是数(标量)
 
 向量的点乘,也叫向量的内积、数量积，对两个向量执行点乘运算，就是对这两个向量对位①**一一相乘**之后 ②**再求和**的操作，点乘的结果是一个标量。
 
-### 
+
 
 对于向量a和向量b，要求一维向量a和向量b的**行列数相同**，点积公式为：
 
-![img](https://img-blog.csdn.net/20160902214456788)
+![](https://img-blog.csdn.net/20160902214456788)
 
 
 
@@ -251,9 +265,9 @@ There is one technical note.
 
 对于向量a和向量b，叉乘公式为：
 
-<img src="https://img-blog.csdn.net/20160902230539163" style="zOm:75%;" />
+<img src="https://img-blog.csdn.net/20160902230539163" style="zoom:75%;" />
 
-<img src="https://img-blog.csdn.net/20160902231520146" style="zOm:75%;" />
+<img src="https://img-blog.csdn.net/20160902231520146" style="zoom:75%;" />
 
 #### [几何意义](https://blog.csdn.net/dcrmg/article/details/52416832)
 
@@ -263,9 +277,13 @@ There is one technical note.
 
 > The product operator * when used on arrays or matrices indicates **element-wise** multiplications.
 
-**四则运算符号**，都是单纯的**element-wise的对位操作**，不像点积——不相加
+**四则运算符号**，都是单纯的**<u>element-wise</u>的对位操作**，不像点积——不相加
 
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghh5wqiu4cj30m607241f.jpg" style="zOm:43%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghh5wqiu4cj30m607241f.jpg" style="zoom:43%;" />
+
+### **矩阵与矩阵/向量**相乘 **也可用<u>@</u>**
+
+![也可用@！](https://tva1.sinaimg.cn/large/007S8ZIlgy1gj5p36wqcij31ji094gn0.jpg)
 
 也自然要求：~~一维向量~~array a和b的**~~行列数~~<u>维度</u>相同**
 
@@ -275,7 +293,7 @@ There is one technical note.
 
 ### 交集概率: 分母是<u>全集</u>(所以默认忽略)
 
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlntiq7ocj31dq0kak1t.jpg" style="zOm:40%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlntiq7ocj31dq0kak1t.jpg" style="zoom:30%;" />
 
 
 
@@ -283,15 +301,15 @@ There is one technical note.
 
 #### 分子用了交集概率，分母是<u>做条件的概率</u>的所在集
 
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlnqr41w2j31f20jiaj3.jpg" style="zOm:40%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlnqr41w2j31f20jiaj3.jpg" style="zoom:30%;" />
 
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlnppukfmj315w0imaha.jpg" style="zOm:50%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlnppukfmj315w0imaha.jpg" style="zoom:30%;" />
 
 
 
 ## 9. np.array的转置: 至少是2D
 
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gho372sm9hj31f70u079y.jpg" style="zOm:40%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gho372sm9hj31f70u079y.jpg" style="zoom:40%;" />
 
 
 
@@ -317,7 +335,7 @@ There is one technical note.
 - 乘积的对数等于对数的和。
 - 正量的最大化等同于负量的最小化。
 
-![img](https://tva1.sinaimg.cn/large/007S8ZIlgy1gitrm3yzidj30kr07274b.jpg)
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gitrm3yzidj30kr07274b.jpg" style="zoom:50%;" />
 
 
 
@@ -327,27 +345,31 @@ There is one technical note.
 
 
 
-## 11. ML算法3种表达 + 贝叶斯(概率角度)表达
+## 11. 图像化表达：ML算法3种 VS 贝叶斯深度学习(神经网络)
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gifuko31hlj31mf0u0b29.jpg" alt="" style="zoom:67%;" />
 
 
 
-#### Going Bayesian：让具体的标量参数，变为概率分布
+#### Bayesian 神经网络：让具体的标量参数，变为概率分布
 
+贝叶斯深度学习的核心思想：将**神经网络的<u>权重w和b视作服从某分布的随机变量</u>**，而不是固定值。以及网络的前向传播，就是**<u>从权值分布中抽样</u>**然后计算。
 
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gifus5k4vuj30no15owp0.jpg" alt="Going Bayesian" style="zoom:30%;" />
 
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gifus5k4vuj30no15owp0.jpg" alt="Going Bayesian" style="zoom:40%;" />
+进而，导致得到的**<u>model也不是唯一的</u>**，而是处于一个**<u>范围的所有</u>**
 
-进而，导致得到的model也不是唯一的，而是处于一个**范围的所有**
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gifuqihxwsj30sa0fawhh.jpg" style="zoom:40%;" />
 
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gifuqihxwsj30sa0fawhh.jpg" style="zoom:50%;" />
+#### 贝叶斯学习的意义
+
+**<u>提供不确定性</u>，非 softmax 生成的概率**。虽然工业界**一般需要确定性结果**，所以有这种贝叶斯机器学习在工业界没有广泛应用的错觉，但是贝叶斯理论**对于事件具有<u>很强的指导意义</u>**
 
 
 
 ## 12. 统计学 vs 统计(机器)学习
 
-https://zhuanlan.zhihu.com/p/61964658
+link: https://zhuanlan.zhihu.com/p/61964658
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gitsm0lryej31d00u0ans.jpg" alt="区分" style="zoom:67%;" />
 
