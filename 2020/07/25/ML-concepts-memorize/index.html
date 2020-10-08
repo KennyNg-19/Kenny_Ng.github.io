@@ -29,8 +29,8 @@
 
     <script src="/Kenny_Ng.github.io/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/Kenny_Ng.github.io/atom.xml" title="池中之物" type="application/atom+xml">
-<link rel="stylesheet" href="/Kenny_Ng.github.io/css/prism-tomorrow.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/Kenny_Ng.github.io/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/Kenny_Ng.github.io/atom.xml" title="池中之物" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
 
 
 <body>
@@ -466,21 +466,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2020-09-19
+                    2020-10-08
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    3.3k
+                    3.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    12 Min
+                    13 Min
                 </div>
                 
 
@@ -532,7 +532,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="似然函数公式"><a href="#似然函数公式" class="headerlink" title="似然函数公式"></a>似然函数公式</h4><p>先看似然函数的定义，它是给定联合样本值x下关于(未知)参数θ的函数：<img src="https://www.zhihu.com/equation?tex=L%28%5Ctheta+%7C+%5Ctextbf%7Bx%7D%29+%3D+f%28%5Ctextbf%7Bx%7D+%7C+%5Ctheta%29" alt=""></p>
+<h4 id="似然函数公式"><a href="#似然函数公式" class="headerlink" title="似然函数公式"></a>似然函数公式</h4><p>先看似然函数的定义，它是给定联合样本值x下关于(未知)参数θ的函数：(等号应该是<strong><u>正比于</u></strong>)<img src="https://www.zhihu.com/equation?tex=L%28%5Ctheta+%7C+%5Ctextbf%7Bx%7D%29+%3D+f%28%5Ctextbf%7Bx%7D+%7C+%5Ctheta%29" alt=""></p>
 <ul>
 <li><p>这里的小x 指联合样本随机变量X取到的值，即X=x；</p>
 </li>
@@ -542,7 +542,8 @@
 </li>
 </ul>
 <p>所以从定义上，似然函数和密度函数是完全不同的两个<strong>数学对象</strong>：前者是关于θ的函数，后者是关x的函数。所以这里的等号=，应理解为<strong><font color="#dd0000">函数值形式</font>的相等</strong>，而<font color="#dd0000">不是两个函数本身是同一函数</font>。所以这个式子的<strong>严格书写方式</strong>是<img src="https://www.zhihu.com/equation?tex=L%28%5Ctheta+%7C+%5Ctextbf%7Bx%7D%29+%3D+f%28%5Ctextbf%7Bx%7D+%3B+%5Ctheta%29" alt="">)(分号示把参数隔开) 即<strong>θ在右端只当作参数</strong>。</p>
-<h4 id="本质-“似然”和“概率”是站在两个角度看待问题"><a href="#本质-“似然”和“概率”是站在两个角度看待问题" class="headerlink" title="本质: “似然”和“概率”是站在两个角度看待问题"></a>本质: “似然”和“概率”是站在<u>两个角度</u>看待问题</h4><p>对于这个函数：P(O|θ)</p>
+<h4 id="注意：在贝叶斯中，具体求后验时，似然值怎么找——与已经设为定值的分母无关！"><a href="#注意：在贝叶斯中，具体求后验时，似然值怎么找——与已经设为定值的分母无关！" class="headerlink" title="注意：在贝叶斯中，具体求后验时，似然值怎么找——与已经设为定值的分母无关！"></a>注意：在贝叶斯中，具体求后验时，似然值怎么找——与已经设为定值的分母无关！</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gji415ep10j30fa03udhm.jpg" alt="直觉上，若有分母一定时的分子概率，那就是似然值"></p>
+<h4 id="对比本质-“似然”和“概率”是站在两个角度看待问题"><a href="#对比本质-“似然”和“概率”是站在两个角度看待问题" class="headerlink" title="对比本质: “似然”和“概率”是站在两个角度看待问题"></a>对比本质: “似然”和“概率”是站在<u>两个角度</u>看待问题</h4><p>对于这个函数：P(O|θ)</p>
 <p>输入有两个：O表示某一个具体的数据；θ表示模型的参数。</p>
 <ul>
 <li>如果θ是已知确定的，O是变量，这个函数叫做概率函数(probability function)，它描述对于不同的样本O，其出现概率是多少。</li>
@@ -555,13 +556,15 @@
 <p>抛一枚均匀的硬币，拋20次，问15次拋得正面的可能性有多大？ 这里的可能性就是”概率”，均匀的硬币就是给定参数θ=0.5，“拋20次15次正面”是观测值O。求概率P(H=15|θ=0.5)=？的概率。</p>
 </blockquote>
 <ul>
-<li><strong>“似然”描述了给定了特定观测值后，描述模型参数是否合理。</strong></li>
+<li><strong>“似然”描述了给定了特定观测值后，描述<u>模型参数</u>是否合理。</strong></li>
 </ul>
 <blockquote>
-<p>拋一枚硬币，拋20次，结果15次正面向上，问其为均匀的可能性？ 这里的可能性就是”似然”，“拋20次15次正面”为观测值O为已知，参数θ=?，并不知道，求L(θ|H=15)=P(H=15|θ=0.5) 的最大化下的θ 值。</p>
+<p>拋一枚硬币，拋20次，结果15次正面向上，问其为均匀的可能性？ 这里的可能性就是”似然”</p>
+<p>“拋20次15次正面”为观测值O为已知，参数θ并不知道，求L(θ|H=15)=P(H=15|θ=0.5)(prior和evidence都是常数) 的<strong>最大化下的θ 值</strong></p>
 </blockquote>
-<h4 id="离散随机变量的“似然”与“概率”"><a href="#离散随机变量的“似然”与“概率”" class="headerlink" title="离散随机变量的“似然”与“概率”"></a>离散随机变量的“似然”与“概率”</h4><h4 id="连续型随机变量的“似然”与“概率”"><a href="#连续型随机变量的“似然”与“概率”" class="headerlink" title="连续型随机变量的“似然”与“概率”"></a>连续型随机变量的“似然”与“概率”</h4><h2 id="1-均值化？归一化？傻傻分不清"><a href="#1-均值化？归一化？傻傻分不清" class="headerlink" title="1. 均值化？归一化？傻傻分不清"></a>1. 均值化？归一化？傻傻分不清</h2><p>“标准化”和”归一化”这两个中文词要指代四种Feature scaling(特征缩放)方法, 实质是<font color="#dd0000"><strong>一种线性变换</strong>: <strong>对向量 X 按照比例α压缩, 再进行平移</strong></font>。线性变换有很多良好的性质，这些性质<strong>决定了对数据改变后<u>不会造成“失效”，反而能提高数据的表现</u></strong>，这些性质是归一化/标准化的前提, 详情见<a href="https://www.zhihu.com/question/20455227/answer/370658612" target="_blank" rel="noopener">特征工程中的「归一化」有什么作用？- 知乎</a> 。</p>
-<p>这四种分别是 </p>
+<h4 id="离散随机变量的“似然”与“概率”"><a href="#离散随机变量的“似然”与“概率”" class="headerlink" title="离散随机变量的“似然”与“概率”"></a>离散随机变量的“似然”与“概率”</h4><h4 id="连续型随机变量的“似然”与“概率”"><a href="#连续型随机变量的“似然”与“概率”" class="headerlink" title="连续型随机变量的“似然”与“概率”"></a>连续型随机变量的“似然”与“概率”</h4><h2 id="1-均值化？归一化？傻傻分不清"><a href="#1-均值化？归一化？傻傻分不清" class="headerlink" title="1. 均值化？归一化？傻傻分不清"></a>1. 均值化？归一化？傻傻分不清</h2><p>“标准化”和”归一化”这两个中文词要指代<strong>四种</strong>Feature scaling(特征缩放)方法, 实质是<font color="#dd0000"><strong>一种线性变换</strong>: <strong>对向量 X 按照比例α压缩, 再进行平移</strong></font>。线性变换有很多良好的性质，这些性质<strong>决定了对数据改变后<u>不会造成“失效”，反而能提高数据的表现</u></strong>，这些性质是归一化/标准化的前提, 详情见<a href="https://www.zhihu.com/question/20455227/answer/370658612" target="_blank" rel="noopener">特征工程中的「归一化」有什么作用？- 知乎</a> 。</p>
+<p>先说<strong><u>数学领域</u>的normalization <u>标准化</u></strong>: 泛指将一组数，<strong><u>除以它们的sum</u></strong>, <strong>得到各自占比且总和为1</strong>——常见的就是求<strong>概率值</strong>或<strong>概率分布</strong></p>
+<p>再到了<strong><u>ML方面处理feature</u></strong>时，具体这四种常用的分别是：</p>
 <ol>
 <li><p><strong>归一化</strong> Rescaling (<strong>min-max normalization</strong>)  ，<img src="https://www.zhihu.com/equation?tex=x%5E%7B%27%7D+%3D+%5Cfrac%7Bx-min%28x%29%7D%7Bmax%28x%29-min%28x%29%7D" alt="[归一化]"> </p>
 </li>
@@ -656,7 +659,7 @@
 <li><p>在更高的维度中，我们称之为超平面** <br>所以，<strong>广义上</strong>，1D直线、2D平面，都可叫超平面</p>
 </li>
 </ul>
-<h2 id="7-区分向量的点积-内积-、叉积-外积"><a href="#7-区分向量的点积-内积-、叉积-外积" class="headerlink" title="7. 区分向量的点积(内积)、叉积(外积)"></a>7. 区分向量的点积(内积)、叉积(外积)</h2><h3 id="a-点积-内积-结果是数-标量"><a href="#a-点积-内积-结果是数-标量" class="headerlink" title="a. 点积(内积): 结果是数(标量)"></a>a. 点积(内积): 结果是数(标量)</h3><p>向量的点乘,也叫向量的内积、数量积，对两个向量执行点乘运算，就是对这两个向量对位①<strong>一一相乘</strong>之后 ②<strong>再求和</strong>的操作，点乘的结果是一个标量。</p>
+<h2 id="7-区分点积-内积-、叉积-外积-、矩阵乘法"><a href="#7-区分点积-内积-、叉积-外积-、矩阵乘法" class="headerlink" title="7. 区分点积(内积)、叉积(外积)、矩阵乘法"></a>7. 区分点积(内积)、叉积(外积)、矩阵乘法</h2><h3 id="a-点积-内积-结果是数-标量"><a href="#a-点积-内积-结果是数-标量" class="headerlink" title="a. 点积(内积): 结果是数(标量)"></a>a. 点积(内积): 结果是数(标量)</h3><p>向量的点乘,也叫向量的内积、数量积，对两个向量执行点乘运算，就是对这两个向量对位①<strong>一一相乘</strong>之后 ②<strong>再求和</strong>的操作，点乘的结果是一个标量。</p>
 <p>对于向量a和向量b，要求一维向量a和向量b的<strong>行列数相同</strong>，点积公式为：</p>
 <p><img src="https://img-blog.csdn.net/20160902214456788" alt=""></p>
 <p>可以看出，计算结果是个标量！</p>
@@ -671,9 +674,10 @@
 <h4 id="几何意义-1"><a href="#几何意义-1" class="headerlink" title="几何意义"></a><a href="https://blog.csdn.net/dcrmg/article/details/52416832" target="_blank" rel="noopener">几何意义</a></h4><h3 id="顺带一提：np-array的-×÷"><a href="#顺带一提：np-array的-×÷" class="headerlink" title="顺带一提：np.array的+-×÷"></a>顺带一提：np.array的+-×÷</h3><blockquote>
 <p>The product operator * when used on arrays or matrices indicates <strong>element-wise</strong> multiplications.</p>
 </blockquote>
-<p><strong>四则运算符号</strong>，都是单纯的<strong>element-wise的对位操作</strong>，不像点积——不相加</p>
+<p><strong>四则运算符号</strong>，都是单纯的<strong><u>element-wise</u>的对位操作</strong>，不像点积——不相加</p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghh5wqiu4cj30m607241f.jpg" style="zoom:43%;" />
 
+<h3 id="矩阵与矩阵-向量相乘-也可用"><a href="#矩阵与矩阵-向量相乘-也可用" class="headerlink" title="矩阵与矩阵/向量相乘 也可用@"></a><strong>矩阵与矩阵/向量</strong>相乘 <strong>也可用<u>@</u></strong></h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj5p36wqcij31ji094gn0.jpg" alt="也可用@！"></p>
 <p>也自然要求：<del>一维向量</del>array a和b的<strong><del>行列数</del><u>维度</u>相同</strong></p>
 <h2 id="8-条件概率和交集概率的区分"><a href="#8-条件概率和交集概率的区分" class="headerlink" title="8. 条件概率和交集概率的区分"></a>8. 条件概率和交集概率的区分</h2><h3 id="交集概率-分母是全集-所以默认忽略"><a href="#交集概率-分母是全集-所以默认忽略" class="headerlink" title="交集概率: 分母是全集(所以默认忽略)"></a>交集概率: 分母是<u>全集</u>(所以默认忽略)</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlntiq7ocj31dq0kak1t.jpg" style="zoom:30%;" />
 
@@ -711,17 +715,17 @@
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gitrkb5ka4j31ew0agtbl.jpg" alt="总结" style="zoom:43%;" />
 
 <p>底数为 2 的负对数项看起来是不是很熟悉？这都来自「信息论」</p>
-<h2 id="11-ML算法3种表达-贝叶斯-概率角度-表达"><a href="#11-ML算法3种表达-贝叶斯-概率角度-表达" class="headerlink" title="11. ML算法3种表达 + 贝叶斯(概率角度)表达"></a>11. ML算法3种表达 + 贝叶斯(概率角度)表达</h2><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gifuko31hlj31mf0u0b29.jpg" alt="" style="zoom:67%;" />
+<h2 id="11-图像化表达：ML算法3种-VS-贝叶斯深度学习-神经网络"><a href="#11-图像化表达：ML算法3种-VS-贝叶斯深度学习-神经网络" class="headerlink" title="11. 图像化表达：ML算法3种 VS 贝叶斯深度学习(神经网络)"></a>11. 图像化表达：ML算法3种 VS 贝叶斯深度学习(神经网络)</h2><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gifuko31hlj31mf0u0b29.jpg" alt="" style="zoom:67%;" />
 
 
 
-<h4 id="Going-Bayesian：让具体的标量参数，变为概率分布"><a href="#Going-Bayesian：让具体的标量参数，变为概率分布" class="headerlink" title="Going Bayesian：让具体的标量参数，变为概率分布"></a>Going Bayesian：让具体的标量参数，变为概率分布</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gifus5k4vuj30no15owp0.jpg" alt="Going Bayesian" style="zoom:30%;" />
+<h4 id="Bayesian-神经网络：让具体的标量参数，变为概率分布"><a href="#Bayesian-神经网络：让具体的标量参数，变为概率分布" class="headerlink" title="Bayesian 神经网络：让具体的标量参数，变为概率分布"></a>Bayesian 神经网络：让具体的标量参数，变为概率分布</h4><p>贝叶斯深度学习的核心思想：将<strong>神经网络的<u>权重w和b视作服从某分布的随机变量</u></strong>，而不是固定值。以及网络的前向传播，就是<strong><u>从权值分布中抽样</u></strong>然后计算。</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gifus5k4vuj30no15owp0.jpg" alt="Going Bayesian" style="zoom:30%;" />
 
-<p>进而，导致得到的model也不是唯一的，而是处于一个<strong>范围的所有</strong></p>
+<p>进而，导致得到的<strong><u>model也不是唯一的</u></strong>，而是处于一个<strong><u>范围的所有</u></strong></p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gifuqihxwsj30sa0fawhh.jpg" style="zoom:40%;" />
 
-
-
+<h4 id="贝叶斯学习的意义"><a href="#贝叶斯学习的意义" class="headerlink" title="贝叶斯学习的意义"></a>贝叶斯学习的意义</h4><p><strong><u>提供不确定性</u>，非 softmax 生成的概率</strong>。虽然工业界<strong>一般需要确定性结果</strong>，所以有这种贝叶斯机器学习在工业界没有广泛应用的错觉，但是贝叶斯理论<strong>对于事件具有<u>很强的指导意义</u></strong></p>
 <h2 id="12-统计学-vs-统计-机器-学习"><a href="#12-统计学-vs-统计-机器-学习" class="headerlink" title="12. 统计学 vs 统计(机器)学习"></a>12. 统计学 vs 统计(机器)学习</h2><p>link: <a href="https://zhuanlan.zhihu.com/p/61964658" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/61964658</a></p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gitsm0lryej31d00u0ans.jpg" alt="区分" style="zoom:67%;" />
 
