@@ -1,5 +1,5 @@
 ---
-title: 有趣有思想的words积累
+title: 有趣\有思想的words积累
 date: 2020-07-09 00:25:23
 tags: [feeling&mind]
 img: /medias/featureimages/12.jpg
@@ -39,10 +39,10 @@ summary: 积累下日常看到的，有意思的有思想的words(截图)
 
 
 
-### 6. 文字聊天是离散非线性的
+### 6. 电子产品上的文字聊天，是离散碎片、非线性的
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gi25zo73thj30pg044js1.jpg" style="zoom:50%;" />
 
-### 7. 童年的重要性
+### 7. 童年...
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gi25zy33oyj30lf07xgn3.jpg" style="zoom:40%;" />

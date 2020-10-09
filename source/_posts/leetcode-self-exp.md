@@ -1,7 +1,7 @@
 ---
 title: 算法题的自我经验总结
 date: 2020-07-01 15:53:01
-tags: [CS, 数据结构, 算法, Java]
+tags: [CS, 数据结构, 算法, Java, 积累]
 summary: 包括 1.编码前，头脑风暴上的trick 2.亲历data structure的巧用的实例
 ---
 

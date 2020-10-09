@@ -1,7 +1,7 @@
 ---
 title: ML,DL的混淆点/易错点
 date: 2020-07-25 13:00:22
-tags: [ML, math, 概率, 统计]
+tags: [ML, math, 统计概率, 积累]
 ---
 
 # ML(数学)中的常见混淆, 易错点和一般性结论
@@ -45,13 +45,13 @@ tags: [ML, math, 概率, 统计]
 
 #### 注意：在贝叶斯中，具体求后验时，似然值怎么找——与已经设为定值的分母无关！
 
-![直觉上，若有分母一定时的分子概率，那就是似然值](https://tva1.sinaimg.cn/large/007S8ZIlgy1gji415ep10j30fa03udhm.jpg)
+![若有分母一定时，直觉上可得的分子概率，那就是似然值！](https://tva1.sinaimg.cn/large/007S8ZIlgy1gji415ep10j30fa03udhm.jpg)
 
 
 
 #### 对比本质: “似然”和“概率”是站在<u>两个角度</u>看待问题
 
-对于这个函数：P(O|θ)
+例A. 对于这个函数：P(O|θ)
 
 输入有两个：O表示某一个具体的数据；θ表示模型的参数。
 
@@ -69,6 +69,20 @@ tags: [ML, math, 概率, 统计]
 > 拋一枚硬币，拋20次，结果15次正面向上，问其为均匀的可能性？ 这里的可能性就是”似然”
 >
 > “拋20次15次正面”为观测值O为已知，参数θ并不知道，求L(θ|H=15)=P(H=15|θ=0.5)(prior和evidence都是常数) 的**最大化下的θ 值**
+
+例B. 对于统计**概率分布**的似然
+
+
+
+**最大似然估计**：given data, 寻找**概率最大的概率分布**
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjie9ys7s0j31qk0tekhj.jpg" alt="最大似然估计" style="zoom:30%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjie8c3kjpj315m0bedi7.jpg" alt="given data, 在寻找最优分布" style="zoom:33%;" />
+
+
 
 
 
