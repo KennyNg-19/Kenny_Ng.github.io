@@ -29,8 +29,8 @@
 
     <script src="/Kenny_Ng.github.io/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/Kenny_Ng.github.io/css/prism-tomorrow.css" type="text/css"><link rel="alternate" href="/Kenny_Ng.github.io/atom.xml" title="池中之物" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/Kenny_Ng.github.io/atom.xml" title="池中之物" type="application/atom+xml">
+<link rel="stylesheet" href="/Kenny_Ng.github.io/css/prism-tomorrow.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
 <body>
@@ -439,12 +439,12 @@
                                 <span class="chip bg-color">math</span>
                             </a>
                         
-                            <a href="/Kenny_Ng.github.io/tags/%E6%A6%82%E7%8E%87/">
-                                <span class="chip bg-color">概率</span>
+                            <a href="/Kenny_Ng.github.io/tags/%E7%A7%AF%E7%B4%AF/">
+                                <span class="chip bg-color">积累</span>
                             </a>
                         
-                            <a href="/Kenny_Ng.github.io/tags/%E7%BB%9F%E8%AE%A1/">
-                                <span class="chip bg-color">统计</span>
+                            <a href="/Kenny_Ng.github.io/tags/%E7%BB%9F%E8%AE%A1%E6%A6%82%E7%8E%87/">
+                                <span class="chip bg-color">统计概率</span>
                             </a>
                         
                     </div>
@@ -466,21 +466,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2020-10-08
+                    2020-10-12
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    3.6k
+                    5.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    13 Min
+                    18 Min
                 </div>
                 
 
@@ -542,8 +542,8 @@
 </li>
 </ul>
 <p>所以从定义上，似然函数和密度函数是完全不同的两个<strong>数学对象</strong>：前者是关于θ的函数，后者是关x的函数。所以这里的等号=，应理解为<strong><font color="#dd0000">函数值形式</font>的相等</strong>，而<font color="#dd0000">不是两个函数本身是同一函数</font>。所以这个式子的<strong>严格书写方式</strong>是<img src="https://www.zhihu.com/equation?tex=L%28%5Ctheta+%7C+%5Ctextbf%7Bx%7D%29+%3D+f%28%5Ctextbf%7Bx%7D+%3B+%5Ctheta%29" alt="">)(分号示把参数隔开) 即<strong>θ在右端只当作参数</strong>。</p>
-<h4 id="注意：在贝叶斯中，具体求后验时，似然值怎么找——与已经设为定值的分母无关！"><a href="#注意：在贝叶斯中，具体求后验时，似然值怎么找——与已经设为定值的分母无关！" class="headerlink" title="注意：在贝叶斯中，具体求后验时，似然值怎么找——与已经设为定值的分母无关！"></a>注意：在贝叶斯中，具体求后验时，似然值怎么找——与已经设为定值的分母无关！</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gji415ep10j30fa03udhm.jpg" alt="直觉上，若有分母一定时的分子概率，那就是似然值"></p>
-<h4 id="对比本质-“似然”和“概率”是站在两个角度看待问题"><a href="#对比本质-“似然”和“概率”是站在两个角度看待问题" class="headerlink" title="对比本质: “似然”和“概率”是站在两个角度看待问题"></a>对比本质: “似然”和“概率”是站在<u>两个角度</u>看待问题</h4><p>对于这个函数：P(O|θ)</p>
+<h4 id="注意：在贝叶斯中，具体求后验时，似然值怎么找——与已经设为定值的分母无关！"><a href="#注意：在贝叶斯中，具体求后验时，似然值怎么找——与已经设为定值的分母无关！" class="headerlink" title="注意：在贝叶斯中，具体求后验时，似然值怎么找——与已经设为定值的分母无关！"></a>注意：在贝叶斯中，具体求后验时，似然值怎么找——与已经设为定值的分母无关！</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gji415ep10j30fa03udhm.jpg" alt="若有分母一定时，直觉上可得的分子概率，那就是似然值！"></p>
+<h4 id="对比本质-“似然”和“概率”是站在两个角度看待问题"><a href="#对比本质-“似然”和“概率”是站在两个角度看待问题" class="headerlink" title="对比本质: “似然”和“概率”是站在两个角度看待问题"></a>对比本质: “似然”和“概率”是站在<u>两个角度</u>看待问题</h4><p>例A. 对于这个函数：P(O|θ)</p>
 <p>输入有两个：O表示某一个具体的数据；θ表示模型的参数。</p>
 <ul>
 <li>如果θ是已知确定的，O是变量，这个函数叫做概率函数(probability function)，它描述对于不同的样本O，其出现概率是多少。</li>
@@ -562,6 +562,18 @@
 <p>拋一枚硬币，拋20次，结果15次正面向上，问其为均匀的可能性？ 这里的可能性就是”似然”</p>
 <p>“拋20次15次正面”为观测值O为已知，参数θ并不知道，求L(θ|H=15)=P(H=15|θ=0.5)(prior和evidence都是常数) 的<strong>最大化下的θ 值</strong></p>
 </blockquote>
+<p>例B. 对于统计<strong>概率分布</strong>的似然</p>
+<p><strong>最大似然估计</strong>：given data, 寻找<strong>概率最大的概率分布</strong></p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjie9ys7s0j31qk0tekhj.jpg" alt="最大似然估计" style="zoom:30%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjie8c3kjpj315m0bedi7.jpg" alt="given data, 在寻找最优分布" style="zoom:33%;" />
+
+
+
+
+
 <h4 id="离散随机变量的“似然”与“概率”"><a href="#离散随机变量的“似然”与“概率”" class="headerlink" title="离散随机变量的“似然”与“概率”"></a>离散随机变量的“似然”与“概率”</h4><h4 id="连续型随机变量的“似然”与“概率”"><a href="#连续型随机变量的“似然”与“概率”" class="headerlink" title="连续型随机变量的“似然”与“概率”"></a>连续型随机变量的“似然”与“概率”</h4><h2 id="1-均值化？归一化？傻傻分不清"><a href="#1-均值化？归一化？傻傻分不清" class="headerlink" title="1. 均值化？归一化？傻傻分不清"></a>1. 均值化？归一化？傻傻分不清</h2><p>“标准化”和”归一化”这两个中文词要指代<strong>四种</strong>Feature scaling(特征缩放)方法, 实质是<font color="#dd0000"><strong>一种线性变换</strong>: <strong>对向量 X 按照比例α压缩, 再进行平移</strong></font>。线性变换有很多良好的性质，这些性质<strong>决定了对数据改变后<u>不会造成“失效”，反而能提高数据的表现</u></strong>，这些性质是归一化/标准化的前提, 详情见<a href="https://www.zhihu.com/question/20455227/answer/370658612" target="_blank" rel="noopener">特征工程中的「归一化」有什么作用？- 知乎</a> 。</p>
 <p>先说<strong><u>数学领域</u>的normalization <u>标准化</u></strong>: 泛指将一组数，<strong><u>除以它们的sum</u></strong>, <strong>得到各自占比且总和为1</strong>——常见的就是求<strong>概率值</strong>或<strong>概率分布</strong></p>
 <p>再到了<strong><u>ML方面处理feature</u></strong>时，具体这四种常用的分别是：</p>
@@ -734,6 +746,37 @@
 
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gitsfzesikj30yc0c842g.jpg" alt="总结" style="zoom:40%;" />
+
+
+
+<h2 id="13-急切学习-Eager-和惰性学习-Lazy"><a href="#13-急切学习-Eager-和惰性学习-Lazy" class="headerlink" title="13. 急切学习(Eager)和惰性学习(Lazy)"></a>13. 急切学习(Eager)和惰性学习(Lazy)</h2><h3 id="以下内容均为转载"><a href="#以下内容均为转载" class="headerlink" title="(以下内容均为转载)"></a><em>(以下内容均为转载)</em></h3><p>急切学习方法也叫积极学习方法, 惰性学习方法也叫消极学习方法</p>
+<h3 id="急切-积极学习方法"><a href="#急切-积极学习方法" class="headerlink" title="急切/积极学习方法"></a>急切/积极学习方法</h3><p>指在利用算法<strong>进行判断<u>之前</u></strong>,先利用训练集数据通过<strong>训练得到一个目标函数</strong>；在需要进行判断时，利用已经训练好的函数进行决策。</p>
+<p>意义：这种方法是<strong>在开始的时候需要进行一些工作,到后期进行使用的时候会很方便.</strong></p>
+<p><strong>例如</strong></p>
+<p>以很好理解的决策树为例,通过决策树进行判断之前,先通过对<strong>训练集的训练建立起了一棵树</strong>。</p>
+<p>比如很经典的利用决策树判断一各新发现的物种是否为哺乳动物的例子,首先根据已经已知的训练集进行训练,提炼出哺乳动物的各种特征,这就是一个建立模型的过程；<strong>模型建立好之后,再有新物种需要进行判断的时候</strong>,只需要按照训练好的模型对照新物种挨个对比,就能很容易的给出判断结果.</p>
+<h3 id="惰性-消极学习方法"><a href="#惰性-消极学习方法" class="headerlink" title="惰性/消极学习方法"></a>惰性/消极学习方法</h3><p><strong>最开始的时候不会根据已有的样本(通过”训练”过程)创建目标函数</strong>,只是<strong>简单的把训练用的样本<u>储存</u>好</strong>；后期<strong>需要对新进入的样本进行判断的时候</strong>， 才开始<strong>分析新进入样本与已存在的训练样本之间的关系</strong>，并据此确定新入样本的目标函数值。</p>
+<p><strong>例如</strong></p>
+<p>典型算法<strong>KNN</strong>：KNN<strong>不会根据训练集主动学习或者拟合出一个函数</strong>，来对新进入的样本进行判断,而是单纯的记住训练集中所有的样本,并<strong>没有像上边决策树那样先对训练集数据进行训练，<u>得出一套规则</u></strong>。所以它实际上<strong>没有所谓的”训练”过程</strong>,而是在<strong>需要进行预测的时候从自己的训练集样本中查找</strong>与新进入样本最相似的样本，来获得预测结果</p>
+<h3 id="对比：双方互补"><a href="#对比：双方互补" class="headerlink" title="对比：双方互补"></a>对比：双方互补</h3><p>积极学习方法：在训练时<strong>考虑到了训练集中所有数据,训练时间比较长</strong>；有新样本进入需要判断的时候<strong>决策时间短</strong>。但是也是由于这个原因,<strong><u>做增量拓展</u>的时候比较虐</strong>.</p>
+<p>消极学习方法：几乎没有训练时间,在新样本进入做判断的时候<strong>计算开销大，时间长</strong>；但是，<strong><u>天生支持增量学习</u></strong>。</p>
+<p>那什么是增量学习？</p>
+<h2 id="14-增量学习-Incremental-Learning"><a href="#14-增量学习-Incremental-Learning" class="headerlink" title="14 增量学习(Incremental Learning)"></a>14 增量学习(Incremental Learning)</h2><p><strong>简单定义</strong>：作为机器学习的一种方法，现阶段得到广泛的关注。在其中，<strong>输入数据不断被用于扩展现有模型的知识，即进一步训练模型</strong>。它代表了一种<strong>动态</strong>的学习的技术。</p>
+<h3 id="地位"><a href="#地位" class="headerlink" title="地位"></a>地位</h3><p>是<strong><u>数据挖掘算法走向实用化</u></strong>的关键技术之一</p>
+<h3 id="启发"><a href="#启发" class="headerlink" title="启发"></a>启发</h3><p>对于<strong>传统的批量学习</strong>技术来说,如何从<strong>日益增加的新数据</strong>中得到有用信息是一个难题。随着数据规模的不断增加,对时间和空间的需求也会迅速增加,最终会导致学习的速度赶不上数据更新的速度。机器学习是一个解决此问题的有效方法。</p>
+<p> 随着人工智能和机器学习的发展,人们开发了很多机器学习算法。这些算法<strong>大部分都是批量学习(Batch Learning)模式</strong>,即<strong><u>需要在训练之前所有训练样本一次性可得</u></strong>,<font color="#dd0000">学习完这些样本<strong><u>之后</u></strong>——<strong>学习过程就终止了,不再学习新的知识</strong></font>；然而在实际应用中,训练样本通常<strong><u>不可能一次全部得到,而是随着时间逐步得到</u></strong>,并且样本<strong>反映的信息也可能随着时间产生了变化</strong>。如果新样本到达后<u><strong>要重新学习</strong></u>全部数据,需要消耗大量时间和空间,因此批量的学习算法不能满足这种需求。</p>
+<p>为了实现<strong>在线学习</strong>的需求,需要抛弃以前的学习结果,重新训练和学习,这对时间和空间的需求都很高。因此,迫切需要研究增量学习方法,可以<strong>渐进的进行知识更新</strong>,且能<strong>修正和加强以前的知识</strong>,使得更新后的知识能<strong>适应</strong>新增加的数据。</p>
+<h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><p>增量学习是指一个学习系统能<strong><u>不断地从新样本中学习新的知识,并能保存大部分以前已经学习到的知识</u></strong>。增量学习非常<font color="#dd0000"><strong>类似于人类自身的学习模式</strong></font>。因为人在成长过程中,每天学习和接收新的事物,学习是逐步进行的,而且,对已经学习到的知识,<strong>人类一般是不会遗忘的</strong>。</p>
+<p>与传统的数据分类技术相比，增量学习分类技术具有显著的优越性，这主要表现在两个方面：一方面由于其<strong>无需保存历史数据</strong>，从而减少存储空间的占用；另一方面，由于其在新的训练中<strong>充分<u>利用了历史的训练结果</u>，从而显著地减少了后续训练的时间</strong>。</p>
+<p>增量学习技术是一种得到广泛应用的<strong><u>智能化数据挖掘与知识</u></strong>发现技术。其思想是当样本逐步积累时，学习精度也要随之提高。</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>对于满足以下条件的学习方法可以定义为增量学习方法：</p>
+<ul>
+<li>可以学习<strong>新的</strong>信息中的有用信息</li>
+<li><strong>不需要访问</strong>已经用于训练分类器的<strong>原始数据</strong></li>
+<li>但是，对已经学习的知识具有<strong>记忆</strong></li>
+<li>在面对新数据中包含的新类别时，可以有效地进行处理</li>
+</ul>
+<h2 id="15-No-free-lunch理论"><a href="#15-No-free-lunch理论" class="headerlink" title="15 No free lunch理论"></a>15 No free lunch理论</h2>
             </div>
             <hr/>
 
@@ -804,12 +847,12 @@
                                     <span class="chip bg-color">math</span>
                                 </a>
                             
-                                <a href="/Kenny_Ng.github.io/tags/%E6%A6%82%E7%8E%87/">
-                                    <span class="chip bg-color">概率</span>
+                                <a href="/Kenny_Ng.github.io/tags/%E7%A7%AF%E7%B4%AF/">
+                                    <span class="chip bg-color">积累</span>
                                 </a>
                             
-                                <a href="/Kenny_Ng.github.io/tags/%E7%BB%9F%E8%AE%A1/">
-                                    <span class="chip bg-color">统计</span>
+                                <a href="/Kenny_Ng.github.io/tags/%E7%BB%9F%E8%AE%A1%E6%A6%82%E7%8E%87/">
+                                    <span class="chip bg-color">统计概率</span>
                                 </a>
                             
                         </div>
@@ -1042,9 +1085,9 @@ a. 训练数据分布-Class imbalance问题如 实际在收集要拿來做DL的�
                 <a href="/Kenny_Ng.github.io/2020/07/09/meaningful-words/">
                     <div class="card-image">
                         
-                        <img src="/Kenny_Ng.github.io/medias/featureimages/12.jpg" class="responsive-img" alt="有趣有思想的words积累">
+                        <img src="/Kenny_Ng.github.io/medias/featureimages/12.jpg" class="responsive-img" alt="有趣\有思想的words积累">
                         
-                        <span class="card-title">有趣有思想的words积累</span>
+                        <span class="card-title">有趣\有思想的words积累</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
