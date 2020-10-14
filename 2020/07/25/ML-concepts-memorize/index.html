@@ -466,14 +466,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2020-10-12
+                    2020-10-13
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    5.2k
+                    5.1k
                 </div>
                 
 
@@ -525,7 +525,7 @@
 </tr>
 </tbody></table>
 <h4 id="wiki中关于“似然”和“概率”的解释"><a href="#wiki中关于“似然”和“概率”的解释" class="headerlink" title="wiki中关于“似然”和“概率”的解释"></a>wiki中关于“似然”和“概率”的解释</h4><ul>
-<li>在频率推论中，似然函数（常常简称为似然）是一个在给定了数据以及模型中关于参数的函数。<strong>在非正式情况下，“似然”通常被用作“概率”的同义词。</strong></li>
+<li>在频率推论中，似然函数（常常简称为似然）是一个在<strong>给定了数据</strong>后<strong>关于模型参数的</strong>函数。<strong>在非正式情况下，“似然”通常被用作“概率”的同义词。</strong></li>
 <li>在<strong><u>数理统计</u></strong>中，两个术语<strong><u>则有不同的意思</u></strong>：<ul>
 <li>“概率”描述了<strong>给定模型参数后</strong>，输出<strong>结果的合理性(可能性大小)</strong>，而不涉及任何观察到的数据。</li>
 <li>“似然”则描述了<strong>给定了特定观测结果</strong>后，描述模型<strong>参数是否合理</strong></li>
@@ -542,14 +542,18 @@
 </li>
 </ul>
 <p>所以从定义上，似然函数和密度函数是完全不同的两个<strong>数学对象</strong>：前者是关于θ的函数，后者是关x的函数。所以这里的等号=，应理解为<strong><font color="#dd0000">函数值形式</font>的相等</strong>，而<font color="#dd0000">不是两个函数本身是同一函数</font>。所以这个式子的<strong>严格书写方式</strong>是<img src="https://www.zhihu.com/equation?tex=L%28%5Ctheta+%7C+%5Ctextbf%7Bx%7D%29+%3D+f%28%5Ctextbf%7Bx%7D+%3B+%5Ctheta%29" alt="">)(分号示把参数隔开) 即<strong>θ在右端只当作参数</strong>。</p>
-<h4 id="注意：在贝叶斯中，具体求后验时，似然值怎么找——与已经设为定值的分母无关！"><a href="#注意：在贝叶斯中，具体求后验时，似然值怎么找——与已经设为定值的分母无关！" class="headerlink" title="注意：在贝叶斯中，具体求后验时，似然值怎么找——与已经设为定值的分母无关！"></a>注意：在贝叶斯中，具体求后验时，似然值怎么找——与已经设为定值的分母无关！</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gji415ep10j30fa03udhm.jpg" alt="若有分母一定时，直觉上可得的分子概率，那就是似然值！"></p>
-<h4 id="对比本质-“似然”和“概率”是站在两个角度看待问题"><a href="#对比本质-“似然”和“概率”是站在两个角度看待问题" class="headerlink" title="对比本质: “似然”和“概率”是站在两个角度看待问题"></a>对比本质: “似然”和“概率”是站在<u>两个角度</u>看待问题</h4><p>例A. 对于这个函数：P(O|θ)</p>
-<p>输入有两个：O表示某一个具体的数据；θ表示模型的参数。</p>
-<ul>
-<li>如果θ是已知确定的，O是变量，这个函数叫做概率函数(probability function)，它描述对于不同的样本O，其出现概率是多少。</li>
-<li>如果O是已知确定的，θ是变量，这个函数叫做似然函数(likelihOd function), 它描述对于不同的模型参数，出现x这个样本点的概率是多少。</li>
-</ul>
-<h5 id="例如"><a href="#例如" class="headerlink" title="例如"></a>例如</h5><ul>
+<h4 id="注意：计算题中，贝叶斯具体求后验时，似然值怎么找——已经设为定值的分母-则与分母无关！"><a href="#注意：计算题中，贝叶斯具体求后验时，似然值怎么找——已经设为定值的分母-则与分母无关！" class="headerlink" title="注意：计算题中，贝叶斯具体求后验时，似然值怎么找——已经设为定值的分母, 则与分母无关！"></a>注意：计算题中，贝叶斯具体求后验时，似然值怎么找——已经设为定值的分母, 则与分母无关！</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gji415ep10j30fa03udhm.jpg" alt="若有分母一定时，直觉上可得的分子概率，那就是似然值！"></p>
+<h4 id="概率角度看ML-频率派-vs-贝叶斯派"><a href="#概率角度看ML-频率派-vs-贝叶斯派" class="headerlink" title="概率角度看ML: 频率派 vs 贝叶斯派"></a>概率角度看ML: 频率派 vs 贝叶斯派</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjo3vb3pqgj31450u016u.jpg" alt="概率角度分析两派的机器学习" style="zoom:50%;" />
+
+<p><strong>频率派，统计机器学习: MLE 极大后验估计</strong><br><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjo3zx4hv4j30e20agwie.jpg" alt="MLE 极大后验估计" style="zoom:50%;"/></p>
+<p><strong>贝叶斯派机器学习</strong>：<strong>MAP，极大后验估计</strong>，<strong>对概率公式积分——求概率值</strong></p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjo41bewn3j30to0lw4ef.jpg" alt="MAP 考虑了prior的极大似然估计" style="zoom:40%;" />
+
+
+
+
+
+<h4 id="对比本质-“似然”和“概率”是站在两个角度看待问题"><a href="#对比本质-“似然”和“概率”是站在两个角度看待问题" class="headerlink" title="对比本质: “似然”和“概率”是站在两个角度看待问题"></a>对比本质: “似然”和“概率”是站在<u>两个角度</u>看待问题</h4><h5 id="例如"><a href="#例如" class="headerlink" title="例如"></a>例如</h5><ul>
 <li>概率</li>
 </ul>
 <blockquote>
