@@ -13,7 +13,7 @@ summary: 积累下日常看到的，有意思的有思想的words(截图)
 
 
 
-### 0. 学派：贝叶斯 vs 频率
+### 0. 统计学派：贝叶斯 vs 频率
 
 **贝叶斯方法**被证明是非常 general 且强大的**推理框架**，一句话概括贝叶斯方法创始人Thomas Bayes的观点就是：
 
@@ -21,7 +21,13 @@ summary: 积累下日常看到的，有意思的有思想的words(截图)
 
 
 
-![贝叶斯：加入主观，且生活中用的更多！](https://tva1.sinaimg.cn/large/007S8ZIlgy1gjnmz0vds1j313s0gyn3p.jpg)
+<img src="/Users/kenny/Library/Application Support/typora-user-images/image-20201013185802157.png" alt="频率派：好理解" style="zoom:40%;" />
+
+
+
+但是，频率派**不适合于很多复杂的情况——客观概率，无法轻易获得时**，贝叶斯就出场了
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjnmz0vds1j313s0gyn3p.jpg" alt="贝叶斯：加入主观，且生活中用的更多！" style="zoom:50%;" />
 
 <img src="/Users/kenny/Library/Application Support/typora-user-images/image-20201013132323821.png" alt="贝叶斯公式的白话理解" style="zoom:50%;" />
 
@@ -60,3 +66,9 @@ summary: 积累下日常看到的，有意思的有思想的words(截图)
 ### 7. 童年...
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gi25zy33oyj30lf07xgn3.jpg" style="zoom:40%;" />
+
+### 8. 善良or软弱
+
+在2020.10.14，大连理工一研三学生因博导方面压力过大，写下微博遗书后 释然自尽的评论区下....
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjouklv1xsj30qy06egnv.jpg" style="zoom:50%;" />
