@@ -466,21 +466,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2020-10-13
+                    2020-10-20
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    5.1k
+                    5.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    18 Min
+                    21 Min
                 </div>
                 
 
@@ -542,10 +542,20 @@
 </li>
 </ul>
 <p>所以从定义上，似然函数和密度函数是完全不同的两个<strong>数学对象</strong>：前者是关于θ的函数，后者是关x的函数。所以这里的等号=，应理解为<strong><font color="#dd0000">函数值形式</font>的相等</strong>，而<font color="#dd0000">不是两个函数本身是同一函数</font>。所以这个式子的<strong>严格书写方式</strong>是<img src="https://www.zhihu.com/equation?tex=L%28%5Ctheta+%7C+%5Ctextbf%7Bx%7D%29+%3D+f%28%5Ctextbf%7Bx%7D+%3B+%5Ctheta%29" alt="">)(分号示把参数隔开) 即<strong>θ在右端只当作参数</strong>。</p>
-<h4 id="注意：计算题中，贝叶斯具体求后验时，似然值怎么找——已经设为定值的分母-则与分母无关！"><a href="#注意：计算题中，贝叶斯具体求后验时，似然值怎么找——已经设为定值的分母-则与分母无关！" class="headerlink" title="注意：计算题中，贝叶斯具体求后验时，似然值怎么找——已经设为定值的分母, 则与分母无关！"></a>注意：计算题中，贝叶斯具体求后验时，似然值怎么找——已经设为定值的分母, 则与分母无关！</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gji415ep10j30fa03udhm.jpg" alt="若有分母一定时，直觉上可得的分子概率，那就是似然值！"></p>
 <h4 id="概率角度看ML-频率派-vs-贝叶斯派"><a href="#概率角度看ML-频率派-vs-贝叶斯派" class="headerlink" title="概率角度看ML: 频率派 vs 贝叶斯派"></a>概率角度看ML: 频率派 vs 贝叶斯派</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjo3vb3pqgj31450u016u.jpg" alt="概率角度分析两派的机器学习" style="zoom:50%;" />
 
-<p><strong>频率派，统计机器学习: MLE 极大后验估计</strong><br><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjo3zx4hv4j30e20agwie.jpg" alt="MLE 极大后验估计" style="zoom:50%;"/></p>
+<p><strong>频率派，统计机器学习: MLE 极大似然估计</strong>：L(θ) best θ = f(X|θ), <strong>f为θ fit数据的概率函数</strong>！<br><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjo3zx4hv4j30e20agwie.jpg" alt="MLE 极大后验估计" style="zoom:50%;"/></p>
+<p>given data, 寻找<strong>fit程度最大的概率分布/θ</strong></p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjie9ys7s0j31qk0tekhj.jpg" alt="最大似然估计" style="zoom:30%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjie8c3kjpj315m0bedi7.jpg" alt="在寻找最优分布能fit/产生这些given data" style="zoom:33%;" />
+
+
+
+
+
 <p><strong>贝叶斯派机器学习</strong>：<strong>MAP，极大后验估计</strong>，<strong>对概率公式积分——求概率值</strong></p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjo41bewn3j30to0lw4ef.jpg" alt="MAP 考虑了prior的极大似然估计" style="zoom:40%;" />
 
@@ -567,17 +577,8 @@
 <p>“拋20次15次正面”为观测值O为已知，参数θ并不知道，求L(θ|H=15)=P(H=15|θ=0.5)(prior和evidence都是常数) 的<strong>最大化下的θ 值</strong></p>
 </blockquote>
 <p>例B. 对于统计<strong>概率分布</strong>的似然</p>
-<p><strong>最大似然估计</strong>：given data, 寻找<strong>概率最大的概率分布</strong></p>
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjie9ys7s0j31qk0tekhj.jpg" alt="最大似然估计" style="zoom:30%;" />
-
-
-
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjie8c3kjpj315m0bedi7.jpg" alt="given data, 在寻找最优分布" style="zoom:33%;" />
-
-
-
-
-
+<h4 id="注意：计算题中的似然"><a href="#注意：计算题中的似然" class="headerlink" title="注意：计算题中的似然"></a>注意：计算题中的似然</h4><p>贝叶斯公式中，求似然概率值时——就是<u>分子本身的概率公式/分布函数</u>，而已经given的分母, 与其无关！</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gji415ep10j30fa03udhm.jpg" alt="若有分母一定时，直觉上可得的分子概率，那就是似然值！"></p>
 <h4 id="离散随机变量的“似然”与“概率”"><a href="#离散随机变量的“似然”与“概率”" class="headerlink" title="离散随机变量的“似然”与“概率”"></a>离散随机变量的“似然”与“概率”</h4><h4 id="连续型随机变量的“似然”与“概率”"><a href="#连续型随机变量的“似然”与“概率”" class="headerlink" title="连续型随机变量的“似然”与“概率”"></a>连续型随机变量的“似然”与“概率”</h4><h2 id="1-均值化？归一化？傻傻分不清"><a href="#1-均值化？归一化？傻傻分不清" class="headerlink" title="1. 均值化？归一化？傻傻分不清"></a>1. 均值化？归一化？傻傻分不清</h2><p>“标准化”和”归一化”这两个中文词要指代<strong>四种</strong>Feature scaling(特征缩放)方法, 实质是<font color="#dd0000"><strong>一种线性变换</strong>: <strong>对向量 X 按照比例α压缩, 再进行平移</strong></font>。线性变换有很多良好的性质，这些性质<strong>决定了对数据改变后<u>不会造成“失效”，反而能提高数据的表现</u></strong>，这些性质是归一化/标准化的前提, 详情见<a href="https://www.zhihu.com/question/20455227/answer/370658612" target="_blank" rel="noopener">特征工程中的「归一化」有什么作用？- 知乎</a> 。</p>
 <p>先说<strong><u>数学领域</u>的normalization <u>标准化</u></strong>: 泛指将一组数，<strong><u>除以它们的sum</u></strong>, <strong>得到各自占比且总和为1</strong>——常见的就是求<strong>概率值</strong>或<strong>概率分布</strong></p>
 <p>再到了<strong><u>ML方面处理feature</u></strong>时，具体这四种常用的分别是：</p>
@@ -675,22 +676,54 @@
 <li><p>在更高的维度中，我们称之为超平面** <br>所以，<strong>广义上</strong>，1D直线、2D平面，都可叫超平面</p>
 </li>
 </ul>
-<h2 id="7-区分点积-内积-、叉积-外积-、矩阵乘法"><a href="#7-区分点积-内积-、叉积-外积-、矩阵乘法" class="headerlink" title="7. 区分点积(内积)、叉积(外积)、矩阵乘法"></a>7. 区分点积(内积)、叉积(外积)、矩阵乘法</h2><h3 id="a-点积-内积-结果是数-标量"><a href="#a-点积-内积-结果是数-标量" class="headerlink" title="a. 点积(内积): 结果是数(标量)"></a>a. 点积(内积): 结果是数(标量)</h3><p>向量的点乘,也叫向量的内积、数量积，对两个向量执行点乘运算，就是对这两个向量对位①<strong>一一相乘</strong>之后 ②<strong>再求和</strong>的操作，点乘的结果是一个标量。</p>
+<h2 id="7-区分点积-内积-、叉积-外积-、矩阵乘法"><a href="#7-区分点积-内积-、叉积-外积-、矩阵乘法" class="headerlink" title="7. 区分点积(内积)、叉积(外积)、矩阵乘法"></a>7. 区分点积(内积)、叉积(外积)、矩阵乘法</h2><h3 id="a-内积-点积-结果是数-标量"><a href="#a-内积-点积-结果是数-标量" class="headerlink" title="a. 内积(点积): 结果是数(标量)"></a>a. 内积(点积): 结果是数(标量)</h3><p>向量的点乘,也叫向量的内积、数量积，对两个向量执行点乘运算，就是对这两个向量对位①<strong>一一相乘</strong>之后 ②<strong>再求和</strong>的操作，点乘的结果是一个标量。</p>
 <p>对于向量a和向量b，要求一维向量a和向量b的<strong>行列数相同</strong>，点积公式为：</p>
 <p><img src="https://img-blog.csdn.net/20160902214456788" alt=""></p>
 <p>可以看出，计算结果是个标量！</p>
+<h4 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h4><p>in order to compute <strong>angles, lengths and distances</strong> of vectors.</p>
 <h4 id="实现：numpy-dot"><a href="#实现：numpy-dot" class="headerlink" title="实现：numpy.dot"></a>实现：numpy.dot</h4><p>注：虽然数学公式很清楚，但该np.dot要求了2个输入向量的维度，同<strong>矩阵乘法</strong>一样：<strong>第一个v的行数 = 第二个v的列数</strong>。</p>
 <p>如：2个等长的向量v1, v2相乘——写成np.dot(v1, v2<strong>.T</strong>)</p>
+<h4 id="内积-点积的-generalisation"><a href="#内积-点积的-generalisation" class="headerlink" title="内积: 点积的 generalisation"></a>内积: 点积的 generalisation</h4><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>An <strong>inner product</strong> is the more general term of <strong>a function</strong> which can apply to <strong>a wide range of <u>different vector spaces</u></strong>. </p>
+<p>The <strong>dot product</strong> is the name given to the <strong>inner product</strong> on a <u><strong>finite dimensional Euclidean space</strong></u>.</p>
+<p>输出可以是</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvov62sskj31jk04o41p.jpg" alt="比点积输出更多样" style="zoom:30%;" />
+
+<h4 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvoequwcvj30uw0lctn7.jpg" alt="点积公式的3个性质" style="zoom:50%;" />
+
+
+
+<h4 id="公式-和点积不同"><a href="#公式-和点积不同" class="headerlink" title="公式: 和点积不同"></a>公式: 和点积不同</h4><p>设A为[[a, b], [c, d]]</p>
+<p>&lt;x, y&gt; = <strong>X.T · A · y</strong> = a x1y1 + c x2y1 + b x1y2 + d x2y2</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvojkio4jj30rs0e2afw.jpg" alt="展开公式" style="zoom:50%;" />
+
+<h5 id="Positive-definite"><a href="#Positive-definite" class="headerlink" title="Positive definite"></a>Positive definite</h5><p>直接检验 是否<strong>仅当</strong>x=0时，&lt;x,x&gt;=0</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvppvog8kj30yy02emxh.jpg" style="zoom:33%;" />
+
+<h5 id="Symmetric-lt-x-y-gt-lt-y-x-gt-看对角"><a href="#Symmetric-lt-x-y-gt-lt-y-x-gt-看对角" class="headerlink" title="Symmetric &lt;x, y&gt; = &lt;y, x&gt; 看对角"></a>Symmetric &lt;x, y&gt; = &lt;y, x&gt; 看对角</h5><p>因为<strong>对角</strong>同号，才能保证x2y1和x1y2是同号的；异号则不行</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvpn215bxj30ke0hsdgv.jpg" alt="异号则飞symmetric" style="zoom:33%;" />
+
+<h5 id="Bilinear"><a href="#Bilinear" class="headerlink" title="Bilinear"></a>Bilinear</h5><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvprjtqxnj30fa01gdfx.jpg" alt="image-20201020130252879" style="zoom:50%;" />
+
+<h4 id="VS-dot-product-vector-space更复杂，会不一样"><a href="#VS-dot-product-vector-space更复杂，会不一样" class="headerlink" title="VS dot product: vector space更复杂，会不一样"></a>VS dot product: vector space更复杂，会不一样</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvoxw1lonj317a0hytja.jpg" alt="低维度(2D以下)和点积是一样的" style="zoom:30%;" />
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvp50nfnpj321o07en9e.jpg" alt="3D以上就可能输出为向量/矩阵了" style="zoom:33%;" />
+
+
+
+<p>(vector spaces 发生了变化)</p>
+<p>结论：在<strong>复制Tensor的计算</strong>里，务必区分！！</p>
 <h4 id="几何意义"><a href="#几何意义" class="headerlink" title="几何意义"></a><a href="https://blog.csdn.net/dcrmg/article/details/52416832" target="_blank" rel="noopener">几何意义</a></h4><h3 id="b-叉积-外积-类似矩阵乘法"><a href="#b-叉积-外积-类似矩阵乘法" class="headerlink" title="b. 叉积(外积): 类似矩阵乘法"></a>b. 叉积(外积): 类似矩阵乘法</h3><p>两个向量的叉乘，又叫向量积、外积、叉积，叉乘的运算结果<strong>是一个向量</strong>而不是一个标量。并且两个向量的叉积<strong>与这两个向量组成的坐标平面垂直</strong>。</p>
 <p>对于向量a和向量b，叉乘公式为：</p>
 <img src="https://img-blog.csdn.net/20160902230539163" style="zoom:75%;" />
 
 <img src="https://img-blog.csdn.net/20160902231520146" style="zoom:75%;" />
 
-<h4 id="几何意义-1"><a href="#几何意义-1" class="headerlink" title="几何意义"></a><a href="https://blog.csdn.net/dcrmg/article/details/52416832" target="_blank" rel="noopener">几何意义</a></h4><h3 id="顺带一提：np-array的-×÷"><a href="#顺带一提：np-array的-×÷" class="headerlink" title="顺带一提：np.array的+-×÷"></a>顺带一提：np.array的+-×÷</h3><blockquote>
+
+
+<h4 id="几何意义-1"><a href="#几何意义-1" class="headerlink" title="几何意义"></a><a href="https://blog.csdn.net/dcrmg/article/details/52416832" target="_blank" rel="noopener">几何意义</a></h4><h3 id="顺带区分：基本运算-×÷"><a href="#顺带区分：基本运算-×÷" class="headerlink" title="顺带区分：基本运算 +-×÷"></a>顺带区分：基本运算 +-×÷</h3><blockquote>
 <p>The product operator * when used on arrays or matrices indicates <strong>element-wise</strong> multiplications.</p>
 </blockquote>
-<p><strong>四则运算符号</strong>，都是单纯的<strong><u>element-wise</u>的对位操作</strong>，不像点积——不相加</p>
+<p><strong>四则运算符号</strong>对于<strong>np.array</strong>，都是单纯的<strong><u>element-wise</u>的对位操作</strong>，不像点积——不相加</p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghh5wqiu4cj30m607241f.jpg" style="zoom:43%;" />
 
 <h3 id="矩阵与矩阵-向量相乘-也可用"><a href="#矩阵与矩阵-向量相乘-也可用" class="headerlink" title="矩阵与矩阵/向量相乘 也可用@"></a><strong>矩阵与矩阵/向量</strong>相乘 <strong>也可用<u>@</u></strong></h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj5p36wqcij31ji094gn0.jpg" alt="也可用@！"></p>
@@ -780,7 +813,14 @@
 <li>但是，对已经学习的知识具有<strong>记忆</strong></li>
 <li>在面对新数据中包含的新类别时，可以有效地进行处理</li>
 </ul>
-<h2 id="15-No-free-lunch理论"><a href="#15-No-free-lunch理论" class="headerlink" title="15 No free lunch理论"></a>15 No free lunch理论</h2>
+<h2 id="15-No-free-lunch理论"><a href="#15-No-free-lunch理论" class="headerlink" title="15 No free lunch理论"></a>15 No free lunch理论</h2><h2 id="16-解析-闭式解-vs-数值解"><a href="#16-解析-闭式解-vs-数值解" class="headerlink" title="16 解析\闭式解 vs 数值解"></a>16 解析\闭式解 vs 数值解</h2><h3 id="解析解-Analytical-solution-、-闭式解-Closed-form-solution"><a href="#解析解-Analytical-solution-、-闭式解-Closed-form-solution" class="headerlink" title="解析解(Analytical solution)、 闭式解(Closed-form solution)"></a>解析解(Analytical solution)、 闭式解(Closed-form solution)</h3><p>就是根据严格的<strong>公式推导</strong>，给出任意的自变量就可以求出其因变量，也就是<strong>求解公式/函数，它适用于所有这类方程的求解</strong>，然后可以利用这些公式计算相应的问题。</p>
+<p>所谓的解析解是一种包含分式、三角函数、指数、对数甚至无限级数等<strong>基本<u>函数</u>的解的形式</strong>。用来求得解析解的方法称为解析法(Analytical techniques)，解析法即是常见的微积分技巧，例如分离变量法等。</p>
+<p>因为解析解是一个<strong>封闭形式(Closed-form) 的<u>函数</u></strong>，因此<strong>对任一自变量，皆可将其<u>带入</u>解析函数</strong>求得正确的因变量。因此，解析解也被称为封闭解。</p>
+<h3 id="数值解-Numerical-solution"><a href="#数值解-Numerical-solution" class="headerlink" title="数值解(Numerical solution)"></a>数值解(Numerical solution)</h3><p>是采用某种<strong>计算方法</strong>，如<strong>有限元法， 数值逼近法，插值法</strong>等得到的解。</p>
+<p>别人<strong>只能利用数值计算的<u>结果</u></strong>，而<strong>因为没有求出函数解析式f(x)，不能<u>给出自变量</u>并求出其输出值</strong>。当无法藉由微积分技巧<strong>求得解析解</strong>时，这时便只能利用数值分析的方式来求得其数值解了。</p>
+<p>在数值分析的过程中，首先会将原方程<strong>加以简化</strong>，以利于后来的数值分析。例如，会先将微分符号改为差分（微分的离散形式）符号等，然后再用传统的代数方法将原方程改写成另一种方便求解的形式。这时的求解步骤就是将一自变量带入，求得因变量的近似解，因此利用此方法所求得的因变量为一个个离散的数值，不像解析解为一连续的分布，而且因为经过上述简化的操作，其正确性也不如解析法可靠。</p>
+<p>简而言之，解析解就是<strong>给出解的函数形式</strong>，从解的<strong>表达式中</strong>就可以算出任何对应值；数值解就是用<strong>数值方法求出的解</strong>，给出自变量, 求出某个特定方程的具体的解。在计算机应用中，这些<strong>特殊函数因为<u>大多有现成的数值法实现</u></strong>，它们通常被看作<strong>常见运算或常见函数</strong>；而实际上，在计算机的<strong><u>计算过程中</u></strong>，多数都是用<a href="https://baike.baidu.com/item/数值法" target="_blank" rel="noopener">数值法</a>计算的，</p>
+
             </div>
             <hr/>
 
