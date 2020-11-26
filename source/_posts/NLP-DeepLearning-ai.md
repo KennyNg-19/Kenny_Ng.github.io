@@ -1,5 +1,5 @@
 ---
-title: DeepLearning.ai新课-NLP-Course1
+title: DeepLearning.ai出品NLP的Course1-NLP的Classification & Vector Spaces
 date: 2020-08-08 13:45:24
 img: https://miro.medium.com/max/2344/1*uc2HNS1m4CjG8Yb4AxGqbQ.png
 tags: [NLP, math]
@@ -7,31 +7,33 @@ tags: [NLP, math]
 
 
 
-# 1. Task: text classification
+## Course1: NLP with Classification and Vector Spaces
+
+## 1. Task: text classification
 
 
 
-## 法1: Logsitc回归模型
+### 法1: Logsitc回归模型
 
 
 
 
 
-## 法2: 纯靠词频的Naive Bayes模型
+### 法2: 纯靠词频的Naive Bayes模型
 
 > Naive Bayes is an example of **supervised machine learnin**g, and shares **many similarities with the logistic regression** method 
 
-### <font color="#dd0000">Why Naive? 单纯地靠词频 → 概率</font>
+#### <font color="#dd0000">Why Naive? 单纯地靠词频 → 概率</font>
 
 this method makes the assumption that **the features(比如  句中的词前后是有关系的，或者说有某些词总是常见伴随出现的，这些相关性会影响词频) you're using for classification are <u>all independent</u>**, which in reality is **rarely the case**.
 
 
 
-#### (不足)Naive 的2个理想前提
+##### (不足)Naive 的2个理想前提
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghmww5z78ej30z607kq58.jpg" alt="2个assumption" style="zoom:33%;" />
 
-##### 1. 忽视本身多个词的关联性
+###### 1. 忽视本身多个词的关联性
 
 Some words **①often appear together** and/or they might also **②be related to the thing they're always describing**. 
 
@@ -45,7 +47,7 @@ These words in a sentence are not always necessarily independent of one another,
 
 
 
-##### 2. 各个类比例不均匀分布的原始数据集 distribution of the training data sets
+###### 2. 各个类比例不均匀分布的原始数据集 distribution of the training data sets
 
 
 
@@ -57,7 +59,7 @@ Howver, in the real tweet stream, positive tweet is sent to occur **more often**
 
 
 
-#### 优势: 简单快捷
+##### 优势: 简单快捷
 
 但Naive Bayes依然可以用于**简单的分类问题**
 
@@ -71,7 +73,7 @@ It takes a **short time** to train and also has a short prediction time.
 
 先说结果：
 
-### Training pipeline 5步
+#### Training pipeline 5步
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlr7qj6mxj30yg0u04hx.jpg" alt="朴素贝叶斯pipeline" style="zoom:43%;" />
 
@@ -79,7 +81,7 @@ It takes a **short time** to train and also has a short prediction time.
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlr8wg82vj311i0di46n.jpg" alt = "training过程总结" style="zoom:30%;" />
 
-### 学习步骤: 本质是naive的 频率 → 概率
+#### 学习步骤: 本质是naive的 频率 → 概率
 
 Step1 同逻辑斯特回归，计算词频
 
@@ -97,9 +99,9 @@ Step3 **同一个**词的正负类**比例相除**，再**各个词的相乘**�
 
 
 
-#### 改进1: Laplacian Smoothing 平滑处理-避免出现概率为0
+##### 改进1: Laplacian Smoothing 平滑处理-避免出现概率为0
 
-##### 背景:为什么要做平滑处理?
+###### 背景:为什么要做平滑处理?
 
 　　**零概率问题**：在计算实例的概率时，如果某个量x，**只是因为<u>在观察样本库（训练集）中</u>没有出现过，它的频率为0，会导致整个实例的概率结果是0**。
 
@@ -117,27 +119,27 @@ Step3 **同一个**词的正负类**比例相除**，再**各个词的相乘**�
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlovcgbq2j30x608odhw.jpg" style="zoom:33%;" />
 
-##### Smoothing公式
+###### Smoothing公式
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlowop7gij31gu0jy7e8.jpg" style="zoom:33%;" />
 
 
 
-#### Naive Bayes <u>Inference</u>
+##### Naive Bayes <u>Inference</u>
 
-##### ratio定义
+###### ratio定义
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlp0hfq3zj31fi0n0aoy.jpg" style="zoom:33%;" />
 
-#### 
+
 
 ratio的别名：**likelihood**
 
 
 
-##### 题外话：Prior ratio先验分布 ——有用，尤其当数据集是unbalanced的
+###### 题外话：Prior ratio先验分布 ——有用，尤其当数据集是unbalanced的
 
-###### <font color="#dd0000">Why prior ?</font>
+<font color="#dd0000">Why prior ?</font>
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlt1seunwj31oo0ce0vk.jpg" style="zoom:53%;" />
 
@@ -153,7 +155,7 @@ ratio的别名：**likelihood**
 
 
 
-#### 改进2: log likelihood-概率太小数了，取对数方便计算
+##### 改进2: log likelihood-概率太小数了，取对数方便计算
 
 > Carrying out **small number multiplications** runs the risk of **numerical underflow** when the number returned is so small it can't be stored on the device
 
@@ -163,7 +165,7 @@ ratio的别名：**likelihood**
 
 我们将log-likelihood ratio，新定义为**λ**
 
-##### 
+
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlpns2a6mj31h80g2gyg.jpg" alt="0就是界限，为neutral" style="zoom:33%;" />
 
@@ -173,23 +175,23 @@ ratio的别名：**likelihood**
 
 
 
-##### 好处1: 重新定义分类界线：从1改成0
+好处1: **重新定义分类界线——从1改成0**
 
 即neg类概率更大时 ratio可以为负，负数更直观
 
 
 
-##### 好处2: 原始ratio的区间<u>长度并不对称</u>，neg类只能<font color="#dd0000">取值[0,1)，neg sentiment程度不明显</font>！用了log就是<u>长度完全对称的区间</u>！
+好处2: 原始ratio的区间<u>长度并不对称</u>，neg类只能<font color="#dd0000">取值[0,1)，neg sentiment程度不明显</font>！用了log就是<u>**长度完全对称的区间**</u>！
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlptv6i4ij31ca0je46t.jpg" alt="区间的改变" style="zoom:33%;" />
 
 
 
-### Testing: 用于predict
+#### Testing: 用于predict
 
 
 
-#### 如果测试时，出现模型之前没见到过词，就当neutral！
+##### 如果测试时，出现模型之前没见到过词，就当neutral！
 
 > The values that don't show up in the table **are considered neutral** and don't contribute anything to this score. The **ML model can only give a score for words it's seen before.**
 
@@ -201,13 +203,13 @@ ratio的别名：**likelihood**
 
 
 
-#### 总结
+##### 总结
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlryf207cj317g0myk0s.jpg" style="zoom:33%;" />
 
 
 
-### Naive Bayes的延伸分类应用
+#### Naive Bayes的延伸分类应用
 
 上面是bayes公式，上下相除**抵消P(tweet)**, 可得下面的公式
 
@@ -225,11 +227,11 @@ ratio的别名：**likelihood**
 
 
 
-### 单靠<u>词频</u>的Naive Bayes的潜在error
+#### 单靠<u>词频</u>的Naive Bayes的潜在error
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghmxep6f9cj30ui0buacj.jpg" alt="image-20200811155634232" style="zoom:50%;" />
 
-#### 1. <u>semantic meaning lost</u> in the pre-processing step
+##### 1. <u>semantic meaning lost</u> in the pre-processing step
 
 教训：还是务必查看原始句子语义，而不是单纯的移除标点符号和stop words
 
@@ -257,7 +259,7 @@ From this set of words, any classifier will infer that this is something very po
 
 
 
-#### 2. word order affects the meaning of a sentence
+##### 2. word order affects the meaning of a sentence
 
 word order自然是语义的一部分
 
@@ -265,7 +267,7 @@ word order自然是语义的一部分
 
 
 
-#### 3. quirks(怪癖) of languages come naturally to humans but <u>confuse</u> models.
+##### 3. quirks(怪癖) of languages come naturally to humans but <u>confuse</u> models.
 
 Quirk： 人类语言中的 带有sarcasm irony讽刺、euphemism委婉等色彩，adversarial(**恰恰反义、敌对**)性质词
 
@@ -275,23 +277,23 @@ Quirk： 人类语言中的 带有sarcasm irony讽刺、euphemism委婉等色彩
 
 
 
-# 2. Word Vector 和 Vector Space入门
+## 2. Word Vector 和 Vector Space入门
 
 词向量，向量空间模型
 
-## Why vector space? 形式和应用
+### Why vector space? 形式和应用
 
 
 
 
 
-### 形式
+#### 形式
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghmylqhg13j30m805edhp.jpg" style="zoom:43%;" />
 
 
 
-### 应用(底层)
+#### 应用(底层)
 
 Vector space models will 
 
@@ -313,11 +315,11 @@ Vector space models will
 
 
 
-## 共现矩阵
+### 共现矩阵
 
 
 
-### word by word的matrix
+#### word by word的matrix
 
 
 
@@ -325,7 +327,7 @@ Vector space models will
 
 
 
-### word by doc的
+#### word by doc的
 
 
 
@@ -333,7 +335,7 @@ Vector space models will
 
 
 
-### 引出Vector Space
+#### 引出Vector Space
 
 这些**<font color="#dd0000">有了维度</font>的**数据，就可以<font color="#dd0000">**放入vector space**， 进行相似度分析</font>
 
@@ -345,13 +347,13 @@ Vector space models will
 
 
 
-#### vector space的应用：挖掘word analogies
+##### vector space的应用：挖掘word analogies
 
 **infer unknown relations** among words
 
 
 
-##### 如通过词已知的关系，推导出，<u>词之间相似但未知的关系</u>
+###### 如通过词已知的关系，推导出，<u>词之间相似但未知的关系</u>
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gho0me9qq5j30zy0jgwn9.jpg" alt="推测未知的首都" style="zoom:33%;" />
 
@@ -365,7 +367,7 @@ Vector space models will
 
 
 
-#### 指标1：Euclidean distance 欧几里得距离❌
+##### 指标1：Euclidean distance 欧几里得距离❌
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghnzmivjmhj31ck0kgn7q.jpg" style="zoom:40%;" />
 
@@ -377,7 +379,7 @@ Generalize到更高维的
 
 
 
-#### 指标2：cosine similarity✅
+##### 指标2：cosine similarity✅
 
 
 
@@ -389,7 +391,7 @@ Generalize到更高维的
 
 
 
-##### cosine similarity
+**cosine similarity**
 
 即向量的**点积**公式:   多考虑了**语料的大小，即向量长度**
 
@@ -403,7 +405,7 @@ Generalize到更高维的
 
 
 
-### <font color="#dd0000">word embeddings 词嵌入</font>(向量)
+#### <font color="#dd0000">word embeddings 词嵌入</font>(向量)
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghp2rgex4zj31p005mwh8.jpg" alt="word represents by vector" style="zoom:53%;" />
 
@@ -413,13 +415,13 @@ Generalize到更高维的
 
 ------
 
-### PCA: 高纬数据的降维
+#### PCA: 高纬数据的降维
 
 a **statistical technique**
 
-#### 目的: 方便可视化
+##### 目的: 方便可视化
 
-##### 降维到2D方便可视化，来找关系
+降维到2D方便可视化，来找关系
 
 **Word embeaddings** end up having **vectors in very, very high dimensions**.
 
@@ -433,7 +435,7 @@ helpful for <u>**visualizing**</u> your data to check if your representation is 
 
 
 
-#### 步骤
+##### 步骤
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gho4f0u4nrj31hu0j2drh.jpg" style="zoom:33%;" />
 
@@ -459,15 +461,13 @@ helpful for <u>**visualizing**</u> your data to check if your representation is 
 
 
 
-# 3. 词向量Task: 机器翻译和相似doc搜索
-
-## 
+## 3. 词向量Task: 机器翻译和相似doc搜索
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghp8c3q9suj31bw0h2n5y.jpg" alt="相关知识" style="zoom:50%;" />
 
 
 
-## Task: 翻译
+### Task: 翻译
 
 [一种实现：维特比算法](https://kennyng-19.github.io/Kenny_Ng.github.io/2020/01/29/NLP-intro/#1-case-%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91)
 
@@ -487,13 +487,13 @@ find **a transformation matrix** from English to French vector space embeddings.
 
 Such a transformation matrix is **a matrix that <font color="#dd0000">rotates and scales vector spaces</font>**——回忆《**线性代数的本质**》
 
-#### **然后怎么计算该矩阵呢？还是优化问题**
+##### **然后怎么计算该矩阵呢？还是优化问题**
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghpa0ho7c8j30ya0gk78h.jpg" alt="还是梯度下降，这不过这次是矩阵的" style="zoom:50%;" />
 
 
 
-#### 补充notation-Frobenius范数: 即矩阵元素的平方和的开方
+##### 补充notation-Frobenius范数: 即矩阵元素的平方和的开方
 
 F范数是**针对矩阵而言**的，具体定义可以**类比向量的L2范数**
 
@@ -511,7 +511,7 @@ F范数是**针对矩阵而言**的，具体定义可以**类比向量的L2范�
 
 
 
-##### 拓展，3 main vector transformations的几何意义
+拓展，**3 main vector transformations的几何意义**
 
 (更多，请回忆《**线性代数的本质**》)
 
@@ -523,13 +523,13 @@ F范数是**针对矩阵而言**的，具体定义可以**类比向量的L2范�
 
 
 
-#### Step 2: 寻找最相似的<u>几个</u>翻译结果by <u>KNN</u>
+##### Step 2: 寻找最相似的<u>几个</u>翻译结果by <u>KNN</u>
 
 因为word embedding空间不一定有，和matrix转换的**结果数值一模一样的词向量**，且存在<u>近义词</u>——所以一般是会输出**几个最近似**的词向量，供选择。这里会用到KNN算法
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghpa5okk64j314g0fm0zw.jpg" style="zoom:30%;" />
 
-#### 改进版 faster <u>approximate</u> KNN
+##### 改进版 faster <u>approximate</u> KNN
 
 ##### 启发思路：空间划分
 
@@ -543,7 +543,7 @@ If you think about buckets, then you'll definitely want to think about <font col
 
 
 
-##### 提升KNN，处理<u>高维数据</u>的效率：Locality Sensitive Hashing
+###### 提升KNN，处理<u>高维数据</u>的效率：Locality Sensitive Hashing
 
 本质是 a **hash function**, to be locality sensitive; an **[algorithmic technique](https://en.wikipedia.org/wiki/Locality-sensitive_hashing)** that hashes **similar input items into the same "buckets" with <u>high probability</u>**——所以说是一种**近似法, "approximate"**
 
@@ -591,7 +591,7 @@ You will make <u>multiple</u> sets of **<u>random planes</u>** in order to make 
 
 
 
-## Task: 相似doc搜索
+### Task: 相似doc搜索
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlly1ghp89bzp7ej31e00bgq9h.jpg" style="zoom:33%;" />
 

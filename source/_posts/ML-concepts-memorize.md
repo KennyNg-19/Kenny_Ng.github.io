@@ -43,18 +43,26 @@ tags: [ML, math, 统计概率, 积累]
 
 
 
-#### 注意：计算题中，贝叶斯具体求后验时，似然值怎么找——已经设为定值的分母, 则与分母无关！
-
-![若有分母一定时，直觉上可得的分子概率，那就是似然值！](https://tva1.sinaimg.cn/large/007S8ZIlgy1gji415ep10j30fa03udhm.jpg)
-
 
 
 #### 概率角度看ML: 频率派 vs 贝叶斯派
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjo3vb3pqgj31450u016u.jpg" alt="概率角度分析两派的机器学习" style="zoom:50%;" />
 
-**频率派，统计机器学习: MLE 极大后验估计**
+**频率派，统计机器学习: MLE 极大似然估计**：L(θ) best θ = f(X|θ), **f为θ fit数据的概率函数**！
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjo3zx4hv4j30e20agwie.jpg" alt="MLE 极大后验估计" style="zoom:50%;"/>
+
+given data, 寻找**fit程度最大的概率分布/θ**
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjie9ys7s0j31qk0tekhj.jpg" alt="最大似然估计" style="zoom:30%;" />
+
+
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjie8c3kjpj315m0bedi7.jpg" alt="在寻找最优分布能fit/产生这些given data" style="zoom:33%;" />
+
+
+
+
 
 **贝叶斯派机器学习**：**MAP，极大后验估计**，**对概率公式积分——求概率值**
 
@@ -82,13 +90,11 @@ tags: [ML, math, 统计概率, 积累]
 
 
 
-**最大似然估计**：given data, 寻找**概率最大的概率分布**
+#### 注意：计算题中的似然
 
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjie9ys7s0j31qk0tekhj.jpg" alt="最大似然估计" style="zoom:30%;" />
+贝叶斯公式中，求似然概率值时——就是<u>分子本身的概率公式/分布函数</u>，而已经given的分母, 与其无关！
 
-
-
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjie8c3kjpj315m0bedi7.jpg" alt="given data, 在寻找最优分布" style="zoom:33%;" />
+![若有分母一定时，直觉上可得的分子概率，那就是似然值！](https://tva1.sinaimg.cn/large/007S8ZIlgy1gji415ep10j30fa03udhm.jpg)
 
 
 
@@ -249,7 +255,7 @@ There is one technical note.
 
 ## 7. 区分点积(内积)、叉积(外积)、矩阵乘法
 
-### a. 点积(内积): 结果是数(标量)
+### a. 内积(点积): 结果是数(标量)
 
 向量的点乘,也叫向量的内积、数量积，对两个向量执行点乘运算，就是对这两个向量对位①**一一相乘**之后 ②**再求和**的操作，点乘的结果是一个标量。
 
@@ -265,6 +271,10 @@ There is one technical note.
 
 可以看出，计算结果是个标量！
 
+#### 用途
+
+in order to compute **angles, lengths and distances** of vectors.
+
 
 
 #### 实现：numpy.dot 
@@ -274,6 +284,62 @@ There is one technical note.
 如：2个等长的向量v1, v2相乘——写成np.dot(v1, v2**.T**)
 
 
+
+#### 内积: 点积的 generalisation
+
+#### 定义
+
+An **inner product** is the more general term of **a function** which can apply to **a wide range of <u>different vector spaces</u>**. 
+
+The **dot product** is the name given to the **inner product** on a <u>**finite dimensional Euclidean space**</u>.
+
+
+
+输出可以是
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvov62sskj31jk04o41p.jpg" alt="比点积输出更多样" style="zoom:30%;" />
+
+#### 性质
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvoequwcvj30uw0lctn7.jpg" alt="点积公式的3个性质" style="zoom:50%;" />
+
+
+
+#### 公式: 和点积不同
+
+设A为[[a, b], [c, d]]
+
+<x, y> = **X.T · A · y** = a x1y1 + c x2y1 + b x1y2 + d x2y2
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvojkio4jj30rs0e2afw.jpg" alt="展开公式" style="zoom:50%;" />
+
+##### Positive definite
+
+直接检验 是否**仅当**x=0时，<x,x>=0
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvppvog8kj30yy02emxh.jpg" style="zoom:33%;" />
+
+##### Symmetric <x, y> = <y, x> 看对角
+
+因为**对角**同号，才能保证x2y1和x1y2是同号的；异号则不行
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvpn215bxj30ke0hsdgv.jpg" alt="异号则飞symmetric" style="zoom:33%;" />
+
+##### Bilinear
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvprjtqxnj30fa01gdfx.jpg" alt="image-20201020130252879" style="zoom:50%;" />
+
+#### VS dot product: vector space更复杂，会不一样
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvoxw1lonj317a0hytja.jpg" alt="低维度(2D以下)和点积是一样的" style="zoom:30%;" />
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjvp50nfnpj321o07en9e.jpg" alt="3D以上就可能输出为向量/矩阵了" style="zoom:33%;" />
+
+
+
+(vector spaces 发生了变化)
+
+结论：在**复制Tensor的计算**里，务必区分！！
 
 #### [几何意义](https://blog.csdn.net/dcrmg/article/details/52416832)
 
@@ -291,15 +357,17 @@ There is one technical note.
 
 <img src="https://img-blog.csdn.net/20160902231520146" style="zoom:75%;" />
 
+
+
 #### [几何意义](https://blog.csdn.net/dcrmg/article/details/52416832)
 
 
 
-### 顺带一提：np.array的+-×÷
+### 顺带区分：基本运算 +-×÷
 
 > The product operator * when used on arrays or matrices indicates **element-wise** multiplications.
 
-**四则运算符号**，都是单纯的**<u>element-wise</u>的对位操作**，不像点积——不相加
+**四则运算符号**对于**np.array**，都是单纯的**<u>element-wise</u>的对位操作**，不像点积——不相加
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghh5wqiu4cj30m607241f.jpg" style="zoom:43%;" />
 
@@ -483,3 +551,29 @@ link: https://zhuanlan.zhihu.com/p/61964658
 
 
 ## 15 No free lunch理论
+
+
+
+## 16 解析\闭式解 vs 数值解
+
+### 解析解(Analytical solution)、 闭式解(Closed-form solution)
+
+就是根据严格的**公式推导**，给出任意的自变量就可以求出其因变量，也就是**求解公式/函数，它适用于所有这类方程的求解**，然后可以利用这些公式计算相应的问题。
+
+所谓的解析解是一种包含分式、三角函数、指数、对数甚至无限级数等**基本<u>函数</u>的解的形式**。用来求得解析解的方法称为解析法(Analytical techniques)，解析法即是常见的微积分技巧，例如分离变量法等。
+
+因为解析解是一个**封闭形式(Closed-form) 的<u>函数</u>**，因此**对任一自变量，皆可将其<u>带入</u>解析函数**求得正确的因变量。因此，解析解也被称为封闭解。
+
+ 
+
+### 数值解(Numerical solution) 
+
+是采用某种**计算方法**，如**有限元法， 数值逼近法，插值法**等得到的解。
+
+别人**只能利用数值计算的<u>结果</u>**，而**因为没有求出函数解析式f(x)，不能<u>给出自变量</u>并求出其输出值**。当无法藉由微积分技巧**求得解析解**时，这时便只能利用数值分析的方式来求得其数值解了。
+
+在数值分析的过程中，首先会将原方程**加以简化**，以利于后来的数值分析。例如，会先将微分符号改为差分（微分的离散形式）符号等，然后再用传统的代数方法将原方程改写成另一种方便求解的形式。这时的求解步骤就是将一自变量带入，求得因变量的近似解，因此利用此方法所求得的因变量为一个个离散的数值，不像解析解为一连续的分布，而且因为经过上述简化的操作，其正确性也不如解析法可靠。
+
+
+
+简而言之，解析解就是**给出解的函数形式**，从解的**表达式中**就可以算出任何对应值；数值解就是用**数值方法求出的解**，给出自变量, 求出某个特定方程的具体的解。在计算机应用中，这些**特殊函数因为<u>大多有现成的数值法实现</u>**，它们通常被看作**常见运算或常见函数**；而实际上，在计算机的**<u>计算过程中</u>**，多数都是用[数值法](https://baike.baidu.com/item/数值法)计算的，
