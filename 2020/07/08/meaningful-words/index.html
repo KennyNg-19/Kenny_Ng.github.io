@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="datawhale-cv训练营-01赛题研究, 池中之物">
+    <meta name="keywords" content="有趣\有思想的words积累, 池中之物">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>datawhale-cv训练营-01赛题研究 | 池中之物</title>
+    <title>有趣\有思想的words积累 | 池中之物</title>
     <link rel="icon" type="image/png" href="/Kenny_Ng.github.io/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/Kenny_Ng.github.io/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/Kenny_Ng.github.io/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/Kenny_Ng.github.io/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">datawhale-cv训练营-01赛题研究</h1>
+                    <h1 class="description center-align post-title">有趣\有思想的words积累</h1>
                 </div>
             </div>
         </div>
@@ -431,12 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/Kenny_Ng.github.io/tags/ML/">
-                                <span class="chip bg-color">ML</span>
-                            </a>
-                        
-                            <a href="/Kenny_Ng.github.io/tags/CV/">
-                                <span class="chip bg-color">CV</span>
+                            <a href="/Kenny_Ng.github.io/tags/feeling-mind/">
+                                <span class="chip bg-color">feeling&amp;mind</span>
                             </a>
                         
                     </div>
@@ -451,28 +447,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-05-19
+                    2020-07-08
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2020-05-23
+                    2020-10-16
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    1.2k
+                    310
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    4 Min
+                    1 Min
                 </div>
                 
 
@@ -487,76 +483,37 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>这次<strong>基础</strong>赛事, 是Datawhale与天池联合发起的零基础<strong>入门系列</strong>赛事 <a href="https://tianchi.aliyun.com/competition/entrance/531795/introduction" target="_blank" rel="noopener">赛事地址</a></p>
-<h1 id="本文目的"><a href="#本文目的" class="headerlink" title="本文目的"></a>本文目的</h1><ol>
-<li><strong>总结</strong>基本了解比赛规则</li>
-<li><strong>总结</strong>解题思路</li>
-<li>数据下载和<strong>理解</strong></li>
-</ol>
-<h1 id="1-规则"><a href="#1-规则" class="headerlink" title="1.规则"></a>1.规则</h1><p>本赛题需要选手识别图片中所有的字符。<strong>评测指标</strong>：准确率，Score=编码识别正确的数量/测试集图片数量</p>
-<p>为了降低比赛难度，我们提供了训练集、验证集中所有字符的<strong>位置框</strong>（在<strong>阿里天池</strong>上下载）。</p>
-<p><strong>注意</strong>: 按照比赛规则，所有的参赛选手，<strong>只能使用比赛给定的数据集完成训练(不要使用SVHN原始数据集进行训练</strong>）</p>
-<h4 id="使用的Python模块"><a href="#使用的Python模块" class="headerlink" title="使用的Python模块"></a>使用的Python模块</h4><p>大概介绍一下，这里可能需要用到的主要模块。</p>
-<blockquote>
-<p>numpy ：提供了python对多维数组对象的支持：ndarray，具有矢量运算能力，快速、节省空间。numpy支持高级大量的维度数组与矩阵运算，此外也针对数组运算提供大量的数学函数库。</p>
-<p>torch：神经网络界的 Numpy, 因为他能将 torch 产生的 tensor 放在 GPU 中加速运算 (前提是你有合适的 GPU), 就像 Numpy 会把 array 放在 CPU 中加速运算. 所以神经网络的话, 当然是用 Torch 的 tensor 形式数据最好</p>
-<p>torchvision：torchvision包是服务于pytorch深度学习框架的,用来生成图片,视频数据集,和一些流行的模型类和预训练模型。我认为这个是最关键的模块</p>
-<p>OpenCV（import时候是cv2）：一款强大的跨平台的计算机视觉库，使用它能完成我们对于图像和视频处理的很多功能。它以电信号的方式加以捕捉、记录、处理、储存、传送与重现的各种技术。这里主要是用来对图片的处理</p>
-<p>json：这个就是json的读写库，处理json文件的</p>
-</blockquote>
-<h1 id="2-数据理解"><a href="#2-数据理解" class="headerlink" title="2. 数据理解"></a>2. 数据理解</h1><h4 id="数据集初步观察"><a href="#数据集初步观察" class="headerlink" title="数据集初步观察"></a>数据集初步观察</h4><p>分.json的label位置信息，和原图集合</p>
-<p><strong>数据读取</strong>： json文件包含的位置信息，除了便于正式的训练，还可以用于数据观察——直接作用在原图集，<strong>查看已给的位置信息的分割效果</strong></p>
-<p>样例代码: 数据读取，在此我们给出JSON中标签的读取方式</p>
-<pre><code>import json
-train_json = json.load(open(&#39;../input/train.json&#39;))
+                <p>积累下日常看到的，<strong>有意思/有思想</strong>的句子(截图)</p>
+<h3 id="0-统计学派：贝叶斯-vs-频率"><a href="#0-统计学派：贝叶斯-vs-频率" class="headerlink" title="0. 统计学派：贝叶斯 vs 频率"></a>0. 统计学派：贝叶斯 vs 频率</h3><h4 id="频率派-古典统计学"><a href="#频率派-古典统计学" class="headerlink" title="频率派 =古典统计学"></a>频率派 =古典统计学</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjr8gme9y4j314y09mgp6.jpg" alt="image-20201016160151317"></p>
+<p>缺点就是：光靠做高频率的实验，去<strong>逼近</strong>模型的真实参数, 有的时间成本太高，不可能1次次真的做</p>
+<h3 id="贝叶斯方法"><a href="#贝叶斯方法" class="headerlink" title="贝叶斯方法"></a><strong>贝叶斯方法</strong></h3><p>被证明是非常 general 且强大的<strong>推理框架</strong>，一句话概括贝叶斯方法创始人Thomas Bayes的观点就是：</p>
+<p><strong>任何时候，我对世界总有一个<u>主观的先验判断</u>，但是这个判断会随着世界的真实变化而随机<u>修正</u>，我对世界<u>永远保持开放的态度</u></strong>。</p>
+<img src="/Users/kenny/Library/Application Support/typora-user-images/image-20201013185802157.png" alt="频率派：好理解" style="zoom:40%;" />
 
-# 数据标注处理
-def parse_json(d):
-   arr = np.array([
-       d[&#39;top&#39;], d[&#39;height&#39;], d[&#39;left&#39;],  d[&#39;width&#39;], d[&#39;label&#39;]
-   ])
-   arr = arr.astype(int)
-   return arr
 
-img = cv2.imread(&#39;../input/train/000000.png&#39;)
-arr = parse_json(train_json[&#39;000000.png&#39;])
 
-plt.figure(figsize=(10, 10))
-plt.subplot(1, arr.shape[1]+1, 1)
-plt.imshow(img)
-plt.xticks([]); plt.yticks([])
+<p>但是，频率派<strong>不适合于很多复杂的情况——客观概率，无法轻易获得时</strong>，贝叶斯就出场了</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjnmz0vds1j313s0gyn3p.jpg" alt="贝叶斯：加入主观，且生活中用的更多！" style="zoom:50%;" />
 
-for idx in range(arr.shape[1]):
-   plt.subplot(1, arr.shape[1]+1, idx+2)
-   plt.imshow(img[arr[0, idx]:arr[0, idx]+arr[1, idx],arr[2, idx]:arr[2, idx]+arr[3, idx]])
-   plt.title(arr[4, idx])
-   plt.xticks([]); plt.yticks([])</code></pre><p>输出</p>
-<p><a href="https://tva1.sinaimg.cn/large/007S8ZIlgy1gez59nbvuij30z30u0gtm.jpg" target="_blank" rel="noopener"><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gez59nbvuij30z30u0gtm.jpg" alt="img"></a></p>
-<p><a href="https://tva1.sinaimg.cn/large/007S8ZIlgy1gez5ab60sij30yw0oaqc0.jpg" target="_blank" rel="noopener"><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gez5ab60sij30yw0oaqc0.jpg" alt="img"></a></p>
-<h1 id="3-潜在的疑难杂症"><a href="#3-潜在的疑难杂症" class="headerlink" title="3. 潜在的疑难杂症"></a>3. 潜在的疑难杂症</h1><h4 id="预处理细节"><a href="#预处理细节" class="headerlink" title="预处理细节"></a>预处理细节</h4><p>数据集存在原图片<strong>大小不统一</strong>，这个只需要用pytorch的transforms处理即可</p>
-<h4 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h4><h5 id="a-确定待识别数字在图中的位置"><a href="#a-确定待识别数字在图中的位置" class="headerlink" title="a.确定待识别数字在图中的位置"></a>a.确定待识别数字在图中的位置</h5><p>(使用比赛简化后的数据，则该问题并不存在了)</p>
-<p>在简化数据集之前的难点是：模型要能找到待识别数字的<strong>位置</strong>。但是既然处理后的数据集，<strong>位置信息全都提供了</strong>，那么这个问题就容易很多——<strong>单纯的识别数字信息</strong>。数字的位数问题可以通过简单的算法来解决，就像MNIST数据集一样。</p>
-<p><a href="https://crazy-winds.github.io/images/cv1/0-1.png" target="_blank" rel="noopener"><img src="https://crazy-winds.github.io/images/cv1/0-1.png" alt="图1"></a>图1</p>
-<p>（json格式存储label和位置信息）</p>
-<p><a href="https://crazy-winds.github.io/images/cv1/0-2.png" target="_blank" rel="noopener"><img src="https://crazy-winds.github.io/images/cv1/0-2.png" alt="图2"></a>图2</p>
-<h5 id="b-确定待识别数字的个数"><a href="#b-确定待识别数字的个数" class="headerlink" title="b.确定待识别数字的个数"></a>b.确定待识别数字的个数</h5><p>即每幅图的数字个数可能均不相同，如何统一的解决(找到一种general的方法)</p>
-<p>将在解题思路部分详细展开</p>
-<h1 id="4-大致解题思路"><a href="#4-大致解题思路" class="headerlink" title="4. 大致解题思路"></a>4. 大致解题思路</h1><ol>
-<li>简单入门思路：定长字符识别。将不定长字符转化为定长处理，不足部分用<strong>填充占位符</strong>为代替</li>
-</ol>
-<p>（<strong>适合新手</strong>也<strong>适合此题给的处理后的数据集</strong>：赛题数据集中大部分图像中字符个数为2-4个，最多的字符 个数为<strong>6个</strong>）</p>
-<p><a href="https://crazy-winds.github.io/images/cv1/0-3.png" target="_blank" rel="noopener"><img src="https://crazy-winds.github.io/images/cv1/0-3.png" alt="图3"></a>图3</p>
-<ol>
-<li>专业字符识别思路：按照<strong>不定长字符</strong>处理</li>
-</ol>
-<p>在字符识别研究中，有<strong>特定的方法</strong>来解决此种不定长的字符识别问题：如<strong>典型的有CRNN字符识别模型</strong>。</p>
-<p>因为本次赛题中给定的图像数据都<strong>比较规整，可以视为一个单词或者一个句子</strong> 喂进CRNN模型。</p>
-<ol>
-<li>专业分类思路：检测位置再识别数字</li>
-</ol>
-<p>在赛题数据中已经给出了训练集、验证集中所有图片中字符的位置，因此可以首先将字符的位置进行识别，利用<strong>物体检测</strong>的思路完成。</p>
-<p>可参考物体检测模型：<strong>SSD或者YOLO</strong></p>
+<img src="/Users/kenny/Library/Application Support/typora-user-images/image-20201013132323821.png" alt="贝叶斯公式的白话理解" style="zoom:50%;" />
 
+
+
+<h3 id="1-推荐系统是双刃剑"><a href="#1-推荐系统是双刃剑" class="headerlink" title="1. 推荐系统是双刃剑"></a>1. 推荐系统是双刃剑</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggk13ffztdj310w03sq3k.jpg" alt="推荐系统下，当今互联网产品"></p>
+<h3 id="2-习惯：解决万事开头难"><a href="#2-习惯：解决万事开头难" class="headerlink" title="2. 习惯：解决万事开头难"></a>2. 习惯：解决万事开头难</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gglqrm9ladj310k0880v8.jpg" alt="万事开头难：先做5分钟"></p>
+<h3 id="3-习惯：言简意赅"><a href="#3-习惯：言简意赅" class="headerlink" title="3. 习惯：言简意赅"></a>3. 习惯：言简意赅</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gglqphbyucj311y07amym.jpg" alt="好习惯：压缩表达"></p>
+<h3 id="4-理论vs实践"><a href="#4-理论vs实践" class="headerlink" title="4. 理论vs实践"></a>4. 理论vs实践</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggzr92fnejj310y0hijwy.jpg" alt="理论vs实践" style="zoom:50%;" />
+
+<h3 id="5-关于出身时机"><a href="#5-关于出身时机" class="headerlink" title="5. 关于出身时机~"></a>5. 关于出身时机~</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghiqjayfzrj30ny0363yp.jpg" alt="戏谑出身时机" style="zoom:50%;" />
+
+
+
+<h3 id="6-电子产品上的文字聊天，是离散碎片、非线性的"><a href="#6-电子产品上的文字聊天，是离散碎片、非线性的" class="headerlink" title="6. 电子产品上的文字聊天，是离散碎片、非线性的"></a>6. 电子产品上的文字聊天，是离散碎片、非线性的</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gi25zo73thj30pg044js1.jpg" style="zoom:50%;" />
+
+<h3 id="7-童年…"><a href="#7-童年…" class="headerlink" title="7. 童年…"></a>7. 童年…</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gi25zy33oyj30lf07xgn3.jpg" style="zoom:40%;" />
+
+<h3 id="8-善良or软弱"><a href="#8-善良or软弱" class="headerlink" title="8. 善良or软弱"></a>8. 善良or软弱</h3><p>在2020.10.14，大连理工一研三学生因博导方面压力过大，写下微博遗书后 释然自尽的评论区下….</p>
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjouklv1xsj30qy06egnv.jpg" style="zoom:50%;" />
             </div>
             <hr/>
 
@@ -581,7 +538,7 @@ for idx in range(arr.shape[1]):
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/Kenny_Ng.github.io/2020/05/19/datawhale-cv01/">http://yoursite.com/Kenny_Ng.github.io/2020/05/19/datawhale-cv01/</a>
+                    <a href="http://yoursite.com/Kenny_Ng.github.io/2020/07/08/meaningful-words/">http://yoursite.com/Kenny_Ng.github.io/2020/07/08/meaningful-words/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -619,12 +576,8 @@ for idx in range(arr.shape[1]):
                     
                         <div class="article-tag">
                             
-                                <a href="/Kenny_Ng.github.io/tags/ML/">
-                                    <span class="chip bg-color">ML</span>
-                                </a>
-                            
-                                <a href="/Kenny_Ng.github.io/tags/CV/">
-                                    <span class="chip bg-color">CV</span>
+                                <a href="/Kenny_Ng.github.io/tags/feeling-mind/">
+                                    <span class="chip bg-color">feeling&amp;mind</span>
                                 </a>
                             
                         </div>
@@ -796,25 +749,34 @@ for idx in range(arr.shape[1]):
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/Kenny_Ng.github.io/2020/05/23/datawhale-cv02/">
+                <a href="/Kenny_Ng.github.io/2020/07/25/ML-concepts-memorize/">
                     <div class="card-image">
                         
                         
-                        <img src="/Kenny_Ng.github.io/medias/featureimages/15.jpg" class="responsive-img" alt="datawhale-cv训练营-02数据读取与数据扩增">
+                        <img src="/Kenny_Ng.github.io/medias/featureimages/7.jpg" class="responsive-img" alt="ML,DL的混淆点/易错点">
                         
-                        <span class="card-title">datawhale-cv训练营-02数据读取与数据扩增</span>
+                        <span class="card-title">ML,DL的混淆点/易错点</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            在上一章节，官方提供了三种不同的解决方案。从本章开始 将逐渐的学习使用【定长字符识别】思路来构建模型，讲解赛题的解决方案和相应知识点。
-2 数据读取与数据扩增2.1 学习目标本章主要内容为图像数据读取、数据扩增方法和实战Pytorch读取赛
+                            ML(数学)中的常见混淆, 易错点和一般性结论0. 似然？似然和概率在统计学中是经常见到的两个术语，有时候这两个概念是一个意思，有时候却有很大区别。这里梳理下这两个术语所代表的具体含义。
+本文中数学符号及含义
+
+
+符号
+含义
+
+
+
+O
+观测
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-23
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-25
                         </span>
                         <span class="publish-author">
                             
@@ -831,8 +793,16 @@ for idx in range(arr.shape[1]):
                         <span class="chip bg-color">ML</span>
                     </a>
                     
-                    <a href="/Kenny_Ng.github.io/tags/CV/">
-                        <span class="chip bg-color">CV</span>
+                    <a href="/Kenny_Ng.github.io/tags/math/">
+                        <span class="chip bg-color">math</span>
+                    </a>
+                    
+                    <a href="/Kenny_Ng.github.io/tags/%E7%A7%AF%E7%B4%AF/">
+                        <span class="chip bg-color">积累</span>
+                    </a>
+                    
+                    <a href="/Kenny_Ng.github.io/tags/%E7%BB%9F%E8%AE%A1%E6%A6%82%E7%8E%87/">
+                        <span class="chip bg-color">统计概率</span>
                     </a>
                     
                 </div>
@@ -846,30 +816,25 @@ for idx in range(arr.shape[1]):
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/Kenny_Ng.github.io/2020/01/29/NLP-intro/">
+                <a href="/Kenny_Ng.github.io/2020/07/01/7%E6%9C%88%E5%B0%8F%E8%AE%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/Kenny_Ng.github.io/medias/featureimages/23.jpg" class="responsive-img" alt="NLP-intro">
+                        <img src="/Kenny_Ng.github.io/medias/featureimages/3.jpg" class="responsive-img" alt="7、8月小记">
                         
-                        <span class="card-title">NLP-intro</span>
+                        <span class="card-title">7、8月小记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            0. NLP Overviewa. 按照研究方向~语言的I/O2个大方向对应了，语言的“一进一出”
-
-
-b. 按照现实中的业务大致分成2大类
-
-文本生成任务: 文本序列→文本序列比如机器翻译，文本风格迁移等，
-类别识别任务: 文本序列→类别
+                            7.1 被宠物🐶咬却被家长骂反应慢感觉：很不好，应该是父母长期怼我这种慵懒的生活方式积累不满的爆发；
+为了避免风险，再小的口子也得打很折腾的持续一个月的5次疫苗；打完第一针，感觉有点不适的反应，加上前一天被骂的不爽，只能拿狗撒气了，不然还
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-01
                             </span>
                         <span class="publish-author">
                             
@@ -882,12 +847,12 @@ b. 按照现实中的业务大致分成2大类
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Kenny_Ng.github.io/tags/ML/">
-                        <span class="chip bg-color">ML</span>
+                    <a href="/Kenny_Ng.github.io/tags/feeling-mind/">
+                        <span class="chip bg-color">feeling&amp;mind</span>
                     </a>
                     
-                    <a href="/Kenny_Ng.github.io/tags/NLP/">
-                        <span class="chip bg-color">NLP</span>
+                    <a href="/Kenny_Ng.github.io/tags/%E7%A7%AF%E7%B4%AF/">
+                        <span class="chip bg-color">积累</span>
                     </a>
                     
                 </div>
