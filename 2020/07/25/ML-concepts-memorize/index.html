@@ -466,21 +466,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2020-10-20
+                    2020-11-29
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>Word Count:&nbsp;&nbsp;
-                    5.9k
+                    6.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>Read Times:&nbsp;&nbsp;
-                    21 Min
+                    22 Min
                 </div>
                 
 
@@ -532,14 +532,14 @@
 </ul>
 </li>
 </ul>
-<h4 id="似然函数公式"><a href="#似然函数公式" class="headerlink" title="似然函数公式"></a>似然函数公式</h4><p>先看似然函数的定义，它是给定联合样本值x下关于(未知)参数θ的函数：(等号应该是<strong><u>正比于</u></strong>)<img src="https://www.zhihu.com/equation?tex=L%28%5Ctheta+%7C+%5Ctextbf%7Bx%7D%29+%3D+f%28%5Ctextbf%7Bx%7D+%7C+%5Ctheta%29" alt=""></p>
+<h4 id="一些基本的概念"><a href="#一些基本的概念" class="headerlink" title="一些基本的概念"></a>一些基本的概念</h4><p>估计（estimating）是一种手段，一种对<strong>模型参数</strong>进行<strong>推测(inference)</strong>的手段，说白了，就是利用训练数据X，对模型进行calibration(校正)。在这之前，首先<strong>需要有一个<u>种类确定</u>的模型</strong>，推测的目标是模型中<strong>待辨识的</strong>参数。</p>
+<h4 id="极大似然估计公式"><a href="#极大似然估计公式" class="headerlink" title="极大似然估计公式"></a>极大似然估计公式</h4><p>先看似然函数的定义，它是给定联合样本值x下关于(未知)参数θ的函数，人话说就是：<strong>利用已知的样本结果 x</strong>，反推最有可能（最大概率）<strong><u>导致</u>这样结果的参数</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gl6k5alhoej30ou05k75h.jpg" alt="ML Estimation公式"></p>
 <ul>
-<li><p>这里的小x 指联合样本随机变量X取到的值，即X=x；</p>
-</li>
-<li><p>这里的θ是指未知参数，属于参数空间；</p>
-</li>
-<li><p>这里的f(x|θ)是一个<strong>概率密度函数</strong>，特别地表示(给定)θ下，关于联合样本值x的<strong>联合密度函数</strong>。</p>
-</li>
+<li>这里的小<strong>x</strong>指联合样本随机变量X取到的值，即X=x；</li>
+<li>联和样本集<strong>X</strong>={x1 、x2 、…、xn}，<strong>MLE是默认假设<u>样本之间都是相对独立的</u>，注意这个假设很重要！所以上面才能连乘</strong></li>
+<li>这里的θ是指未知参数，属于参数空间；</li>
+<li>这里的f(x|θ)是一个<strong>概率密度函数</strong>，特别地表示(给定)θ下，关于联合样本值x的<strong>联合密度函数</strong>。</li>
 </ul>
 <p>所以从定义上，似然函数和密度函数是完全不同的两个<strong>数学对象</strong>：前者是关于θ的函数，后者是关x的函数。所以这里的等号=，应理解为<strong><font color="#dd0000">函数值形式</font>的相等</strong>，而<font color="#dd0000">不是两个函数本身是同一函数</font>。所以这个式子的<strong>严格书写方式</strong>是<img src="https://www.zhihu.com/equation?tex=L%28%5Ctheta+%7C+%5Ctextbf%7Bx%7D%29+%3D+f%28%5Ctextbf%7Bx%7D+%3B+%5Ctheta%29" alt="">)(分号示把参数隔开) 即<strong>θ在右端只当作参数</strong>。</p>
 <h4 id="概率角度看ML-频率派-vs-贝叶斯派"><a href="#概率角度看ML-频率派-vs-贝叶斯派" class="headerlink" title="概率角度看ML: 频率派 vs 贝叶斯派"></a>概率角度看ML: 频率派 vs 贝叶斯派</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjo3vb3pqgj31450u016u.jpg" alt="概率角度分析两派的机器学习" style="zoom:50%;" />
@@ -556,7 +556,7 @@
 
 
 
-<p><strong>贝叶斯派机器学习</strong>：<strong>MAP，极大后验估计</strong>，<strong>对概率公式积分——求概率值</strong></p>
+<p><strong>贝叶斯派机器学习</strong>：<strong>MAP，极大后验估计</strong>，<strong>对概率公式积分——核心求的是<u>积分</u></strong></p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjo41bewn3j30to0lw4ef.jpg" alt="MAP 考虑了prior的极大似然估计" style="zoom:40%;" />
 
 
@@ -728,11 +728,12 @@
 
 <h3 id="矩阵与矩阵-向量相乘-也可用"><a href="#矩阵与矩阵-向量相乘-也可用" class="headerlink" title="矩阵与矩阵/向量相乘 也可用@"></a><strong>矩阵与矩阵/向量</strong>相乘 <strong>也可用<u>@</u></strong></h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gj5p36wqcij31ji094gn0.jpg" alt="也可用@！"></p>
 <p>也自然要求：<del>一维向量</del>array a和b的<strong><del>行列数</del><u>维度</u>相同</strong></p>
-<h2 id="8-条件概率和交集概率的区分"><a href="#8-条件概率和交集概率的区分" class="headerlink" title="8. 条件概率和交集概率的区分"></a>8. 条件概率和交集概率的区分</h2><h3 id="交集概率-分母是全集-所以默认忽略"><a href="#交集概率-分母是全集-所以默认忽略" class="headerlink" title="交集概率: 分母是全集(所以默认忽略)"></a>交集概率: 分母是<u>全集</u>(所以默认忽略)</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlntiq7ocj31dq0kak1t.jpg" style="zoom:30%;" />
+<h2 id="8-条件概率-表达约束-、联和概率的区分"><a href="#8-条件概率-表达约束-、联和概率的区分" class="headerlink" title="8. 条件概率(表达约束)、联和概率的区分"></a>8. 条件概率(表达约束)、联和概率的区分</h2><h3 id="联和概率-分母是全集-所以默认忽略"><a href="#联和概率-分母是全集-所以默认忽略" class="headerlink" title="联和概率: 分母是全集(所以默认忽略)"></a>联和概率: 分母是<u>全集</u>(所以默认忽略)</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlntiq7ocj31dq0kak1t.jpg" style="zoom:30%;" />
 
 
 
-<h3 id="条件概率-分母是做条件的那个概率的所在集"><a href="#条件概率-分母是做条件的那个概率的所在集" class="headerlink" title="条件概率: 分母是做条件的那个概率的所在集"></a>条件概率: 分母是<u>做条件的那个概率</u>的所在集</h3><h4 id="分子用了交集概率，分母是做条件的概率的所在集"><a href="#分子用了交集概率，分母是做条件的概率的所在集" class="headerlink" title="分子用了交集概率，分母是做条件的概率的所在集"></a>分子用了交集概率，分母是<u>做条件的概率</u>的所在集</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlnqr41w2j31f20jiaj3.jpg" style="zoom:30%;" />
+<h3 id="条件概率-分母是做条件的那个概率的所在集"><a href="#条件概率-分母是做条件的那个概率的所在集" class="headerlink" title="条件概率: 分母是做条件的那个概率的所在集"></a>条件概率: 分母是<u>做条件的那个概率</u>的所在集</h3><p>条概y|x 总是给人一种<strong>“先有x后有y”</strong>的感觉，但其实x,y<strong>并不是先有鸡后有蛋的关系</strong>——x,y应该理解<strong><font color="red">为y受到x的约束</font>，会随着x的改变而y的取值也改变</strong>。条件所表达的意义<strong>在于约束，而非顺序</strong></p>
+<h4 id="分子用了交集概率，分母是做条件的概率的所在集"><a href="#分子用了交集概率，分母是做条件的概率的所在集" class="headerlink" title="分子用了交集概率，分母是做条件的概率的所在集"></a>分子用了交集概率，分母是<u>做条件的概率</u>的所在集</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlnqr41w2j31f20jiaj3.jpg" style="zoom:30%;" />
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghlnppukfmj315w0imaha.jpg" style="zoom:30%;" />
 
@@ -1068,6 +1069,55 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
+                <a href="/Kenny_Ng.github.io/2020/08/08/NLP-DeepLearning-ai/">
+                    <div class="card-image">
+                        
+                        <img src="https://miro.medium.com/max/2344/1*uc2HNS1m4CjG8Yb4AxGqbQ.png" class="responsive-img" alt="DeepLearning.ai出品NLP的Course1-NLP的Classification &amp; Vector Spaces">
+                        
+                        <span class="card-title">DeepLearning.ai出品NLP的Course1-NLP的Classification &amp; Vector Spaces</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Course1: NLP with Classification and Vector Spaces1. Task: text classification法1: Logsitc回归模型法2: 纯靠词频的Naive Bayes模型
+Naiv
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-08
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Kenny Ng
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/Kenny_Ng.github.io/tags/NLP/">
+                        <span class="chip bg-color">NLP</span>
+                    </a>
+                    
+                    <a href="/Kenny_Ng.github.io/tags/math/">
+                        <span class="chip bg-color">math</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/Kenny_Ng.github.io/2020/07/25/AI4m-DeepLearning-ai/">
                     <div class="card-image">
                         
@@ -1085,9 +1135,9 @@ a. 训练数据分布-Class imbalance问题如 实际在收集要拿來做DL的�
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-25
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -1113,50 +1163,6 @@ a. 训练数据分布-Class imbalance问题如 实际在收集要拿來做DL的�
                     
                     <a href="/Kenny_Ng.github.io/tags/advancedML/">
                         <span class="chip bg-color">advancedML</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/Kenny_Ng.github.io/2020/07/08/meaningful-words/">
-                    <div class="card-image">
-                        
-                        <img src="/Kenny_Ng.github.io/medias/featureimages/12.jpg" class="responsive-img" alt="有趣\有思想的words积累">
-                        
-                        <span class="card-title">有趣\有思想的words积累</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            积累下日常看到的，有意思的有思想的words(截图)
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-08
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            Kenny Ng
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/Kenny_Ng.github.io/tags/feeling-mind/">
-                        <span class="chip bg-color">feeling&amp;mind</span>
                     </a>
                     
                 </div>
