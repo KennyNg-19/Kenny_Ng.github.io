@@ -1,5 +1,5 @@
 ---
-title: DeepLearning.ai出品NLP的Course1-NLP的Classification & Vector Spaces
+title: DeepLearning.ai的NLP Course1的Classification & Vector Spaces
 date: 2020-08-08 13:45:24
 img: https://miro.medium.com/max/2344/1*uc2HNS1m4CjG8Yb4AxGqbQ.png
 tags: [NLP, math]
@@ -293,7 +293,7 @@ Quirk： 人类语言中的 带有sarcasm irony讽刺、euphemism委婉等色彩
 
 
 
-#### 应用(底层)
+#### 应用(底层的)
 
 Vector space models will 
 
@@ -307,7 +307,7 @@ Vector space models will
 
 
 
-2. <font color="#dd0000">*发掘语言中，词之间**关联性**</font>: to **<font color="#dd0000">capture dependencies between words</font>**——应用很广！！！
+2. <font color="#dd0000">发掘词之间**关联性**</font>: to **<font color="#dd0000">capture dependencies between words</font>**——应用很广！！！
 
 
 
@@ -339,7 +339,7 @@ Vector space models will
 
 这些**<font color="#dd0000">有了维度</font>的**数据，就可以<font color="#dd0000">**放入vector space**， 进行相似度分析</font>
 
-然后可以看成N-维向量(N为词的数量)，通过比较**向量的”相似性“指标，如距离**——得出句子/语料的相似性**
+然后可以看成N-维向量(N为词的数量)，通过比较**向量的”相似性“指标，如距离**——得出句子/语料的**相似性**
 
 
 
@@ -381,8 +381,6 @@ Generalize到更高维的
 
 ##### 指标2：cosine similarity✅
 
-
-
 欧几里得距离的缺点：明显**会受到corpus size的影响**——**导致vector size**长短不一，影响判断
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghnzy5kjw3j31g20nqwsh.jpg" alt="food和农业关联更大，但因food语料库太小，欧几里得误判history关系更大" style="zoom:50%;" />
@@ -405,11 +403,11 @@ Generalize到更高维的
 
 
 
-#### <font color="#dd0000">word embeddings 词嵌入</font>(向量)
+#### <font color="#dd0000">word embeddings 词嵌入</font>(一种向量)
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghp2rgex4zj31p005mwh8.jpg" alt="word represents by vector" style="zoom:53%;" />
 
-....
+(略)
 
 
 
