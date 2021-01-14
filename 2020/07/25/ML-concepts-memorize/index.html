@@ -466,7 +466,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2020-11-29
+                    2020-12-26
                 </div>
                 
 
@@ -517,11 +517,11 @@
 </tr>
 <tr>
 <td>P(O|θ)</td>
-<td>概率</td>
+<td>概率/<strong>似然值</strong></td>
 </tr>
 <tr>
 <td>L(θ|O)</td>
-<td><strong>似然函数</strong></td>
+<td><strong>极大似然估计函数</strong></td>
 </tr>
 </tbody></table>
 <h4 id="wiki中关于“似然”和“概率”的解释"><a href="#wiki中关于“似然”和“概率”的解释" class="headerlink" title="wiki中关于“似然”和“概率”的解释"></a>wiki中关于“似然”和“概率”的解释</h4><ul>
@@ -536,10 +536,14 @@
 <h4 id="极大似然估计公式"><a href="#极大似然估计公式" class="headerlink" title="极大似然估计公式"></a>极大似然估计公式</h4><p>先看似然函数的定义，它是给定联合样本值x下关于(未知)参数θ的函数，人话说就是：<strong>利用已知的样本结果 x</strong>，反推最有可能（最大概率）<strong><u>导致</u>这样结果的参数</strong></p>
 <p><img src="https://tva1.sinaimg.cn/large/0081Kckwgy1gl6k5alhoej30ou05k75h.jpg" alt="ML Estimation公式"></p>
 <ul>
-<li>这里的小<strong>x</strong>指联合样本随机变量X取到的值，即X=x；</li>
-<li>联和样本集<strong>X</strong>={x1 、x2 、…、xn}，<strong>MLE是默认假设<u>样本之间都是相对独立的</u>，注意这个假设很重要！所以上面才能连乘</strong></li>
-<li>这里的θ是指未知参数，属于参数空间；</li>
-<li>这里的f(x|θ)是一个<strong>概率密度函数</strong>，特别地表示(给定)θ下，关于联合样本值x的<strong>联合密度函数</strong>。</li>
+<li><p>这里的小<strong>x</strong>指联合样本随机变量X取到的值，即X=x；</p>
+</li>
+<li><p>联和样本集<strong>X</strong>={x1 、x2 、…、xn}，<strong>MLE<u>绝对默认假设</u><u>样本之间都是相对独立的</u>，注意这个假设很重要！所以上面才能连乘</strong></p>
+</li>
+<li><p>这里的θ是指未知参数，属于参数空间；</p>
+</li>
+<li><p>这里的f(x|θ)是一个<strong>我们理解的频率\似然值</strong>，即P(x|θ) 或者 <strong>直接写P(x)</strong>，因为根据定义似然就是<strong>在假设模型未知θ下</strong>，得到的<strong>data X的分布</strong>！所以<strong>未知θ，但却可以写P(x|θ)</strong>； 既然data X已知，可通过<strong>count频率直接得到，某个x的</strong>似然值</p>
+</li>
 </ul>
 <p>所以从定义上，似然函数和密度函数是完全不同的两个<strong>数学对象</strong>：前者是关于θ的函数，后者是关x的函数。所以这里的等号=，应理解为<strong><font color="#dd0000">函数值形式</font>的相等</strong>，而<font color="#dd0000">不是两个函数本身是同一函数</font>。所以这个式子的<strong>严格书写方式</strong>是<img src="https://www.zhihu.com/equation?tex=L%28%5Ctheta+%7C+%5Ctextbf%7Bx%7D%29+%3D+f%28%5Ctextbf%7Bx%7D+%3B+%5Ctheta%29" alt="">)(分号示把参数隔开) 即<strong>θ在右端只当作参数</strong>。</p>
 <h4 id="概率角度看ML-频率派-vs-贝叶斯派"><a href="#概率角度看ML-频率派-vs-贝叶斯派" class="headerlink" title="概率角度看ML: 频率派 vs 贝叶斯派"></a>概率角度看ML: 频率派 vs 贝叶斯派</h4><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gjo3vb3pqgj31450u016u.jpg" alt="概率角度分析两派的机器学习" style="zoom:50%;" />
@@ -1069,12 +1073,12 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/Kenny_Ng.github.io/2020/08/08/NLP-DeepLearning-ai/">
+                <a href="/Kenny_Ng.github.io/2020/08/08/NLPcw1-DeepLearning-ai/">
                     <div class="card-image">
                         
-                        <img src="https://miro.medium.com/max/2344/1*uc2HNS1m4CjG8Yb4AxGqbQ.png" class="responsive-img" alt="DeepLearning.ai出品NLP的Course1-NLP的Classification &amp; Vector Spaces">
+                        <img src="https://miro.medium.com/max/2344/1*uc2HNS1m4CjG8Yb4AxGqbQ.png" class="responsive-img" alt="DeepLearning.ai的NLP Course1的Classification &amp; Vector Spaces">
                         
-                        <span class="card-title">DeepLearning.ai出品NLP的Course1-NLP的Classification &amp; Vector Spaces</span>
+                        <span class="card-title">DeepLearning.ai的NLP Course1的Classification &amp; Vector Spaces</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
