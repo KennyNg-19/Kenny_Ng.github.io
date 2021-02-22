@@ -451,7 +451,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-04-29
+                    2020-06-29
                 </div>
                 
 
@@ -539,12 +539,15 @@
 <p>NER常见的两个问题: <strong>名字一样但指的是不同的东西</strong>，有多个标签需要实体消歧；<strong>不一样的名字指的却是相同的东西</strong>，需要实体归一化。</p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh0y4ykt6uj312m0regxp.jpg" style="zoom:33%;" />
 </li>
-<li><p><strong>Relation Extraction</strong>(重要): 关系抽取</p>
+<li><p><strong>Relation Extraction</strong>(重要): 关系抽取 + <strong>NER</strong></p>
 <p>假如已知如何从文本中获得实体，接下来还需要知道<strong>它们之间的关系</strong>。</p>
 <p>关系抽取的输入：<strong>序列和抽取出的实体</strong>，输出是<strong>两两实体之间的关系</strong>。本质是一个<strong><u>分类</u>任务</strong></p>
-<p>比如，输入：哈利波特和霍格沃茨，输出：关系，是后者的学生</p>
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh0yb0p0i0j314g0t8nd9.jpg" style="zoom:33%;" />
 </li>
+</ul>
+<p>  比如，输入：NER识别哈利波特和霍格沃茨，输出：关系，是后者的学生</p>
+  <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh0yb0p0i0j314g0t8nd9.jpg" style="zoom:33%;" />
+
+<ul>
 <li><p><strong>Question Answering</strong> 问答系统/搜索引擎</p>
 </li>
 <li><p><strong>Chating</strong> 对话机器人</p>
@@ -606,7 +609,7 @@
 <h5 id="2-翻译模型TM"><a href="#2-翻译模型TM" class="headerlink" title="2. 翻译模型TM"></a>2. 翻译模型TM</h5><p>…</p>
 <h2 id="2-case-基于检索的智能问答系统"><a href="#2-case-基于检索的智能问答系统" class="headerlink" title="2. case-基于检索的智能问答系统"></a>2. case-基于检索的智能问答系统</h2><h3 id="数据-输入-语料库"><a href="#数据-输入-语料库" class="headerlink" title="数据/输入: 语料库"></a>数据/输入: 语料库</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfinf6trm9j311w0kuke0.jpg" alt="写好的问与答结对"></p>
 <h3 id="NLP-general-pipeline"><a href="#NLP-general-pipeline" class="headerlink" title="NLP general pipeline"></a>NLP general pipeline</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfjqjhtaemj31kj0u0qte.jpg" alt="模型的输入：特征提取很重要"></p>
-<h4 id="QAsys的流程"><a href="#QAsys的流程" class="headerlink" title="QAsys的流程"></a>QAsys的流程</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfir8926c2j31ip0u0e81.jpg" alt="image-20200606183943480"></p>
+<h4 id="具体例子：QAsys的流程"><a href="#具体例子：QAsys的流程" class="headerlink" title="具体例子：QAsys的流程"></a>具体例子：QAsys的流程</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfir8926c2j31ip0u0e81.jpg" alt=""></p>
 <h4 id="解决：如何搜索出最相似问题"><a href="#解决：如何搜索出最相似问题" class="headerlink" title="解决：如何搜索出最相似问题"></a>解决：如何搜索出最相似问题</h4><h5 id="相似度的衡量？"><a href="#相似度的衡量？" class="headerlink" title="相似度的衡量？"></a>相似度的衡量？</h5><ul>
 <li>❌<strong>逐字</strong>比较：正则/<strong>规则</strong>AI——<strong>对匹配要求很高很高</strong>, 所以需要考虑<strong><u>尽可能多</u></strong>的输入，过于繁琐<ul>
 <li>唯一使用场景：<strong><u>没有数据时</u></strong>，语料库很空</li>
@@ -615,7 +618,7 @@
 <li>✅<strong>概率</strong>比较：字符串的<strong>“相似性”(metric的选择)</strong>计算</li>
 </ul>
 <h4 id="阶段一-文本处理"><a href="#阶段一-文本处理" class="headerlink" title="阶段一 文本处理"></a>阶段一 <a href="https://kennyng-19.github.io/Kenny_Ng.github.io/2019/08/07/NLP-text-process/" target="_blank" rel="noopener">文本处理</a></h4><p>常用技术</p>
-<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm2bbdbwoj30zg0eaaj2.jpg" alt="image-20200609152001651" style="zoom:50%;" />
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm2bbdbwoj30zg0eaaj2.jpg" alt="" style="zoom:50%;" />
             </div>
             <hr/>
 
@@ -640,7 +643,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/Kenny_Ng.github.io/2020/04/29/NLP-intro/">http://yoursite.com/Kenny_Ng.github.io/2020/04/29/NLP-intro/</a>
+                    <a href="http://yoursite.com/Kenny_Ng.github.io/2020/06/29/NLP-intro/">http://yoursite.com/Kenny_Ng.github.io/2020/06/29/NLP-intro/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -855,30 +858,24 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/Kenny_Ng.github.io/2020/05/18/datawhale-cv01/">
+                <a href="/Kenny_Ng.github.io/2020/07/01/leetcode-self-exp/">
                     <div class="card-image">
                         
                         
-                        <img src="/Kenny_Ng.github.io/medias/featureimages/1.jpg" class="responsive-img" alt="datawhale-cv训练营-01赛题研究">
+                        <img src="/Kenny_Ng.github.io/medias/featureimages/10.jpg" class="responsive-img" alt="算法题的自我经验总结">
                         
-                        <span class="card-title">datawhale-cv训练营-01赛题研究</span>
+                        <span class="card-title">算法题的自我经验总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            这次基础赛事, 是Datawhale与天池联合发起的零基础入门系列赛事 赛事地址
-本文目的
-总结基本了解比赛规则
-总结解题思路
-数据下载和理解
-
-1.规则本赛题需要选手识别图片中所有的字符。评测指标：准确率，Score=编码识别正确的数量/
+                            包括 1.编码前，头脑风暴上的trick 2.亲历data structure的巧用的实例
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-18
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-01
                         </span>
                         <span class="publish-author">
                             
@@ -891,12 +888,24 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Kenny_Ng.github.io/tags/ML/">
-                        <span class="chip bg-color">ML</span>
+                    <a href="/Kenny_Ng.github.io/tags/%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">算法</span>
                     </a>
                     
-                    <a href="/Kenny_Ng.github.io/tags/CV/">
-                        <span class="chip bg-color">CV</span>
+                    <a href="/Kenny_Ng.github.io/tags/CS/">
+                        <span class="chip bg-color">CS</span>
+                    </a>
+                    
+                    <a href="/Kenny_Ng.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="chip bg-color">数据结构</span>
+                    </a>
+                    
+                    <a href="/Kenny_Ng.github.io/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/Kenny_Ng.github.io/tags/%E7%A7%AF%E7%B4%AF/">
+                        <span class="chip bg-color">积累</span>
                     </a>
                     
                 </div>
@@ -910,26 +919,31 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/Kenny_Ng.github.io/2019/09/28/CS-English-terms/">
+                <a href="/Kenny_Ng.github.io/2020/06/10/NLP-text-feature-represent/">
                     <div class="card-image">
                         
                         
-                        <img src="/Kenny_Ng.github.io/medias/featureimages/1.jpg" class="responsive-img" alt="CS学科中English terms的中文大意">
+                        <img src="/Kenny_Ng.github.io/medias/featureimages/4.jpg" class="responsive-img" alt="NLP-text-feature-represent">
                         
-                        <span class="card-title">CS学科中English terms的中文大意</span>
+                        <span class="card-title">NLP-text-feature-represent</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            1. client program 实现应用的程序(Java)我见到的其出处：Coursera普林斯顿《算法》课程
-（此client并非C/S的客户端哦）
-A client is a program that uses a data typ
+                            文本的表示和特征提取文本表示(向量)单词one-hot维度=|词典|
+
+
+
+
+句子1. Sparse boolean representation(类似one-hot)维度=|词典|
+不管词频无论一个单词出现了几次，都设为1(true)
+明
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-09-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-10
                             </span>
                         <span class="publish-author">
                             
@@ -942,12 +956,8 @@ A client is a program that uses a data typ
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/Kenny_Ng.github.io/tags/CS/">
-                        <span class="chip bg-color">CS</span>
-                    </a>
-                    
-                    <a href="/Kenny_Ng.github.io/tags/English/">
-                        <span class="chip bg-color">English</span>
+                    <a href="/Kenny_Ng.github.io/tags/NLP/">
+                        <span class="chip bg-color">NLP</span>
                     </a>
                     
                 </div>
