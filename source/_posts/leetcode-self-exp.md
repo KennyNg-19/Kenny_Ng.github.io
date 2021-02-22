@@ -151,3 +151,17 @@ summary: 包括 1.编码前，头脑风暴上的trick 2.亲历data structure的�
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gikly698h0j31980tq453.jpg" style="zoom:43%;" />
 
+### 6. 什么情况可以用precomputed所有需要的值 代替(nested) loop
+
+当**每一次loop**内处理的操作相同, 且**互相之间独立**时，可以选择用一个**<font color="#dd0000">和loop复杂度相同的维度</font>大型array**去存每次的结果，e.g. loop每次输出求一个值，那么大型array每一处存的就是那些值
+
+
+
+
+
+如我AML作业——CART树**生成前**的划分：所有划分的结果，是可以预先计算的
+
+![Efficient split on CART tree](/Users/kenny/Library/Application Support/typora-user-images/image-20210210113459503.png)
+
+![image-20210210114239357](/Users/kenny/Library/Application Support/typora-user-images/image-20210210114239357.png)
+
