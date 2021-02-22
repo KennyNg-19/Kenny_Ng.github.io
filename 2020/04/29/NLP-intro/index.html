@@ -451,14 +451,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-01-29
+                    2020-04-29
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>Update Date:&nbsp;&nbsp;
-                    2020-07-23
+                    2021-02-22
                 </div>
                 
 
@@ -494,10 +494,10 @@
 
 <h4 id="文本生成任务-文本序列→文本序列"><a href="#文本生成任务-文本序列→文本序列" class="headerlink" title="文本生成任务: 文本序列→文本序列"></a>文本生成任务: <strong>文本序列→文本序列</strong></h4><p>比如机器翻译，文本风格迁移等，</p>
 <h4 id="类别识别任务-文本序列→类别"><a href="#类别识别任务-文本序列→类别" class="headerlink" title="类别识别任务: 文本序列→类别"></a>类别识别任务: 文本序列→类别</h4><p>比如情感分类，实体命名识别，主题分类，槽位填充等。</p>
-<h5 id="输入：多个序列"><a href="#输入：多个序列" class="headerlink" title="输入：多个序列"></a>输入：多个序列</h5><p>多个序列要怎么办呢？大概两种可能的解法。</p>
+<h5 id="输入：多个序列怎么办"><a href="#输入：多个序列怎么办" class="headerlink" title="输入：多个序列怎么办"></a>输入：多个序列怎么办</h5><p>大概两种可能的解法。</p>
 <p>一是把两个序列，分别用<strong>两个模型</strong>去做编码。再把它们编码后的嵌入，丢给另一个整合的模块，去得到最终的输出。有时，我们也会在两个模型之间加 Attention，确保二者的编码内容能互相意识。</p>
 <p>二是，近年来比较流行的做法是直接<strong>把两个句子连接起来，中间加一个特殊的字符</strong>，如 <u><strong>BERT</strong></u> 里面的 <SEP>，来提示模型去意识到这是两个句子的分隔符(接起来的序列丢给模型后可以预测下游任务)</p>
-<h4 id="其他-这2大类的变体"><a href="#其他-这2大类的变体" class="headerlink" title="其他: 这2大类的变体"></a>其他: 这2大类的变体</h4><ul>
+<h4 id="其他具体task-都是这2大类的衍生"><a href="#其他具体task-都是这2大类的衍生" class="headerlink" title="其他具体task: 都是这2大类的衍生"></a>其他具体task: 都是这2大类的衍生</h4><ul>
 <li><p><strong>Word Segmentations 分词</strong></p>
 <p>英文词汇有<strong>空格符</strong>分割词的边界，但有的语言，如<strong>中文，却没有类似的方式来区分</strong>，所以需要<strong>额外的分词处理</strong>。在一个句子中找出词的边界有时并不是一个简单的问题，所以也需要模型来做。</p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh0xppt5gbj311r0u0wpj.jpg" style="zoom:25%;" />
@@ -506,12 +506,12 @@
 <p> 需要标记出一个句子中的每个词的词性是什么。对应输入一个序列，输出序列每个位置的<strong>类别任务</strong>。</p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh0xotv23zj31020jsthy.jpg" style="zoom:33%;" />
 </li>
-<li><p><strong>Pre-Processing work</strong> 自然语言理解的<strong>前处理</strong>的任务</p>
+<li><p><strong>Pre-Processing work</strong> 自然语言理解的<strong>前处理</strong>的任务，包括：</p>
 <ul>
 <li><p><strong>Parsing 句法分析</strong></p>
-<p>给定句子，根据<u>词性</u>生成<strong>树状结构</strong> by CYK算法</p>
+<p>给定句子，根据<u>词性</u>生成<strong>树状结构</strong> by <strong>CYK算法</strong></p>
 </li>
-<li><p><strong>Dependency Parsing</strong>(词的)依存分析 </p>
+<li><p><strong>Dependency Parsing</strong>(词的)<strong>依存</strong>分析 </p>
 <p>生成<strong>graph</strong></p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh0y22yxs4j31200ncwll.jpg" style="zoom:33%;" />
 </li>
@@ -541,14 +541,14 @@
 </li>
 <li><p><strong>Relation Extraction</strong>(重要): 关系抽取</p>
 <p>假如已知如何从文本中获得实体，接下来还需要知道<strong>它们之间的关系</strong>。</p>
-<p>关系抽取的输入：<strong>序列和抽取出的实体</strong>，输出是<strong>两两实体之间的关系</strong>。本质是一个<strong>分类任务</strong></p>
+<p>关系抽取的输入：<strong>序列和抽取出的实体</strong>，输出是<strong>两两实体之间的关系</strong>。本质是一个<strong><u>分类</u>任务</strong></p>
 <p>比如，输入：哈利波特和霍格沃茨，输出：关系，是后者的学生</p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh0yb0p0i0j314g0t8nd9.jpg" style="zoom:33%;" />
 </li>
 <li><p><strong>Question Answering</strong> 问答系统/搜索引擎</p>
 </li>
 <li><p><strong>Chating</strong> 对话机器人</p>
-<p>分成两种，闲聊和任务导向型。</p>
+<p>分成两种，<strong>闲聊和任务导向</strong>型。</p>
 <ul>
 <li><p><strong>Chatbox</strong> 闲聊机器人：基本上都是在尬聊，有一堆问题待解决，比如角色一致性，多轮会话，对上下文保有记忆等。</p>
 </li>
@@ -581,17 +581,17 @@
 </ul>
 </li>
 </ul>
-<h3 id="c-技术的4个-实现难度递增的-维度"><a href="#c-技术的4个-实现难度递增的-维度" class="headerlink" title="c. 技术的4个(实现难度递增的)维度"></a>c. 技术的4个(实现难度递增的)维度</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gff3scbnfmj31980pynao.jpg" alt="从下往上难度递增" style="zoom:33%;" />
+<h3 id="c-NLP技术的4个-实现难度递增的-维度"><a href="#c-NLP技术的4个-实现难度递增的-维度" class="headerlink" title="c. NLP技术的4个(实现难度递增的)维度"></a>c. NLP技术的4个(实现难度递增的)维度</h3><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gff3scbnfmj31980pynao.jpg" alt="从下往上难度递增" style="zoom:33%;" />
 
 
 
 
 
-<h2 id="1-case-机器翻译"><a href="#1-case-机器翻译" class="headerlink" title="1. case-机器翻译"></a>1. case-机器翻译</h2><h3 id="思路a-暴力法"><a href="#思路a-暴力法" class="headerlink" title="思路a: 暴力法"></a>思路a: 暴力法</h3><h4 id="原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的"><a href="#原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的" class="headerlink" title="原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的"></a>原理：<strong>全排列组合</strong>分词后的句子，用语言模型从中筛选出语义最合适的</h4><p>第一步通过<strong>翻译模型TM</strong>进行<strong>分词</strong></p>
-<p>第二步映射词语，因为语法的存在而进行<u>映射后词语的排列组合</u></p>
+<h2 id="1-case-机器翻译"><a href="#1-case-机器翻译" class="headerlink" title="1. case-机器翻译"></a>1. case-机器翻译</h2><h3 id="思路a-暴力法"><a href="#思路a-暴力法" class="headerlink" title="思路a: 暴力法"></a>思路a: 暴力法</h3><h4 id="原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的"><a href="#原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的" class="headerlink" title="原理：全排列组合分词后的句子，用语言模型从中筛选出语义最合适的"></a>原理：<strong><u>全排列组合</u></strong>分词后的句子，用语言模型从中筛选出语义最合适的</h4><p>第一步通过<strong>翻译模型TM</strong>进行<strong>分词</strong></p>
+<p>第二步<strong>映射</strong>词语，因为语法的存在而进行<u>映射后词语的排列组合</u></p>
 <p>第三步通过<strong>语言模型LM</strong>选出排列组合中最合适的语句</p>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf99soj3vmj317w0kuq8d.jpg" alt="">缺点: 排列组合的复杂度太高</p>
-<p>解决: <strong>维特比Viterbi</strong>算法——<strong>同时考虑TM</strong>分词+<strong>LM筛选</strong>这分开2个步骤</p>
+<p>解决: <strong>维特比Viterbi</strong>算法——<strong>同时考虑TM</strong>分词+<strong>LM筛选</strong>，这分开的2个步骤</p>
 <h3 id="思路b-维特比Viterbi算法"><a href="#思路b-维特比Viterbi算法" class="headerlink" title="思路b: 维特比Viterbi算法"></a>思路b: <strong>维特比Viterbi</strong>算法</h3><h4 id="原理：贝叶斯TM和LM"><a href="#原理：贝叶斯TM和LM" class="headerlink" title="原理：贝叶斯TM和LM"></a>原理：贝叶斯TM和LM</h4><p><strong>串联TM</strong>分词+<strong>LM筛选</strong>这分开的2个步骤</p>
 <h4 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf9i9qd3wlj31680f20vt.jpg" alt="流程图"></p>
 <p>各个部分的作用</p>
@@ -605,14 +605,14 @@
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf9iknu2qsj30yw06idh3.jpg" alt=""></p>
 <h5 id="2-翻译模型TM"><a href="#2-翻译模型TM" class="headerlink" title="2. 翻译模型TM"></a>2. 翻译模型TM</h5><p>…</p>
 <h2 id="2-case-基于检索的智能问答系统"><a href="#2-case-基于检索的智能问答系统" class="headerlink" title="2. case-基于检索的智能问答系统"></a>2. case-基于检索的智能问答系统</h2><h3 id="数据-输入-语料库"><a href="#数据-输入-语料库" class="headerlink" title="数据/输入: 语料库"></a>数据/输入: 语料库</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfinf6trm9j311w0kuke0.jpg" alt="写好的问与答结对"></p>
-<h3 id="NLP-general-pipeline"><a href="#NLP-general-pipeline" class="headerlink" title="NLP general pipeline"></a>NLP general pipeline</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfjqjhtaemj31kj0u0qte.jpg" alt="image-20200607150135228"></p>
+<h3 id="NLP-general-pipeline"><a href="#NLP-general-pipeline" class="headerlink" title="NLP general pipeline"></a>NLP general pipeline</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfjqjhtaemj31kj0u0qte.jpg" alt="模型的输入：特征提取很重要"></p>
 <h4 id="QAsys的流程"><a href="#QAsys的流程" class="headerlink" title="QAsys的流程"></a>QAsys的流程</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfir8926c2j31ip0u0e81.jpg" alt="image-20200606183943480"></p>
 <h4 id="解决：如何搜索出最相似问题"><a href="#解决：如何搜索出最相似问题" class="headerlink" title="解决：如何搜索出最相似问题"></a>解决：如何搜索出最相似问题</h4><h5 id="相似度的衡量？"><a href="#相似度的衡量？" class="headerlink" title="相似度的衡量？"></a>相似度的衡量？</h5><ul>
 <li>❌<strong>逐字</strong>比较：正则/<strong>规则</strong>AI——<strong>对匹配要求很高很高</strong>, 所以需要考虑<strong><u>尽可能多</u></strong>的输入，过于繁琐<ul>
 <li>唯一使用场景：<strong><u>没有数据时</u></strong>，语料库很空</li>
 </ul>
 </li>
-<li>✅<strong>概率</strong>比较：字符串的<strong>“相似性”计算</strong></li>
+<li>✅<strong>概率</strong>比较：字符串的<strong>“相似性”(metric的选择)</strong>计算</li>
 </ul>
 <h4 id="阶段一-文本处理"><a href="#阶段一-文本处理" class="headerlink" title="阶段一 文本处理"></a>阶段一 <a href="https://kennyng-19.github.io/Kenny_Ng.github.io/2019/08/07/NLP-text-process/" target="_blank" rel="noopener">文本处理</a></h4><p>常用技术</p>
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gfm2bbdbwoj30zg0eaaj2.jpg" alt="image-20200609152001651" style="zoom:50%;" />
@@ -640,7 +640,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/Kenny_Ng.github.io/2020/01/29/NLP-intro/">http://yoursite.com/Kenny_Ng.github.io/2020/01/29/NLP-intro/</a>
+                    <a href="http://yoursite.com/Kenny_Ng.github.io/2020/04/29/NLP-intro/">http://yoursite.com/Kenny_Ng.github.io/2020/04/29/NLP-intro/</a>
                 </span>
             </div>
             <div class="reprint__notice">
